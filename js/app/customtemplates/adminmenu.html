@@ -1,0 +1,67 @@
+<div ng-controller="adminCtrl">
+	<div class="row">
+		<div class="col-sm-6">
+			<div class="list-group">
+				<a class="list-group-item list-group-item-info" href="type/index.html">Meta Data</a>
+				<a class="list-group-item list-group-item-info" href="index.html">Home</a>
+				<a class="list-group-item list-group-item-info"  href='type/index.html#/erdiagram'>Relationship Diagram</a>
+			</div>
+		</div>
+		<div class="col-sm-6">
+			<div class="list-group">
+				<a class="list-group-item list-group-item-info" ui-sref="allreport({'typename': 'TypedQuery'})">ALL Queries</a>
+				<a class="list-group-item list-group-item-info" ui-sref="allreport({'typename': 'FxReport'})">ALL Reports</a>
+				<a class="list-group-item list-group-item-info" ui-sref="addinst({'typename': 'DefaultTypedQuery'})">Add Query</a>
+			</div>
+		</div>
+	</div>
+
+
+	<div class="row">
+		<div class="col-sm-6">
+			<div class="list-group">
+				<a class="list-group-item list-group-item-info" ui-sref="allreport({'typename': 'FxConfig'})">Configuration</a>
+				<a class="list-group-item list-group-item-info" ui-sref="addinst({'typename': 'FxConfig'})">Add Configuration</a>
+			</div>
+		</div>
+		<div class="col-sm-6">
+			<div class="list-group">
+				<a class="list-group-item list-group-item-info" ui-sref="allreport({'typename': 'FxUrlCtrl'})">Web Resource Access Controls</a>
+				<a class="list-group-item list-group-item-info" ui-sref="addinst({'typename': 'FxUrlCtrl'})">Add Control</a>
+			</div>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col-sm-6">
+			<div class="list-group">
+				<a class="list-group-item list-group-item-info" ui-sref="allreport({'typename': 'FxRole'})">All Security Roles</a>
+				<a class="list-group-item list-group-item-info" ui-sref="allreport({'typename': 'FxUser'})">All User</a>
+				<a class="list-group-item list-group-item-info" ui-sref="addinst({'typename': 'FxRole'})">Add Security Role</a>
+				<a class="list-group-item list-group-item-info" ui-sref="addinst({'typename': 'FxUser'})">Add User</a>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<h1>Modify or Remove Web Resource</h1>
+		<div class="col-sm-8">
+			<div class="list-group">
+				<a class="list-group-item list-group-item-info" href="type/index.html#/modifyresource/customtemplates/topmenu.html">Top Menu</a>
+				<a class="list-group-item list-group-item-info" href="type/index.html#/modifyresource/customtemplates/adminmenu.html">Admin</a>
+				<a class="list-group-item list-group-item-info" href="type/index.html#/modifyresource/customtemplates/home.html">Home</a>
+				<a class="list-group-item list-group-item-info" href="type/index.html#/modifyresource/customtemplates/logout.html">Logout</a>
+				<div class="list-group-item list-group-item-info" >
+					<input type="text" ng-model="pageurl"/> <button type="btn btn-default" ng-click="modifyResource()">Go</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+
+
+
+
+
+
+</div>

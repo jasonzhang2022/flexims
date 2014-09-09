@@ -1,0 +1,18 @@
+<div class="panel panel-default">
+	<div class="panel-heading">
+		<div class="btn-group pull-left">
+			<strong>{{typename}} {{inst.id}}</strong>
+		</div>
+		<div class="btn-toolbar">
+			<div class="btn-group pull-right" fx-inst-actions="editor">
+			</div>
+		</div>
+	</div>
+	<div class="panel-body">
+		<form id="instform" name="instform" class="form-horizontal">
+			<fx-inst-editor fx-init-instance-from-query-params inst='inst' 
+			typename='typename'
+			showlabel='true' edit='edit'> </fx-inst-editor>
+		</form>
+	</div>
+</div>

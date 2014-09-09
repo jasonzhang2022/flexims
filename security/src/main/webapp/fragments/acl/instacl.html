@@ -1,0 +1,50 @@
+<div class="panel panel-default">
+	<div class="panel-heading">
+		<div class="btn-group pull-left">
+			<strong>Permission for {{typename}} {{inst.id}}</strong>
+		</div>
+		<div class="btn-toolbar">
+			<div class="btn-group pull-right">
+				<button class='btn btn-primary ' data-ng-click='saveAcl();' data-ng-disabled='aclform.$invalid '>
+					<span class='glyphicon glyphicon-floppy-disk'></span>
+				</button>
+				<a type='button' class='btn btn-default' title='Cancel' href='#/viewinst/{{typename}}/{{id}}'>Cancel</a>
+			</div>
+		</div>
+	</div>
+	<div class="panel-body">
+		<form id="aclform" name="aclform" class="form-horizontal">
+			<div class="row" ng-repeat="ace in instacl.instanceACES.aces">
+				<div class="col-sm-2">
+					<select name="roleid" fx-dynamic-name="'roleid'+$index" class="form-control" required ng-options="role.id as role.Name for role in roles" ng-model="ace.rolePermission.roleid">
+					</select>
+				</div>
+				<div class="col-sm-3">
+					<select name="action" fx-dynamic-name="'roleaction'+$index" class="form-control" size="6" multiple required ng-options="action.key as action.value for action in actions"
+						ng-model="ace.rolePermission.actions"
+					>
+					</select>
+				</div>
+				<div class="col-sm-2">
+					<input name="perm" type="radio" fx-dynamic-name="'roleperm'+$index" ng-model="ace.rolePermission.decision" value="Allow" />
+					Allow
+					<input name="perm" type="radio" fx-dynamic-name="'roleperm'+$index" ng-model="ace.rolePermission.decision" value="Deny" />
+					Reject
+				</div>
+				<div class="col-sm-2">
+					<button type="button" class="btn btn-default" ng-click="deleteRolePermission($index)">
+						<span class="glyphicon glyphicon-minus"></span>
+					</button>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-sm-2">
+					<button type="button" class="btn btn-default" ng-click="addRolePermission()">
+						<span class="glyphicon glyphicon-plus"></span>
+					</button>
+				</div>
+			</div>
+		</form>
+	</div>
+</div>

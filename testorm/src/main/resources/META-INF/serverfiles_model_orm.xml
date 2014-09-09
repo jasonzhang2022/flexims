@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<orm:entity-mappings xmlns:orm="http://www.eclipse.org/eclipselink/xsds/persistence/orm" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+   <orm:persistence-unit-metadata>
+      <orm:xml-mapping-metadata-complete>true</orm:xml-mapping-metadata-complete>
+      <orm:exclude-default-mappings>true</orm:exclude-default-mappings>
+      <orm:persistence-unit-defaults>
+         <orm:access>VIRTUAL</orm:access>
+         <orm:access-methods get-method="get" set-method="set"/>
+      </orm:persistence-unit-defaults>
+   </orm:persistence-unit-metadata>
+   <orm:package>com.flexdms.flexims.dynamic.model.generated</orm:package>
+   <orm:table-generator name="SFilemainseq" table="seqs" pk-column-name="name" value-column-name="seq" pk-column-value="SFilemainreq" initial-value="10000" allocation-size="50"/>
+   <orm:entity name="SFilemain" class="SFilemain" parent-class="com.flexdms.flexims.jpa.eclipselink.FleximsDynamicEntityImpl">
+      <orm:attributes>
+         <orm:id name="id" attribute-type="Long">
+            <orm:generated-value strategy="TABLE" generator="SFilemainseq"/>
+         </orm:id>
+         <orm:version name="fxversion" mutable="true" attribute-type="java.sql.Timestamp"/>
+         
+         <orm:element-collection name="multiembed" target-class="SFileembed2" attribute-type="java.util.List">
+            <orm:column/>
+            <orm:property name="typeidx" value="-1"/>
+         </orm:element-collection>
+         
+         
+         <orm:embedded name="singleembed" attribute-type="SFileembed1">
+            <orm:property name="typeidx" value="-1"/>
+         </orm:embedded>
+         
+          <orm:basic name="propdirectory" attribute-type="java.lang.String">
+            <orm:column unique="false" nullable="true" length="254"/>
+            <orm:property name="typeidx" value="16"/>
+         </orm:basic>
+         <orm:basic name="propfile" attribute-type="java.lang.String">
+            <orm:column unique="false" nullable="true" length="254"/>
+            <orm:property name="typeidx" value="17"/>
+         </orm:basic>
+         
+         <orm:element-collection name="mpropdirectory" target-class="java.lang.String" attribute-type="java.util.List">
+            <orm:column unique="false" nullable="true" length="254"/>
+            <orm:property name="typeidx" value="16"/>
+         </orm:element-collection>
+         <orm:element-collection name="mpropfile" target-class="java.lang.String" attribute-type="java.util.List">
+            <orm:column unique="false" nullable="true" length="254"/>
+            <orm:property name="typeidx" value="17"/>
+         </orm:element-collection>
+         
+         
+      </orm:attributes>
+   </orm:entity>
+   <orm:embeddable class="SFileembed1" parent-class="com.flexdms.flexims.jpa.eclipselink.FleximsDynamicEntityImpl" access="VIRTUAL">
+      <orm:attributes>
+         <orm:basic name="spropdirectory" attribute-type="java.lang.String">
+            <orm:column unique="false" nullable="true" length="254"/>
+            <orm:property name="typeidx" value="16"/>
+         </orm:basic>
+         <orm:basic name="spropfile" attribute-type="java.lang.String">
+            <orm:column unique="false" nullable="true" length="254"/>
+            <orm:property name="typeidx" value="17"/>
+         </orm:basic>
+         
+         <orm:element-collection name="smpropdirectory" target-class="java.lang.String" attribute-type="java.util.List">
+            <orm:column unique="false" nullable="true" length="254"/>
+            <orm:property name="typeidx" value="16"/>
+         </orm:element-collection>
+         <orm:element-collection name="smpropfile" target-class="java.lang.String" attribute-type="java.util.List">
+            <orm:column unique="false" nullable="true" length="254"/>
+            <orm:property name="typeidx" value="17"/>
+         </orm:element-collection>
+      </orm:attributes>
+   </orm:embeddable>
+   <orm:embeddable class="SFileembed2" parent-class="com.flexdms.flexims.jpa.eclipselink.FleximsDynamicEntityImpl" access="VIRTUAL">
+      <orm:attributes>
+          <orm:basic name="propdirectory" attribute-type="java.lang.String">
+            <orm:column unique="false" nullable="true" length="254"/>
+            <orm:property name="typeidx" value="16"/>
+         </orm:basic>
+         <orm:basic name="propfile" attribute-type="java.lang.String">
+            <orm:column unique="false" nullable="true" length="254"/>
+            <orm:property name="typeidx" value="17"/>
+         </orm:basic>
+      </orm:attributes>
+   </orm:embeddable>
+</orm:entity-mappings>

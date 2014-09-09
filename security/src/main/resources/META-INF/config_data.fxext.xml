@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<entities>
+   <FxConfig>
+      <fxversion>2014-06-09T15:54:15.506724-07:00</fxversion>
+      <Name>fx.acl.defaultpermission.All</Name>
+      <id>100</id>
+      <ConfigValue>false</ConfigValue>
+      <fxExtraProp/>
+      <ForClient>false</ForClient>
+      <ForAdmin>true</ForAdmin>
+   </FxConfig>
+   
+   <FxConfig>
+      <fxversion>2014-06-09T15:54:15.506724-07:00</fxversion>
+      <Name>fx.acl.defaultpermission.Create</Name>
+      <id>101</id>
+      <ConfigValue>true</ConfigValue>
+      <fxExtraProp/>
+      <ForClient>false</ForClient>
+      <ForAdmin>true</ForAdmin>
+   </FxConfig>
+   
+   
+   <FxConfig>
+      <fxversion>2014-06-09T15:54:15.506724-07:00</fxversion>
+      <Name>fx.acl.defaultpermission.Delete</Name>
+      <id>102</id>
+      <ConfigValue>false</ConfigValue>
+      <fxExtraProp/>
+      <ForClient>false</ForClient>
+      <ForAdmin>true</ForAdmin>
+   </FxConfig>
+   
+   
+   <FxConfig>
+      <fxversion>2014-06-09T15:54:15.506724-07:00</fxversion>
+      <Name>fx.acl.defaultpermission.Grant</Name>
+      <id>103</id>
+      <ConfigValue>false</ConfigValue>
+      <fxExtraProp/>
+      <ForClient>false</ForClient>
+      <ForAdmin>true</ForAdmin>
+   </FxConfig>
+   
+   
+   <FxConfig>
+      <fxversion>2014-06-09T15:54:15.506724-07:00</fxversion>
+      <Name>fx.acl.defaultpermission.Query</Name>
+      <id>104</id>
+      <ConfigValue>true</ConfigValue>
+      <fxExtraProp/>
+      <ForClient>false</ForClient>
+      <ForAdmin>true</ForAdmin>
+   </FxConfig>
+   
+   <FxConfig>
+      <fxversion>2014-06-09T15:54:15.506724-07:00</fxversion>
+      <Name>fx.acl.defaultpermission.Read</Name>
+      <id>105</id>
+      <ConfigValue>true</ConfigValue>
+      <fxExtraProp/>
+      <ForClient>false</ForClient>
+      <ForAdmin>true</ForAdmin>
+   </FxConfig>
+   
+   <FxConfig>
+      <fxversion>2014-06-09T15:54:15.506724-07:00</fxversion>
+      <Name>fx.acl.defaultpermission.Watch</Name>
+      <id>106</id>
+      <ConfigValue>false</ConfigValue>
+      <fxExtraProp/>
+      <ForClient>false</ForClient>
+      <ForAdmin>true</ForAdmin>
+   </FxConfig>
+   
+</entities>

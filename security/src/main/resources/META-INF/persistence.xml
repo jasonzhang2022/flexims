@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.0"
+	xmlns="http://java.sun.com/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd">
+	<persistence-unit name="fxsecurity" transaction-type="RESOURCE_LOCAL">
+		<provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+		<!-- actualy is java:comp/env/jdbc/flexims -->
+		<non-jta-data-source>java:comp/env/jdbc/flexims</non-jta-data-source>
+		<class>com.flexdms.flexims.accesscontrol.model.InstanceACE</class>
+		<class>com.flexdms.flexims.accesscontrol.model.InstanceRolePermission</class>
+		<class>com.flexdms.flexims.accesscontrol.model.Permission</class>
+		<class>com.flexdms.flexims.accesscontrol.model.PropertyPermission</class>
+		<class>com.flexdms.flexims.accesscontrol.model.RolePermission</class>
+		<class>com.flexdms.flexims.accesscontrol.model.TypeACL</class>
+		<exclude-unlisted-classes>true</exclude-unlisted-classes>
+		<properties>
+		<!-- Do no alter property
+			Alter property could prevent schema generation form working. 
+			If needed, test schema generation works for any property addtion/deletion/modification
+		 -->
+<!-- 			<property name="eclipselink.deploy-on-startup" value="true"/> -->
+			<property name="eclipselink.logging.level" value="WARNING" />
+			<property name="eclipselink.logging.level.sql" value="WARNING" />
+			<property name="eclipselink.logging.parameters" value="false" />
+			<property name="eclipselink.ddl-generation" value="create-tables"/>
+			<!-- Once we have this, we can not generate schema anymore -->
+			<!-- <property name="eclipselink.ddl-generation" value="create-or-extend-tables" /> -->
+			<property name="eclipselink.ddl-generation.output-mode"
+				value="both" />
+		</properties>
+
+
+	</persistence-unit>
+</persistence>
+

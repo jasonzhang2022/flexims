@@ -1,0 +1,4 @@
+<span data-ng-show="field.$error.required">Required!</span>
+<span data-ng-show="field.$error.minlength">At least {{propobj.getMinLen()}} characters </span>
+<span data-ng-show="field.$error.maxlength">{{propobj.getMaxLen()}} characters at maximum </span>
+<span data-ng-show="field.$error.pattern">value does not match pattern:{{propobj.getPattern();}} </span>

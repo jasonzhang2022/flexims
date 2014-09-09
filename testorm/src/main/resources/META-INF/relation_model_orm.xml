@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<orm:entity-mappings xmlns:orm="http://www.eclipse.org/eclipselink/xsds/persistence/orm" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+   <orm:persistence-unit-metadata>
+      <orm:xml-mapping-metadata-complete>true</orm:xml-mapping-metadata-complete>
+      <orm:exclude-default-mappings>true</orm:exclude-default-mappings>
+      <orm:persistence-unit-defaults>
+         <orm:access>VIRTUAL</orm:access>
+         <orm:access-methods get-method="get" set-method="set"/>
+      </orm:persistence-unit-defaults>
+   </orm:persistence-unit-metadata>
+   <orm:package>com.flexdms.flexims.dynamic.model.generated</orm:package>
+   <orm:table-generator name="Mstudentseq" table="seqs" pk-column-name="name" value-column-name="seq" pk-column-value="Mstudent" initial-value="10000" allocation-size="50"/>
+   <orm:table-generator name="Mcourseseq" table="seqs" pk-column-name="name" value-column-name="seq" pk-column-value="Mcourse" initial-value="10000" allocation-size="50"/>
+   <orm:table-generator name="MOneManyseq" table="seqs" pk-column-name="name" value-column-name="seq" pk-column-value="MOneMany" initial-value="10000" allocation-size="50"/>
+   <orm:table-generator name="Mdoombuildseq" table="seqs" pk-column-name="name" value-column-name="seq" pk-column-value="Mdoombuild" initial-value="10000" allocation-size="50"/>
+   <orm:table-generator name="Mdoomroomseq" table="seqs" pk-column-name="name" value-column-name="seq" pk-column-value="Mdoomroom" initial-value="10000" allocation-size="50"/>
+   <orm:entity class="Mstudent" parent-class="com.flexdms.flexims.jpa.eclipselink.FleximsDynamicEntityImpl" access="VIRTUAL">
+      <orm:attributes>
+         <orm:id name="id" attribute-type="Long">
+            <orm:generated-value strategy="TABLE" generator="Mstudentseq"/>
+         </orm:id>
+         <orm:basic name="Name" attribute-type="java.lang.String">
+            <orm:column unique="false" nullable="true" length="10"/>
+              <orm:property name="summaryprop" value="true" />
+            
+         </orm:basic>
+         <orm:basic name="number" attribute-type="java.lang.Integer">
+            <orm:column unique="false" nullable="true"/>
+         </orm:basic>
+         <orm:version name="fxversion" mutable="true" attribute-type="java.sql.Timestamp"/>
+         <orm:many-to-one name="doombuild" target-entity="Mdoombuild"/>
+         <orm:one-to-many name="OneManys" target-entity="MOneMany" attribute-type="java.util.List">
+            <orm:cascade>
+               <orm:cascade-persist>true</orm:cascade-persist>
+            </orm:cascade>
+         </orm:one-to-many>
+         <orm:one-to-one name="doomroom" target-entity="Mdoomroom"/>
+         <orm:many-to-many name="Courses" target-entity="Mcourse" attribute-type="java.util.List"/>
+         <orm:element-collection name="propint" target-class="java.lang.Integer" attribute-type="java.util.List">
+            <orm:column unique="false" nullable="true" length="254"/>
+            <orm:property name="typeidx" value="3"/>
+         </orm:element-collection>
+      </orm:attributes>
+   </orm:entity>
+   <orm:entity class="Mcourse" parent-class="com.flexdms.flexims.jpa.eclipselink.FleximsDynamicEntityImpl" access="VIRTUAL">
+      <orm:attributes>
+         <orm:id name="id" attribute-type="Long">
+            <orm:generated-value strategy="TABLE" generator="Mcourseseq"/>
+         </orm:id>
+         <orm:basic name="name" attribute-type="java.lang.String">
+            <orm:column unique="false" nullable="false" length="10"/>
+            <orm:property name="summaryprop" value="true" />
+         </orm:basic>
+         <orm:basic name="college" attribute-type="java.lang.String">
+            <orm:column unique="false" nullable="true" length="10"/>
+         </orm:basic>
+         <orm:version name="fxversion" mutable="true" attribute-type="java.sql.Timestamp"/>
+         <orm:many-to-many name="Students" target-entity="Mstudent" mapped-by="Courses" attribute-type="java.util.List"/>
+      </orm:attributes>
+   </orm:entity>
+   <orm:entity class="MOneMany" parent-class="com.flexdms.flexims.jpa.eclipselink.FleximsDynamicEntityImpl" access="VIRTUAL">
+      <orm:attributes>
+         <orm:id name="id" attribute-type="Long">
+            <orm:generated-value strategy="TABLE" generator="MOneManyseq"/>
+         </orm:id>
+         <orm:basic name="name" attribute-type="java.lang.String">
+            <orm:column unique="false" nullable="false" length="10"/>
+         </orm:basic>
+         <orm:version name="fxversion" mutable="true" attribute-type="java.sql.Timestamp"/>
+      </orm:attributes>
+   </orm:entity>
+   <orm:entity class="Mdoombuild" parent-class="com.flexdms.flexims.jpa.eclipselink.FleximsDynamicEntityImpl" access="VIRTUAL">
+      <orm:attributes>
+         <orm:id name="id" attribute-type="Long">
+            <orm:generated-value strategy="TABLE" generator="Mdoombuildseq"/>
+         </orm:id>
+         <orm:basic name="name" attribute-type="java.lang.String">
+            <orm:column unique="false" nullable="false" length="10"/>
+            <orm:property name="summaryprop" value="true" />
+         </orm:basic>
+         <orm:version name="fxversion" mutable="true" attribute-type="java.sql.Timestamp"/>
+         <orm:one-to-many name="students" target-entity="Mstudent" mapped-by="doombuild" attribute-type="java.util.List"/>
+         <orm:one-to-many name="rooms" target-entity="Mdoomroom" mapped-by="doombuild" orphan-removal="true" attribute-type="java.util.List">
+            <orm:cascade>
+               <orm:cascade-remove>true</orm:cascade-remove>
+            </orm:cascade>
+            <orm:private-owned>true</orm:private-owned>
+         </orm:one-to-many>
+      </orm:attributes>
+   </orm:entity>
+   <orm:entity class="Mdoomroom" parent-class="com.flexdms.flexims.jpa.eclipselink.FleximsDynamicEntityImpl" access="VIRTUAL">
+      <orm:attributes>
+         <orm:id name="id" attribute-type="Long">
+            <orm:generated-value strategy="TABLE" generator="Mdoomroomdseq"/>
+         </orm:id>
+         <orm:basic name="number" attribute-type="java.lang.Integer">
+            <orm:column unique="false" nullable="false"/>
+            <orm:property name="summaryprop" value="true" />
+         </orm:basic>
+         <orm:basic name="name" attribute-type="java.lang.String">
+            <orm:column unique="false" nullable="true" length="10"/>
+            <orm:property name="summaryprop" value="true" />
+         </orm:basic>
+         <orm:version name="fxversion" mutable="true" attribute-type="java.sql.Timestamp"/>
+         <orm:many-to-one name="doombuild" target-entity="Mdoombuild"/>
+         <orm:one-to-one name="student" target-entity="Mstudent" mapped-by="doomroom"/>
+      </orm:attributes>
+   </orm:entity>
+</orm:entity-mappings>

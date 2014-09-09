@@ -1,0 +1,56 @@
+<arquillian xmlns="http://jboss.org/schema/arquillian"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+        http://jboss.org/schema/arquillian
+        http://jboss.org/schema/arquillian/arquillian_1_0.xsd">
+	<!-- defaultProtocol type="Servlet 3.0"></defaultProtocol -->
+	<engine>
+		<property name="deploymentExportPath">target/deployments</property>
+	</engine>
+	<extension qualifier="drone">
+	   <property name="instantiationTimeoutInSeconds">120</property>
+	</extension>
+	<extension qualifier="webdriver">
+		<property name="browser">firefox</property>
+	</extension>
+	<!--  not working -->
+	<extension qualifier="jacoco">
+    	<property name="includes">com.flexdms.**</property>
+    </extension>
+	<!-- http://www.hameister.org/ArquillianTomcatDependencyInjection.html -->
+	<container qualifier="tomcat">
+		<configuration>
+			<property name="tomcatHome">target/tomcat-embedded-7</property>
+			<property name="workDir">work</property>
+			<property name="bindHttpPort">8888</property>
+			<property name="unpackArchive">true</property>
+			<property name="serverName">arquillian-tomcat-embedded-7</property>
+		</configuration>
+	</container>
+	
+	<!-- 
+	https://docs.jboss.org/author/display/ARQ/Tomcat+7.0+-+Managed
+	Supported property names: [shutdownTimeoutInSeconds, bindHttpPort, 
+	managerUrl, workDir, unpackArchive, catalinaHome, outputToConsole, 
+	jmxVirtualHost, jmxUri, pass, jmxPort, javaHome, javaVmArguments, writeOutputToConsole,
+	 serverConfig, bindAddress, startupTimeoutInSeconds, urlCharset, appBase, user]
+	
+	 -->
+	<container qualifier="tomcat-managed" default="true">
+		<configuration>
+			<property name="startupTimeoutInSeconds">20</property>
+			<!-- The port to connect -->
+			<property name="bindHttpPort">8888</property>
+			<!--  the port to connect -->
+<!-- 			<property name="jmxPort">8089</property> -->
+			<property name="catalinaHome">target/apache-tomcat-7.0.52/apache-tomcat-7.0.52</property>
+			<property name="outputToConsole">true</property>
+			 <property name="user">tomcat</property>
+            <property name="pass">manager</property>
+            <!--  not working right now -->
+<!--             <property name="javaVmArguments">${jacocoSureFire}</property> -->
+<!--             <property name="javaVmArguments">-Xrunjdwp:transport=dt_socket,address=55407,server=y,suspend=y -Xmx512m -XX:MaxPermSize=128m</property> -->
+		</configuration>
+	</container>
+
+</arquillian>

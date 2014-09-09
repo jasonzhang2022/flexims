@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<orm:entity-mappings
+	xmlns:orm="http://www.eclipse.org/eclipselink/xsds/persistence/orm"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<orm:persistence-unit-metadata>
+		<orm:xml-mapping-metadata-complete>true
+		</orm:xml-mapping-metadata-complete>
+		<orm:exclude-default-mappings>true</orm:exclude-default-mappings>
+		<orm:persistence-unit-defaults>
+			<orm:access>VIRTUAL</orm:access>
+			<orm:access-methods get-method="get" set-method="set" />
+		</orm:persistence-unit-defaults>
+	</orm:persistence-unit-metadata>
+	<orm:package>com.flexdms.flexims.dynamic.model.generated</orm:package>
+	<orm:table-generator name="FxRoleseq" table="seqs"
+		pk-column-name="name" value-column-name="seq" pk-column-value="FxRole"
+		initial-value="10000" allocation-size="50" />
+	<orm:table-generator name="FxUserSettingsseq" table="seqs"
+		pk-column-name="name" value-column-name="seq" pk-column-value="FxUserSettings"
+		initial-value="10000" allocation-size="50" />
+	<orm:entity name="FxRole" class="FxRole"
+		parent-class="com.flexdms.flexims.jpa.eclipselink.FleximsDynamicEntityImpl"
+		access="VIRTUAL">
+		<orm:description>Security Role</orm:description>
+		<orm:discriminator-value>FxRole</orm:discriminator-value>
+		<orm:discriminator-column discriminator-type="java.lang.String"
+			length="40" />
+		<orm:cache type="FULL"/>
+		<orm:property name="abstract" value="false" />
+		<orm:property name="system" value="true" />
+		<orm:property name="showInAdd" value="false" />
+		<orm:property name="showInAllReport" value="false" />
+		<orm:attributes>
+			<orm:id name="id" attribute-type="Long">
+				<orm:column />
+				<orm:generated-value strategy="TABLE" generator="FxRoleseq" />
+			</orm:id>
+			<orm:basic name="fxExtraProp" optional="true"
+				attribute-type="java.lang.String">
+				<orm:column unique="false" nullable="true" length="4096" />
+				<orm:lob />
+				<orm:property name="editable" value="false" />
+				<orm:property name="viewable" value="false" />
+				<orm:property name="displaytext'" value="extensible properties" />
+				<orm:property name="system'" value="true" />
+				<orm:property name="typeidx'" value="10" />
+				<orm:property name="rootClass"
+					value="com.flexdms.flexims.jpa.helper.NameValueList" />
+			</orm:basic>
+			<orm:basic name="Name" optional="false" attribute-type="java.lang.String">
+				<orm:column unique="true" nullable="false" length="254" />
+				<orm:property name="typeidx" value="0" />
+				<orm:property name="viewable" value="true" />
+				<orm:property name="editable" value="true" />
+				<orm:property name="autogenerate" value="true" />
+				<orm:property name="summaryprop" value="true" />
+			</orm:basic>
+			<orm:basic name="Description" optional="true"
+				attribute-type="java.lang.String">
+				<orm:column unique="false" nullable="true" length="254" />
+				<orm:property name="typeidx" value="0" />
+			</orm:basic>
+			<orm:version name="fxversion" mutable="true"
+				attribute-type="java.sql.Timestamp">
+				<orm:column />
+			</orm:version>
+			<orm:many-to-many name="SubRole" target-entity="FxRole"
+				attribute-type="java.util.List">
+<!-- 				<orm:cascade-on-delete>false</orm:cascade-on-delete> -->
+				<orm:property name="typeidx" value="-2" />
+				<orm:property name="viewable" value="true" />
+				<orm:property name="editable" value="true" />
+				<orm:property name="autogenerate" value="true" />
+				<orm:property name="relationui.report" value="105" />
+				<orm:property name="relationui.uitype" value="Dropdown/ListBox" />
+				<orm:property name="relationui.showselected" value="true" />
+			</orm:many-to-many>
+			<orm:many-to-many name="IncludedBy" target-entity="FxRole" fetch="EAGER"
+				mapped-by="SubRole" attribute-type="java.util.List">
+<!-- 				<orm:cascade-on-delete>false</orm:cascade-on-delete> -->
+<!-- 				<orm:cascade> -->
+<!-- 					<orm:cascade-refresh></orm:cascade-refresh> -->
+<!-- 				</orm:cascade> -->
+				<orm:property name="typeidx" value="-2" />
+				<orm:property name="viewable" value="true" />
+				<orm:property name="editable" value="true" />
+				<orm:property name="autogenerate" value="true" />
+			</orm:many-to-many>
+		</orm:attributes>
+	</orm:entity>
+	<orm:entity name="FxUser" class="FxUser" parent-class="FxRole"
+		access="VIRTUAL">
+		<orm:description>A user in the System</orm:description>
+		<orm:discriminator-value>FxUser</orm:discriminator-value>
+		<orm:cache type="FULL"/>
+		<orm:property name="abstract" value="false" />
+		<orm:property name="system" value="true" />
+		<orm:property name="entity" value="true" />
+		<orm:property name="showInAdd" value="false" />
+		<orm:property name="showInAllReport" value="false" />
+	</orm:entity>
+	<orm:entity name="FxUserSettings" class="FxUserSettings"
+		parent-class="com.flexdms.flexims.jpa.eclipselink.FleximsDynamicEntityImpl"
+		access="VIRTUAL">
+		<orm:description>User Setting</orm:description>
+		<!-- DO NOT CACHE: always get new data when needed. -->
+		<orm:cache type="NONE"/>
+		<orm:property name="abstract" value="false" />
+		<orm:property name="system" value="true" />
+		<orm:property name="showInAdd" value="false" />
+		<orm:property name="showInAllReport" value="false" />
+		<orm:attributes>
+			<orm:id name="id" attribute-type="Long">
+				<orm:column />
+				<orm:generated-value strategy="TABLE" generator="FxUserSettingsseq" />
+			</orm:id>
+			<orm:version name="fxversion" mutable="true"
+				attribute-type="java.sql.Timestamp">
+				<orm:column />
+			</orm:version>
+			<orm:basic name="Email" optional="false" attribute-type="java.lang.String">
+				<orm:column unique="true" nullable="false" length="254" />
+				<orm:property name="strtype" value="Email" />
+				<orm:property name="typeidx" value="14" />
+				<orm:property name="viewable" value="true" />
+				<orm:property name="editable" value="true" />
+				<orm:property name="autogenerate" value="true" />
+				<orm:property name="summaryprop" value="true" />
+			</orm:basic>
+			<orm:basic name="Password" optional="true" attribute-type="java.lang.String">
+				<orm:column unique="false" nullable="true" length="50" />
+				<orm:property name="typeidx" value="0" />
+				<orm:property name="viewable" value="false" />
+				<orm:property name="editable" value="false" />
+			</orm:basic>
+			<orm:one-to-one name="FxUser" target-entity="FxUser"
+				optional="true" orphan-removal="false">
+				<orm:cascade-on-delete>false</orm:cascade-on-delete>
+				<orm:private-owned>false</orm:private-owned>
+				<orm:property name="typeidx" value="-2" />
+				<orm:property name="viewable" value="false" />
+				<orm:property name="editable" value="false" />
+				<orm:property name="autogenerate" value="true" />
+			</orm:one-to-one>
+			<orm:basic name="fxExtraProp" optional="true"
+				attribute-type="java.lang.String">
+				<orm:column unique="false" nullable="true" length="4096" />
+				<orm:lob />
+				<orm:property name="editable" value="false" />
+				<orm:property name="viewable" value="false" />
+				<orm:property name="displaytext'" value="extensible properties" />
+				<orm:property name="system'" value="true" />
+				<orm:property name="typeidx'" value="10" />
+				<orm:property name="rootClass"
+					value="com.flexdms.flexims.jpa.helper.NameValueList" />
+			</orm:basic>
+		</orm:attributes>
+	</orm:entity>
+
+</orm:entity-mappings>

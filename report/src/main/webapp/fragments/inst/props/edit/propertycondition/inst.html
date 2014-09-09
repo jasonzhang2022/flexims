@@ -1,0 +1,17 @@
+<div>
+	<div data-ng-class="propclasses(propobj)" data-ng-repeat="propobj in props" data-ng-show="showProp(propobj)">
+		<div data-ng-if="showlabel"data-ng-class="propLabelClasses(field, propobj);">
+			<label class="control-label" >
+				{{propobj.getDisplayText()}}
+				<span data-tooltip-html-unsafe="{{propTooltip(propobj)}}" class="info" data-ng-if="propTooltip(propobj)">
+					i
+				</span>
+				<span class="required" data-ng-if="propobj.isRequired()" data-tooltip="required">
+					*
+				</span>
+
+			</label>
+		</div>
+		<fx-prop-editor/>
+	</div>
+</div>

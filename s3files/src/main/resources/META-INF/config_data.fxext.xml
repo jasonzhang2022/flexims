@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<entities>
+   <FxConfig>
+      <fxversion>2014-06-09T15:54:15.506724-07:00</fxversion>
+      <Name>aws.s3.region</Name>
+      <Description>AWS S3 Bucket region</Description>
+      <id>130</id>
+      <ConfigValue>us-east-1</ConfigValue>
+      <fxExtraProp/>
+      <ForClient>false</ForClient>
+      <ForAdmin>true</ForAdmin>
+   </FxConfig>
+   
+   <FxConfig>
+      <fxversion>2014-06-09T15:54:15.506724-07:00</fxversion>
+      <Name>aws.s3.bucket</Name>
+      <Description>AWS S3 bucket name</Description>
+      <id>131</id>
+      <ConfigValue>flexims</ConfigValue>
+      <fxExtraProp/>
+      <ForClient>false</ForClient>
+      <ForAdmin>true</ForAdmin>
+   </FxConfig>
+   
+   
+   <FxConfig>
+      <fxversion>2014-06-09T15:54:15.506724-07:00</fxversion>
+      <Name>aws.s3.reducedRedunacy</Name>
+      <Description>Reduced Redunacy for Storage</Description>
+      <id>132</id>
+      <ConfigValue>true</ConfigValue>
+      <fxExtraProp/>
+      <ForClient>false</ForClient>
+      <ForAdmin>true</ForAdmin>
+   </FxConfig>
+   
+   
+   <FxConfig>
+      <fxversion>2014-06-09T15:54:15.506724-07:00</fxversion>
+      <Name>aws.s3.access.propertyfile</Name>
+      <Description>Where AWS s3 property file with two keys(accessKey and secretkey)</Description>
+      <id>134</id>
+      <ConfigValue></ConfigValue>
+      <fxExtraProp/>
+      <ForClient>false</ForClient>
+      <ForAdmin>true</ForAdmin>
+   </FxConfig>
+   
+</entities>

@@ -1,0 +1,655 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<entities>
+   <Student>
+      <id>1000</id>
+      <fxversion>2014-08-27T09:03:43.073-07:00</fxversion>
+      <Department>1000</Department>
+      <FirstName>jason</FirstName>
+      <College>1000</College>
+      <LastName>Zhang</LastName>
+      <Minor>1002</Minor>
+   </Student>
+   <Student>
+      <id>1001</id>
+      <fxversion>2014-09-05T09:27:36.719-07:00</fxversion>
+      <Department>1003</Department>
+      <FirstName>Debarati</FirstName>
+      <College>1000</College>
+      <Courses>10006</Courses>
+      <Courses>10003</Courses>
+      <Courses>10002</Courses>
+      <Courses>10001</Courses>
+      <Courses>10011</Courses>
+      <Courses>10009</Courses>
+      <Courses>10004</Courses>
+      <Courses>10008</Courses>
+      <Courses>10005</Courses>
+      <Courses>10007</Courses>
+      <Courses>10000</Courses>
+      <Courses>10010</Courses>
+      <LastName>Basu</LastName>
+      <Minor>1000</Minor>
+   </Student>
+   <Student>
+      <id>1002</id>
+      <fxversion>2014-09-05T09:28:23.924-07:00</fxversion>
+      <Department>1003</Department>
+      <FirstName>Joshua</FirstName>
+      <College>1000</College>
+      <Courses>10011</Courses>
+      <Courses>10004</Courses>
+      <Courses>10007</Courses>
+      <Courses>10010</Courses>
+      <LastName>Crosier</LastName>
+      <Minor>1001</Minor>
+   </Student>
+   <Student>
+      <id>1003</id>
+      <fxversion>2014-09-05T09:28:56.149-07:00</fxversion>
+      <Department>1000</Department>
+      <FirstName>Ryan</FirstName>
+      <College>1003</College>
+      <Courses>10026</Courses>
+      <Courses>1000</Courses>
+      <Courses>10015</Courses>
+      <Courses>10013</Courses>
+      <Courses>10021</Courses>
+      <LastName>Dorkoski</LastName>
+   </Student>
+   <Student>
+      <id>1004</id>
+      <fxversion>2014-09-05T09:29:34.99-07:00</fxversion>
+      <Department>1001</Department>
+      <FirstName>Sam</FirstName>
+      <College>1001</College>
+      <Courses>10031</Courses>
+      <Courses>10029</Courses>
+      <Courses>10044</Courses>
+      <Courses>10030</Courses>
+      <LastName>Drerup</LastName>
+      <Minor>1000</Minor>
+   </Student>
+   <Student>
+      <id>1005</id>
+      <fxversion>2014-09-05T09:30:11.764-07:00</fxversion>
+      <Department>1002</Department>
+      <FirstName>Homer</FirstName>
+      <College>1001</College>
+      <Courses>10056</Courses>
+      <Courses>10060</Courses>
+      <Courses>10053</Courses>
+      <Courses>10050</Courses>
+      <LastName>Elliott</LastName>
+   </Student>
+   <Student>
+      <id>1006</id>
+      <fxversion>2014-09-05T09:32:28.787-07:00</fxversion>
+      <Department>1002</Department>
+      <FirstName>Yunyi</FirstName>
+      <College>1001</College>
+      <Courses>10064</Courses>
+      <Courses>10055</Courses>
+      <Courses>10049</Courses>
+      <LastName>Feng</LastName>
+   </Student>
+   <College>
+      <id>1000</id>
+      <fxversion>2014-08-27T09:03:43.032-07:00</fxversion>
+      <Departments>10000</Departments>
+      <Name>Arts And Sciences</Name>
+   </College>
+   <College>
+      <id>1001</id>
+      <fxversion>2014-09-05T09:24:34.118-07:00</fxversion>
+      <Departments>1000</Departments>
+      <Departments>1001</Departments>
+      <Name>Engineering and Technology</Name>
+   </College>
+   <College>
+      <id>1002</id>
+      <fxversion>2014-08-27T09:03:43.044-07:00</fxversion>
+      <Name>Business</Name>
+   </College>
+   <College>
+      <id>1003</id>
+      <fxversion>2014-09-05T09:03:25.823-07:00</fxversion>
+      <Departments>1002</Departments>
+      <Name>Bioscience</Name>
+   </College>
+   <Department>
+      <id>1000</id>
+      <fxversion>2014-09-05T09:03:38.796-07:00</fxversion>
+      <Students>10002</Students>
+      <Students>1000</Students>
+      <College>1003</College>
+      <Course>10027</Course>
+      <Course>1000</Course>
+      <Course>10020</Course>
+      <Course>10023</Course>
+      <Course>10025</Course>
+      <Course>10018</Course>
+      <Course>10019</Course>
+      <Course>10021</Course>
+      <Course>10022</Course>
+      <Course>10028</Course>
+      <Course>10013</Course>
+      <Course>10017</Course>
+      <Course>10016</Course>
+      <Course>10012</Course>
+      <Course>10026</Course>
+      <Course>10015</Course>
+      <Course>10014</Course>
+      <Course>10024</Course>
+      <Minors>10000</Minors>
+      <Minors>10003</Minors>
+      <Name>MicroBiology</Name>
+   </Department>
+   <Department>
+      <id>1001</id>
+      <fxversion>2014-08-27T09:03:43.059-07:00</fxversion>
+      <Students>10003</Students>
+      <College>1001</College>
+      <Course>10032</Course>
+      <Course>10039</Course>
+      <Course>10034</Course>
+      <Course>10038</Course>
+      <Course>10042</Course>
+      <Course>10040</Course>
+      <Course>10033</Course>
+      <Course>10036</Course>
+      <Course>10035</Course>
+      <Course>10045</Course>
+      <Course>10037</Course>
+      <Course>10029</Course>
+      <Course>10031</Course>
+      <Course>10043</Course>
+      <Course>10044</Course>
+      <Course>10046</Course>
+      <Course>10041</Course>
+      <Course>10030</Course>
+      <Minors>10001</Minors>
+      <Name>Chemical Engineering</Name>
+   </Department>
+   <Department>
+      <id>1002</id>
+      <fxversion>2014-09-05T09:23:44.318-07:00</fxversion>
+      <Students>10004</Students>
+      <Students>10005</Students>
+      <College>1001</College>
+      <Course>10061</Course>
+      <Course>10062</Course>
+      <Course>10059</Course>
+      <Course>10058</Course>
+      <Course>10057</Course>
+      <Course>10065</Course>
+      <Course>10048</Course>
+      <Course>10052</Course>
+      <Course>10063</Course>
+      <Course>10047</Course>
+      <Course>10056</Course>
+      <Course>10064</Course>
+      <Course>10051</Course>
+      <Course>10053</Course>
+      <Course>10055</Course>
+      <Course>10060</Course>
+      <Course>10049</Course>
+      <Course>10050</Course>
+      <Course>10054</Course>
+      <Minors>1000</Minors>
+      <Name>Industrial and Systems Engineering</Name>
+   </Department>
+   <Department>
+      <id>1003</id>
+      <fxversion>2014-09-05T08:57:53.741-07:00</fxversion>
+      <Students>10000</Students>
+      <Students>10001</Students>
+      <College>1000</College>
+      <Course>10002</Course>
+      <Course>10009</Course>
+      <Course>10000</Course>
+      <Course>10001</Course>
+      <Course>10011</Course>
+      <Course>10004</Course>
+      <Course>10007</Course>
+      <Course>10005</Course>
+      <Course>10006</Course>
+      <Course>10003</Course>
+      <Course>10008</Course>
+      <Course>10010</Course>
+      <Name>Plant Biology</Name>
+   </Department>
+   <Course>
+      <id>1000</id>
+      <fxversion>2014-08-27T09:03:43.061-07:00</fxversion>
+      <Department>1000</Department>
+      <Students>10002</Students>
+      <Name>Introduction to Microbiology</Name>
+   </Course>
+   <Course>
+      <id>1001</id>
+      <fxversion>2014-09-05T08:58:39.475-07:00</fxversion>
+      <Department>1003</Department>
+      <Students>10000</Students>
+      <Name>Foundations. Plant Biology</Name>
+   </Course>
+   <Course>
+      <id>1002</id>
+      <fxversion>2014-09-05T08:59:12.307-07:00</fxversion>
+      <Department>1003</Department>
+      <Students>10000</Students>
+      <Name>Plants &amp; Global Environment</Name>
+   </Course>
+   <Course>
+      <id>1003</id>
+      <fxversion>2014-09-05T08:59:33.207-07:00</fxversion>
+      <Department>1003</Department>
+      <Students>10000</Students>
+      <Name>Plants and People</Name>
+   </Course>
+   <Course>
+      <id>1004</id>
+      <fxversion>2014-09-05T09:00:04.711-07:00</fxversion>
+      <Department>1003</Department>
+      <Students>10000</Students>
+      <Name>Principles of Biology</Name>
+   </Course>
+   <Course>
+      <id>1005</id>
+      <fxversion>2014-09-05T09:00:28.546-07:00</fxversion>
+      <Department>1003</Department>
+      <Students>10000</Students>
+      <Students>10001</Students>
+      <Name>Introduction of Ecology</Name>
+   </Course>
+   <Course>
+      <id>1006</id>
+      <fxversion>2014-09-05T09:00:53.398-07:00</fxversion>
+      <Department>1003</Department>
+      <Students>10000</Students>
+      <Name>Gardeners</Name>
+   </Course>
+   <Course>
+      <id>1007</id>
+      <fxversion>2014-09-05T09:01:10.074-07:00</fxversion>
+      <Department>1003</Department>
+      <Students>10000</Students>
+      <Name>Structural Botany</Name>
+   </Course>
+   <Course>
+      <id>1008</id>
+      <fxversion>2014-09-05T09:01:21.796-07:00</fxversion>
+      <Department>1003</Department>
+      <Students>10000</Students>
+      <Students>10001</Students>
+      <Name>Fungi</Name>
+   </Course>
+   <Course>
+      <id>1009</id>
+      <fxversion>2014-09-05T09:01:50.459-07:00</fxversion>
+      <Department>1003</Department>
+      <Students>10000</Students>
+      <Name>Horticultural Technology</Name>
+   </Course>
+   <Course>
+      <id>1010</id>
+      <fxversion>2014-09-05T09:02:11.808-07:00</fxversion>
+      <Department>1003</Department>
+      <Students>10000</Students>
+      <Name>Plant Pathology</Name>
+   </Course>
+   <Course>
+      <id>1011</id>
+      <fxversion>2014-09-05T09:02:29.598-07:00</fxversion>
+      <Department>1003</Department>
+      <Students>10000</Students>
+      <Students>10001</Students>
+      <Name>Cell Biology</Name>
+   </Course>
+   <Course>
+      <id>1012</id>
+      <fxversion>2014-09-05T09:02:59.193-07:00</fxversion>
+      <Department>1003</Department>
+      <Students>10000</Students>
+      <Students>10001</Students>
+      <Name>Plant Physiology</Name>
+   </Course>
+   <Course>
+      <id>1013</id>
+      <fxversion>2014-09-05T09:06:08.531-07:00</fxversion>
+      <Department>1000</Department>
+      <Name>Molecules and Cells</Name>
+   </Course>
+   <Course>
+      <id>1014</id>
+      <fxversion>2014-09-05T09:06:32.489-07:00</fxversion>
+      <Department>1000</Department>
+      <Students>10002</Students>
+      <Name>Ecology, Evolution, Animal Body Systems</Name>
+   </Course>
+   <Course>
+      <id>1015</id>
+      <fxversion>2014-09-05T09:06:50.061-07:00</fxversion>
+      <Department>1000</Department>
+      <Name>Laboratory</Name>
+   </Course>
+   <Course>
+      <id>1016</id>
+      <fxversion>2014-09-05T09:07:05.025-07:00</fxversion>
+      <Department>1000</Department>
+      <Students>10002</Students>
+      <Name>General Genetics</Name>
+   </Course>
+   <Course>
+      <id>1017</id>
+      <fxversion>2014-09-05T09:07:19.692-07:00</fxversion>
+      <Department>1000</Department>
+      <Name>Laboratory Genetics</Name>
+   </Course>
+   <Course>
+      <id>1018</id>
+      <fxversion>2014-09-05T09:07:40.652-07:00</fxversion>
+      <Department>1000</Department>
+      <Name>Fundamentals of Animal Cell Biology</Name>
+   </Course>
+   <Course>
+      <id>1019</id>
+      <fxversion>2014-09-05T09:07:57.236-07:00</fxversion>
+      <Department>1000</Department>
+      <Name>General Microbiology</Name>
+   </Course>
+   <Course>
+      <id>1020</id>
+      <fxversion>2014-09-05T09:08:10.869-07:00</fxversion>
+      <Department>1000</Department>
+      <Name>Principles of Evolution</Name>
+   </Course>
+   <Course>
+      <id>1021</id>
+      <fxversion>2014-09-05T09:08:25.981-07:00</fxversion>
+      <Department>1000</Department>
+      <Name>Molecular Genetics</Name>
+   </Course>
+   <Course>
+      <id>1022</id>
+      <fxversion>2014-09-05T09:08:42.197-07:00</fxversion>
+      <Department>1000</Department>
+      <Students>10002</Students>
+      <Name>Biological Chemistry</Name>
+   </Course>
+   <Course>
+      <id>1023</id>
+      <fxversion>2014-09-05T09:08:59.475-07:00</fxversion>
+      <Department>1000</Department>
+      <Name>Immunology</Name>
+   </Course>
+   <Course>
+      <id>1024</id>
+      <fxversion>2014-09-05T09:09:21.387-07:00</fxversion>
+      <Department>1000</Department>
+      <Name>Cell and Microbiology Techniques</Name>
+   </Course>
+   <Course>
+      <id>1025</id>
+      <fxversion>2014-09-05T09:09:35.941-07:00</fxversion>
+      <Department>1000</Department>
+      <Name>Pathogenic Bacteriology</Name>
+   </Course>
+   <Course>
+      <id>1026</id>
+      <fxversion>2014-09-05T09:09:47.501-07:00</fxversion>
+      <Department>1000</Department>
+      <Name>Virology</Name>
+   </Course>
+   <Course>
+      <id>1027</id>
+      <fxversion>2014-09-05T09:10:03.184-07:00</fxversion>
+      <Department>1000</Department>
+      <Students>10002</Students>
+      <Name>Mechanisms of Gene Regulation</Name>
+   </Course>
+   <Course>
+      <id>1028</id>
+      <fxversion>2014-09-05T09:10:14.381-07:00</fxversion>
+      <Department>1000</Department>
+      <Name>Parasitology</Name>
+   </Course>
+   <Course>
+      <id>1029</id>
+      <fxversion>2014-09-05T09:10:29.897-07:00</fxversion>
+      <Department>1000</Department>
+      <Name>Tropical Disease Biology</Name>
+   </Course>
+   <Course>
+      <id>1030</id>
+      <fxversion>2014-09-05T09:13:19.091-07:00</fxversion>
+      <Department>1001</Department>
+      <Students>10003</Students>
+      <Name>Introduction to Chemical Engineering</Name>
+   </Course>
+   <Course>
+      <id>1031</id>
+      <fxversion>2014-09-05T09:13:45.479-07:00</fxversion>
+      <Department>1001</Department>
+      <Students>10003</Students>
+      <Name>Approaches to Chemical Engineering Problem Solving</Name>
+   </Course>
+   <Course>
+      <id>1032</id>
+      <fxversion>2014-09-05T09:14:04.593-07:00</fxversion>
+      <Department>1001</Department>
+      <Students>10003</Students>
+      <Name>Mass and Energy Balances I</Name>
+   </Course>
+   <Course>
+      <id>1033</id>
+      <fxversion>2014-09-05T09:14:16.644-07:00</fxversion>
+      <Department>1001</Department>
+      <Name>Mass and Energy Balances II</Name>
+   </Course>
+   <Course>
+      <id>1034</id>
+      <fxversion>2014-09-05T09:14:30.025-07:00</fxversion>
+      <Department>1001</Department>
+      <Name>Chemical Engineering Phase Equilibria</Name>
+   </Course>
+   <Course>
+      <id>1035</id>
+      <fxversion>2014-09-05T09:14:41.863-07:00</fxversion>
+      <Department>1001</Department>
+      <Name>Chemical Engineering Fluid Mechanics</Name>
+   </Course>
+   <Course>
+      <id>1036</id>
+      <fxversion>2014-09-05T09:14:55.629-07:00</fxversion>
+      <Department>1001</Department>
+      <Name>Chemical Engineering Heat Transfer</Name>
+   </Course>
+   <Course>
+      <id>1037</id>
+      <fxversion>2014-09-05T09:15:12.043-07:00</fxversion>
+      <Department>1001</Department>
+      <Name>Chemical Engineering Mass Transfer and Separations</Name>
+   </Course>
+   <Course>
+      <id>1038</id>
+      <fxversion>2014-09-05T09:15:24.523-07:00</fxversion>
+      <Department>1001</Department>
+      <Name>Chemical Reaction Engineering</Name>
+   </Course>
+   <Course>
+      <id>1039</id>
+      <fxversion>2014-09-05T09:15:37.767-07:00</fxversion>
+      <Department>1001</Department>
+      <Name>Chemical Engineering Modeling and Applied Calculations</Name>
+   </Course>
+   <Course>
+      <id>1040</id>
+      <fxversion>2014-09-05T09:15:49.82-07:00</fxversion>
+      <Department>1001</Department>
+      <Name>Chemical Engineering Professional and Ethical Issues</Name>
+   </Course>
+   <Course>
+      <id>1041</id>
+      <fxversion>2014-09-05T09:16:03.588-07:00</fxversion>
+      <Department>1001</Department>
+      <Name>Unit Operations Lab I</Name>
+   </Course>
+   <Course>
+      <id>1042</id>
+      <fxversion>2014-09-05T09:16:15.091-07:00</fxversion>
+      <Department>1001</Department>
+      <Name>Unit Operations Lab II</Name>
+   </Course>
+   <Course>
+      <id>1043</id>
+      <fxversion>2014-09-05T09:16:27.704-07:00</fxversion>
+      <Department>1001</Department>
+      <Name>Process Control and Simulation</Name>
+   </Course>
+   <Course>
+      <id>1044</id>
+      <fxversion>2014-09-05T09:16:41.737-07:00</fxversion>
+      <Department>1001</Department>
+      <Name>Chemical Engineering Process Design I</Name>
+   </Course>
+   <Course>
+      <id>1045</id>
+      <fxversion>2014-09-05T09:16:54.826-07:00</fxversion>
+      <Department>1001</Department>
+      <Students>10003</Students>
+      <Name>Chemical Engineering Process Design II</Name>
+   </Course>
+   <Course>
+      <id>1046</id>
+      <fxversion>2014-09-05T09:17:09.412-07:00</fxversion>
+      <Department>1001</Department>
+      <Name>Biochemical Engineering</Name>
+   </Course>
+   <Course>
+      <id>1047</id>
+      <fxversion>2014-09-05T09:17:24.234-07:00</fxversion>
+      <Department>1001</Department>
+      <Name>Applied Cellular and Molecular Biology</Name>
+   </Course>
+   <Course>
+      <id>1048</id>
+      <fxversion>2014-09-05T09:18:31.136-07:00</fxversion>
+      <Department>1002</Department>
+      <Name>Introduction to Computers and Industrial Engineering</Name>
+   </Course>
+   <Course>
+      <id>1049</id>
+      <fxversion>2014-09-05T09:18:51.374-07:00</fxversion>
+      <Department>1002</Department>
+      <Name>Data Management and Display</Name>
+   </Course>
+   <Course>
+      <id>1050</id>
+      <fxversion>2014-09-05T09:19:03.733-07:00</fxversion>
+      <Department>1002</Department>
+      <Students>10005</Students>
+      <Name>Engineering Statistics</Name>
+   </Course>
+   <Course>
+      <id>1051</id>
+      <fxversion>2014-09-05T09:19:15.509-07:00</fxversion>
+      <Department>1002</Department>
+      <Students>10004</Students>
+      <Name>Engineering Probability</Name>
+   </Course>
+   <Course>
+      <id>1052</id>
+      <fxversion>2014-09-05T09:19:30.468-07:00</fxversion>
+      <Department>1002</Department>
+      <Name>Work Design</Name>
+   </Course>
+   <Course>
+      <id>1053</id>
+      <fxversion>2014-09-05T09:19:43.343-07:00</fxversion>
+      <Department>1002</Department>
+      <Name>Inventory and Manufacturing Control I</Name>
+   </Course>
+   <Course>
+      <id>1054</id>
+      <fxversion>2014-09-05T09:20:04.062-07:00</fxversion>
+      <Department>1002</Department>
+      <Students>10004</Students>
+      <Name>Industrial Computer Simulation</Name>
+   </Course>
+   <Course>
+      <id>1055</id>
+      <fxversion>2014-09-05T09:20:16.106-07:00</fxversion>
+      <Department>1002</Department>
+      <Name>ntroduction to Operations Research</Name>
+   </Course>
+   <Course>
+      <id>1056</id>
+      <fxversion>2014-09-05T09:20:32.24-07:00</fxversion>
+      <Department>1002</Department>
+      <Students>10005</Students>
+      <Name>Information Systems Engineering</Name>
+   </Course>
+   <Course>
+      <id>1057</id>
+      <fxversion>2014-09-05T09:20:45.895-07:00</fxversion>
+      <Department>1002</Department>
+      <Students>10004</Students>
+      <Name>Introduction to Six Sigma Credits</Name>
+   </Course>
+   <Course>
+      <id>1058</id>
+      <fxversion>2014-09-05T09:21:00.294-07:00</fxversion>
+      <Department>1002</Department>
+      <Name>Lean Mfg and Service Systems</Name>
+   </Course>
+   <Course>
+      <id>1059</id>
+      <fxversion>2014-09-05T09:21:11-07:00</fxversion>
+      <Department>1002</Department>
+      <Name>Senior Capstone Design I</Name>
+   </Course>
+   <Course>
+      <id>1060</id>
+      <fxversion>2014-09-05T09:21:18.69-07:00</fxversion>
+      <Department>1002</Department>
+      <Name>Senior Capstone Design II</Name>
+   </Course>
+   <Course>
+      <id>1061</id>
+      <fxversion>2014-09-05T09:21:42.794-07:00</fxversion>
+      <Department>1002</Department>
+      <Students>10004</Students>
+      <Name>Introduction to Designed Experiments</Name>
+   </Course>
+   <Course>
+      <id>1062</id>
+      <fxversion>2014-09-05T09:21:56.185-07:00</fxversion>
+      <Department>1002</Department>
+      <Name>Inventory and Manufacturing Control II</Name>
+   </Course>
+   <Course>
+      <id>1063</id>
+      <fxversion>2014-09-05T09:22:09.979-07:00</fxversion>
+      <Department>1002</Department>
+      <Name>Facility Planning and Design</Name>
+   </Course>
+   <Course>
+      <id>1064</id>
+      <fxversion>2014-09-05T09:22:23.89-07:00</fxversion>
+      <Department>1002</Department>
+      <Name>Human Factors Engineering</Name>
+   </Course>
+   <Course>
+      <id>1065</id>
+      <fxversion>2014-09-05T09:22:37.909-07:00</fxversion>
+      <Department>1002</Department>
+      <Students>10005</Students>
+      <Name>Introduction to Manufacturing Processes</Name>
+   </Course>
+   <Course>
+      <id>1066</id>
+      <fxversion>2014-09-05T09:22:50.489-07:00</fxversion>
+      <Department>1002</Department>
+      <Name>Manufacturing Design &amp; Laboratory</Name>
+   </Course>
+</entities>

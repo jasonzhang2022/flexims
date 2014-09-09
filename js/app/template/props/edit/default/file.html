@@ -1,0 +1,14 @@
+<div fx-file-uploader>
+	<ul>
+		<li ng-repeat="item in uploader.queue">
+			<i class="fa fa-spinner fa-spin" ng-show="item.isUploading"></i> 
+			<i class="fa fa-exclamation " ng-show="item.isError"></i> 
+			<i class="fa fa-check" ng-show="item.isSuccess"></i> {{item.file.name}} ( {{item.file.size/1024|number:0}}+KB)
+			<button class="btn btn-" type="btn btn-warning" ng-show="item.isSuccess" ng-click="deleteFile($index);">
+				<span class='glyphicon glyphicon-remove'></span>
+			</button>
+		</li>
+	</ul>
+	<input type="file" ng-file-select multiple />
+	<br />
+</div>

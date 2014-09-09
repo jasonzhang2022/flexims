@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xml-bindings xmlns="http://www.eclipse.org/eclipselink/xsds/persistence/oxm"
+	package-name="com.flexdms.flexims.report.rs.helper">
+	<java-types>
+		<java-type name="FxReportWrapper" >
+			<xml-root-element name="FxReportWrapper" >
+			</xml-root-element>
+			
+		</java-type>
+	</java-types>
+</xml-bindings>

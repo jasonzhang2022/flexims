@@ -1,0 +1,98 @@
+<!-- form to edit typeacl -->
+<form name="typerpermissionform" id="relationuiform" class="form-horizontal">
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			<div class="btn-group pull-left">
+				<strong>Permission for type {{type.getName()}}</strong>
+			</div>
+			<div class="btn-toolbar">
+				<div class="btn-group pull-right">
+					<a class="btn btn-default" href="type/index.html#/types">Cancel</a>
+
+					<button type="button" class="btn btn-primary" data-ng-click="save();" data-ng-disabled="typerpermissionform.$invalid">Save</button>
+				</div>
+
+			</div>
+		</div>
+		<div class="panel-body">
+			<fieldset>
+				<legend>Permission from Containing Relations</legend>
+				<div class="form-group">
+
+					<div class="col-md-4 col-md-offset-2">
+						<select name="aclParentTypes" class="form-control" multiple data-ng-options="prop.getName() as prop.getDisplayText() for prop in relationProps" ng-model="typeacl.typeACL.aclParentTypes">
+						</select>
+					</div>
+				</div>
+			</fieldset>
+			<fieldset>
+				<legend>Permission on Roles</legend>
+				<div class="row" ng-repeat="rolePermission in typeacl.typeACL.rolePermissions">
+					<div class="col-sm-2">
+						<select name="roleid" fx-dynamic-name="'roleid'+$index" class="form-control" required ng-options="role.id as role.Name for role in roles" ng-model="rolePermission.roleid">
+						</select>
+					</div>
+					<div class="col-sm-3">
+						<select name="action" fx-dynamic-name="'roleaction'+$index" class="form-control" size="6" multiple required ng-options="action.key as action.value for action in actions"
+							ng-model="rolePermission.actions"
+						>
+						</select>
+					</div>
+					<div class="col-sm-2">
+						<input name="perm" type="radio" fx-dynamic-name="'roleperm'+$index" ng-model="rolePermission.decision" value="Allow" />
+						Allow
+						<input name="perm" type="radio" fx-dynamic-name="'roleperm'+$index" ng-model="rolePermission.decision" value="Deny" />
+						Reject
+					</div>
+					<div class="col-sm-2">
+						<button type="button" class="btn btn-default" ng-click="deleteRolePermission($index)">
+							<span class="glyphicon glyphicon-minus"></span>
+						</button>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="col-sm-2">
+						<button type="button" class="btn btn-default" ng-click="addRolePermission()">
+							<span class="glyphicon glyphicon-plus"></span>
+						</button>
+					</div>
+				</div>
+			</fieldset>
+			<fieldset ng-if="roleProps.length>0">
+				<legend>Permission by check Instance Property Value</legend>
+				<div class="row" ng-repeat="propPermission in typeacl.typeACL.propPermissions">
+					<div class="col-sm-2">
+						<select name="prop" fx-dynamic-name="'prop'+$index" class="form-control" required ng-options="prop.getName() as prop.getDisplayText() for prop in roleProps" ng-model="propPermission.propName">
+						</select>
+					</div>
+					<div class="col-sm-3">
+						<select name="action" fx-dynamic-name="'propaction'+$index" class="form-control" size="6" multiple required ng-options="action.key as action.value for action in actions"
+							ng-model="propPermission.actions"
+						>
+						</select>
+					</div>
+					<div class="col-sm-2">
+						<input name="perm" type="radio" fx-dynamic-name="'propperm'+$index" ng-model="propPermission.decision" value="Allow" />
+						Allow
+						<input name="perm" type="radio" fx-dynamic-name="'propperm'+$index" ng-model="propPermission.decision" value="Deny" />
+						Reject
+					</div>
+					<div class="col-sm-2">
+						<button type="button" class="btn btn-default" ng-click="deletePropPermission($index)">
+							<span class="glyphicon glyphicon-minus"></span>
+						</button>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="col-sm-2">
+						<button type="button" class="btn btn-default" ng-click="addPropPermission()">
+							<span class="glyphicon glyphicon-plus"></span>
+						</button>
+					</div>
+				</div>
+			</fieldset>
+		</div>
+	</div>
+</form>

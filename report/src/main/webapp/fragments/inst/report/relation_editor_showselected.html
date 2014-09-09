@@ -1,0 +1,2 @@
+<a data-ng-repeat="propinst in options.selectedItems" data-ng-href="#viewinst/{{propinst.getTypeName()}}/{{propinst.id}}">
+{{firstProp?propinst[firstProp]:propinst.getSummary()}} </a>

@@ -1,0 +1,149 @@
+BIG ISSUE:
+===============
+Test case for order:
+basic Collection
+
+Embedded collection
+
+Many TO Many Relelationhsip:
+	with Mapped By
+	without Mapped by
+	
+
+
+----------------module-------------
+adjust the module (module name, schema, etc)n export module
+
+
+--------------TODO-------------
+
+GRANT permission test
+refresh related instance when save/update/delete instance
+separate system type from user type
+
+
+============================module: common=========================
+test case for guess property primitive type
+
+
+TODO
+	Test birectional relationship marshal
+
+	check delete property before dleete
+	drop column when delete property
+	drop table when delete type
+	property ordering 
+	checkCustomObject type
+	
+	check unique property's value
+	
+
+===========================module: report=============================
+
+Known issues:
+	excel format
+	csv format
+	entity filter does not work for embedded property
+	Nested property filter is only tested for one level.
+relation ui: match property to query parameter for relation, consider type interitance
+
+TODO		
+Relation editor depends on Embedded property value
+
+
+//strange FetchGroup behavior
+https://www.eclipse.org/forums/index.php/m/1347515/#msg_1347515
+
+I found two ways to make this works
+First, if I 
+[code]
+readAllQuery.setCascadePolicy(ObjectLevelReadQuery.CascadeAllParts);
+[/code]
+The fetch group is applied to related attributes recursively. I found that the cache setting in ReadAllQuery did not apply to related ObjectReadyQuery when it is time to retrieve related entity. Related entities are still read from cache.  If cascade is set as above, the cache is ignored. 
+
+Another approach: I set all related attributes as join attributes. The fetchGroup is applied recursively as expected.
+
+Can someone give me insight how it behaves like this?
+
+thanks
+
+-jason
+//fetch group does not work for embedded relation
+
+My Code is like this
+[code]
+FetchGroup fetchGroup=new FetchGroup();
+fetchGroup.addAttrbiute("singleembed.streetAddress");
+fetchGroup.addAttribute( "multiembed.streetAddress");
+readAllQuery.setFetchGroup(fetchGroup);
+[/code]
+
+I found attribute of embedded instance is pre-loaded or load-lazily. 
+
+I am using eclipselink 2.5.1
+
+Anything I did wrong?
+
+thanks
+-jason
+
+=================================module:security=========================
+default permission for user, role
+
+IT test case to demonstrate all permission scenario
+	query permission
+	 
+AuthorizationException handling when save inst
+
+
+TODO:
+	test javascript
+	
+Make sure end user has the permission to view and modify ACL
+
+	
+check permission for all action of one instance or type
+
+judge whether user has admin role or not
+
+========================module:urlctrl=======================
+
+
+========================module: module=======================
+When export a module,
+	The ID for inverse relationship is not changed. But these IDs are never used for import for database record insertion so
+	it is not a problem. 
+	
+======================FUTURE FEATURE
+
+http://schemacrawler.sourceforge.net/resources.html
+Invesitgate How RememberMe works.
+
+
+Administrator-monitored user verification
+
+
+//--------------- ERROR case
+error cases:
+first page
+	log error
+	register error
+
+
+error case: 
+	genenal http error such as AuthorizationError : #/viewinst/FxConfig/120
+	view inst: inst does not exist #/viewinst/Basictype/20
+	server error(404): #/viewinst/Basictype/bad
+	Test Unique type to test unique: 
+	
+File download error
+
+
+Type edit:
+	checkName Error
+
+//---------------------------------cache management:
+Some objects are using AppCache Which is a local cache  cahcing object by reference. Later we may need to implement clusterd cache for cluster environment.
+1. cluster cache.
+2. can receieve cache event and update local structure such as Configs
+3. serialize FlexdmsDynamicEntity 

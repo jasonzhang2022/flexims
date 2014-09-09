@@ -1,0 +1,128 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.flexdms</groupId>
+		<artifactId>flexims</artifactId>
+		<version>0.1.0-SNAPSHOT</version>
+	</parent>
+	<groupId>com.flexdms.flexims</groupId>
+	<artifactId>security</artifactId>
+	<packaging>jar</packaging>
+	<name>security</name>
+	<description>Edit Dynamic Bean</description>
+	<dependencies>
+		<dependency>
+			<groupId>com.flexdms.flexims</groupId>
+			<artifactId>common</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.flexdms.flexims</groupId>
+			<artifactId>common</artifactId>
+			<version>${project.version}</version>
+			<type>test-jar</type>
+			<scope>test</scope>
+		</dependency>
+
+		<!-- need to implement authroization for report -->
+		<dependency>
+			<groupId>com.flexdms.flexims</groupId>
+			<artifactId>report</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.flexdms.flexims</groupId>
+			<artifactId>users</artifactId>
+			<version>${project.version}</version>
+
+		</dependency>
+		<dependency>
+			<groupId>com.flexdms.flexims</groupId>
+			<artifactId>users</artifactId>
+			<version>${project.version}</version>
+
+		</dependency>
+		<dependency>
+			<groupId>com.flexdms.flexims</groupId>
+			<artifactId>users</artifactId>
+			<version>${project.version}</version>
+			<type>test-jar</type>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.flexdms.flexims</groupId>
+			<artifactId>report</artifactId>
+			<version>${project.version}</version>
+			<type>test-jar</type>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.flexdms.flexims</groupId>
+			<artifactId>testorm</artifactId>
+			<version>${project.version}</version>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.shiro</groupId>
+			<artifactId>shiro-core</artifactId>
+			<version>1.2.2</version>
+			<scope>test</scope>
+		</dependency>
+
+
+	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>com.flexdms</groupId>
+				<artifactId>htmltemplate-maven-plugin</artifactId>
+				<executions>
+
+
+					<!-- HTML template used at runtime -->
+					<execution>
+						<id>run_template</id>
+						<goals>
+							<goal>merge</goal>
+						</goals>
+						<phase>generate-resources</phase>
+						<configuration>
+							<srcDirectory>src/main/webapp/fragments</srcDirectory>
+
+							<finalFile>src/main/resources/META-INF/resources/type/security_service1.tpl.js</finalFile>
+							<templateFile>src/main/webapp/tpl.js</templateFile>
+							<fileHeader>angular.module("flexdms.acl").run(function($templateCache){
+							</fileHeader>
+							<fileFooter>});</fileFooter>
+							<generateModule>false</generateModule>
+						</configuration>
+					</execution>
+
+
+				</executions>
+
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jar-plugin</artifactId>
+				<version>2.2</version>
+				<executions>
+					<execution>
+						<goals>
+							<goal>test-jar</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+
+		</plugins>
+
+	</build>
+
+</project>

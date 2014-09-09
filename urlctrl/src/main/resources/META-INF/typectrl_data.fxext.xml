@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<entities>
+	<FxUrlCtrl>
+		<fxversion>2014-06-11T13:54:21.089067-07:00</fxversion>
+		<id>100</id>
+		<CheckOrder>0</CheckOrder>
+		<UrlPattern>/rs/type/schema</UrlPattern>
+		<Roles>999</Roles>
+	</FxUrlCtrl>
+	
+	<FxUrlCtrl>
+		<fxversion>2014-06-11T13:54:21.089067-07:00</fxversion>
+		<id>101</id>
+		<CheckOrder>0</CheckOrder>
+		<UrlPattern>/rs/type/savetype</UrlPattern>
+		<Roles>999</Roles>
+	</FxUrlCtrl>
+	
+	
+	<FxUrlCtrl>
+		<fxversion>2014-06-11T13:54:21.089067-07:00</fxversion>
+		<id>102</id>
+		<CheckOrder>0</CheckOrder>
+		<UrlPattern>/rs/type/saveprop</UrlPattern>
+		<Roles>999</Roles>
+	</FxUrlCtrl>
+	
+	<FxUrlCtrl>
+		<fxversion>2014-06-11T13:54:21.089067-07:00</fxversion>
+		<id>103</id>
+		<CheckOrder>0</CheckOrder>
+		<UrlPattern>/rs/type/minorsaveprop</UrlPattern>
+		<Roles>999</Roles>
+	</FxUrlCtrl>
+	
+	
+	<FxUrlCtrl>
+		<fxversion>2014-06-11T13:54:21.089067-07:00</fxversion>
+		<id>104</id>
+		<CheckOrder>0</CheckOrder>
+		<UrlPattern>/rs/type/deleteprop</UrlPattern>
+		<Roles>999</Roles>
+	</FxUrlCtrl>
+	
+	<FxUrlCtrl>
+		<fxversion>2014-06-11T13:54:21.089067-07:00</fxversion>
+		<id>105</id>
+		<CheckOrder>0</CheckOrder>
+		<UrlPattern>/rs/type/updatetype</UrlPattern>
+		<Roles>999</Roles>
+	</FxUrlCtrl>
+	
+	<FxUrlCtrl>
+		<fxversion>2014-06-11T13:54:21.089067-07:00</fxversion>
+		<id>106</id>
+		<CheckOrder>0</CheckOrder>
+		<UrlPattern>/aclrs/acl/typeacl</UrlPattern>
+		<Roles>999</Roles>
+	</FxUrlCtrl>
+	
+	<FxUrlCtrl>
+		<fxversion>2014-06-11T13:54:21.089067-07:00</fxversion>
+		<id>107</id>
+		<CheckOrder>0</CheckOrder>
+		<UrlPattern>/rs/res/web/upload</UrlPattern>
+		<Roles>999</Roles>
+	</FxUrlCtrl>
+	
+	<FxUrlCtrl>
+		<fxversion>2014-06-11T13:54:21.089067-07:00</fxversion>
+		<id>108</id>
+		<CheckOrder>0</CheckOrder>
+		<UrlPattern>/rs/rs/web/delete</UrlPattern>
+		<Roles>999</Roles>
+	</FxUrlCtrl>
+	
+	
+</entities>

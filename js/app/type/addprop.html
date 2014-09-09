@@ -1,0 +1,434 @@
+<form name="propform" id="propform" class="form-horizontal" >
+	<div class="panel-group" >
+		
+		<!-- essential -->
+		<div class="panel panel-default">
+
+			<div class="panel-body">
+			
+				<div class="form-group">
+					<label class="col-md-2 control-label"></label>
+					<div class="col-md-4">
+						<!-- Save -->
+						<button type="button" class="btn btn-default" data-ng-click="saveProp();" 
+						data-ng-show="propaction!='view'"
+						data-ng-disabled="propform.$invalid">
+							<span class="glyphicon glyphicon-floppy-disk"></span>
+						</button>
+						
+						<!-- cancel -->
+						<button type="button" class="btn btn-default" data-ng-click="cancelProp();">
+							{{	propaction!='view'?'Cancel':'Ok'}}
+						</button>
+					</div>
+				</div>
+				
+				<div data-ng-class="{'form-group':true, 'has-error':propform.name.$dirty && propform.name.$invalid}">
+					<label for="name" class="col-md-2 control-label">
+						Internal Name
+						<span class="required"data-tooltip="required">*</span>
+					</label>
+					<div class="col-md-4">
+						<!-- Name -->
+						<input type="text" class="form-control" id="name" name="name"
+						data-ng-disabled="propaction!='add'" 
+						 data-ng-model="prop['@name']" data-ng-change="checkName();"
+						  data-ng-trim="true" data-ng-required="true" data-ng-minlength="4"
+							data-ng-maxlength="100" data-ng-pattern="/^[a-zA-Z][a-zA-Z0-9_-]*[a-zA-Z0-9]$/"
+						>
+					</div>
+					<div class="col-md-6 help-block" data-ng-show="propform.name.$dirty && propform.name.$invalid ">
+						<span data-ng-show="propform.name.$error.required">Required!</span>
+						<span data-ng-show="propform.name.$error.pattern">First letter has to be alphabetic.</span>
+						<span data-ng-show="propform.name.$error.minlength">4 letters minimal.</span>
+						<span data-ng-show="propform.name.$error.maxlength">100 letters maximal.</span>
+						<span data-ng-show="propform.name.$error.badname">{{propform.name.$error.badname}}</span>
+					</div>
+				</div>
+				
+				<div class="form-group">
+					<label for="type" class="col-md-2 control-label">Property Type
+					<span class="required"data-tooltip="required">*</span>
+					</label>
+					<div class="col-md-4">
+						<!-- Property Type -->
+						<select name="type" id="type" data-ng-required="true" class="form-control" 
+						data-ng-disabled="propaction!='add'" 
+						data-ng-model="propObj.proptype" data-ng-options="c.display group by c.type for c in proptypes">
+						</select>
+					</div>
+				</div>
+				
+				<div class="form-group">
+					<label for="description" class="col-md-2 control-label">
+						<span title="short Display Name">Display Text</span><span class="required"data-tooltip="required">*</span>
+					</label>
+					<div class="col-md-4">
+						<!--  Display Text -->
+						<input type="text" class="form-control" id="description" name="description"
+						data-ng-disabled="propaction=='view'"
+						 data-ng-model="extraprops.displlay"></input>
+					</div>
+				</div>
+				
+					<div class="form-group">
+						<!-- Summary property -->
+						<label for="summaryprop" class="col-md-2">
+							<input type="checkbox" id="summaryprop" name="summaryprop" 
+							data-ng-disabled="propaction=='view'" 
+							data-ng-model="extraprops.summaryprop"></input>
+						Summary Property</label>
+						
+						<!-- required -->
+						<label for="required" class="col-md-2">
+						<input type="checkbox" id="required" name="required" 
+						data-ng-disabled="propaction=='view'" 
+						data-ng-model="extraprops.notnullable"></input>
+						Required</label>
+						
+						<!-- Unique: not null for column -->
+						<label for="unique" class="col-md-2 " 
+						data-ng-show="propObj.collectionType=='basic' && propObj.proptype.canUnique()">
+						<input type="checkbox" id="unique" name="unique" data-ng-model="prop.column['@unique']"
+						data-ng-disabled="propaction!='add'" 
+						></input>
+						Unique</label>	
+					</div>
+
+			</div>
+		</div>
+
+		<!-- basic -->
+		<div class="panel panel-default">
+			<div class="panel-heading" data-ng-click="basicattrs = !basicattrs">
+				<h4 class="panel-title">General Attributes</h4>
+			</div>
+			<div data-collapse="basicattrs" class="panel-collapse">
+				<div class="panel-body">
+				<div class="form-group">
+						<label for="tooltip" class="col-md-2 control-label">
+							<span title="used as tooltip">Long Description</span>
+						</label>
+						<div class="col-md-4">
+							<!--  Long D4escription -->
+							<textarea class="form-control" id="tooltip" name="tooltip" 
+							data-ng-disabled="propaction=='view'" 
+							data-ng-model="extraprops.tooltip"></textarea>
+						</div>
+					</div>
+					
+					<div class="form-group" data-ng-show="propObj.proptype.isStringType();">
+						<label class="col-md-2 control-label">String length(Minimal and Maximal)</label>
+						<div class="col-md-4">
+							<!--  minlen and max len -->
+							<input type="number" id="minlen" name="minlen" class="form-control" style="width: 50%; float: left;"
+							data-ng-disabled="propaction=='view'"  
+						 data-ng-change="validateDefaultAndAllowed()"
+							data-ng-model="extraprops.minlen" placeholder="Minimal # characters"></input>
+							<input type="number" id="maxlen" name="maxlen" placeholder="maximal # characters" class="form-control" style="width: 50%;" 
+							data-ng-disabled="propaction!='add'" 
+							 data-ng-change="validateDefaultAndAllowed()"
+							data-ng-model="prop.column['@length']"></input>
+
+
+						</div>
+					</div>
+					
+					<div class="form-group" data-ng-show="propObj.proptype.isNumber();">
+						<label class="col-md-2 control-label">Minimal and Maximal value</label>
+						<div class="col-md-4">
+							<input type="number" id="minvalue" name="minvalue" class="form-control" style="width: 50%; float: left;" 
+							data-ng-disabled="propaction=='view'" 
+							 data-ng-change="validateDefaultAndAllowed()"
+							data-ng-model="extraprops.minvalue" placeholder="Minimal value"></input>
+							<input type="number" id="maxvalue" name="maxvalue" class="form-control" style="width: 50%;" 
+							 data-ng-change="validateDefaultAndAllowed()"
+							 	data-ng-disabled="propaction=='view'" 
+							data-ng-model="extraprops.maxvalue" placeholder="Maximal value"></input>
+
+
+						</div>
+					</div>
+					<div class="form-group" data-ng-show="propObj.proptype.isStringType() && !propObj.proptype.isLongString();">
+						<label class="col-md-2 control-label">String Pattern</label>
+						<div class="col-md-4">
+							<div class="input-group">
+								<span class="input-group-btn">
+									<button class="btn btn-default" type="button"
+										data-ng-disabled="propaction=='view'" 
+									 data-ng-click="openRegexVerify();">Test</button>
+								</span>
+								<input type="text" class="form-control" id="pattern" name="pattern" 
+								 data-ng-change="validateDefaultAndAllowed()" 	data-ng-disabled="propaction=='view'" 
+								data-ng-model="extraprops.pattern" placeholder="Pattern"></input>
+								<span class="input-group-addon">
+									<input type="checkbox" id="ignorepatterncase" name="ignorepatterncase" 
+								 data-ng-change="validateDefaultAndAllowed()" 	data-ng-disabled="propaction=='view'" 
+									data-ng-model="extraprops.ignorepatterncase" title="case insensitive"></input>
+								</span>
+							</div>
+						</div>
+					</div>
+					<div class="form-group" data-ng-show="propObj.proptype.isFileType()">
+						<label for="fileupload" class="col-md-2 control-label">File Upload</label>
+						<div class="col-md-4">
+							<input type="checkbox" id="fileupload" name="required" data-ng-model="extraprops.fileupload"
+								data-ng-disabled="propaction=='view'" 
+							></input>
+						</div>
+					</div>
+					<div class="form-group" data-ng-show="propObj.proptype.isCustomObject()">
+						<label for="objectclass" class="col-md-2 control-label">
+							Custom Object Class
+							<span class="required"data-tooltip="required">*</span>
+						</label>
+						<div class="col-md-4">
+							<input type="text" class="form-control" id="objectclass" name="objectclass" 
+								data-ng-disabled="propaction=='view'" 
+							data-ng-model="extraprops.objectclass" data-ng-required="isCustomObject()" data-ng-change="checkCustomClass()"></input>
+						</div>
+						<span class="help-block" data-ng-show="propform.objectclass.$error.required">Required!</span>
+						<span class="help-block" data-ng-show="propform.objectclass.$error.badclass">{{propform.objectclass.$error.badclass}}</span>
+					</div>
+					
+					<div class="form-group" data-ng-show="canBasicMultiple();">
+						<label for="multiple" class="col-md-2 control-label">Multiple Values?</label>
+						<div class="col-md-4">
+						 <div class="input-group">
+						 	<span class="input-group-addon">
+						        <input type="checkbox" id="multiple" name="multiple" data-ng-model="multiple" data-ng-disabled="propaction!='add'" ></input>
+						      </span>
+							<select name="collectiontype" id="collectiontype" class="form-control" 
+								data-ng-disabled="propaction=='view'" 
+							data-ng-model="prop['@attribute-type']">
+								<option value="java.util.Set">Set</option>
+								<option value="java.util.List">List</option>
+							</select>
+							</div>
+						</div>
+					</div>
+					
+					<!-- How Element Collection is ordered -->
+					<div class="form-group" data-ng-show="canBasicMultiple() && prop['@attribute-type']=='java.util.List'">
+						<label for="orderby" class="col-md-2 control-label">Order By</label>
+						<div class="col-md-4">
+							<select name="orderby" id="orderby" class="form-control" 
+								data-ng-disabled="propaction=='view'" 
+							data-ng-model="extraprops.orderby" ng-options="o.value as o.display for o in orders">
+							 <option value="">Default</option>
+							</select>
+						</div>
+					</div>
+					
+					
+					<!--  ALLOWED VALUES -->
+					<div class="form-group" data-ng-show="canAllowed();">
+						<label class="col-md-2 control-label">Allowed Values</label>
+						<div class="col-md-10" data-ng-form="allowedvalues" id="allowedvalues" >
+							<div data-ng-repeat="value in extraprops.allowedvalues" style="clear:both;"  data-ng-class="{'has-error':field.$dirty && field.$invalid}">
+								<div style="width:40%;  float: left">
+									<div class="input-group">
+										<input type="text" class="form-control" style="width: 40%; " data-ng-model="value.value" placeholder="value"
+										data-fx-dynamic-name="'allowedvalues'+$index"  
+										data-ng-required="true"
+										data-allowed-validator=""
+											data-ng-disabled="propaction=='view'" 
+										></input>
+										<input type="text" class="form-control" style="width: 50%;" 
+											data-ng-disabled="propaction=='view'" 
+										data-ng-model="value.display" placeholder="display"></input>
+										<button class="btn btn-default" type="button" 
+										data-ng-show="propaction!='view'"
+										 style="width: 10%" data-ng-click="extraprops.allowedvalues.splice($index, 1);">
+											<span class="glyphicon glyphicon-remove"></span>
+										</button>
+									</div>
+								</div>
+								<div style="padding: 0px; width:60%;" class="help-block">
+									<span data-ng-show="field.$error.required">Required </span>
+									<span data-ng-show="field.$error.url">Not a valid url </span>
+									<span data-ng-show="field.$error.minlength">At least {{propObj.getMinLen()}} characters </span>
+									<span data-ng-show="field.$error.maxlength">{{propObj.getMaxLen()}} characters at maximum </span>
+									<span data-ng-show="field.$error.pattern">value does not match pattern:{{propObj.getPattern();}} </span>
+									<span data-ng-show="field.$error.email">Not a valid email</span>
+									<span data-ng-show="field.$error.integer">An integer is needed</span>
+									<span data-ng-show="field.$error.number">A number is required</span>
+									<span data-ng-show="field.$error.min">Minimal value:{{propObj.getMinValue()}} </span>
+									<span data-ng-show="field.$error.max">Maximal value:{{propObj.getMaxValue()}}</span>
+									<span data-ng-show="field.$error.date">Not valid date time. Date Time format 2012/05/21 15:02:33 </span>
+								</div>
+							</div>
+							<div style="clear:both;">
+								<p class="form-control-static" style="width: 36%; float: left"></p>
+								<button class="btn btn-default" style="width: 4%" type="button" data-ng-click="addAllowed();"
+								data-ng-show="propaction!='view'"
+								>
+									<span class="glyphicon glyphicon-plus"></span>
+								</button>
+							</div>
+						
+						</div>
+					</div>
+					
+					<!-- DEFAULT VALUE -->
+					<div class="form-group"  data-ng-class="{'form-group':true, 'has-error':propform.defaultvalue.$dirty && propform.defaultvalue.$invalid}" data-ng-show="canDefault();">
+						<label for="defaultvalue" class="col-md-2 control-label">Default Value</label>
+						<div class="col-md-4">
+							<input type="text" id="defaultvalue" name="defaultvalue" class="form-control" 
+							data-ng-focus="processExtraProps();"
+							data-default-validator=""
+							data-ng-disabled="propaction=='view'" 
+							data-ng-model="extraprops.defaultvalue"></input>
+						</div>
+						<div class="col-md-4 help-block">
+							<span data-ng-show="propform.defaultvalue.$error.url">Not a valid url </span>
+							<span data-ng-show="propform.defaultvalue.$error.minlength">At least {{propObj.getMinLen()}} characters </span>
+							<span data-ng-show="propform.defaultvalue.$error.maxlength">{{propObj.getMaxLen()}} characters at maximum </span>
+							<span data-ng-show="propform.defaultvalue.$error.pattern">value does not match pattern:{{propObj.getPattern();}} </span>
+							<span data-ng-show="propform.defaultvalue.$error.email">Not a valid email</span>
+							<span data-ng-show="propform.defaultvalue.$error.integer">An integer is needed</span>
+							<span data-ng-show="propform.defaultvalue.$error.number">A number is required</span>
+							<span data-ng-show="propform.defaultvalue.$error.min">Minimal value:{{propObj.getMinValue()}} </span>
+							<span data-ng-show="propform.defaultvalue.$error.max">Maximal value:{{propObj.getMaxValue()}}</span>
+							<span data-ng-show="propform.defaultvalue.$error.allowed">Value is not one of allowed values</span>
+							<span data-ng-show="propform.defaultvalue.$error.date">Not valid date time. Date Time format 2012/05/21 15:02:33 </span>
+						</div>
+					</div>
+					
+
+				</div>
+			</div>
+		</div>
+
+
+
+		<!-- Relation -->
+		<div class="panel panel-default" data-ng-show="propObj.proptype.isRelation()">
+			<div class="panel-heading" data-ng-click="relationattrs = !relationattrs">
+				<h4 class="panel-title">Relations</h4>
+			</div>
+			<div data-collapse="relationattrs" class="panel-collapse">
+				<div class="panel-body">
+
+					<div class="form-group">
+						<label for="relationtype" class="col-md-2 control-label">Relation Type</label>
+						<div class="col-md-4">
+							<select name="relationtype" id="relationtype" class="form-control" data-ng-model="propObj.collectionType" 
+							data-ng-disabled="propaction!='add'" 
+							data-ng-required="propObj.proptype.isRelation()"
+								data-ng-readonly="prop['@mapped-by']!=null" data-ng-disabled="prop['@mapped-by']!=null"
+							>
+								<option value="one-to-one">One To One</option>
+								<option value="one-to-many">One To Many</option>
+								<option value="many-to-one">Many To One</option>
+								<option value="many-to-many">Many To Many</option>
+							</select>
+						</div>
+					</div>
+					<div class="form-group" data-ng-show="propObj.collectionType=='one-to-many' || propObj.collectionType=='many-to-many'">
+						<label for="relationCollection" class="col-md-2 control-label">Collection Type</label>
+						<div class="col-md-4">
+							<select name="relationCollection" id="relationCollection" class="form-control" 
+								data-ng-disabled="propaction=='view'" 
+							data-ng-model="prop['@attribute-type']">
+								<option value="java.util.Set">Set</option>
+								<option value="java.util.List">List</option>
+							</select>
+						</div>
+					</div>
+					<div class="form-group" data-ng-show="prop['@attribute-type']=='java.util.List'">
+						<label for="orderby1" class="col-md-2 control-label">Order By</label>
+
+						<div class="col-md-4">
+							<div class="input-group">
+								<select name="orderby1" id="orderby1" class="form-control" data-ng-disabled="propaction=='view'" data-ng-model="extraprops.orderby"
+									ng-options="o.value as o.display group by o.group for o in orders"
+								>
+									<option value="">Default</option>
+								</select>
+								<span class="input-group-addon">
+									<input type="checkbox" id="orderasc" name="orderasc" data-ng-model="orderasc" data-ng-disabled="propaction!='add'" title="Ascending"></input>
+								</span>
+							</div>
+
+
+						</div>
+					</div>
+					<div class="form-group" data-ng-show="potentialMappedbys.length>0">
+						<label for="mappedby" class="col-md-2 control-label">Inverse To in {{propObj.proptype.value}}</label>
+						<div class="col-md-4">
+							<select name="mappedby" id="mappedby" class="form-control" data-ng-model="prop['@mapped-by']" size="2" 
+							data-ng-disabled="propaction!='add'" 
+							data-ng-options="v for v in potentialMappedbys">
+								<option value="">None</option>
+							</select>
+						</div>
+					</div>
+					
+				
+					
+					<div class="form-group" data-ng-show=" canPrivate()">
+						<label for="privaterelation" class="col-md-2 control-label">Private Relation</label>
+						<div class="col-md-4">
+							<input type="checkbox" id="privaterelation" name="privaterelation" data-ng-model="prop['private-owned']"
+								data-ng-disabled="propaction=='view'" 
+							></input>
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+
+
+
+		<!-- Advanced -->
+		<div class="panel panel-default">
+			<div class="panel-heading" data-ng-click="advanceattrs = !advanceattrs">
+				<h4 class="panel-title">Advanced</h4>
+			</div>
+			<div data-collapse="advanceattrs" class="panel-collapse">
+				<div class="panel-body">
+					<!-- TODO: not apply for collection -->
+					<div class="form-group">
+						<label for="editable" class="col-md-2 control-label" title="User Editable or System Generated value">User Editable?</label>
+						<div class="col-md-4">
+							<input type="checkbox" id="editable" name="editable" 
+								data-ng-disabled="propaction=='view'" 
+							 data-ng-model="extraprops.editable"></input>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="viewable" class="col-md-2 control-label" title="For end user to view or for system purpose">Viewable for user?</label>
+						<div class="col-md-4">
+							<input type="checkbox" id="viewable" name="viewable" 	data-ng-disabled="propaction=='view'"  data-ng-model="extraprops.viewable"></input>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="autogenerate" class="col-md-2 control-label">Generate Value automatically</label>
+						<div class="col-md-4">
+							<input type="checkbox" id="autogenerate" name="autogenerate" 	data-ng-disabled="propaction=='view'"  data-ng-model="extraprops.autogenerate"></input>
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+	<div class="form-group">
+		<label class="col-md-2 control-label"></label>
+		<div class="col-md-4">
+			<button type="button" class="btn btn-default" data-ng-click="saveProp();" 
+				data-ng-show="propaction!='view'"
+			data-ng-disabled="propform.$invalid">
+				<span class="glyphicon glyphicon-floppy-disk"></span>
+			</button>
+			<button type="button" class="btn btn-default" data-ng-click="cancelProp();">
+					{{	propaction!='view'?'Cancel':'Ok'}}
+			</button>
+
+		</div>
+	</div>
+</form>

@@ -1,0 +1,25 @@
+<div class="panel panel-default">
+	<div class="panel-heading">
+		<div class="btn-group pull-left">
+			<strong>{{typename}} {{inst.id}}</strong>
+		</div>
+		<div class="btn-toolbar">
+			<div class="btn-group pull-right">
+				<button type="button" class="btn btn-danger" title="all types" data-ng-click="deleteInst()" data-ng-disabled="deleted">!
+					<span class="glyphicon glyphicon-trash"></span>
+				</button>
+				<a type="button" class="btn btn-primary" title="all types" data-ng-disabled="deleted"
+					href="#/viewinst/{{typename}}/{{inst.id}}">Cancel</span>
+				</a>
+			</div>
+		</div>
+	</div>
+	<div class="panel-body">
+		<strong data-ng-show="!deleted">Instances will be deleted</strong>
+		<strong data-ng-show="deleted" class="text-warning">Instances have been deleted</strong>
+		<div class="well">
+			<fx-inst-viewer data-showlabel="false" data-props="simpleprops" inst="inst" type="typename"/>
+		</div>
+		
+	</div>
+</div>

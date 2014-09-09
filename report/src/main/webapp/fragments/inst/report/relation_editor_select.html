@@ -1,0 +1,8 @@
+<div ng-controller="fxReportCtrl">
+	<div data-ng-if="internalIsExecutable() && executed">
+		<select  data-ng-model="options.selectedItems" class="form-control"
+			data-ng-options="related[firstProp] for related in results track by related.id"
+		>
+		</select>
+	</div>
+</div>

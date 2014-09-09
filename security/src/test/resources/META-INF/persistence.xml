@@ -1,0 +1,32 @@
+<persistence xmlns="http://java.sun.com/xml/ns/persistence"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/persistence persistence_1_0.xsd"
+	version="1.0">
+	<persistence-unit name="fxsecuritytest" transaction-type="RESOURCE_LOCAL">
+		<provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+		<class>com.flexdms.flexims.accesscontrol.model.InstanceACE</class>
+		<class>com.flexdms.flexims.accesscontrol.model.InstanceRolePermission</class>
+		<class>com.flexdms.flexims.accesscontrol.model.Permission</class>
+		<class>com.flexdms.flexims.accesscontrol.model.PropertyPermission</class>
+		<class>com.flexdms.flexims.accesscontrol.model.RolePermission</class>
+		<class>com.flexdms.flexims.accesscontrol.model.TypeACL</class>
+		<exclude-unlisted-classes>true</exclude-unlisted-classes>
+		<shared-cache-mode>NONE</shared-cache-mode>
+		<properties>
+
+			<!--  use embedded derby database for test -->
+			<property name="javax.persistence.jdbc.driver" value="org.apache.derby.jdbc.EmbeddedDriver" />
+			<property name="javax.persistence.jdbc.url" value="jdbc:derby:memory:fxsecurity;create=true" />
+			<property name="javax.persistence.jdbc.user" value="app" />
+			<property name="javax.persistence.jdbc.password" value="123456" />
+
+
+
+			<property name="eclipselink.logging.level" value="WARNING" />
+			<property name="eclipselink.logging.level.sql" value="WARNING" />
+			<property name="eclipselink.logging.parameters" value="false" />
+			<property name="eclipselink.ddl-generation" value="create-tables"/>
+			<property name="eclipselink.cache.shared.default" value="false"/>
+		</properties>
+	</persistence-unit>
+</persistence> 

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<orm:entity-mappings
+	xmlns:orm="http://www.eclipse.org/eclipselink/xsds/persistence/orm"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<orm:persistence-unit-metadata>
+		<orm:xml-mapping-metadata-complete>true
+		</orm:xml-mapping-metadata-complete>
+		<orm:exclude-default-mappings>true</orm:exclude-default-mappings>
+		<orm:persistence-unit-defaults>
+			<orm:access>VIRTUAL</orm:access>
+			<orm:access-methods get-method="get" set-method="set" />
+		</orm:persistence-unit-defaults>
+	</orm:persistence-unit-metadata>
+	<orm:package>com.flexdms.flexims.dynamic.model.generated</orm:package>
+	<orm:table-generator name="FxUrlCtrlseq" table="seqs"
+		pk-column-name="name" value-column-name="seq" pk-column-value="FxUrlCtrl"
+		initial-value="10000" allocation-size="10" />
+		
+	<orm:entity name="FxUrlCtrl" class="FxUrlCtrl"
+		parent-class="com.flexdms.flexims.jpa.eclipselink.FleximsDynamicEntityImpl"
+		access="VIRTUAL">
+		<orm:description>Control Url Access by Shiro</orm:description>
+		<orm:cache type="FULL"/>
+		<orm:property name="abstract" value="false" />
+		<orm:property name="system" value="true" />
+		<orm:property name="showInAdd" value="false" />
+		<orm:property name="showInAllReport" value="false" />
+		<orm:attributes>
+			<orm:id name="id" attribute-type="Long">
+				<orm:column />
+				<orm:generated-value strategy="TABLE" generator="FxUrlCtrlseq" />
+			</orm:id>
+			<orm:version name="fxversion" mutable="true"
+				attribute-type="java.sql.Timestamp">
+				<orm:column />
+			</orm:version>
+			<orm:basic name="UrlPattern" optional="false" attribute-type="java.lang.String">
+				<orm:column unique="true" nullable="false" length="254" />
+				<orm:property name="typeidx" value="0" />
+				<orm:property name="displaytext'" value="URL Pattern" />
+				<orm:property name="viewable" value="true" />
+				<orm:property name="editable" value="true" />
+				<orm:property name="summaryprop" value="true" />
+			</orm:basic>
+			
+			<orm:basic name="CheckOrder" optional="false" attribute-type="java.lang.Integer">
+			   <orm:column unique="false" nullable="false" length="254"/>
+				<orm:property name="displaytext'" value="Order" />
+				<orm:property name="typeidx" value="3" />
+				<orm:property name="viewable" value="true" />
+				<orm:property name="editable" value="true" />
+				 <orm:property name="defaultvalue" value="0"/>
+			</orm:basic>
+			
+			
+			<orm:one-to-many name="Roles" target-entity="FxRole" attribute-type="java.util.List">
+				<orm:cascade-on-delete>false</orm:cascade-on-delete>
+				<orm:property name="typeidx" value="-2" />
+
+				<orm:property name="displaytext'" value="Accessed By" />
+				<orm:property name="relationui.report" value="105" />
+				<orm:property name="relationui.uitype" value="Dropdown/ListBox" />
+				<orm:property name="relationui.showselected" value="true" />
+				<orm:property name="summaryprop" value="true" />
+			</orm:one-to-many>
+		</orm:attributes>
+	</orm:entity>
+	
+
+</orm:entity-mappings>

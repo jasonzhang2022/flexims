@@ -1,0 +1,17 @@
+<div fx-server-file >
+	<ul data-ng-class="listClass" ng-if="multiple">
+		<li data-ng-repeat="fileInfo in fileInfos">
+			{{fileInfo.display}}
+			<a href="{{fileInfo.href}}" target="_blank"><span class='glyphicon glyphicon-arrow-down'></span></a>
+			<a ng-click="openFileBrowser(fileInfo)"><span class='glyphicon glyphicon-folder-open'>open</span></a>
+			
+		</li>
+		<li ng-if="fileInfos.length>1"><a href="{{downloadUrl}}" target="_blank"><span class='glyphicon glyphicon-arrow-down'>All</span></a></li>
+		</li>
+	</ul>
+	<div ng-if="!multiple && fileInfos.length>0">
+		{{fileInfos[0].display}}<a href="{{fileInfos[0].href}}" target="_blank" ><span class='glyphicon glyphicon-arrow-down'> </span></a>
+		<a ng-click="openFileBrowser(fileInfos[0])"><span class='glyphicon glyphicon-folder-open'></span></a>
+	</div>
+
+</div>

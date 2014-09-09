@@ -1,0 +1,38 @@
+<div data-ng-form="" data-fx-name-value-list="" class="map">
+	<div data-ng-repeat="entry in inst[propobj.getName()].entry" class="simple multiple" data-ng-class="{'has-feedback':showInvalid(field), 'has-error':showInvalid(field)}">
+		<div class="propinput">
+			<div style="width: 75%; float: left">
+				<div class="input-group">
+					<span class="input-group-btn">
+						<button class="btn btn-default" type="button" data-ng-click="removeItem($index);">
+							<span class="glyphicon glyphicon-remove"></span>
+						</button>
+					</span>
+					<select name="" data-ng-model="entry.key" data-fx-name-value-input="key" required class="form-control" data-ng-options="o.value as o.display group by o.group for o in orderprops">
+						<option value="">Select</option>
+					</select>
+
+				</div>
+			</div>
+			<div style="width: 25%; float: right">
+				<input type="radio" name=""  data-ng-model="entry.value" data-fx-name-value-input="value" value="ASC">
+				<span class="glyphicon glyphicon-arrow-down"></span>
+				<input type="radio" name=""  data-ng-model="entry.value" data-fx-name-value-input="value" value="DESC">
+				<span class="glyphicon glyphicon-arrow-up"></span>
+			</div>
+		</div>
+		<div class="prophelp help-block"></div>
+	</div>
+	<div class="simple multiple">
+		<div class="propinput">
+			<div class="input-group">
+				<span class="input-group-btn">
+					<button class="btn btn-default" type="button" data-ng-click="addItem();">
+						<span class="glyphicon glyphicon-plus"></span>
+					</button>
+				</span>
+
+			</div>
+		</div>
+	</div>
+</div>

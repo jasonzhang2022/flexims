@@ -1,0 +1,210 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.flexdms</groupId>
+		<artifactId>flexims</artifactId>
+		<version>0.1.0-SNAPSHOT</version>
+	</parent>
+	<groupId>com.flexdms.flexims</groupId>
+	<artifactId>tomcat_web</artifactId>
+	<packaging>war</packaging>
+	<name>tomcat_web</name>
+	<description>Model data from web page</description>
+
+
+
+
+	<dependencies>
+		<!-- Bean Validation API (JSR 303) -->
+		<dependency>
+			<groupId>com.flexdms.flexims</groupId>
+			<artifactId>common</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.flexdms.flexims</groupId>
+			<artifactId>report</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.flexdms.flexims</groupId>
+			<artifactId>users</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.flexdms.flexims</groupId>
+			<artifactId>urlctrl</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.flexdms.flexims</groupId>
+			<artifactId>auth</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.flexdms.flexims</groupId>
+			<artifactId>security</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.flexdms.flexims</groupId>
+			<artifactId>dbfiles</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.flexdms.flexims</groupId>
+			<artifactId>module</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.flexdms.flexims</groupId>
+			<artifactId>googlefiles</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.flexdms.flexims</groupId>
+			<artifactId>s3files</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.flexdms.flexims</groupId>
+			<artifactId>js</artifactId>
+			<version>${project.version}</version>
+			<type>war</type>
+		</dependency>
+
+
+		<dependency>
+			<groupId>com.flexdms.flexims</groupId>
+			<artifactId>testorm</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>javax.validation</groupId>
+			<artifactId>validation-api</artifactId>
+			<version>1.1.0.Final</version>
+		</dependency>
+
+		<!-- CDI: WELD, DeltaSpike -->
+		<dependency>
+			<groupId>org.jboss.weld.servlet</groupId>
+			<artifactId>weld-servlet</artifactId>
+			<version>${version.weld}</version>
+		</dependency>
+
+
+		<!-- jersey for RESTFUL -->
+		<!-- this is critical to make jersey aware of CDI implemnetation:weld -->
+		<dependency>
+			<groupId>org.glassfish.jersey.containers.glassfish</groupId>
+			<artifactId>jersey-gf-cdi</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.glassfish</groupId>
+			<artifactId>javax.json</artifactId>
+			<version>1.0.4</version>
+		</dependency>
+
+
+
+	</dependencies>
+
+	<profiles>
+		<profile>
+			<id>dev</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-war-plugin</artifactId>
+						<configuration>
+							<failOnMissingWebXml>false</failOnMissingWebXml>
+							<warName>flexims</warName>
+							<attachClasses>true</attachClasses>
+							<!--  containing account information -->
+							<packagingExcludes> WEB-INF/lib/googlefiles*.jar, WEB-INF/lib/s3files*.jar
+							</packagingExcludes>
+						</configuration>
+					</plugin>
+
+				</plugins>
+
+			</build>
+		</profile>
+
+
+		<profile>
+			<id>demo</id>
+			<activation>
+				<activeByDefault>false</activeByDefault>
+			</activation>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-war-plugin</artifactId>
+						<configuration>
+							<failOnMissingWebXml>false</failOnMissingWebXml>
+							<warName>demo</warName>
+							<attachClasses>true</attachClasses>
+							<!--  remove test class -->
+							<!--  containing account information -->
+							<packagingExcludes>
+								WEB-INF/lib/testorm*.jar,WEB-INF/lib/googlefiles*.jar, WEB-INF/lib/s3files*.jar
+							</packagingExcludes>
+							<webResources>
+								<resource>
+									<!-- this is relative to the pom.xml directory -->
+									<directory>src/main/demo</directory>
+								</resource>
+							</webResources>
+						</configuration>
+					</plugin>
+
+				</plugins>
+
+			</build>
+		</profile>
+		
+		<profile>
+			<id>account</id>
+			<activation>
+				<activeByDefault>false</activeByDefault>
+			</activation>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-war-plugin</artifactId>
+						<configuration>
+							<failOnMissingWebXml>false</failOnMissingWebXml>
+							<warName>account</warName>
+							<attachClasses>true</attachClasses>
+							<!--  remove test class -->
+							<!--  containing account information -->
+							<packagingExcludes>
+								WEB-INF/lib/testorm*.jar,WEB-INF/lib/s3files*.jar
+							</packagingExcludes>
+							<webResources>
+								<resource>
+									<!-- this is relative to the pom.xml directory -->
+									<directory>src/main/account</directory>
+								</resource>
+							</webResources>
+						</configuration>
+					</plugin>
+
+				</plugins>
+
+			</build>
+		</profile>
+
+	</profiles>
+</project>

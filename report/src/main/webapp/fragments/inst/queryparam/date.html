@@ -1,0 +1,24 @@
+<div>
+	<div class="multipleinputs row">
+		<input type="number" name="fake" style="width:50%;float:left;" data-ng-model="param.relativevalue"  data-fx-dynamic-name="'rtime'+$index"
+	placeholder="relative time from now"/>
+		
+		<select  name="fake" style="width:45%;float:left;" data-ng-model="param.relativeunit" data-ng-options="op.key as op.value for op in timeunits" 
+		data-fx-dynamic-name="'rtimeunit'+$index" required>
+			<option value="" >Select</option>
+		</select>
+		<input type="checkbox" name="fake" style="width:5%;float:left;" data-ng-model="param.wholetime" 
+		data-fx-dynamic-name="'wholetime'+$index" title="truncate to whole time"/>
+
+	</div>
+	
+	<div class="input-group row">
+		<input type="text" name="fake" data-ng-model="param.value" data-fx-dynamic-name="'param'+$index" class="form-control" data-ng-required="daterequired(param);" data-is-open="showdatepicker" data-datepicker-popup="yyyy/MM/dd" />
+		<span class="input-group-btn">
+			<button class="btn btn-default" data-ng-click="openDatePicker($event);" type="button">
+				<i class="glyphicon glyphicon-calendar"></i>
+			</button>
+		</span>
+	</div>
+
+</div>

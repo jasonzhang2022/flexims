@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xml-bindings xmlns="http://www.eclipse.org/eclipselink/xsds/persistence/oxm"
+	xml-accessor-type="NONE" xml-mapping-metadata-complete="true"
+	package-name="com.flexdms.flexims.dynamic.model.generated">
+	<java-types>
+		<java-type name="TypedQuery">
+			<xml-root-element name="TypedQuery" />
+			<xml-virtual-access-methods get-method="realGet"
+				set-method="realSet" schema="NODES" />
+			<java-attributes>
+				<xml-element java-attribute="fxversion" name="fxversion"
+					type="java.sql.Timestamp" />
+				<xml-element java-attribute="Name" name="Name"
+					type="java.lang.String" />
+				<xml-element java-attribute="id" name="id" type="java.lang.Long"
+					xml-id="true" />
+			</java-attributes>
+		</java-type>
+
+		<java-type name="JPQL"
+			super-type="com.flexdms.flexims.dynamic.model.generated.TypedQuery">
+			<xml-root-element name="JPQL" />
+			<xml-virtual-access-methods get-method="realGet"
+				set-method="realSet" schema="NODES" />
+			<java-attributes>
+				<xml-element java-attribute="JPQLText" name="JPQLText"
+					type="java.lang.String" />
+			</java-attributes>
+		</java-type>
+		<java-type name="JPQL1"
+			super-type="com.flexdms.flexims.dynamic.model.generated.TypedQuery">
+			<xml-root-element name="JPQL1" />
+			<xml-virtual-access-methods get-method="realGet"
+				set-method="realSet" schema="NODES" />
+			<java-attributes>
+				<xml-element java-attribute="JPQL1Text" name="JPQL1Text"
+					type="java.lang.String" />
+			</java-attributes>
+		</java-type>
+	</java-types>
+</xml-bindings>

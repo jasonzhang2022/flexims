@@ -1,0 +1,18 @@
+<div data-ng-form="queryparamsform" class="queryparams" data-ng-controller="fxQueryParamCtrl">
+	<div data-ng-class="{'form-group':true, 'has-error': queryparamsform['param'+$index].$invalid}" data-ng-repeat=" param in params |filter:needInput">
+		<label class="control-label col-sm-2">
+			{{param.getLabelText()}}
+			<span class="required" data-tooltip="required"> * </span>
+		</label>
+		<div class="col-sm-5" data-query-param>
+			<ng-include src="inputurl" />
+		</div>
+		<div class="col-sm-5 help-block">
+			<span data-ng-show="queryparamsform['param'+$index].$dirty && queryparamsform['param'+$index].$error.required">Required!</span>
+			<span data-ng-show="queryparamsform['param'+$index].$dirty && queryparamsform['param'+$index].$error.number">A number is required</span>
+			<span data-ng-show="queryparamsform['param'+$index].$dirty && queryparamsform['param'+$index].$error.date">A date is required</span>
+			<span data-ng-show="queryparamsform['param'+$index].$dirty && queryparamsform['param'+$index].$error.pattern">Multiple numbers separated by , are expected</span>
+
+		</div>
+	</div>
+</div>

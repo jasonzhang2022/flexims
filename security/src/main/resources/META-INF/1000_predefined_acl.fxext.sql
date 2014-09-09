@@ -1,0 +1,12 @@
+insert into typeacl (typeid, ptypes) values ('FxRole','IncludedBy');
+insert into typeacl (typeid, ptypes) values ('TypedQuery',NULL);
+insert into typeacl (typeid, ptypes) values ('FxReport','Query');
+insert into typeacl (typeid, ptypes) values ('FxUser',NULL);
+insert into typeacl (typeid, ptypes) values ('FxUserSettings',NULL);
+insert into typepermissions (id, ptype, actions, decision, aceorder, typeid, propname, roleid) values (51,'R','All','Deny',2,'TypedQuery',NULL,998);
+insert into typepermissions (id, ptype, actions, decision, aceorder, typeid, propname, roleid) values (52,'R','Create,Read,Delete,Edit','Allow',0,'TypedQuery',NULL,997);
+insert into typepermissions (id, ptype, actions, decision, aceorder, typeid, propname, roleid) values (53,'R','Read','Allow',1,'TypedQuery',NULL,998);
+insert into typepermissions (id, ptype, actions, decision, aceorder, typeid, propname, roleid) values (54,'R','Read','Allow',0,'FxRole',NULL,998);
+insert into typepermissions (id, ptype, actions, decision, aceorder, typeid, propname, roleid) values (55,'R','All','Deny',1,'FxRole',NULL,998);
+insert into typepermissions (id, ptype, actions, decision, aceorder, typeid, propname, roleid) values (56,'P','Watch,Read,Edit','Allow',0,'FxUserSettings','FxUser',NULL);
+insert into typepermissions (id, ptype, actions, decision, aceorder, typeid, propname, roleid) values (57,'R','All','Deny',0,'FxUserSettings',NULL,998);

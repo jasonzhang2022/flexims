@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<orm:entity-mappings xmlns:orm="http://www.eclipse.org/eclipselink/xsds/persistence/orm" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+   <orm:persistence-unit-metadata>
+      <orm:xml-mapping-metadata-complete>true</orm:xml-mapping-metadata-complete>
+      <orm:exclude-default-mappings>true</orm:exclude-default-mappings>
+      <orm:persistence-unit-defaults>
+         <orm:access>VIRTUAL</orm:access>
+         <orm:access-methods get-method="get" set-method="set"/>
+      </orm:persistence-unit-defaults>
+   </orm:persistence-unit-metadata>
+   <orm:package>com.flexdms.flexims.dynamic.model.generated</orm:package>
+   <orm:table-generator name="Embedmainseq" table="seqs" pk-column-name="name" value-column-name="seq" pk-column-value="Embedmainreq" initial-value="10000" allocation-size="50"/>
+   <orm:entity name="Embedmain" class="Embedmain" parent-class="com.flexdms.flexims.jpa.eclipselink.FleximsDynamicEntityImpl">
+      <orm:attributes>
+         <orm:id name="id" attribute-type="Long">
+            <orm:generated-value strategy="TABLE" generator="Embedmainseq"/>
+         </orm:id>
+         <orm:basic name="fname" attribute-type="java.lang.String">
+            <orm:column unique="false" nullable="false" length="10"/>
+         </orm:basic>
+         <orm:version name="fxversion" mutable="true" attribute-type="java.sql.Timestamp"/>
+         <orm:element-collection name="multiembed" target-class="Embed2" attribute-type="java.util.List">
+            <orm:column/>
+            <orm:property name="typeidx" value="-1"/>
+         </orm:element-collection>
+         <orm:embedded name="singleembed" attribute-type="Embed1">
+            <orm:property name="typeidx" value="-1"/>
+         </orm:embedded>
+      </orm:attributes>
+   </orm:entity>
+   <orm:embeddable class="Embed1" parent-class="com.flexdms.flexims.jpa.eclipselink.FleximsDynamicEntityImpl" access="VIRTUAL">
+      <orm:attributes>
+         <orm:basic name="streetAddress" optional="false" attribute-type="java.lang.String">
+            <orm:column unique="false" nullable="false" length="254"/>
+            <orm:property name="typeidx" value="0"/>
+            <orm:access-methods get-method="get" set-method="set"/>
+         </orm:basic>
+         <orm:element-collection name="mstr" target-class="java.lang.String" attribute-type="java.util.List">
+            <orm:column unique="false" nullable="false" length="10"/>
+            <orm:property name="typeidx" value="0"/>
+            <orm:property name="minlen" value="5"/>
+            <orm:property name="displaytext" value="Short string with some limitation"/>
+            <orm:property name="pattern" value="^[a-z][a-z0-9]*$"/>
+            <orm:property name="ignorepatterncase" value="true"/>
+            <orm:access-methods get-method="get" set-method="set"/>
+         </orm:element-collection>
+         <orm:element-collection name="mint" target-class="java.lang.Integer" attribute-type="java.util.List">
+            <orm:column unique="false" nullable="false" length="254"/>
+            <orm:property name="typeidx" value="3"/>
+            <orm:property name="minvalue" value="5"/>
+            <orm:property name="maxvalue" value="20"/>
+            <orm:access-methods get-method="get" set-method="set"/>
+         </orm:element-collection>
+      </orm:attributes>
+   </orm:embeddable>
+   <orm:embeddable class="Embed2" parent-class="com.flexdms.flexims.jpa.eclipselink.FleximsDynamicEntityImpl" access="VIRTUAL">
+      <orm:attributes>
+         <orm:basic name="streetAddress" optional="false" attribute-type="java.lang.String">
+            <orm:column unique="false" nullable="false" length="254"/>
+            <orm:property name="typeidx" value="0"/>
+            <orm:access-methods get-method="get" set-method="set"/>
+         </orm:basic>
+         <orm:basic name="extra1" optional="true" attribute-type="java.lang.String">
+            <orm:column unique="false" nullable="true" length="254"/>
+            <orm:property name="typeidx" value="0"/>
+            <orm:access-methods get-method="get" set-method="set"/>
+         </orm:basic>
+      </orm:attributes>
+   </orm:embeddable>
+</orm:entity-mappings>

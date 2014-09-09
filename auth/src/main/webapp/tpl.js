@@ -1,0 +1,1 @@
+	$templateCache.put("template/@@@@name@@@@", @@@@text@@@@);

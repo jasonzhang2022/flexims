@@ -1,0 +1,10 @@
+<div ui-tree-handle>
+	<a  class="btn" data-nodrag  ng-click="mytoggle(this)"><span class="fa" 
+	ng-class="{'fa-folder-o': fileInfo.isDir && collapsed, 'fa-folder-open-o':  fileInfo.isDir&& !collapsed, 'fa-file':  !fileInfo.isDir}"></span></a>
+	{{fileInfo.shortname}} 
+	<span ng-if="!fileInfo.isDir">{{fileInfo.size/1000|number:0}} KB</span>
+	<a class="pull-right btn btn-default btn-xs" data-nodrag href="{{fileInfo.href}}" target="_blank"><span class='glyphicon glyphicon-arrow-down'></a> 
+</div>
+<ol ui-tree-nodes="options" data-nodrop ng-model="fileInfo.items" ng-class="{hidden: collapsed}">
+	<li ng-repeat="fileInfo in fileInfo.items" ui-tree-node data-collapsed="true"   ng-include="'template/props/view/serverfile_node.html'"></li>
+</ol>

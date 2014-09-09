@@ -1,0 +1,59 @@
+<div class="panel panel-default">
+	<div class="panel-heading">
+		<div class="btn-group pull-left">Types</div>
+		<div class="btn-toolbar">
+			<div class="btn-group pull-right">
+				<a type="button" class="btn btn-default" href="rs/type/meta" target="_blank">JPA Mapping</a>
+				<a type="button" class="btn btn-default" href="rs/type/schema" target="_blank">SQL Schema</a>
+				<a type="button" class="btn btn-default" href="rs/inst/jaxbmap" target="_blank">JAXB Mapping</a>
+				<a type="button" class="btn btn-default" href="rs/inst/jaxbxsd" target="_blank">JAXB Schema</a>
+				<a type="button" class="btn btn-default" href="type/index.html#/addtype">
+					<span class="glyphicon glyphicon-plus"></span>
+				</a>
+
+			</div>
+
+		</div>
+	</div>
+	<div class="panel-body" ng-controller="typeListCtrl">
+		<tabset> 
+			<tab ng-repeat="tab in tabs" heading="{{tab.title}}" active="tab.active">
+				<table id="types" class="table table-bordered table-striped">
+					<thead>
+						<tr>
+							<th>Name</th>
+							<th>Detail</th>
+		
+						</tr>
+					</thead>
+					<tbody>
+						<tr data-ng-repeat="type in tab.types |orderBy:byName ">
+							<td>{{type.getName()}}</td>
+							<td>
+								<a href="type/index.html#/viewtype/{{type.getName()}}" >
+									<span class="glyphicon glyphicon-eye-open"></span>
+								</a>
+								<a href="type/index.html#/edittype/{{type.getName()}}" ng-show="!type.isExtraProp('fixed', false);">
+									<span class="glyphicon glyphicon-edit"></span>
+								</a>
+								<a href="type/index.html#/typeacl/{{type.getName()}}" ng-if="type.isEntity()">
+									<span class="glyphicon glyphicon-lock"></span>
+								</a>
+								<a href="type/index.html#/erdiagram/{{type.getName()}}">
+									<span class="glyphicon glyphicon-link"></span>
+								</a>
+								<button type="button" class="btn-link" ng-show="!type.isExtraProp('fixed', false);" ng-click="deleteType(type)">
+									<span class="glyphicon glyphicon-trash"></span>
+								</button>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</tab> 
+		</tabset>
+	</div>
+
+
+
+
+</div>

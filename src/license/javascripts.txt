@@ -1,0 +1,14 @@
+jQuery: MIT
+	 https://jquery.org/license
+Bootstrap: Apache 2
+	http://getbootstrap.com/getting-started/#license-faqs: Apache 2
+Angular js: MIT
+	https://github.com/angular/angular.js/blob/master/LICENSE. MIT
+ng-upload: MIT
+	https://github.com/twilson63/ngUpload
+Angular-ui-route: MIT license
+	 https://github.com/angular-ui/ui-router
+ui-bootstrap: MIT
+	http://angular-ui.github.io/bootstrap/#/modal
+
+

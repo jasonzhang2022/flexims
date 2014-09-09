@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<orm:entity-mappings xmlns:orm="http://www.eclipse.org/eclipselink/xsds/persistence/orm" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+   <orm:persistence-unit-metadata>
+      <orm:xml-mapping-metadata-complete>true</orm:xml-mapping-metadata-complete>
+      <orm:exclude-default-mappings>true</orm:exclude-default-mappings>
+      <orm:persistence-unit-defaults>
+         <orm:access>VIRTUAL</orm:access>
+         <orm:access-methods get-method="get" set-method="set"/>
+      </orm:persistence-unit-defaults>
+   </orm:persistence-unit-metadata>
+   <orm:package>com.flexdms.flexims.dynamic.model.generated</orm:package>
+   <orm:table-generator name="Sallowesseq" table="seqs" pk-column-name="name" value-column-name="seq" pk-column-value="Sallowes" initial-value="10000" allocation-size="50"/>
+   <orm:entity class="Sallowes" parent-class="com.flexdms.flexims.jpa.eclipselink.FleximsDynamicEntityImpl" access="VIRTUAL">
+      <orm:attributes>
+         <orm:id name="id" attribute-type="Long">
+            <orm:generated-value strategy="TABLE" generator="Sallowesseq"/>
+         </orm:id>
+         <orm:basic name="shortstring" attribute-type="java.lang.String">
+            <orm:column unique="false" nullable="false" length="10"/>
+            <orm:property name="displaytext" value="Short string with some limitation"/>
+            <orm:property name="typeidx" value="0"/>
+            <orm:property name="tooltip" value="Long description"/>
+            <orm:property name="editable" value="true"/>
+            <orm:property name="minlen" value="5"/>
+            <orm:property name="pattern" value="^[a-z][a-z0-9]*$"/>
+            <orm:property name="ignorepatterncase" value="true"/>
+            <orm:property name="autogenerate" value="true"/>
+            <orm:property name="summaryprop" value="true"/>
+            <orm:property name="defaultvalue" value="jason"/>
+            <orm:property name="allowedvalues.0.value" value="jason"/>
+            <orm:property name="allowedvalues.0.display" value=""/>
+            <orm:property name="allowedvalues.1.value" value="jason1"/>
+            <orm:property name="allowedvalues.1.display" value=""/>
+            <orm:property name="allowedvalues.2.value" value="maria"/>
+            <orm:property name="allowedvalues.2.display" value=""/>
+         </orm:basic>
+         <orm:basic name="propint" attribute-type="java.lang.Integer">
+            <orm:column unique="false" nullable="true" length="254"/>
+            <orm:property name="typeidx" value="3"/>
+            <orm:property name="minvalue" value="5"/>
+            <orm:property name="maxvalue" value="20"/>
+            <orm:property name="defaultvalue" value="6"/>
+            <orm:property name="allowedvalues.0.value" value="6"/>
+            <orm:property name="allowedvalues.0.display" value=""/>
+            <orm:property name="allowedvalues.1.value" value="7"/>
+            <orm:property name="allowedvalues.1.display" value=""/>
+            <orm:property name="allowedvalues.2.value" value="8"/>
+            <orm:property name="allowedvalues.2.display" value=""/>
+         </orm:basic>
+         <orm:basic name="proplong" attribute-type="java.lang.Long">
+            <orm:column unique="false" nullable="true" length="254"/>
+            <orm:property name="typeidx" value="4"/>
+            <orm:property name="defaultvalue" value="7"/>
+            <orm:property name="allowedvalues.0.value" value="6"/>
+            <orm:property name="allowedvalues.0.display" value=""/>
+            <orm:property name="allowedvalues.1.value" value="7"/>
+            <orm:property name="allowedvalues.1.display" value=""/>
+            <orm:property name="allowedvalues.2.value" value="8"/>
+            <orm:property name="allowedvalues.2.display" value=""/>
+         </orm:basic>
+         <orm:basic name="propfloat" attribute-type="java.lang.Float">
+            <orm:column unique="false" nullable="true" length="254"/>
+            <orm:property name="typeidx" value="5"/>
+            <orm:property name="defaultvalue" value="8"/>
+            <orm:property name="allowedvalues.0.value" value="6"/>
+            <orm:property name="allowedvalues.0.display" value=""/>
+            <orm:property name="allowedvalues.1.value" value="7"/>
+            <orm:property name="allowedvalues.1.display" value=""/>
+            <orm:property name="allowedvalues.2.value" value="8"/>
+            <orm:property name="allowedvalues.2.display" value=""/>
+         </orm:basic>
+         <orm:basic name="propdouble" attribute-type="java.lang.Double">
+            <orm:column unique="false" nullable="true" length="254"/>
+            <orm:property name="typeidx" value="6"/>
+            <orm:property name="defaultvalue" value="7"/>
+            <orm:property name="allowedvalues.0.value" value="6"/>
+            <orm:property name="allowedvalues.0.display" value=""/>
+            <orm:property name="allowedvalues.1.value" value="7"/>
+            <orm:property name="allowedvalues.1.display" value=""/>
+            <orm:property name="allowedvalues.2.value" value="8"/>
+            <orm:property name="allowedvalues.2.display" value=""/>
+         </orm:basic>
+         <orm:basic name="propcurrency" attribute-type="java.math.BigDecimal">
+            <orm:column unique="false" nullable="true" precision="20" scale="5"/>
+            <orm:property name="typeidx" value="7"/>
+            <orm:property name="defaultvalue" value="6"/>
+            <orm:property name="allowedvalues.0.value" value="6"/>
+            <orm:property name="allowedvalues.0.display" value=""/>
+            <orm:property name="allowedvalues.1.value" value="7"/>
+            <orm:property name="allowedvalues.1.display" value=""/>
+            <orm:property name="allowedvalues.2.value" value="8"/>
+            <orm:property name="allowedvalues.2.display" value=""/>
+         </orm:basic>
+         <orm:basic name="propdate" attribute-type="java.util.Calendar">
+            <orm:column unique="false" nullable="true" length="254"/>
+            <orm:temporal>DATE</orm:temporal>
+            <orm:property name="typeidx" value="11"/>
+            <orm:property name="defaultvalue" value="2013-12-05"/>
+            <orm:property name="allowedvalues.0.value" value="2013-12-05"/>
+            <orm:property name="allowedvalues.0.display" value=""/>
+            <orm:property name="allowedvalues.1.value" value="2013-12-06"/>
+            <orm:property name="allowedvalues.1.display" value=""/>
+            <orm:property name="allowedvalues.2.value" value="2013-12-07"/>
+            <orm:property name="allowedvalues.2.display" value=""/>
+         </orm:basic>
+         <orm:basic name="proptimestamp" attribute-type="java.util.Calendar">
+            <orm:column unique="false" nullable="true" length="254"/>
+            <orm:temporal>TIMESTAMP</orm:temporal>
+            <orm:property name="typeidx" value="12"/>
+            <orm:property name="defaultvalue" value="2013-12-05T05:06:07"/>
+            <orm:property name="allowedvalues.0.value" value="2013-12-05T05:06:07"/>
+            <orm:property name="allowedvalues.0.display" value=""/>
+            <orm:property name="allowedvalues.1.value" value="2013-12-05T05:06:08"/>
+            <orm:property name="allowedvalues.1.display" value=""/>
+            <orm:property name="allowedvalues.2.value" value="2013-12-05T05:06:09"/>
+            <orm:property name="allowedvalues.2.display" value=""/>
+         </orm:basic>
+         <orm:basic name="proptime" attribute-type="java.util.Calendar">
+            <orm:column unique="false" nullable="true" length="254"/>
+            <orm:temporal>TIME</orm:temporal>
+            <orm:property name="typeidx" value="13"/>
+            <orm:property name="autogenerate" value="true"/>
+            <orm:property name="defaultvalue" value="2013-12-05T05:06:07"/>
+            <orm:property name="allowedvalues.0.value" value="2013-12-05T05:06:07"/>
+            <orm:property name="allowedvalues.0.display" value=""/>
+            <orm:property name="allowedvalues.1.value" value="2013-12-05T05:06:08"/>
+            <orm:property name="allowedvalues.1.display" value=""/>
+            <orm:property name="allowedvalues.2.value" value="2013-12-05T05:06:09"/>
+            <orm:property name="allowedvalues.2.display" value=""/>
+         </orm:basic>
+         <orm:version name="fxversion" mutable="true" attribute-type="java.sql.Timestamp"/>
+      </orm:attributes>
+   </orm:entity>
+</orm:entity-mappings>

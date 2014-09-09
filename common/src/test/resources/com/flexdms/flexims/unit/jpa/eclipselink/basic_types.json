@@ -1,0 +1,298 @@
+{
+   "entity-mappings" : {
+      "persistence-unit-metadata" : {
+         "xml-mapping-metadata-complete" : true,
+         "exclude-default-mappings" : true,
+         "persistence-unit-defaults" : {
+            "access" : "VIRTUAL",
+            "access-methods" : {
+               "@get-method" : "get",
+               "@set-method" : "set"
+            },
+            "tenant-discriminator-column" : [ ],
+            "entity-listeners" : {
+               "entity-listener" : [ ]
+            }
+         }
+      },
+      "package" : "com.flexdms.flexims.dynamic.model.generated",
+      "table-generator" : [ {
+         "@name" : "Testseq",
+         "@table" : "seqs",
+         "@pk-column-name" : "name",
+         "@value-column-name" : "seq",
+         "@pk-column-value" : "Test",
+         "@initial-value" : 10000,
+         "@allocation-size" : 50,
+         "unique-constraint" : [ ],
+         "index" : [ ]
+      } ],
+      "mapped-superclass" : [ ],
+      "entity" : [ {
+         "@class" : "Test",
+         "@access" : "VIRTUAL",
+         "@parent-class" : "com.flexdms.flexims.jpa.eclipselink.FleximsDynamicEntityImpl",
+         "secondary-table" : [ ],
+         "primary-key-join-column" : [ ],
+         "index" : [ ],
+         "cache-index" : [ ],
+         "fetch-group" : [ ],
+         "converter" : [ ],
+         "type-converter" : [ ],
+         "object-type-converter" : [ ],
+         "struct-converter" : [ ],
+         "named-query" : [ ],
+         "named-native-query" : [ ],
+         "named-stored-procedure-query" : [ ],
+         "named-stored-function-query" : [ ],
+         "named-plsql-stored-procedure-query" : [ ],
+         "named-plsql-stored-function-query" : [ ],
+         "oracle-object" : [ ],
+         "oracle-array" : [ ],
+         "plsql-record" : [ ],
+         "plsql-table" : [ ],
+         "sql-result-set-mapping" : [ ],
+         "entity-listeners" : {
+            "entity-listener" : [ ]
+         },
+         "property" : [ ],
+         "attribute-override" : [ ],
+         "association-override" : [ ],
+         "convert" : [ ],
+         "named-entity-graph" : [ ],
+         "attributes" : {
+            "id" : [ {
+               "@name" : "id",
+               "@attribute-type" : "Long",
+               "generated-value" : {
+                  "@strategy" : "TABLE",
+                  "@generator" : "Testseq"
+               },
+               "converter" : [ ],
+               "type-converter" : [ ],
+               "object-type-converter" : [ ],
+               "struct-converter" : [ ],
+               "property" : [ ]
+            } ],
+            "basic" : [  
+            	
+            {
+               "@name" : "shortstring",
+               "@attribute-type" : "java.lang.String",
+	               "column" : {
+	              "@unique" : false,
+	              "@nullable" : true,
+	              "@length" : 254
+	          	 },
+               "converter" : [ ],
+               "type-converter" : [ ],
+               "object-type-converter" : [ ],
+               "struct-converter" : [ ],
+               "property" : [ ]
+            } ,
+             {
+               "@name" : "mediumstring",
+               "@attribute-type" : "java.lang.String",
+	               "column" : {
+	              "@unique" : false,
+	              "@nullable" : true,
+	              "@length" : 4096
+	          	 },
+               "converter" : [ ],
+               "type-converter" : [ ],
+               "object-type-converter" : [ ],
+               "struct-converter" : [ ],
+               "property" : [ ]
+            }, 
+             {
+               "@name" : "longstring",
+               "@attribute-type" : "java.lang.String",
+	               "column" : {
+	              "@unique" : false,
+	              "@nullable" : true,
+	              "@length" : 4096,
+	               "@columnDefinition" : "text"
+	          	 },
+	          	 "lob": {},
+               "converter" : [ ],
+               "type-converter" : [ ],
+               "object-type-converter" : [ ],
+               "struct-converter" : [ ],
+               "property" : [ ]
+            } , 
+             {
+               "@name" : "propint",
+               "@attribute-type" : "java.lang.Integer",
+	               "column" : {
+	              "@unique" : false,
+	              "@nullable" : true,
+	              "@length" : 254
+	          	 },
+               "converter" : [ ],
+               "type-converter" : [ ],
+               "object-type-converter" : [ ],
+               "struct-converter" : [ ],
+               "property" : [ ]
+            } , 
+             {
+               "@name" : "proplong",
+               "@attribute-type" : "java.lang.Long",
+	               "column" : {
+	              "@unique" : false,
+	              "@nullable" : true,
+	              "@length" : 254
+	          	 },
+               "converter" : [ ],
+               "type-converter" : [ ],
+               "object-type-converter" : [ ],
+               "struct-converter" : [ ],
+               "property" : [ ]
+            }  , 
+             {
+               "@name" : "propfloat",
+               "@attribute-type" : "java.lang.Float",
+	               "column" : {
+	              "@unique" : false,
+	              "@nullable" : true,
+	              "@length" : 254
+	          	 },
+               "converter" : [ ],
+               "type-converter" : [ ],
+               "object-type-converter" : [ ],
+               "struct-converter" : [ ],
+               "property" : [ ]
+            }  , 
+             {
+               "@name" : "propdouble",
+               "@attribute-type" : "java.lang.Double",
+	               "column" : {
+	              "@unique" : false,
+	              "@nullable" : true,
+	              "@length" : 254
+	          	 },
+               "converter" : [ ],
+               "type-converter" : [ ],
+               "object-type-converter" : [ ],
+               "struct-converter" : [ ],
+               "property" : [ ]
+            } , 
+             {
+               "@name" : "propcurrency",
+               "@attribute-type" : "java.math.BigDecimal",
+	               "column" : {
+	              "@unique" : false,
+	              "@nullable" : true,
+	               "@precision" : 20,
+        			 "@scale" : 5
+	          	 },
+               "converter" : [ ],
+               "type-converter" : [ ],
+               "object-type-converter" : [ ],
+               "struct-converter" : [ ],
+               "property" : [ ]
+            },
+             {
+               "@name" : "propboolean",
+               "@attribute-type" : "boolean",
+	               "column" : {
+	              "@unique" : false,
+	              "@nullable" : true,
+	              "@length" : 254
+	          	 },
+               "converter" : [ ],
+               "type-converter" : [ ],
+               "object-type-converter" : [ ],
+               "struct-converter" : [ ],
+               "property" : [ ]
+            } , 
+             {
+               "@name" : "propobject",
+               "@attribute-type" : "java.lang.String",
+	               "column" : {
+	              "@unique" : false,
+	              "@nullable" : true,
+	              "@length" : 4096,
+	               "@columnDefinition" : "text"
+	          	 },
+	          	 "lob":{},
+               "convert" : [  ],
+			     "converter" : [ ],
+               "object-type-converter" : [ ],
+               "struct-converter" : [ ],
+               "property" : [  {
+					"@name" : "rootClass",
+					"@value" : "com.flexdms.flexims.jpa.helper.NameValuePair"
+				} ]
+            } , 
+             {
+               "@name" : "propdate",
+               "@attribute-type" : "java.util.Calendar",
+	               "column" : {
+	              "@unique" : false,
+	              "@nullable" : true,
+	              "@length" : 254
+	          	 },
+	          	"temporal":"DATE",
+               "converter" : [ ],
+               "type-converter" : [ ],
+               "object-type-converter" : [ ],
+               "struct-converter" : [ ],
+               "property" : [ ]
+            } , 
+             {
+               "@name" : "proptimestamp",
+               "@attribute-type" : "java.util.Calendar",
+	               "column" : {
+	              "@unique" : false,
+	              "@nullable" : true,
+	              "@length" : 254
+	          	 },
+	          	 "temporal":"TIMESTAMP",
+               "converter" : [ ],
+               "type-converter" : [ ],
+               "object-type-converter" : [ ],
+               "struct-converter" : [ ],
+               "property" : [ ]
+            } , 
+             {
+               "@name" : "proptime",
+               "@attribute-type" : "java.util.Calendar",
+	               "column" : {
+	              "@unique" : false,
+	              "@nullable" : true,
+	              "@length" : 254
+	          	 },
+	          	 "temporal":"TIME",
+               "converter" : [ ],
+               "type-converter" : [ ],
+               "object-type-converter" : [ ],
+               "struct-converter" : [ ],
+               "property" : [ ]
+            }
+            ],
+            "basic-collection" : [ ],
+            "basic-map" : [ ],
+            "version" : [ {
+               "@name" : "fxversion",
+               "@mutable" : true,
+                "@attribute-type" : "java.sql.Timestamp",
+	          
+               "converter" : [ ],
+               "type-converter" : [ ],
+               "object-type-converter" : [ ],
+               "struct-converter" : [ ],
+               "property" : [ ]
+            } ],
+            "many-to-one" : [ ],
+            "one-to-many" : [ ],
+            "one-to-one" : [ ],
+            "many-to-many" : [ ],
+            "element-collection" : [ ],
+            "embedded" : [ ],
+            "array" : [
+             ]
+         }
+      } ],
+      "embeddable" : [ ]
+   }
+}

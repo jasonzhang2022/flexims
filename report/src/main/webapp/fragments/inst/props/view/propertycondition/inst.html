@@ -1,0 +1,12 @@
+<div  >
+	<div class="row" data-ng-repeat="propobj in props"  ng-class="['propview', propobj.getName()]" data-ng-show="showProp(propobj)">
+		<div class="viewlabel" data-ng-if="showlabel">
+			{{propobj.getDisplayText()}}
+			<span data-tooltip-html-unsafe="{{tooltip(propobj)}}" class="info" data-ng-if="tooltip(propobj)">
+				<span class="glyphicon glyphicon-info-sign"></span>
+			</span>
+
+		</div>
+		<fx-prop-viewer />
+	</div>
+</div>

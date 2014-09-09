@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<orm:entity-mappings
+	xmlns:orm="http://www.eclipse.org/eclipselink/xsds/persistence/orm"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<orm:persistence-unit-metadata>
+		<orm:xml-mapping-metadata-complete>true
+		</orm:xml-mapping-metadata-complete>
+		<orm:exclude-default-mappings>true</orm:exclude-default-mappings>
+		<orm:persistence-unit-defaults>
+			<orm:access>VIRTUAL</orm:access>
+			<orm:access-methods get-method="get" set-method="set" />
+		</orm:persistence-unit-defaults>
+	</orm:persistence-unit-metadata>
+	<orm:package>com.flexdms.flexims.dynamic.model.generated</orm:package>
+	<orm:table-generator name="TypedQueryseq" table="seqs"
+		pk-column-name="name" value-column-name="seq" pk-column-value="TypedQuery"
+		initial-value="10000" allocation-size="50" />
+
+	<orm:entity name="TypedQuery" class="TypedQuery"
+		parent-class="com.flexdms.flexims.jpa.eclipselink.FleximsDynamicEntityImpl"
+		access="VIRTUAL">
+		<orm:description>Query for a type</orm:description>
+		<orm:inheritance />
+		<orm:discriminator-value>TypedQuery</orm:discriminator-value>
+		<orm:discriminator-column discriminator-type="String"
+			length="40" />
+		<orm:property name="abstract" value="true"/>	
+		<orm:property name="system" value="True" />
+		<orm:property name="showInAdd" value="false" />
+		<orm:property name="showInAllReport" value="false" />
+		<orm:attributes>
+			<orm:id name="id" attribute-type="Long">
+				<orm:column />
+				<orm:generated-value strategy="TABLE" generator="TypedQueryseq" />
+				<orm:access-methods get-method="get" set-method="set" />
+			</orm:id>
+			
+			<orm:version name="fxversion" mutable="true"
+				attribute-type="java.sql.Timestamp">
+				<orm:column />
+				<orm:access-methods get-method="get" set-method="set" />
+			</orm:version>
+			<orm:basic name="Name" optional="false" attribute-type="java.lang.String">
+				<orm:column unique="true" nullable="false" length="254" />
+				<orm:property name="typeidx" value="0" />
+				<orm:property name="viewable" value="true" />
+				<orm:property name="editable" value="true" />
+				<orm:property name="summaryprop" value="true" />
+				<orm:access-methods get-method="get" set-method="set" />
+			</orm:basic>
+			<orm:basic name="Description" optional="true"
+				attribute-type="java.lang.String">
+				<orm:column unique="false" nullable="true" length="254" />
+				<orm:property name="typeidx" value="0" />
+				<orm:property name="viewable" value="true" />
+				<orm:property name="editable" value="true" />
+
+				<orm:access-methods get-method="get" set-method="set" />
+			</orm:basic>
+			<orm:basic name="TargetedType" optional="false"
+				attribute-type="java.lang.String">
+				<orm:column unique="false" nullable="false" length="254" />
+				<orm:property name="typeidx" value="0" />
+				<orm:property name="viewable" value="true" />
+				<orm:property name="editable" value="true" />
+				<orm:property name="displaytext" value="Query For" />
+				<orm:access-methods get-method="get" set-method="set" />
+			</orm:basic>
+			<orm:one-to-many name="Reports" target-entity="FxReport" mapped-by="Query" attribute-type="java.util.List">
+				<orm:property name="displaytext" value="Reports Associated with is query" />
+			</orm:one-to-many>
+			</orm:attributes>
+	</orm:entity>
+	
+	<orm:entity name="JPQL" class="JPQL" parent-class="TypedQuery"
+		access="VIRTUAL">
+		<orm:description>Java Persistence Query</orm:description>
+		<orm:discriminator-value>JPQL</orm:discriminator-value>
+		<orm:property name="entity" value="true" />
+		<orm:property name="system" value="True" />
+		<orm:property name="showInAdd" value="false" />
+		<orm:property name="showInAllReport" value="false" />
+		<orm:attributes>
+			<orm:basic name="JPQLText" optional="true" attribute-type="java.lang.String">
+				<orm:column unique="false" nullable="true" length="4096" />
+				<orm:property name="typeidx" value="1" />
+				<orm:property name="viewable" value="true" />
+				<orm:property name="editable" value="true" />
+				<orm:property name="autogenerate" value="true" />
+				<orm:access-methods get-method="get" set-method="set" />
+			</orm:basic>
+		</orm:attributes>
+	</orm:entity>
+	
+	<orm:entity name="DefaultTypedQuery" class="DefaultTypedQuery"
+		parent-class="TypedQuery" access="VIRTUAL">
+		<orm:discriminator-value>DefaultTypedQuery</orm:discriminator-value>
+		<orm:property name="entity" value="true" />
+		<orm:property name="system" value="True" />
+		<orm:property name="showInAdd" value="false" />
+		<orm:property name="showInAllReport" value="false" />
+		<orm:attributes>
+			<orm:element-collection name="Conditions"
+				target-class="PropertyCondition" attribute-type="java.util.List">
+				<orm:column unique="false" nullable="true" length="254" />
+				<orm:collection-table>
+					<orm:join-column />
+				</orm:collection-table>
+				<orm:cascade-on-delete>false</orm:cascade-on-delete>
+				<orm:property name="typeidx" value="-1" />
+				<orm:property name="viewable" value="true" />
+				<orm:property name="editable" value="true" />
+
+				<orm:access-methods get-method="get" set-method="set" />
+			</orm:element-collection>
+<!-- 			<orm:one-to-many name="Tracedby" target-entity="PropertyCondition" mapped-by="TraceDown" attribute-type="java.util.List"> -->
+<!-- 				<orm:property name="displaytext" value="Traced Down by" /> -->
+<!-- 			</orm:one-to-many> -->
+		</orm:attributes>
+		
+	</orm:entity>
+	<orm:embeddable class="PropertyCondition"
+		parent-class="com.flexdms.flexims.jpa.eclipselink.FleximsDynamicEntityImpl"
+		access="VIRTUAL">
+		<orm:description>A query condition on one property</orm:description>
+		<orm:property name="system" value="True" />
+		<orm:attributes>
+			<orm:basic name="Property" optional="false" attribute-type="java.lang.String">
+				<orm:column unique="false" nullable="false" length="254" />
+				<orm:property name="typeidx" value="0" />
+				<orm:property name="viewable" value="true" />
+				<orm:property name="editable" value="true" />
+				<orm:property name="summaryprop" value="true" />
+				<orm:property name="displaytext" value="Property" />
+				<orm:property name="maxlen" value="254" />
+				<orm:access-methods get-method="get" set-method="set" />
+			</orm:basic>
+			<orm:basic name="Operator" optional="false" attribute-type="java.lang.String">
+				<orm:column unique="false" nullable="false" length="20" />
+				<orm:property name="typeidx" value="0" />
+				<orm:property name="viewable" value="true" />
+				<orm:property name="editable" value="true" />
+				<orm:property name="summaryprop" value="true" />
+				<orm:access-methods get-method="get" set-method="set" />
+			</orm:basic>
+			<orm:basic name="RelativeStartDate" optional="true"
+				attribute-type="java.lang.Integer">
+				<orm:column unique="false" nullable="true" length="254" />
+				<orm:property name="typeidx" value="3" />
+				<orm:property name="viewable" value="true" />
+				<orm:property name="editable" value="false" />
+				<orm:property name="displaytext" value="Relative to query execution time"/>
+				<orm:access-methods get-method="get" set-method="set" />
+			</orm:basic>
+			<orm:basic name="RelativeStartUnit" optional="true"
+				attribute-type="java.lang.String">
+				<orm:column unique="false" nullable="true" length="10" />
+				<orm:property name="typeidx" value="0" />
+				<orm:property name="viewable" value="true" />
+				<orm:property name="editable" value="false" />
+				<orm:access-methods get-method="get" set-method="set" />
+			</orm:basic>
+			<orm:basic name="FirstValue" optional="true"
+				attribute-type="java.lang.String">
+				<orm:column unique="false" nullable="true" length="254" />
+				<orm:property name="typeidx" value="0" />
+				<orm:property name="viewable" value="true" />
+				<orm:property name="editable" value="true" />
+				<orm:property name="displaytext" value="Value"/>
+				<orm:property name="tooltip" value="Multiple value separated by ,"/>
+				<orm:access-methods get-method="get" set-method="set" />
+			</orm:basic>
+			<orm:basic name="RelativeEndDate" optional="true"
+				attribute-type="java.lang.Integer">
+				<orm:column unique="false" nullable="true" length="254" />
+				<orm:property name="typeidx" value="3" />
+				<orm:property name="viewable" value="true" />
+				<orm:property name="editable" value="false" />
+				<orm:property name="displaytext" value="Relative to query execution time for between"/>
+				<orm:access-methods get-method="get" set-method="set" />
+			</orm:basic>
+			<orm:basic name="RelativeEndUnit" optional="true"
+				attribute-type="java.lang.String">
+				<orm:column unique="false" nullable="true" length="10" />
+				<orm:property name="typeidx" value="0" />
+				<orm:property name="viewable" value="true" />
+				<orm:property name="editable" value="false" />
+				<orm:access-methods get-method="get" set-method="set" />
+			</orm:basic>
+			<orm:basic name="SecondValue" optional="true"
+				attribute-type="java.lang.String">
+				<orm:column unique="false" nullable="true" length="254" />
+				<orm:property name="typeidx" value="0" />
+				<orm:property name="viewable" value="true" />
+				<orm:property name="editable" value="true" />
+				<orm:property name="displaytext" value="second value for between"/>
+				<orm:access-methods get-method="get" set-method="set" />
+			</orm:basic>
+			<orm:basic name="Description" optional="true"
+				attribute-type="java.lang.String">
+				<orm:column unique="false" nullable="true" length="254" />
+				<orm:property name="typeidx" value="0" />
+				<orm:property name="viewable" value="true" />
+				<orm:property name="editable" value="true" />
+				<orm:property name="displaytext" value="Description for this restriction"/>
+				<orm:access-methods get-method="get" set-method="set" />
+			</orm:basic>
+			<orm:basic name="IgnoreCase" optional="true"
+				attribute-type="boolean">
+				<orm:column unique="false" nullable="true" length="254" />
+				<orm:property name="typeidx" value="9" />
+				<orm:property name="viewable" value="true" />
+				<orm:property name="editable" value="true" />
+				<orm:property name="displaytext" value="Case insensitive when comparing characters"/>
+				<orm:access-methods get-method="get" set-method="set" />
+			</orm:basic>
+			 <orm:many-to-one  name="TraceDown" target-entity="DefaultTypedQuery" optional="true">
+			 	<orm:property name="displaytext" value="Apply drill down query to related entity"/>
+			 </orm:many-to-one>
+			<orm:basic name="WholeTime" optional="true" attribute-type="boolean">
+				<orm:column unique="false" nullable="true" length="254" />
+				<orm:property name="typeidx" value="9" />
+				<orm:property name="viewable" value="true" />
+				<orm:property name="editable" value="false" />
+				<orm:property name="defaultvalue" value="true" />
+				<orm:property name="displaytext" value="ignore fractional when using relative time"/>
+				<orm:access-methods get-method="get" set-method="set" />
+			</orm:basic>
+			<orm:basic name="CollectionMode" optional="true"
+				attribute-type="java.lang.String">
+				<orm:column unique="false" nullable="true" length="10" />
+				<orm:property name="typeidx" value="0" />
+				<orm:property name="viewable" value="true" />
+				<orm:property name="editable" value="true" />
+				 <orm:property name="displaytext" value="How to apply condition to elements in collection"/>
+				<orm:property name="allowedvalues.0.value" value="some"/>
+	            <orm:property name="allowedvalues.0.display" value=""/>
+	            <orm:property name="allowedvalues.1.value" value="all"/>
+	            <orm:property name="allowedvalues.1.display" value=""/>
+	            <orm:property name="allowedvalues.2.value" value="none"/>
+	            <orm:property name="allowedvalues.2.display" value=""/>
+				<orm:property name="defaultvalue" value="all" />
+				<orm:access-methods get-method="get" set-method="set" />
+			</orm:basic>
+		</orm:attributes>
+	</orm:embeddable>
+
+</orm:entity-mappings>

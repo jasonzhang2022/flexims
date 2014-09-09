@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Context antiJARLocking="true" >
+
+	<!-- do not persist session -->
+	<Manager pathname="" />
+
+	<!-- weld CDI -->
+	<Resource auth="Container" factory="org.jboss.weld.resources.ManagerObjectFactory"
+		name="BeanManager" type="javax.enterprise.inject.spi.BeanManager" />
+		
+
+	<!-- DataSource -->
+	<Resource name="jdbc/flexims" auth="Container" type="javax.sql.DataSource" 
+		maxActive="100" maxIdle="30" maxWait="10000" username="flexims"
+		password="123456" driverClassName="org.postgresql.Driver" url="jdbc:postgresql://192.168.231.10:5432/flexims" />
+
+
+	
+
+</Context>

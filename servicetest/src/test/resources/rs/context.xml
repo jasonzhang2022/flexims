@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- http://stackoverflow.com/questions/14873219/cannot-undeploy-a-web-app-completely-in-tomcat-7 -->
+<Context antiJARLocking="true" antiResourceLocking="true">
+
+	<!-- do not persist session -->
+	<Manager pathname="" />
+
+	<!-- weld CDI -->
+	<Resource auth="Container" factory="org.jboss.weld.resources.ManagerObjectFactory"
+		name="BeanManager" type="javax.enterprise.inject.spi.BeanManager" />
+
+	<!-- DataSource 
+	use derby for test so we do not need a postgresql
+	-->
+<!-- 	<Resource auth="Container"  -->
+<!--            driverClassName="org.apache.derby.jdbc.EmbeddedDriver"  -->
+<!--            maxActive="8" maxIdle="4"  -->
+<!--            name="jdbc/flexims" type="javax.sql.DataSource"  -->
+<!--            url="jdbc:derby:target/mydb;create=true"  -->
+<!--           username="flexims" -->
+<!-- 		password="123456"  -->
+<!-- 		factory="org.apache.commons.dbcp.BasicDataSourceFactory" -->
+<!-- 		/> -->
+		
+		<Resource auth="Container" 
+           driverClassName="org.apache.derby.jdbc.ClientDriver" 
+           maxActive="8" maxIdle="4" 
+           name="jdbc/flexims" type="javax.sql.DataSource" 
+           url="jdbc:derby://localhost:1527/memory:flexims;create=true" 
+          username="flexims"
+		password="123456" 
+		factory="org.apache.commons.dbcp.BasicDataSourceFactory"
+		/>
+	<!-- <Resource name="jdbc/flexims" auth="Container" type="javax.sql.DataSource"
+		maxActive="100" maxIdle="30" maxWait="10000" username="flexims"
+		password="123456" driverClassName="org.postgresql.Driver" url="jdbc:postgresql://192.168.231.10:5432/flexims"
+		factory="org.apache.tomcat.jdbc.pool.DataSourceFactory" -->
+		
+		 />
+		 <!-- factory="org.apache.commons.dbcp.BasicDataSourceFactory" -->
+	
+
+</Context>

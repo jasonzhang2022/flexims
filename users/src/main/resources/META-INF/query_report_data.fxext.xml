@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<entities>
+<DefaultTypedQuery>
+      <fxversion>2014-05-23T13:59:16.58701-07:00</fxversion>
+      <Name>ALL FxRole</Name>
+      <id>105</id>
+      <TargetedType>FxRole</TargetedType>
+   </DefaultTypedQuery>
+   <DefaultTypedQuery>
+      <fxversion>2014-05-23T14:28:27.791608-07:00</fxversion>
+      <Name>ALL FxUser</Name>
+      <id>106</id>
+      <TargetedType>FxUser</TargetedType>
+   </DefaultTypedQuery>
+   
+   <FxReport>
+      <fxversion>2014-06-10T09:36:42.729134-07:00</fxversion>
+      <Name>ALL FxRole</Name>
+      <id>105</id>
+       <Query>105</Query>
+        <OrderBy>
+			<entry>
+				<key>Name</key>
+				<value>ASC</value>
+			</entry>
+		</OrderBy>
+		<Properties>
+			<entry>
+				<key>0</key>
+				<value>Name</value>
+			</entry>
+		</Properties>
+   </FxReport>
+   
+    <FxReport>
+      <fxversion>2014-06-10T09:34:57.396165-07:00</fxversion>
+      <Name>ALL FxUser</Name>
+      <id>106</id>
+     <Query>106</Query>
+      <OrderBy>
+			<entry>
+				<key>Name</key>
+				<value>ASC</value>
+			</entry>
+		</OrderBy>
+		<Properties>
+			<entry>
+				<key>0</key>
+				<value>Name</value>
+			</entry>
+		</Properties>
+   </FxReport>
+   
+</entities>

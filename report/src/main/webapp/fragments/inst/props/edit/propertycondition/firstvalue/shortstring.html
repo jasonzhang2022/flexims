@@ -1,0 +1,17 @@
+<div style="padding-left: 15px;padding-right: 15px;">
+	<div class="multipleinputs row" data-ng-if="showProp(type.getProp('RelativeStartDate'))">
+		<input type="number" name="relativestart" style="width:50%;float:left;" data-ng-model="inst.RelativeStartDate"
+		placeholder="{{type.getProp('RelativeStartDate').getDisplayText()}}"
+		/>
+		
+		<select  name="relativestartunit" style="width:45%;float:left;" data-ng-model="inst.RelativeStartUnit" data-ng-options="op.key as op.value for op in searchForData('timeunits')">
+			<option value="" ></option>
+		</select>
+		<input type="checkbox" name="WholeTimeStart" style="width:5%;float:left;" data-ng-model="inst.WholeTime" title="Ignore fractional time"/>
+
+	</div>
+	
+	<div class="row">
+		<input type="text" name="firstvaluestring" data-ng-model="inst.FirstValue" class="form-control" data-fx-query-param-value-validator />
+	</div>
+</div>

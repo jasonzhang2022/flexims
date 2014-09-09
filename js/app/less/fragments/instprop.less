@@ -1,0 +1,134 @@
+/*-----------General */
+
+.required {
+	color:red;
+}
+.info {
+	color:blue;
+}
+@tooltip-max-width:           400px;
+
+ul.prop-tooltip {
+	width:200px;
+	text-align:left;
+}
+/*--------------------edit  */
+.prop {
+	border-bottom:1px grey solid;
+	&.simpleprop {
+		.proplabel {
+			.make-sm-column(4);
+			.control-label
+			{
+				float:right;
+			}
+		}
+		.propinputandhelp {
+			.make-sm-column(8, 0);
+		}
+	}
+	&.embeddedprop {
+		> .proplabel {
+			.make-sm-column(12);
+			> .control-label
+			{
+				left:200px;
+				font-size:x-large;
+				.make-sm-column(4);
+				text-align:left;
+			}
+		}
+		> .propinputandhelp {
+			.make-sm-column(12, 0);
+		}
+		background-color: @well-bg;
+	}
+		
+}
+
+
+.propinput {
+	.make-sm-column(6);
+}
+.prophelp {
+	.make-sm-column(6);
+}
+.multiple {
+	.make-sm-column(12, 0);
+	> .simple {
+		.make-sm-column(12, 0);
+	}
+	> .embedded {
+		margin-bottom:2px;
+		padding-left:15px;
+		border-width:1px;
+	}
+	> .embeddedadd {
+		.make-sm-column(12, 0);
+	}
+}
+
+
+.multiplebtn() {
+    background: none repeat scroll 0 0 rgba(0, 0, 0, 0);
+    border: 0 none;
+    cursor: pointer;
+    float: left;
+    font-weight: bold;
+    left: 0;
+    padding: 0;
+    z-index: 3;
+}
+.multipledeletebtn {
+	.multiplebtn();
+	  position: absolute;
+}
+.multipleaddbtn {
+	.multiplebtn();
+	  position: relative;
+	  font-size:x-large;
+}
+
+
+.input-group .form-control-feedback {
+	z-index:3;
+}
+
+/*-----------viewer */
+.embedded {
+		.make-sm-column(12, 0);
+		background-color: @well-bg;
+		margin-bottom:2px;
+		
+		> .multiple {
+			border:1px solid #FFD700;
+		}
+		> .simple {
+			border:1px solid #FFD700;
+		}
+}
+ul.proplist.simple {
+	&.singlefield {
+		list-style-type: none;
+		margin: 0;
+		padding: 0;
+		> li {
+			display: inline;
+			&:not(:first-child):before {
+				content: ', ';
+			}
+		}
+	}
+	&.multiplefield {
+		margin: 0;
+		padding-left: 15px;
+	}
+}
+.propvalue {
+	.make-sm-column(6);
+}
+.viewlabel {
+	.make-sm-column(6);
+	text-align:right;
+}
+

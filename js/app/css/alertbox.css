@@ -1,0 +1,50 @@
+.alertbox-show {
+	-webkit-transition: all linear 0.5s;
+	transition: all linear 0.5s;
+	display: block !important;
+	opacity: 0.50;
+	height: 3em;
+}
+
+.alertbox-show.ng-hide,.alertbox-show.ng-hide-add.ng-hide-add-active {
+	opacity: 0;
+	height: 0px;
+	z-index: -1;
+}
+
+.alertbox-show.ng-hide-remove.ng-hide-remove-active {
+	opacity: 0.50;
+	height: 3em;
+}
+
+.alertbox {
+	position: fixed;
+	top: 0px;
+	left: 0px;
+	width: 100%;
+	margin: auto;
+	text-align: center;
+	z-index: 100;
+	background: black;
+	color:white;
+}
+
+.alertbox div {
+	vertical-align: center;
+}
+.alertbox div:first-child {
+	float:left;
+	width: 90%;
+	padding-top: 5px;
+}
+.alertbox div:last-child {
+	float:right;
+	width: 10%;
+	
+}
+#fxalert .close {
+	float: left;
+	color: white;
+	font-size: x-large;
+	opacity: 1;
+}

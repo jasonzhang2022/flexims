@@ -1,0 +1,278 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.flexdms</groupId>
+		<artifactId>flexims</artifactId>
+		<version>0.1.0-SNAPSHOT</version>
+	</parent>
+	<groupId>com.flexdms.flexims</groupId>
+	<artifactId>servicetest</artifactId>
+	<packaging>jar</packaging>
+	<name>servicetest</name>
+	<description>Test Service from various module</description>
+
+
+
+
+	<dependencies>
+		<dependency>
+			<groupId>com.flexdms.flexims</groupId>
+			<artifactId>tomcat_web</artifactId>
+			<version>${project.version}</version>
+			<type>jar</type>
+			<classifier>classes</classifier>
+		</dependency>
+		<!-- Bean Validation API (JSR 303) -->
+		<dependency>
+			<groupId>com.flexdms.flexims</groupId>
+			<artifactId>common</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.flexdms.flexims</groupId>
+			<artifactId>report</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.flexdms.flexims</groupId>
+			<artifactId>users</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.flexdms.flexims</groupId>
+			<artifactId>urlctrl</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.flexdms.flexims</groupId>
+			<artifactId>auth</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.flexdms.flexims</groupId>
+			<artifactId>security</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>com.flexdms.flexims</groupId>
+			<artifactId>dbfiles</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.flexdms.flexims</groupId>
+			<artifactId>js</artifactId>
+			<version>${project.version}</version>
+			<type>war</type>
+		</dependency>
+		
+		<dependency>
+			<groupId>com.flexdms.flexims</groupId>
+			<artifactId>testorm</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>javax.validation</groupId>
+			<artifactId>validation-api</artifactId>
+			<version>1.1.0.Final</version>
+		</dependency>
+
+		<!-- CDI: WELD, DeltaSpike -->
+		<dependency>
+			<groupId>org.jboss.weld.servlet</groupId>
+			<artifactId>weld-servlet</artifactId>
+			<version>${version.weld}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.flexdms.flexims</groupId>
+			<artifactId>common</artifactId>
+			<version>${project.version}</version>
+			<type>test-jar</type>
+			<scope>test</scope>
+		</dependency>
+		
+		<dependency>
+			<groupId>com.flexdms.flexims</groupId>
+			<artifactId>security</artifactId>
+			<version>${project.version}</version>
+			<type>test-jar</type>
+			<scope>test</scope>
+		</dependency>
+
+		<!-- transaction manager -->
+
+
+		<!-- jersey for RESTFUL -->
+		<!-- this is critical to make jersey aware of CDI implemnetation:weld -->
+		 <dependency>
+            <groupId>org.glassfish.jersey.containers.glassfish</groupId>
+            <artifactId>jersey-gf-cdi</artifactId>
+        </dependency>
+
+
+		<!-- Required only when you are using JAX-RS Client -->
+		<!-- Persistence and JDBC eclipse link is also used for JAXB and JAX-RS -->
+
+		<!-- My Utilities -->
+
+		<!-- log -->
+
+
+		<!-- common -->
+
+		<!-- Other API -->
+
+
+		<dependency>
+			<groupId>org.glassfish</groupId>
+			<artifactId>javax.json</artifactId>
+			<version>1.0.4</version>
+		</dependency>
+
+		
+
+
+	</dependencies>
+
+	<build>
+		<plugins>
+			<!-- launch tomcat, deploy application before integration test -->
+			<plugin>
+				<groupId>org.codehaus.cargo</groupId>
+				<artifactId>cargo-maven2-plugin</artifactId>
+				<version>1.4.6</version>
+				<executions>
+					<!-- install tomcat
+					So it could be used by arquillion managed 
+					 -->
+					<execution>
+						<id>install-container</id>
+						<phase>generate-test-resources</phase>
+						<goals>
+							<goal>install</goal>
+						</goals>
+					</execution>
+					
+					<execution>
+						<id>start-container</id>
+						<phase>pre-integration-test</phase>
+						<goals>
+							<goal>start</goal>
+						</goals>
+					</execution>
+					<execution>
+						<id>stop-container</id>
+						<phase>post-integration-test</phase>
+						<goals>
+							<goal>stop</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					
+					<!-- Container configuration -->
+					<container>
+						<containerId>tomcat7x</containerId>
+						<zipUrlInstaller>
+							<url>http://archive.apache.org/dist/tomcat/tomcat-7/v7.0.52/bin/apache-tomcat-7.0.52.zip</url>
+							<downloadDir>${project.build.directory}</downloadDir>
+          					<extractDir>${project.build.directory}</extractDir>
+						</zipUrlInstaller>
+					</container>
+
+				</configuration>
+			</plugin>
+
+			<!--  copy customized tomcat configuration -->
+			<plugin>
+		        <artifactId>maven-resources-plugin</artifactId>
+		        <version>2.6</version>
+		        <executions>
+		          <execution>
+		            <id>copy-tomcat-config</id>
+		            <!-- here the phase you need -->
+		            <phase>process-test-resources</phase>
+		            <goals>
+		              <goal>copy-resources</goal>
+		            </goals>
+		            <configuration>
+		              <outputDirectory>${basedir}/target/apache-tomcat-7.0.52/apache-tomcat-7.0.52/conf</outputDirectory>
+		              <resources>          
+		                <resource>
+		                  <directory>${basedir}/src/test/resources/tomcat7x/conf</directory>
+		                </resource>
+		              </resources>              
+		            </configuration>            
+		          </execution>
+		        </executions>
+		      </plugin>
+		
+			
+			
+				<!-- Fire unit test -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<configuration>
+					<systemProperties>
+						<!-- 
+						
+						Why use managed: when embedded is used, there is only one JVM
+						We want to use Mock at client, but real deployment in server
+						So we need separate JVM.
+						The managed tomcat is downloaded by cargo.
+						It is configured by copy-resources plugin.
+						
+						The managed-tomcat is configured in arquillian.xml
+						what arquillian configuration is selected
+							the qualifier in arquillian.xml
+						 -->
+                        <arquillian.launch>tomcat-managed</arquillian.launch>
+                        <arquillian>tomcat-managed</arquillian>
+                    </systemProperties>
+				</configuration>
+			</plugin>
+		
+		</plugins>
+		<pluginManagement>
+			<plugins>
+				<!--This plugin's configuration is used to store Eclipse m2e settings 
+					only. It has no influence on the Maven build itself. -->
+				<plugin>
+					<groupId>org.eclipse.m2e</groupId>
+					<artifactId>lifecycle-mapping</artifactId>
+					<version>1.0.0</version>
+					<configuration>
+						<lifecycleMappingMetadata>
+							<pluginExecutions>
+								<pluginExecution>
+									<pluginExecutionFilter>
+										<groupId>
+											org.codehaus.cargo
+										</groupId>
+										<artifactId>
+											cargo-maven2-plugin
+										</artifactId>
+										<versionRange>
+											[1.4.6,)
+										</versionRange>
+										<goals>
+											<goal>install</goal>
+											<goal>configure</goal>
+										</goals>
+									</pluginExecutionFilter>
+									<action>
+										<ignore></ignore>
+									</action>
+								</pluginExecution>
+							</pluginExecutions>
+						</lifecycleMappingMetadata>
+					</configuration>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+	</build>
+</project>

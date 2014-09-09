@@ -1,0 +1,18 @@
+
+<div class="multiple" data-ng-controller="queryparamMultiple" data-ng-form="fake" data-fx-dynamic-name="'param'+$index">
+
+	<!-- A controller for this -->
+	<div data-ng-repeat="singlevalue in values" class="simple">
+		<button type="button" class="multipledeletebtn text-danger" data-ng-click="removeItem($index);">X</button>
+		<input type="text"  required data-ng-model="singlevalue.value"
+		name="fake" data-fx-dynamic-name="'param_internal'+$index"
+		/>
+	</div>
+	<div class="simple">
+		<button type="button" class="multipleaddbtn text-primary" data-ng-click="addItem();">+</button>
+		<span class="help-block" style="display: table-cell; padding-left: 20px;">
+			<span data-ng-show="field.fakelist.$dirty && field.fakelist.$error.required">Required!</span>
+		</span>
+	</div>
+
+</div>

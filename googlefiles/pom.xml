@@ -1,0 +1,61 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.flexdms</groupId>
+		<artifactId>flexims</artifactId>
+		<version>0.1.0-SNAPSHOT</version>
+	</parent>
+	<groupId>com.flexdms.flexims</groupId>
+	<artifactId>googlefiles</artifactId>
+	<packaging>jar</packaging>
+	<name>googlefiles</name>
+	<description>Edit Dynamic Bean</description>
+	<properties>
+		<google.version>1.18.0-rc</google.version>
+	</properties>
+	<dependencies>
+		<dependency>
+			<groupId>com.flexdms.flexims</groupId>
+			<artifactId>common</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.flexdms.flexims</groupId>
+			<artifactId>common</artifactId>
+			<version>${project.version}</version>
+			<type>test-jar</type>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>com.google.api-client</groupId>
+			<artifactId>google-api-client</artifactId>
+			<version>${google.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.google.http-client</groupId>
+			<artifactId>google-http-client-jackson</artifactId>
+			<version>${google.version}</version>
+
+		</dependency>
+		<dependency>
+			<groupId>com.google.apis</groupId>
+			<artifactId>google-api-services-storage</artifactId>
+			<version>v1-rev2-1.18.0-rc</version>
+
+
+		</dependency>
+		<dependency>
+			<groupId>com.google.api-client</groupId>
+			<artifactId>google-api-client-jackson2</artifactId>
+			<version>${google.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.google.apis</groupId>
+			<artifactId>google-api-services-drive</artifactId>
+			<version>v2-rev128-1.18.0-rc</version>
+		</dependency>
+	</dependencies>
+
+</project>

@@ -1,0 +1,32 @@
+<div data-ng-form="" data-fx-name-value-list="" class="map">
+	<div data-ng-repeat="entry in inst[propobj.getName()].entry" class="simple multiple" data-ng-class="{'has-feedback':showInvalid(field), 'has-error':showInvalid(field)}">
+		<div class="propinput">
+			<div style="width: 50%; float: left">
+				<div class="input-group">
+					<span class="input-group-btn">
+						<button class="btn btn-default" type="button" data-ng-click="removeItem($index);">
+							<span class="glyphicon glyphicon-remove"></span>
+						</button>
+					</span>
+					<input type="text" class="form-control" placeholder="name" name="" required data-ng-model="entry.key" data-fx-name-value-input="key">
+				</div>
+			</div>
+			<div style="width: 50%; float: left">
+				<input type="text" class="form-control" placeholder="value" name="" data-ng-model="entry.value" data-fx-name-value-input="value"/>
+			</div>
+		</div>
+		<div class="prophelp help-block"></div>
+	</div>
+	<div class="simple multiple">
+		<div class="propinput">
+			<div class="input-group">
+				<span class="input-group-btn">
+					<button class="btn btn-default" type="button" data-ng-click="addItem();">
+						<span class="glyphicon glyphicon-plus"></span>
+					</button>
+				</span>
+
+			</div>
+		</div>
+	</div>
+</div>

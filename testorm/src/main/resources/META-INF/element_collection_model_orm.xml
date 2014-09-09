@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<orm:entity-mappings xmlns:orm="http://www.eclipse.org/eclipselink/xsds/persistence/orm" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+   <orm:persistence-unit-metadata>
+      <orm:xml-mapping-metadata-complete>true</orm:xml-mapping-metadata-complete>
+      <orm:exclude-default-mappings>true</orm:exclude-default-mappings>
+      <orm:persistence-unit-defaults>
+         <orm:access>VIRTUAL</orm:access>
+         <orm:access-methods get-method="get" set-method="set"/>
+      </orm:persistence-unit-defaults>
+   </orm:persistence-unit-metadata>
+   <orm:package>com.flexdms.flexims.dynamic.model.generated</orm:package>
+   <orm:table-generator name="Collection1seq" table="seqs" pk-column-name="name" value-column-name="seq" pk-column-value="Collection1" initial-value="10000" allocation-size="50"/>
+   <orm:entity class="Collection1" parent-class="com.flexdms.flexims.jpa.eclipselink.FleximsDynamicEntityImpl" access="VIRTUAL">
+      <orm:attributes>
+         <orm:id name="id" attribute-type="Long">
+            <orm:generated-value strategy="TABLE" generator="Collection1seq"/>
+         </orm:id>
+         <orm:version name="fxversion" mutable="true" attribute-type="java.sql.Timestamp"/>
+         <orm:element-collection name="shortstring" target-class="java.lang.String" attribute-type="java.util.List">
+            <orm:column unique="false" nullable="false" length="10"/>
+            <orm:property name="displaytext" value="Short string with some limitation"/>
+            <orm:property name="typeidx" value="0"/>
+            <orm:property name="tooltip" value="Long description"/>
+            <orm:property name="editable" value="true"/>
+            <orm:property name="minlen" value="5"/>
+            <orm:property name="pattern" value="^[a-z][a-z0-9]*$"/>
+            <orm:property name="ignorepatterncase" value="true"/>
+            <orm:property name="summaryprop" value="true"/>
+         </orm:element-collection>
+         <orm:element-collection name="propint" target-class="java.lang.Integer" attribute-type="java.util.List">
+            <orm:column unique="false" nullable="true" length="254"/>
+            <orm:property name="typeidx" value="3"/>
+            <orm:property name="minvalue" value="5"/>
+            <orm:property name="maxvalue" value="20"/>
+         </orm:element-collection>
+         <orm:element-collection name="proplong" target-class="java.lang.Long" attribute-type="java.util.List">
+            <orm:column unique="false" nullable="true" length="254"/>
+            <orm:property name="typeidx" value="4"/>
+         </orm:element-collection>
+         <orm:element-collection name="propfloat" target-class="java.lang.Float" attribute-type="java.util.List">
+            <orm:column unique="false" nullable="true" length="254"/>
+            <orm:property name="typeidx" value="5"/>
+         </orm:element-collection>
+         <orm:element-collection name="propdouble" target-class="java.lang.Double" attribute-type="java.util.List">
+            <orm:column unique="false" nullable="true" length="254"/>
+            <orm:property name="typeidx" value="6"/>
+         </orm:element-collection>
+         <orm:element-collection name="propcurrency" target-class="java.math.BigDecimal" attribute-type="java.util.List">
+            <orm:column unique="false" nullable="true" precision="20" scale="5"/>
+            <orm:property name="typeidx" value="7"/>
+         </orm:element-collection>
+         <orm:element-collection name="propdate" target-class="java.util.Calendar" attribute-type="java.util.List">
+            <orm:column unique="false" nullable="true"/>
+            <orm:temporal>DATE</orm:temporal>
+            <orm:property name="typeidx" value="11"/>
+         </orm:element-collection>
+         <orm:element-collection name="proptimestamp" target-class="java.util.Calendar" attribute-type="java.util.List">
+            <orm:column unique="false" nullable="true"/>
+            <orm:temporal>TIMESTAMP</orm:temporal>
+            <orm:property name="typeidx" value="12"/>
+         </orm:element-collection>
+         <orm:element-collection name="proptime" target-class="java.util.Calendar" attribute-type="java.util.List">
+            <orm:column unique="false" nullable="true"/>
+            <orm:temporal>TIME</orm:temporal>
+            <orm:property name="typeidx" value="13"/>
+         </orm:element-collection>
+         <orm:element-collection name="propemail" target-class="java.lang.String" attribute-type="java.util.List">
+            <orm:column unique="false" nullable="true" length="254"/>
+            <orm:property name="typeidx" value="14"/>
+         </orm:element-collection>
+         <orm:element-collection name="propurl" target-class="java.lang.String" attribute-type="java.util.List">
+            <orm:column unique="false" nullable="true" length="254"/>
+            <orm:property name="typeidx" value="15"/>
+         </orm:element-collection>
+         <orm:element-collection name="propdirectory" target-class="java.lang.String" attribute-type="java.util.List">
+            <orm:column unique="false" nullable="true" length="254"/>
+            <orm:property name="typeidx" value="16"/>
+         </orm:element-collection>
+         <orm:element-collection name="propfile" target-class="java.lang.String" attribute-type="java.util.List">
+            <orm:column unique="false" nullable="true" length="254"/>
+            <orm:property name="typeidx" value="17"/>
+         </orm:element-collection>
+      </orm:attributes>
+   </orm:entity>
+</orm:entity-mappings>

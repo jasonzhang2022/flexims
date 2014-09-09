@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<entities>
+	<DefaultTypedQuery>
+		<fxversion>2014-06-09T15:56:33.881555-07:00</fxversion>
+		<Name>ALL FxUrlCtrl</Name>
+		<id>115</id>
+		<TargetedType>FxUrlCtrl</TargetedType>
+	</DefaultTypedQuery>
+
+	<FxReport>
+		<fxversion>2014-06-10T09:35:39.380814-07:00</fxversion>
+		<Name>ALL FxUrlCtrl</Name>
+		<id>115</id>
+		<Query>115</Query>
+		<OrderBy>
+			<entry>
+				<key>CheckOrder</key>
+				<value>ASC</value>
+			</entry>
+		</OrderBy>
+		<Properties>
+			<entry>
+				<key>0</key>
+				<value>UrlPattern</value>
+			</entry>
+			<entry>
+				<key>1</key>
+				<value>CheckOrder</value>
+			</entry>
+		</Properties>
+	</FxReport>
+
+</entities>

@@ -1,0 +1,42 @@
+{
+  "name": "fleximsjs",
+  "version": "0.1.0",
+  "homepage": "https://github.com/jasonzhang2022/flexims",
+  "authors": [
+    "jason zhang <jasonzhang2002@gmail.com>"
+  ],
+  "description": "javascript for flexims",
+  "main": "index.html",
+  "keywords": [
+    "flexims"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "lib",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "1.2.17",
+    "angular-mocks": "1.2.17",
+    "angular-cookies": "1.2.17",
+    "angular-animate": "1.2.17",
+    "angular-resource": "1.2.17",
+    "angular-ui-router": "0.2.10",
+    "jquery": "1.11.1",
+    "ng-grid": "2.0.11",
+    "angular-ui-bootstrap-bower": "0.11.0",
+    "font-awesome": "4.1.0",
+    "bootstrap": "3.1.1",
+    "angular-ui-tree": "2.1.4",
+    "angular-http-auth": "1.0.1",
+    "angular-file-upload": "0.5.7",
+    "jspdf" : "1.0.178"
+  },
+  "resolutions": {
+    "es5-shim": "2.3.0"
+  }
+}

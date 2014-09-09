@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<entities>
+
+   <DefaultTypedQuery>
+      <fxversion>2014-05-16T13:33:41.427085-07:00</fxversion>
+      <Name>ALL DefaultTypedQuery</Name>
+      <id>100</id>
+      <TargetedType>DefaultTypedQuery</TargetedType>
+   </DefaultTypedQuery>
+   
+    <DefaultTypedQuery>
+      <fxversion>2014-05-16T11:17:24.037499-07:00</fxversion>
+      <Name>ALL FxReport</Name>
+      <id>101</id>
+      <TargetedType>FxReport</TargetedType>
+   </DefaultTypedQuery>
+   
+    
+   <FxReport>
+      <fxversion>2014-06-10T09:37:35.76237-07:00</fxversion>
+      <Name>ALL DefaultTypedQuery</Name>
+      <id>100</id>
+       <Query>100</Query>
+       <OrderBy>
+			<entry>
+				<key>TargetedType</key>
+				<value>ASC</value>
+			</entry>
+		</OrderBy>
+		<Properties>
+			<entry>
+				<key>0</key>
+				<value>Name</value>
+			</entry>
+			<entry>
+				<key>1</key>
+				<value>TargetedType</value>
+			</entry>
+		</Properties>
+   </FxReport>
+   
+   <FxReport>
+      <fxversion>2014-06-10T09:32:00.58775-07:00</fxversion>
+      <Name>ALL FxReport</Name>
+      <id>101</id>
+       <Query>101</Query>
+       <OrderBy>
+			<entry>
+				<key>Name</key>
+				<value>ASC</value>
+			</entry>
+		</OrderBy>
+		<Properties>
+			<entry>
+				<key>0</key>
+				<value>Name</value>
+			</entry>
+			<entry>
+				<key>1</key>
+				<value>Query.TargetedType</value>
+			</entry>
+		</Properties>
+   </FxReport>
+</entities>

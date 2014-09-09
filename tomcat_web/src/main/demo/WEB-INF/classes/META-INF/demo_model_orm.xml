@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<orm:entity-mappings xmlns:orm="http://www.eclipse.org/eclipselink/xsds/persistence/orm" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+   <orm:persistence-unit-metadata>
+      <orm:xml-mapping-metadata-complete>true</orm:xml-mapping-metadata-complete>
+      <orm:exclude-default-mappings>true</orm:exclude-default-mappings>
+      <orm:persistence-unit-defaults>
+         <orm:access>VIRTUAL</orm:access>
+         <orm:access-methods get-method="get" set-method="set"/>
+         <orm:entity-listeners>
+            <orm:entity-listener class="com.flexdms.flexims.jpa.event.EntityListener">
+               <orm:pre-persist method-name="prePersist"/>
+               <orm:post-persist method-name="postPersist"/>
+               <orm:pre-remove method-name="preRemove"/>
+               <orm:post-remove method-name="postRemove"/>
+               <orm:pre-update method-name="preUpdate"/>
+               <orm:post-update method-name="postUpdate"/>
+               <orm:post-load method-name="postLoad"/>
+            </orm:entity-listener>
+         </orm:entity-listeners>
+      </orm:persistence-unit-defaults>
+   </orm:persistence-unit-metadata>
+   <orm:package>com.flexdms.flexims.dynamic.model.generated</orm:package>
+   <orm:table-generator name="Studentseq" table="seqs" pk-column-name="name" value-column-name="seq" pk-column-value="Student" initial-value="10000" allocation-size="50"/>
+   <orm:table-generator name="Collegeseq" table="seqs" pk-column-name="name" value-column-name="seq" pk-column-value="College" initial-value="10000" allocation-size="50"/>
+   <orm:table-generator name="Departmentseq" table="seqs" pk-column-name="name" value-column-name="seq" pk-column-value="Department" initial-value="10000" allocation-size="50"/>
+   <orm:table-generator name="Courseseq" table="seqs" pk-column-name="name" value-column-name="seq" pk-column-value="Course" initial-value="10000" allocation-size="50"/>
+   <orm:entity name="Student" class="Student" parent-class="com.flexdms.flexims.jpa.eclipselink.FleximsDynamicEntityImpl" access="VIRTUAL">
+      <orm:description>Student. Has One major Department and one minor Department</orm:description>
+      <orm:property name="abstract" value="false"/>
+      <orm:property name="module" value="demo"/>
+      <orm:property name="fixed" value="true"/>
+      <orm:attributes>
+         <orm:id name="id" attribute-type="Long">
+            <orm:column/>
+            <orm:generated-value strategy="TABLE" generator="Studentseq"/>
+         </orm:id>
+         <orm:basic name="FirstName" optional="false" attribute-type="java.lang.String">
+            <orm:column unique="false" nullable="false" length="254"/>
+            <orm:property name="typeidx" value="0"/>
+            <orm:property name="viewable" value="true"/>
+            <orm:property name="editable" value="true"/>
+            <orm:property name="autogenerate" value="true"/>
+            <orm:property name="summaryprop" value="true"/>
+         </orm:basic>
+         <orm:basic name="LastName" optional="false" attribute-type="java.lang.String">
+            <orm:column unique="false" nullable="false" length="254"/>
+            <orm:property name="typeidx" value="0"/>
+            <orm:property name="viewable" value="true"/>
+            <orm:property name="editable" value="true"/>
+            <orm:property name="autogenerate" value="true"/>
+            <orm:property name="summaryprop" value="true"/>
+         </orm:basic>
+         <orm:version name="fxversion" mutable="true" attribute-type="java.sql.Timestamp">
+            <orm:column/>
+         </orm:version>
+         <orm:many-to-one name="College" target-entity="College" optional="true">
+            <orm:property name="typeidx" value="-2"/>
+            <orm:property name="viewable" value="true"/>
+            <orm:property name="editable" value="true"/>
+            <orm:property name="autogenerate" value="true"/>
+            <orm:property name="relationui.report" value="1001"/>
+            <orm:property name="relationui.uitype" value="Dropdown/ListBox"/>
+            <orm:property name="relationui.showselected" value="true"/>
+         </orm:many-to-one>
+         <orm:many-to-one name="Department" target-entity="Department" optional="true">
+            <orm:property name="typeidx" value="-2"/>
+            <orm:property name="viewable" value="true"/>
+            <orm:property name="editable" value="true"/>
+            <orm:property name="autogenerate" value="true"/>
+            <orm:property name="relationui.report" value="1002"/>
+            <orm:property name="relationui.uitype" value="Dropdown/ListBox"/>
+            <orm:property name="relationui.params.0" value="College"/>
+            <orm:property name="relationui.showselected" value="false"/>
+         </orm:many-to-one>
+         <orm:many-to-one name="Minor" target-entity="Department" optional="true">
+            <orm:property name="typeidx" value="-2"/>
+            <orm:property name="viewable" value="true"/>
+            <orm:property name="editable" value="true"/>
+            <orm:property name="autogenerate" value="true"/>
+            <orm:property name="relationui.report" value="1003"/>
+            <orm:property name="relationui.uitype" value="Dropdown/ListBox"/>
+            <orm:property name="relationui.showselected" value="false"/>
+         </orm:many-to-one>
+         <orm:many-to-many name="Courses" target-entity="Course" attribute-type="java.util.List">
+            <orm:order-by>Name DESC</orm:order-by>
+            <orm:cascade-on-delete>false</orm:cascade-on-delete>
+            <orm:property name="typeidx" value="-2"/>
+            <orm:property name="viewable" value="true"/>
+            <orm:property name="editable" value="true"/>
+            <orm:property name="autogenerate" value="true"/>
+            <orm:property name="relationui.report" value="1004"/>
+            <orm:property name="relationui.uitype" value="Inline Table"/>
+            <orm:property name="relationui.params.0" value="Department"/>
+            <orm:property name="relationui.showselected" value="false"/>
+         </orm:many-to-many>
+      </orm:attributes>
+   </orm:entity>
+   <orm:entity name="College" class="College" parent-class="com.flexdms.flexims.jpa.eclipselink.FleximsDynamicEntityImpl" access="VIRTUAL">
+      <orm:description>College</orm:description>
+      <orm:property name="abstract" value="false"/>
+      <orm:property name="module" value="demo"/>
+      <orm:property name="fixed" value="true"/>
+      <orm:attributes>
+         <orm:id name="id" attribute-type="Long">
+            <orm:column/>
+            <orm:generated-value strategy="TABLE" generator="Collegeseq"/>
+         </orm:id>
+         <orm:basic name="Name" optional="false" attribute-type="java.lang.String">
+            <orm:column unique="true" nullable="false" length="254"/>
+            <orm:property name="typeidx" value="0"/>
+            <orm:property name="viewable" value="true"/>
+            <orm:property name="editable" value="true"/>
+            <orm:property name="pattern" value="^[A-Z][a-zA-Z ]+$"/>
+            <orm:property name="ignorepatterncase" value="true"/>
+            <orm:property name="autogenerate" value="true"/>
+            <orm:property name="summaryprop" value="true"/>
+         </orm:basic>
+         <orm:version name="fxversion" mutable="true" attribute-type="java.sql.Timestamp">
+            <orm:column/>
+         </orm:version>
+         <orm:one-to-many name="Departments" target-entity="Department" mapped-by="College" orphan-removal="false" attribute-type="java.util.Set">
+            <orm:cascade-on-delete>false</orm:cascade-on-delete>
+            <orm:private-owned>false</orm:private-owned>
+            <orm:property name="typeidx" value="-2"/>
+            <orm:property name="viewable" value="true"/>
+            <orm:property name="editable" value="true"/>
+            <orm:property name="autogenerate" value="true"/>
+         </orm:one-to-many>
+      </orm:attributes>
+   </orm:entity>
+   <orm:entity name="Department" class="Department" parent-class="com.flexdms.flexims.jpa.eclipselink.FleximsDynamicEntityImpl" access="VIRTUAL">
+      <orm:description>Academic Department.</orm:description>
+      <orm:property name="abstract" value="false"/>
+      <orm:property name="module" value="demo"/>
+      <orm:property name="fixed" value="true"/>
+      <orm:attributes>
+         <orm:id name="id" attribute-type="Long">
+            <orm:column/>
+            <orm:generated-value strategy="TABLE" generator="Departmentseq"/>
+         </orm:id>
+         <orm:basic name="Name" optional="false" attribute-type="java.lang.String">
+            <orm:column unique="true" nullable="false" length="254"/>
+            <orm:property name="typeidx" value="0"/>
+            <orm:property name="viewable" value="true"/>
+            <orm:property name="editable" value="true"/>
+            <orm:property name="pattern" value="^[A-Z][a-zA-Z ]+$"/>
+            <orm:property name="ignorepatterncase" value="true"/>
+            <orm:property name="autogenerate" value="true"/>
+            <orm:property name="summaryprop" value="true"/>
+         </orm:basic>
+         <orm:version name="fxversion" mutable="true" attribute-type="java.sql.Timestamp">
+            <orm:column/>
+         </orm:version>
+         <orm:many-to-one name="College" target-entity="College" optional="false">
+            <orm:property name="typeidx" value="-2"/>
+            <orm:property name="viewable" value="true"/>
+            <orm:property name="editable" value="true"/>
+            <orm:property name="relationui.report" value="1001"/>
+            <orm:property name="relationui.uitype" value="Dropdown/ListBox"/>
+            <orm:property name="relationui.showselected" value="false"/>
+         </orm:many-to-one>
+         <orm:one-to-many name="Students" target-entity="Student" mapped-by="Department" orphan-removal="false" attribute-type="java.util.List">
+            <orm:order-by>LastName ASC</orm:order-by>
+            <orm:cascade-on-delete>false</orm:cascade-on-delete>
+            <orm:private-owned>false</orm:private-owned>
+            <orm:property name="typeidx" value="-2"/>
+            <orm:property name="viewable" value="true"/>
+            <orm:property name="editable" value="true"/>
+            <orm:property name="autogenerate" value="true"/>
+         </orm:one-to-many>
+         <orm:one-to-many name="Minors" target-entity="Student" mapped-by="Minor" orphan-removal="false" attribute-type="java.util.List">
+            <orm:order-by>LastName ASC</orm:order-by>
+            <orm:cascade-on-delete>false</orm:cascade-on-delete>
+            <orm:private-owned>false</orm:private-owned>
+            <orm:property name="typeidx" value="-2"/>
+            <orm:property name="viewable" value="true"/>
+            <orm:property name="editable" value="true"/>
+            <orm:property name="autogenerate" value="true"/>
+         </orm:one-to-many>
+         <orm:one-to-many name="Course" target-entity="Course" mapped-by="Department" orphan-removal="false" attribute-type="java.util.Set">
+            <orm:cascade-on-delete>false</orm:cascade-on-delete>
+            <orm:private-owned>false</orm:private-owned>
+            <orm:property name="typeidx" value="-2"/>
+            <orm:property name="viewable" value="true"/>
+            <orm:property name="editable" value="true"/>
+            <orm:property name="autogenerate" value="true"/>
+         </orm:one-to-many>
+      </orm:attributes>
+   </orm:entity>
+   <orm:entity name="Course" class="Course" parent-class="com.flexdms.flexims.jpa.eclipselink.FleximsDynamicEntityImpl" access="VIRTUAL">
+      <orm:description>Course</orm:description>
+      <orm:property name="abstract" value="false"/>
+      <orm:property name="module" value="demo"/>
+      <orm:property name="fixed" value="true"/>
+      <orm:attributes>
+         <orm:id name="id" attribute-type="Long">
+            <orm:column/>
+            <orm:generated-value strategy="TABLE" generator="Courseseq"/>
+         </orm:id>
+         <orm:basic name="Name" optional="false" attribute-type="java.lang.String">
+            <orm:column unique="true" nullable="false" length="254"/>
+            <orm:property name="typeidx" value="0"/>
+            <orm:property name="viewable" value="true"/>
+            <orm:property name="editable" value="true"/>
+            <orm:property name="autogenerate" value="true"/>
+            <orm:property name="summaryprop" value="true"/>
+         </orm:basic>
+         <orm:version name="fxversion" mutable="true" attribute-type="java.sql.Timestamp">
+            <orm:column/>
+         </orm:version>
+         <orm:many-to-one name="Department" target-entity="Department" optional="true">
+            <orm:property name="typeidx" value="-2"/>
+            <orm:property name="viewable" value="true"/>
+            <orm:property name="editable" value="true"/>
+            <orm:property name="autogenerate" value="true"/>
+            <orm:property name="relationui.report" value="1003"/>
+            <orm:property name="relationui.uitype" value="Inline Table"/>
+            <orm:property name="relationui.showselected" value="true"/>
+         </orm:many-to-one>
+         <orm:many-to-many name="Students" target-entity="Student" mapped-by="Courses" attribute-type="java.util.List">
+            <orm:order-by>LastName ASC</orm:order-by>
+            <orm:cascade-on-delete>false</orm:cascade-on-delete>
+            <orm:property name="typeidx" value="-2"/>
+            <orm:property name="viewable" value="true"/>
+            <orm:property name="editable" value="true"/>
+            <orm:property name="autogenerate" value="true"/>
+         </orm:many-to-many>
+      </orm:attributes>
+   </orm:entity>
+</orm:entity-mappings>

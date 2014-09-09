@@ -1,0 +1,30 @@
+<div class="panel panel-default">
+	<div class="panel-heading" data-ng-if="showHeader">
+		<div class="btn-group pull-left">
+			<strong>Report</strong>
+		</div>
+		<div class="pull-left text-info" data-ng-show="status">{{status}}</div>
+		<div class="btn-toolbar">
+			<div class="btn-group pull-right">
+				<a class="btn btn-default " data-ng-click="notimplemented($event)" target="_blank">EXCEL</a> 
+				<a class="btn btn-default " data-ng-click="notimplemented($event)" target="_blank">CSV</a> 
+				<a class="btn btn-default " data-ng-href="{{reporturl('xml')}}" target="_blank">XML</a> 
+				<a class="btn btn-default " data-ng-href="{{reporturl('json')}}" target="_blank">JSON</a>
+
+			</div>
+			<div class="btn-group pull-right">
+				<a class="btn btn-default" href="#/editinst/FxReport/{{report.id}}">Customize</a>
+			</div>
+			<div class="btn-group">
+				<button class="btn btn-default" data-ng-click="notimplemented($event)">Delete</button>
+				<button class="btn btn-default" data-ng-click="notimplemented($event)">Clear Selected</button>
+				<button class="btn btn-default" type="button" data-ng-click="refresh($event)">Refresh</button>
+			</div>
+
+		</div>
+	</div>
+
+	<div class="panel-body" data-ng-if="internalIsExecutable() && executed">
+		<div class="reportGrid" ng-grid="gridOptions"></div>
+	</div>
+</div>

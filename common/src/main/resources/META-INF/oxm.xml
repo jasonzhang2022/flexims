@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xml-bindings xmlns="http://www.eclipse.org/eclipselink/xsds/persistence/oxm" 
+xml-accessor-type="NONE"
+xml-mapping-metadata-complete="true" package-name="com.flexdms.flexims.jpa.eclipselink">
+   <java-types>
+      <java-type name="FleximsDynamicEntityImpl" super-type="java.lang.Object" xml-accessor-type="NONE">
+      </java-type>
+       
+</java-types>
+</xml-bindings>

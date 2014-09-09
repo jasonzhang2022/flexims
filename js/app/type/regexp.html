@@ -1,0 +1,37 @@
+<div class="modal-header">Verify Regular Expression Pattern</div>
+<div class="modal-body">
+	<form class="form-horizontal">
+		<div class="form-group">
+			<label class="col-md-4 control-label">Pattern</label>
+			<div class="col-md-8">
+				<input type="text" class="form-control" data-ng-model="extraprops.pattern" placeholder="Pattern"></input>
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-md-4 control-label">Ignore Case</label>
+			<div class="col-md-8">
+				<input type="checkbox" data-ng-model="extraprops.ignorepatterncase" title="case insensitive"></input>
+			</div>
+		</div>
+		<div data-ng-class="{'form-group':true, 'has-warning': !positivematch, 'has-feedback':!positivematch}">
+			<label class="col-md-4 control-label">Good input </label>
+			<div class="col-md-8">
+				<input type="text" data-ng-model="postivestr" class="form-control"></input>
+				 <span data-ng-show="!positivematch" class="glyphicon glyphicon-warning-sign form-control-feedback"></span>
+			</div>
+		</div>
+		<div data-ng-class="{'form-group':true, 'has-warning': negativematch, 'has-feedback':negativematch}">
+			<label class="col-md-4 control-label">Bad input</label>
+			<div class="col-md-8">
+				<input type="text" data-ng-model="negativestr" class="form-control"></input>
+				 <span data-ng-show="negativematch" class="glyphicon glyphicon-warning-sign form-control-feedback"></span>
+			</div>
+		</div>
+	</form>
+</div>
+<div class="modal-footer">
+	<span data-ng-show="positivematch&&!negativematch && showverify" class="glyphicon glyphicon-ok text-success"></span>
+	<span data-ng-show="!postivematch&&negativematch && showverify" class="glyphicon glyphicon-warning-sign text-warning"></span>
+	<button class="btn btn-primary" data-ng-click="verifyExpexp()">Verify</button>
+	<button class="btn btn-primary" data-ng-click="close();">Close</button>
+</div>

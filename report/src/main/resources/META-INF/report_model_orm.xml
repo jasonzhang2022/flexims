@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<orm:entity-mappings
+	xmlns:orm="http://www.eclipse.org/eclipselink/xsds/persistence/orm"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<orm:persistence-unit-metadata>
+		<orm:xml-mapping-metadata-complete>true
+		</orm:xml-mapping-metadata-complete>
+		<orm:exclude-default-mappings>true</orm:exclude-default-mappings>
+		<orm:persistence-unit-defaults>
+			<orm:access>VIRTUAL</orm:access>
+			<orm:access-methods get-method="get" set-method="set" />
+		</orm:persistence-unit-defaults>
+	</orm:persistence-unit-metadata>
+	<orm:package>com.flexdms.flexims.dynamic.model.generated</orm:package>
+	<orm:table-generator name="FxReportseq" table="seqs"
+		pk-column-name="name" value-column-name="seq" pk-column-value="FxReport"
+		initial-value="10000" allocation-size="50" />
+
+	<orm:entity name="FxReport" class="FxReport"
+		parent-class="com.flexdms.flexims.jpa.eclipselink.FleximsDynamicEntityImpl"
+		access="VIRTUAL">
+		<orm:description>Report</orm:description>
+		<orm:property name="entity" value="true" />
+		<orm:property name="system" value="True" />
+		<orm:property name="showInAdd" value="false" />
+		<orm:property name="showInAllReport" value="false" />
+		<orm:attributes>
+			<orm:id name="id" attribute-type="Long">
+				<orm:column />
+				<orm:generated-value strategy="TABLE" generator="FxReportseq" />
+				<orm:access-methods get-method="get" set-method="set" />
+				<orm:property name="displaytext" value="ID" />
+			</orm:id>
+			<orm:version name="fxversion" mutable="true"
+				attribute-type="java.sql.Timestamp">
+				<orm:column />
+				<orm:property name="displaytext" value="Version" />
+				<orm:access-methods get-method="get" set-method="set" />
+			</orm:version>
+			<orm:basic name="Name" optional="false" attribute-type="java.lang.String">
+				<orm:column unique="true" nullable="false" length="254" />
+				<orm:property name="typeidx" value="0" />
+				<orm:property name="viewable" value="true" />
+				<orm:property name="editable" value="true" />
+
+				<orm:property name="summaryprop" value="true" />
+				<orm:access-methods get-method="get" set-method="set" />
+			</orm:basic>
+			<orm:basic name="Description" optional="true"
+				attribute-type="java.lang.String">
+				<orm:column unique="false" nullable="true" length="254" />
+				<orm:property name="typeidx" value="0" />
+				<orm:property name="viewable" value="true" />
+				<orm:property name="editable" value="true" />
+
+				<orm:access-methods get-method="get" set-method="set" />
+			</orm:basic>
+			<orm:many-to-one name="Query" target-entity="TypedQuery" optional="false" fetch="EAGER">
+				<orm:property name="displaytext" value="Query to run" />
+			</orm:many-to-one>
+			<orm:basic name="Properties" optional="true"
+				attribute-type="java.lang.String">
+				<orm:column unique="false" nullable="true" length="1024" />
+				<orm:lob />
+				<orm:property name="editable" value="true" />
+				<orm:property name="viewable" value="true" />
+				<orm:property name="displaytext" value="Properties to Display" />
+				<orm:property name="system" value="true" />
+				<orm:property name="typeidx" value="10" />
+				<orm:property name="rootClass"
+					value="com.flexdms.flexims.jpa.helper.NameValueList" />
+				<orm:access-methods get-method="get" set-method="set" />
+			</orm:basic>
+			<orm:basic name="OrderBy" optional="true"
+				attribute-type="java.lang.String">
+				<orm:column unique="false" nullable="true" length="512" />
+				<orm:lob />
+				<orm:property name="editable" value="true" />
+				<orm:property name="viewable" value="true" />
+				<orm:property name="displaytext" value="Order By" />
+				<orm:property name="system" value="true" />
+				<orm:property name="typeidx" value="10" />
+				<orm:property name="rootClass"
+					value="com.flexdms.flexims.jpa.helper.NameValueList" />
+				<orm:access-methods get-method="get" set-method="set" />
+			</orm:basic>
+			<orm:basic name="gridOptions" optional="true"
+				attribute-type="java.lang.String">
+				<orm:column unique="false" nullable="true" length="512" />
+				<orm:lob />
+				<orm:property name="editable" value="true" />
+				<orm:property name="viewable" value="true" />
+				<orm:property name="displaytext" value="Report Grid Options" />
+				<orm:property name="system" value="true" />
+				<orm:property name="typeidx" value="10" />
+				<orm:property name="rootClass"
+					value="com.flexdms.flexims.jpa.helper.NameValueList" />
+				<orm:access-methods get-method="get" set-method="set" />
+			</orm:basic>
+			<orm:basic name="ParamValues" optional="true"
+				attribute-type="java.lang.String">
+				<orm:column unique="false" nullable="true" length="4096" />
+				<orm:lob />
+				<orm:property name="editable" value="true" />
+				<orm:property name="viewable" value="true" />
+				<orm:property name="displaytext" value="Value for Query Parameters" />
+				<orm:property name="system" value="true" />
+				<orm:property name="typeidx" value="10" />
+				<orm:property name="rootClass"
+					value="com.flexdms.flexims.report.rs.QueryParamValues" />
+				<orm:access-methods get-method="get" set-method="set" />
+			</orm:basic>
+		</orm:attributes>
+	</orm:entity>
+</orm:entity-mappings>

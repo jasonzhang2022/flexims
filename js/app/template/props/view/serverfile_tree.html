@@ -1,0 +1,5 @@
+<div ui-tree="options" data-drag-enabled="false">
+	<ol ui-tree-nodes ng-model="fileInfos" data-nodrop>
+		<li ng-repeat="fileInfo in fileInfos" ui-tree-node data-collapsed="true" ng-include="'template/props/view/serverfile_node.html'"></li>
+	</ol>
+</div>

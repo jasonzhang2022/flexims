@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<entities>
+   <DefaultTypedQuery>
+      <id>1000</id>
+      <fxversion>2014-09-03T14:24:02.249-07:00</fxversion>
+      <TargetedType>Student</TargetedType>
+      <Reports>10000</Reports>
+      <Name>ALL Student</Name>
+   </DefaultTypedQuery>
+   <FxReport>
+      <id>1000</id>
+      <fxversion>2014-09-03T14:24:02.253-07:00</fxversion>
+      <Query>1000</Query>
+      <Properties>
+         <entry>
+            <key>0</key>
+            <value>LastName</value>
+         </entry>
+         <entry>
+            <key>1</key>
+            <value>FirstName</value>
+         </entry>
+      </Properties>
+      <Name>ALL Student</Name>
+   </FxReport>
+   <DefaultTypedQuery>
+      <id>1001</id>
+      <fxversion>2014-08-27T09:03:42.962-07:00</fxversion>
+      <TargetedType>College</TargetedType>
+      <Reports>1000</Reports>
+      <Name>ALL College</Name>
+   </DefaultTypedQuery>
+   <FxReport>
+      <id>1001</id>
+      <OrderBy>
+         <entry>
+            <key>Name</key>
+            <value>ASC</value>
+         </entry>
+      </OrderBy>
+      <fxversion>2014-08-27T09:03:42.965-07:00</fxversion>
+      <Query>1001</Query>
+      <Properties>
+         <entry>
+            <key>0</key>
+            <value>Name</value>
+         </entry>
+      </Properties>
+      <Name>ALL College</Name>
+   </FxReport>
+   <DefaultTypedQuery>
+      <id>1002</id>
+      <fxversion>2014-08-27T09:03:42.932-07:00</fxversion>
+      <TargetedType>Department</TargetedType>
+      <Description>Show Departments in One College</Description>
+      <Reports>1051</Reports>
+      <Name>Department By College</Name>
+      <Conditions>
+         <Operator>eq</Operator>
+         <IgnoreCase>false</IgnoreCase>
+         <CollectionMode>all</CollectionMode>
+         <WholeTime>true</WholeTime>
+         <Property>College</Property>
+      </Conditions>
+   </DefaultTypedQuery>
+   <DefaultTypedQuery>
+      <id>1003</id>
+      <fxversion>2014-08-27T09:03:42.961-07:00</fxversion>
+      <TargetedType>Department</TargetedType>
+      <Reports>1001</Reports>
+      <Name>ALL Department</Name>
+   </DefaultTypedQuery>
+   <FxReport>
+      <id>1002</id>
+      <OrderBy>
+         <entry>
+            <key>Name</key>
+            <value>ASC</value>
+         </entry>
+      </OrderBy>
+      <fxversion>2014-08-27T09:03:42.969-07:00</fxversion>
+      <Query>1002</Query>
+      <ParamValues>
+         <paramValues>
+            <index>0</index>
+            <values>1</values>
+         </paramValues>
+      </ParamValues>
+      <Properties>
+         <entry>
+            <key>0</key>
+            <value>Name</value>
+         </entry>
+      </Properties>
+      <Name>Department By College</Name>
+   </FxReport>
+   <FxReport>
+      <id>1003</id>
+      <OrderBy>
+         <entry>
+            <key>Name</key>
+            <value>ASC</value>
+         </entry>
+      </OrderBy>
+      <fxversion>2014-08-27T09:03:42.967-07:00</fxversion>
+      <Query>1003</Query>
+      <Properties>
+         <entry>
+            <key>0</key>
+            <value>Name</value>
+         </entry>
+      </Properties>
+      <Name>ALL Department</Name>
+   </FxReport>
+   <DefaultTypedQuery>
+      <id>1004</id>
+      <fxversion>2014-08-27T09:03:42.963-07:00</fxversion>
+      <TargetedType>Course</TargetedType>
+      <Description>Show Courses offered by one Department</Description>
+      <Reports>1052</Reports>
+      <Name>Course by Department</Name>
+      <Conditions>
+         <Operator>eq</Operator>
+         <IgnoreCase>false</IgnoreCase>
+         <CollectionMode>all</CollectionMode>
+         <WholeTime>true</WholeTime>
+         <Property>Department</Property>
+      </Conditions>
+   </DefaultTypedQuery>
+   <DefaultTypedQuery>
+      <id>1005</id>
+      <fxversion>2014-09-05T09:25:09.605-07:00</fxversion>
+      <TargetedType>Course</TargetedType>
+      <Reports>10050</Reports>
+      <Name>ALL Course</Name>
+   </DefaultTypedQuery>
+   <FxReport>
+      <id>1004</id>
+      <OrderBy>
+         <entry>
+            <key>Name</key>
+            <value>ASC</value>
+         </entry>
+      </OrderBy>
+      <fxversion>2014-08-27T09:03:42.97-07:00</fxversion>
+      <Query>1004</Query>
+      <ParamValues>
+         <paramValues>
+            <index>0</index>
+            <values>1</values>
+         </paramValues>
+      </ParamValues>
+      <Properties>
+         <entry>
+            <key>0</key>
+            <value>Name</value>
+         </entry>
+      </Properties>
+      <Name>Course By Department</Name>
+   </FxReport>
+   <FxReport>
+      <id>1005</id>
+      <OrderBy>
+         <entry>
+            <key>Name</key>
+            <value>ASC</value>
+         </entry>
+      </OrderBy>
+      <fxversion>2014-09-05T09:25:47.932-07:00</fxversion>
+      <Query>1005</Query>
+      <gridOptions/>
+      <ParamValues/>
+      <Properties>
+         <entry>
+            <key>0</key>
+            <value>Name</value>
+         </entry>
+         <entry>
+            <key>1</key>
+            <value>Department</value>
+         </entry>
+      </Properties>
+      <Name>ALL Course</Name>
+   </FxReport>
+</entities>

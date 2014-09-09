@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xml-bindings xmlns="http://www.eclipse.org/eclipselink/xsds/persistence/oxm" 
+xml-accessor-type="FIELD" package-name="com.flexdms.flexims.rsutil">
+   <java-types>
+      <java-type name="Entities" >
+      </java-type>
+      <java-type name="RSMsg" >
+      </java-type>
+      <java-type name="AppMsg" >
+      </java-type>
+</java-types>
+</xml-bindings>

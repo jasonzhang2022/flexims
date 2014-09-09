@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-fragment
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+xmlns="http://java.sun.com/xml/ns/javaee" 
+xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-fragment_3_0.xsd" version="3.0">
+ 	<name>common</name>
+ 	
+  <servlet>
+    <servlet-name>com.flexdms.flexims.jpa.rs.RSApplication</servlet-name>
+    <load-on-startup>2</load-on-startup>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>com.flexdms.flexims.jpa.rs.RSApplication</servlet-name>
+    <url-pattern>/rs/*</url-pattern>
+  </servlet-mapping>
+  
+
+  <filter>
+    <filter-name>EntityManagerFilter</filter-name>
+    <filter-class>com.flexdms.flexims.EntityManagerFilter</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>EntityManagerFilter</filter-name>
+    <servlet-name>com.flexdms.flexims.jpa.rs.RSApplication</servlet-name>
+  </filter-mapping>
+  <filter-mapping>
+    <filter-name>EntityManagerFilter</filter-name>
+    <url-pattern>/context.js</url-pattern>
+  </filter-mapping>
+  <ordering>
+  	<before>
+  		<others/>
+  	</before>
+  	
+  </ordering>
+</web-fragment>

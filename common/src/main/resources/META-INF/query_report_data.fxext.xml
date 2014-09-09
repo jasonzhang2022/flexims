@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<entities>
+	<DefaultTypedQuery>
+		<fxversion>2014-06-09T15:56:33.881555-07:00</fxversion>
+		<Name>ALL FxConfig</Name>
+		<id>110</id>
+		<TargetedType>FxConfig</TargetedType>
+	</DefaultTypedQuery>
+
+	<FxReport>
+		<fxversion>2014-06-10T09:35:39.380814-07:00</fxversion>
+		<Name>ALL FxConfig</Name>
+		<id>110</id>
+		<Query>110</Query>
+		<OrderBy>
+			<entry>
+				<key>Name</key>
+				<value>ASC</value>
+			</entry>
+		</OrderBy>
+		<Properties>
+			<entry>
+				<key>0</key>
+				<value>Name</value>
+			</entry>
+			<entry>
+				<key>1</key>
+				<value>ConfigValue</value>
+			</entry>
+			<entry>
+				<key>2</key>
+				<value>ForClient</value>
+			</entry>
+			<entry>
+				<key>3</key>
+				<value>ForAdmin</value>
+			</entry>
+
+		</Properties>
+	</FxReport>
+
+</entities>

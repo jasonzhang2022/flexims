@@ -1,0 +1,87 @@
+<div class="panel panel-default">
+	<div class="panel-heading">
+		<div class="btn-group pull-left">
+			<strong>{{typetop.getName()}} Detail</strong>
+		</div>
+		<div class="btn-toolbar">
+			<div class="btn-group pull-right">
+				<a type="button" class="btn btn-default" title="all types" href="type/index.html#/types">
+					<span class="glyphicon glyphicon-th-list"></span>
+				</a>
+				<a type="button" class="btn btn-default" title="Edi type" href="type/index.html#/edittype/{{typetop.getName()}}" ng-show="editable">
+					<span class="glyphicon glyphicon-edit"></span>
+				</a>
+				<a type="button" class="btn btn-default" title="add property" href="type/index.html#/type/{{typetop.getName()}}/addprop" ng-show="editable">
+					<span class="glyphicon glyphicon-plus"></span>
+				</a>
+			</div>
+
+		</div>
+	</div>
+
+	<table id="type" class="table table-bordered table-striped">
+		<tr>
+			<th>Name</th>
+			<td>{{type['@class']}}</td>
+		</tr>
+
+		<tr>
+			<th>Description</th>
+			<td>{{type.description}}</td>
+		</tr>
+
+		<tr>
+			<th>Embedded</th>
+			<td>{{type.isEntity()?'No':'Yes'}}</td>
+		</tr>
+		<tr>
+			<th>Parent Class</th>
+			<td><a href="type/index.html#/viewtype/{{type['@parent-class']}}" data-ng-if="type['@parent-class']">{{type['@parent-class']}}
+					</a></td>
+		</tr>
+
+		<tr>
+			<th>Tags</th>
+			<td>
+				<ul>
+					<li data-ng-repeat="prop in type.property">{{prop['@name']}}: {{prop['@value']}}</li>
+				</ul>
+			</td>
+		</tr>
+	</table>
+
+	<table id="props" class="table table-bordered table-striped table-condensed">
+		<thead>
+			<tr>
+				<th>Name</th>
+				<th>Type</th>
+				<th>Multiple Value</th>
+				<th>Relation</th>
+			</tr>
+		</thead>
+		<tr data-ng-repeat="prop in props">
+
+			<td>{{prop.getName()}}</td>
+			<td>{{prop.getTypeObject().display}}</td>
+			<td>{{prop.isCollection()?'Yes':'No'}}</td>
+			<td>{{prop.isRelation()?'Yes':'No'}}</td>
+			<td>
+			<div class="btn-group">
+					<button type="button" class="btn btn-default" data-ng-click="deleteProp(prop.getName())" ng-show="editable">
+						<span class="glyphicon glyphicon-trash"></span>
+					</button>
+					<a class="btn btn-default" href="type/index.html#/type/{{typetop.getName()}}/editprop/{{prop.getName()}}" ng-show="editable">
+						<span class="glyphicon glyphicon-edit"></span>
+					</a>
+					<a class="btn btn-default" href="type/index.html#/type/{{typetop.getName()}}/viewprop/{{prop.getName()}}">
+						<span class="glyphicon glyphicon-eye-open"></span>
+					</a>
+					<a class="btn btn-default" data-ng-if="showRelationUi(prop)" href="{{relationeditorurl(prop);}}">
+						Editor
+					</a>
+				</div>
+				
+		</tr>
+
+	</table>
+</div>

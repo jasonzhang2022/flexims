@@ -1,0 +1,129 @@
+{
+	"entity-mappings":{
+		"mapped-superclass":[
+			
+		],
+		"entity":[
+			{
+				"@class":"Test4",
+				"@parent-class":"com.flexdms.flexims.jpa.eclipselink.FleximsDynamicEntityImpl",
+				"secondary-table":[
+					
+				],
+				"primary-key-join-column":[
+					
+				],
+				"index":[
+					
+				],
+				"cache-index":[
+					
+				],
+				"fetch-group":[
+					
+				],
+				"converter":[
+					
+				],
+				"type-converter":[
+					
+				],
+				"object-type-converter":[
+					
+				],
+				"struct-converter":[
+					
+				],
+				"named-query":[
+					
+				],
+				"named-native-query":[
+					
+				],
+				"named-stored-procedure-query":[
+					
+				],
+				"named-stored-function-query":[
+					
+				],
+				"named-plsql-stored-procedure-query":[
+					
+				],
+				"named-plsql-stored-function-query":[
+					
+				],
+				"oracle-object":[
+					
+				],
+				"oracle-array":[
+					
+				],
+				"plsql-record":[
+					
+				],
+				"plsql-table":[
+					
+				],
+				"sql-result-set-mapping":[
+					
+				],
+				"entity-listeners":{
+					"entity-listener":[
+						
+					]
+				},
+				"property":[
+					
+				],
+				"attribute-override":[
+					
+				],
+				"association-override":[
+					
+				],
+				"convert":[
+					
+				],
+				"named-entity-graph":[
+					
+				],
+				"attributes":{
+					"basic":[
+						
+					],
+					"basic-collection":[
+						
+					],
+					"basic-map":[
+						
+					],
+					"many-to-one":[
+						
+					],
+					"one-to-many":[
+						
+					],
+					"one-to-one":[
+						
+					],
+					"many-to-many":[
+						
+					],
+					"element-collection":[
+						
+					],
+					"embedded":[
+						
+					],
+					"array":[
+						
+					]
+				},
+				"@name":"Test4"
+			}
+		],
+		"embeddable":[
+			
+		]
+	}
+}

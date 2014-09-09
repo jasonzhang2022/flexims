@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<orm:entity-mappings
+	xmlns:orm="http://www.eclipse.org/eclipselink/xsds/persistence/orm"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<orm:persistence-unit-metadata>
+		<orm:xml-mapping-metadata-complete>true
+		</orm:xml-mapping-metadata-complete>
+		<orm:exclude-default-mappings>true</orm:exclude-default-mappings>
+		<orm:persistence-unit-defaults>
+			<orm:access>VIRTUAL</orm:access>
+			<orm:access-methods get-method="get" set-method="set" />
+		</orm:persistence-unit-defaults>
+	</orm:persistence-unit-metadata>
+	<orm:package>com.flexdms.flexims.dynamic.model.generated</orm:package>
+	<orm:table-generator name="FxConfigseq" table="seqs"
+		pk-column-name="name" value-column-name="seq" pk-column-value="FxConfig"
+		initial-value="10000" allocation-size="50" />
+	<orm:entity name="FxConfig" class="FxConfig"
+		parent-class="com.flexdms.flexims.jpa.eclipselink.FleximsDynamicEntityImpl"
+		access="VIRTUAL">
+		<orm:cache type="FULL"/>
+		<orm:description>System Configuration</orm:description>
+		<orm:property name="abstract" value="false" />
+		<orm:property name="system" value="true" />
+		<orm:property name="showInAdd" value="false" />
+		<orm:property name="showInAllReport" value="false" />
+		<orm:attributes>
+			<orm:id name="id" attribute-type="Long">
+				<orm:column />
+				<orm:generated-value strategy="TABLE" generator="FxConfigseq" />
+			</orm:id>
+			<orm:basic name="fxExtraProp" optional="true"
+				attribute-type="java.lang.String">
+				<orm:column unique="false" nullable="true" length="4096" />
+				<orm:lob />
+				<orm:property name="editable" value="false" />
+				<orm:property name="viewable" value="false" />
+				<orm:property name="displaytext'" value="extensible properties" />
+				<orm:property name="system'" value="true" />
+				<orm:property name="typeidx'" value="10" />
+				<orm:property name="rootClass"
+					value="com.flexdms.flexims.jpa.helper.NameValueList" />
+			</orm:basic>
+			<orm:basic name="Name" optional="false" attribute-type="java.lang.String">
+				<orm:column unique="true" nullable="false" length="254" />
+				<orm:property name="typeidx" value="0" />
+				<orm:property name="viewable" value="true" />
+				<orm:property name="editable" value="true" />
+				<orm:property name="autogenerate" value="true" />
+				<orm:property name="summaryprop" value="true" />
+			</orm:basic>
+			<orm:basic name="Description" optional="true"
+				attribute-type="java.lang.String">
+				<orm:column unique="false" nullable="true" length="254" />
+				<orm:property name="typeidx" value="0" />
+				<orm:property name="viewable" value="true" />
+				<orm:property name="editable" value="true" />
+				<orm:property name="autogenerate" value="true" />
+			</orm:basic>
+			<orm:basic name="ConfigValue" optional="true"
+				attribute-type="java.lang.String">
+				<orm:column unique="false" nullable="true" length="254" />
+				<orm:property name="typeidx" value="0" />
+				<orm:property name="viewable" value="true" />
+				<orm:property name="editable" value="true" />
+				<orm:property name="autogenerate" value="true" />
+			</orm:basic>
+			<orm:basic name="ForClient" optional="true" attribute-type="boolean">
+				<orm:column unique="false" nullable="true" length="254" />
+				<orm:property name="typeidx" value="9" />
+				<orm:property name="viewable" value="true" />
+				<orm:property name="editable" value="true" />
+				<orm:property name="autogenerate" value="true" />
+			</orm:basic>
+			<orm:basic name="ForAdmin" optional="true" attribute-type="boolean">
+				<orm:column unique="false" nullable="true" length="254" />
+				<orm:property name="typeidx" value="9" />
+				<orm:property name="viewable" value="true" />
+				<orm:property name="editable" value="true" />
+				<orm:property name="autogenerate" value="true" />
+			</orm:basic>
+			<orm:version name="fxversion" mutable="true"
+				attribute-type="java.sql.Timestamp">
+				<orm:column />
+			</orm:version>
+		</orm:attributes>
+	</orm:entity>
+</orm:entity-mappings>
+	

@@ -1,0 +1,36 @@
+
+.prop.ParamValues > .proplabel {
+	width:100%;
+}
+
+.prop.ParamValues > .propinputandhelp {
+	width:100%;
+}
+.prop.ParamValues > .proplabel > .control-label{
+	font-size:large;
+	width:55%;
+	text-align:right;
+	float:left;
+}
+.reportGrid {
+	border: 1px solid rgb(212,212,212);
+	width: 100%;
+	height: 500px
+}
+
+.reportGrid ul.proplist.simple.multiplefield
+{
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+}
+
+.reportGrid ul.proplist.simple.multiplefield > li
+{
+	display: inline;
+}
+
+.reportGrid ul.proplist.simple.multiplefield > li:not(:first-child):before
+{
+	content: ', ';
+}

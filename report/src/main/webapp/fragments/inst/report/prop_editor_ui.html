@@ -1,0 +1,53 @@
+<form name="relationuiform" id="relationuiform" class="form-horizontal">
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			<div class="btn-group pull-left">
+				<strong>Editor UI for Relation Property {{propobj.getName()}}</strong>
+			</div>
+			<div class="btn-toolbar">
+				<div class="btn-group pull-right">
+					<a  class="btn btn-default" href="{{cancelurl}}">Cancel</a>
+					<button type="button" class="btn btn-primary"
+					data-ng-click="save();"
+					 data-ng-disabled=" relationuiform.$invalid">Save</button>
+				</div>
+
+			</div>
+		</div>
+		<div class="panel-body">
+			<div class="form-group">
+				<label for="relationuireport" class="col-md-2 control-label">Relation Editor interface</label>
+				<div class="col-md-4">
+					<select name="relationuireport" id="relationuireport" class="form-control"  data-ng-options="rpt.id as rpt.Name for rpt in reports" data-ng-model="relationui.report">
+						<option value="">Basic Input</option>
+					</select>
+				</div>
+			</div>
+			<div class="form-group" data-ng-show="relationui.report!==null">
+				<label for="uitype" class="col-md-2 control-label">Relation Editor interface</label>
+				<div class="col-md-4">
+					<select name="uitype" id="uitype" class="form-control" data-ng-model="relationui.uitype"  data-ng-options="t for t in uitypes">
+					</select>
+				</div>
+			</div>
+			
+			<div class="form-group" data-ng-repeat="param in params |filter:needInput">
+				<label class="col-md-2 control-label">{{$index+1}}th Value For Query Param</label>
+				<div class="col-md-4">
+					<select fx-dynamic-name="'param'+$index" name="fake" data-ng-model="param.prop" class="form-control" data-ng-required="isRequired(param)" data-ng-options="prop.getName() as prop.getDisplayText() for prop in getInputProps(param)">
+						<option value="">Use Default One In Report</option>
+					</select>
+				</div>
+				<div class="col-md-4 help-block">
+				 <span data-ng-show="relationuiform['param'+$index].$error.required"> Required</span>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-md-2 control-label">Show Selected</label>
+				<div class="col-md-4">
+					<input type="checkbox" data-ng-model="relationui.showselected" name="showselected"></input>
+				</div>
+			</div>
+		</div>
+	</div>
+</form>

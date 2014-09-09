@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<orm:entity-mappings
+	xmlns:orm="http://www.eclipse.org/eclipselink/xsds/persistence/orm"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<orm:persistence-unit-metadata>
+		<orm:xml-mapping-metadata-complete>true
+		</orm:xml-mapping-metadata-complete>
+		<orm:exclude-default-mappings>true</orm:exclude-default-mappings>
+		<orm:persistence-unit-defaults>
+			<orm:access>VIRTUAL</orm:access>
+			<orm:access-methods get-method="get" set-method="set" />
+		</orm:persistence-unit-defaults>
+	</orm:persistence-unit-metadata>
+	<orm:package>com.flexdms.flexims.dynamic.model.generated</orm:package>
+	<orm:table-generator name="FxDbFileseq" table="seqs"
+		pk-column-name="name" value-column-name="seq" pk-column-value="FxDbFile"
+		initial-value="10000" allocation-size="50" />
+	<orm:entity name="FxDbFile" class="FxDbFile"
+		parent-class="com.flexdms.flexims.jpa.eclipselink.FleximsDynamicEntityImpl"
+		access="VIRTUAL">
+		<orm:description>File in Database</orm:description>
+		<orm:table name="fxdbfile"></orm:table>
+		<orm:property name="system" value="true" />
+		<orm:property name="showInAdd" value="false" />
+		<orm:property name="showInAllReport" value="false" />
+		<orm:attributes>
+			<orm:id name="id" attribute-type="Long">
+				<orm:column />
+				<orm:generated-value strategy="TABLE" generator="FxDbFileseq" />
+			</orm:id>
+			<orm:version name="fxversion" mutable="true"
+				attribute-type="java.sql.Timestamp">
+				<orm:column />
+			</orm:version>
+			<orm:basic name="Name" optional="false" attribute-type="java.lang.String">
+				<orm:column unique="false" nullable="false" length="254" />
+				<orm:property name="typeidx" value="0" />
+				<orm:property name="viewable" value="true" />
+				<orm:property name="editable" value="true" />
+				<orm:property name="autogenerate" value="true" />
+				<orm:property name="summaryprop" value="true" />
+			</orm:basic>
+			<orm:basic name="Size" optional="false" attribute-type="java.lang.Long">
+				<orm:column unique="false" nullable="false" length="254" />
+				<orm:property name="typeidx" value="4" />
+			</orm:basic>
+			<orm:basic name="MimeType" optional="true" attribute-type="java.lang.String">
+				<orm:column unique="false" nullable="true" length="40" />
+				<orm:property name="typeidx" value="0" />
+				<orm:property name="viewable" value="true" />
+			</orm:basic>
+			
+			<orm:basic name="Temp" attribute-type="boolean">
+				<orm:column unique="false" nullable="true" length="254" />
+				<orm:property name="typeidx" value="9" />
+				<orm:property name="displaytext" value="Temporary File" />
+				<orm:property name="tooltip" value="This has a tooltip" />
+				<orm:property name="viewable" value="true" />
+				<orm:property name="editable" value="false" />
+				<orm:property name="defaultvalue" value="true" />
+			</orm:basic>
+			
+			<orm:basic name="InstType" attribute-type="java.lang.String">
+				<orm:column unique="false" nullable="true" length="254" />
+				<orm:property name="displaytext" value="Associated With(type)" />
+				<orm:property name="typeidx" value="0" />
+				<orm:property name="viewable" value="true" />
+				<orm:property name="editable" value="false" />
+			</orm:basic>
+			<orm:basic name="InstId" attribute-type="java.lang.String">
+				<orm:column unique="false" nullable="true" length="20" />
+				<orm:property name="displaytext" value="Associated With(id)" />
+				<orm:property name="typeidx" value="0" />
+				<orm:property name="viewable" value="true" />
+				<orm:property name="editable" value="false" />
+			</orm:basic>
+			<orm:basic name="Content" attribute-type="com.flexdms.flexims.jpa.helper.ByteArray"
+				fetch="LAZY" mutable="false">
+				<orm:column name="content" unique="false" nullable="true" />
+				<orm:lob />
+				<orm:property name="typeidx" value="8" />
+			</orm:basic>
+			<orm:basic name="fxExtraProp" optional="true"
+				attribute-type="java.lang.String">
+				<orm:column unique="false" nullable="true" length="4096" />
+				<orm:lob />
+				<orm:property name="editable" value="false" />
+				<orm:property name="viewable" value="false" />
+				<orm:property name="displaytext'" value="extensible properties" />
+				<orm:property name="system'" value="true" />
+				<orm:property name="typeidx'" value="10" />
+				<orm:property name="rootClass"
+					value="com.flexdms.flexims.jpa.helper.NameValueList" />
+			</orm:basic>
+		</orm:attributes>
+	</orm:entity>
+
+
+</orm:entity-mappings>

@@ -1,0 +1,56 @@
+<div class="loginregister">
+	<!-- Login -->
+	<div class="login" ng-if="mode=='login'">
+		<div class="modal-header">
+			<h3 class="modal-title">Please login in</h3>
+		</div>
+		<div class="modal-body">
+
+			<form name="loginForm">
+				<p class='text-danger'>{{errorMsg}}</p>
+
+				<input name="email" type="email" required ng-model="email" class="form-control" placeholder="Email" />
+				<input name="password" type="password" required ng-model="password" class="form-control" placeholder="Password" />
+				<input name="rememberMe" type="checkbox" ng-model="rememberMe" />
+				Remember Me
+			</form>
+
+
+		</div>
+		<div class="modal-footer">
+			<button type="button" class="btn btn-primary" ng-click="login($event)" ng-disabled="loginForm.$invalid">Login</button>
+			<button type="button" class="btn btn-link" ng-click="changeMode('register');">Register</button>
+		</div>
+	</div>
+	
+	<!--  Register -->
+	<div class="register" ng-if="mode=='register'">
+		<div class="modal-header">
+			<h3 class="modal-title">Sign Up</h3>
+		</div>
+		<div class="modal-body">
+
+			<form name="registerForm">
+				<p class='text-danger'>{{errorMsg}}</p>
+				<input name="username" type="text" required ng-model="username" class="form-control" placeholder="User Name" />
+				<input name="email" type="email" required ng-model="email" class="form-control" placeholder="Email" />
+				<input name="password" type="password" required ng-model="password" class="form-control" placeholder="Password" />
+				<input name="password1" type="password" required ng-model="password1" class="form-control" placeholder="Password Again" />
+			</form>
+
+
+		</div>
+		<div class="modal-footer">
+			<button type="submit" class="btn btn-primary" ng-click="register($event)" ng-disabled="registerForm.$invalid">Register</button>
+		</div>
+	</div>
+	
+	<!-- Register confirmation -->
+	<div class="registered" ng-if="mode=='registered'">
+		<div class="modal-body">
+			Please check your email to activate your account, then come back to <button type="button" class="btn btn-link" 
+			ng-click="changeMode('login');" ng-disabled="registerForm.$invalid">login</button>
+		</div>
+	
+	</div>
+</div>

@@ -1,0 +1,90 @@
+<form name="typeform" id="typeform" class="form-horizontal">
+	<div data-ng-class="{'form-group':true, 'has-error':typeform.name.$dirty && typeform.name.$invalid}">
+		<label for="name" class="col-md-2 control-label">Name</label>
+		<div class="col-md-4">
+			<input type="text" class="form-control" id="name" name="name" 
+			data-ng-model="type['@class']" data-ng-change="checkName();"
+			data-ng-disabled="edit" 
+			data-ng-trim="true" data-ng-required="true" data-ng-minlength="4" 
+				data-ng-maxlength="254" data-ng-pattern="/^[A-Z][a-zA-Z0-9_-]*$/"
+			>
+		</div>
+		<div class="col-md-6 help-block" data-ng-show="typeform.name.$dirty && typeform.name.$invalid ">
+
+			<span data-ng-show="typeform.name.$error.required">Required!</span>
+			<span data-ng-show="typeform.name.$error.pattern">Uppercase alphabetic, then alphanumeric</span>
+			<span data-ng-show="typeform.name.$error.minlength">4 letters minimal.</span>
+			<span data-ng-show="typeform.name.$error.maxlength">254 letters maximal.</span>
+			<span data-ng-show="typeform.name.$error.badname">{{typeform.name.$error.badname}}</span>
+		</div>
+	</div>
+
+	<div class="form-group">
+		<label for="description" class="col-md-2 control-label">Description</label>
+		<div class="col-md-4">
+			<textarea class="form-control" id="description" name="description" data-ng-model="type.description"></textarea>
+		</div>
+	</div>
+	<div class="form-group">
+		<label for="embedded" class="col-md-2 control-label">Embedded</label>
+		<div class="col-md-4">
+			<input type="checkbox" id="embedded" name="embedded" data-ng-disabled="edit"  data-ng-model="embedded"></input>
+		</div>
+	</div>
+	<div class="form-group" id='parent-group' data-ng-show="!embedded">
+		<label for="parent-type" class="col-md-2 control-label">Parent Class</label>
+		<div class="col-md-4">
+			<select id="parenttype" name="parenttype" data-ng-model="type['@parent-class']" class="form-control" data-ng-disabled="edit" >
+				<option value='com.flexdms.flexims.jpa.eclipselink.FleximsDynamicEntityImpl'>Default</option>
+				<option data-ng-repeat="type in supers" data-ng-value="type">{{type}}</option>
+			</select>
+		</div>
+	</div>
+	
+	<div class="form-group" id='extraprops' data-ng-show="!embedded">
+		<label for="extension" class="col-md-2 control-label">Extensible</label>
+		<div class="col-md-4">
+			<input type="checkbox" id="extension" name="extension" data-ng-model="extension"  data-ng-disabled="edit"></input>
+		</div>
+	</div>
+	
+	<div class="form-group" id='extraprops' data-ng-show="!abstract">
+		<label for="abstract" class="col-md-2 control-label">No Direct Instance</label>
+		<div class="col-md-4">
+			<input type="checkbox" id="abstract" name="abstract" data-ng-model="abstracttype" ></input>
+		</div>
+	</div>
+	<div class="form-group">
+		<label class="col-md-2 control-label">Tags</label>
+		<div class="col-md-4">
+			<div data-ng-repeat="prop in type.property" style="clear: both;">
+
+				<div class="input-group">
+					<input type="text" required data-ng-model="prop['@name']" placeholder="Property Name" class="form-control" style="width: 40%;"></input>
+					<input type="text" required data-ng-model="prop['@value']" placeholder="Value" class="form-control" style="width: 50%;"></input>
+					<button type="button" data-ng-click="removeTypeProp($index);" class="btn btn-default" style="width: 10%">
+						<span class="glyphicon glyphicon-minus"></span>
+					</button>
+
+				</div>
+
+			</div>
+			<div style="clear: both;">
+				<p class="form-control-static" style="width: 90%; float:left;"></p>
+				<button class="btn btn-default" style="width: 10%" type="button" data-ng-click="addTypeProp();">
+					<span class="glyphicon glyphicon-plus"></span>
+				</button>
+			</div>
+
+		</div>
+	</div>
+	<div class="form-group">
+		<label class="col-md-2 control-label"></label>
+		<div class="col-md-4">
+			<button type="button" class="btn btn-default" data-ng-click="saveType();" data-ng-disabled="typeform.$invalid">
+				<span class="glyphicon glyphicon-floppy-disk"></span>
+			</button>
+			<a class="btn btn-default" href="type/index.html#/types">Cancel</a>
+		</div>
+	</div>
+</form>

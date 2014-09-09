@@ -1,0 +1,18 @@
+<div class="multiple" data-ng-form="" data-fx-embedded-multiple="">
+	<!-- A controller for this -->
+	<div data-ng-repeat="inst in inst[propobj.getName()]" class="embedded" data-ng-form="" data-single-embeded-editor-decorator=""
+	>
+		<button type="button" class="multipledeletebtn text-danger" data-ng-click="removeItem($index);">X</button>
+		<fx-inst-editor inst="inst" typename="propobj.getTypeObject().value"  props="''"> </fx-inst-editor>
+	</div>
+
+
+	<div data-ng-class="{'has-feedback':field.$error.required, 'has-error':field.fakelist.$error.required}" class="embeddedadd">
+		<button type="button" class="multipleaddbtn text-primary" data-ng-click="addItem();">+</button>
+		<span class="help-block" style="display: table-cell; padding-left: 20px;">
+			<span data-ng-show="field.fakelist.$dirty && field.fakelist.$error.required">Required!</span>
+		</span>
+
+	</div>
+
+</div>
