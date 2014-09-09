@@ -1,0 +1,3 @@
+/target
+/src/main/resources/META-INF/resources/inst/*.js
+/node_modules
