@@ -11,7 +11,8 @@ flexdms.fxDecideViewTemplate=function(fxViewTemplates, prop){
 		
 	}
 	//for simple property with single value
-	if (prop.isBasic() || (prop.isElementCollection() && fxViewTemplates.useSingleFieldForMultiple(prop))) {
+	//if (prop.isBasic() || (prop.isElementCollection() && fxViewTemplates.useSingleFieldForMultiple(prop))) {
+	if (prop.isBasic() ) {
 		//if (prop.isBasic()){
 		var view = fxViewTemplates.getSimpleViewTemplate(prop);
 		return view;

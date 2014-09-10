@@ -21,8 +21,8 @@ angular.module("instDirective").directive("fxFileUploader",function(){
 			
 			var uploader = $scope.uploader = $fileUploader.create({
 				scope: $scope,   
-				// url:flexdms.fileserviceUrl+"upload/"+fileSchema,
-				url:appctx.modelerprefix+"/fileuploader/"+fileSchema,
+				url:flexdms.fileserviceUrl+"upload/"+fileSchema,
+				//url:appctx.modelerprefix+"/fileuploader/"+fileSchema,
 				autoUpload: true,
 			});
 			
@@ -172,7 +172,7 @@ angular.module("instDirective").directive("fxFileUploader",function(){
 				
 				var pinst=$scope.inst[flexdms.parentinst];
 				
-				$scope.downloadUrl=flexdms.fileserviceUrl+"clientfiles/"+pinst[flexdms.insttype]+"/"+pinst.id+"/"+$scope.pscope.propobj.getName()+"."+$scope.propobj.getName();
+				$scope.downloadUrl=flexdms.fileserviceUrl+"clientfiles/"+pinst[flexdms.insttype]+"/"+pinst.id+"/"+$scope.instpscope.propobj.getName()+"."+$scope.propobj.getName();
 			}
 			
 			

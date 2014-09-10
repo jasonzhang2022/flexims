@@ -94,7 +94,23 @@ module.exports = function(grunt) {
 					"app/css/type_bootstrap.css": "app/less/type.less"
 				}
 			}
-		}
+		}, 
+		jsdoc : {
+	        dist : {
+	            src: [
+	                  'app/js/common.js',
+	                  'app/js/type/type_common.js',
+	                  'app/js/type/type_service.js',
+	                  'app/js/type/inst_service.js',
+	                  'app/js/type/util_service.js',
+	                  'app/js/inst/inst_directive.js'
+	                  
+	                  ], 
+	            options: {
+	                destination: 'app/doc'
+	            }
+	        }
+	    }
 		
 	});
 	
@@ -102,7 +118,7 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-angular-templates');
 	grunt.loadNpmTasks('grunt-contrib-less');
 	grunt.loadNpmTasks('grunt-contrib-copy');
-	
-	grunt.registerTask('default', [ 'less', 'ngtemplates', 'concat', ]);
+	grunt.loadNpmTasks('grunt-jsdoc');
+	grunt.registerTask('default', [ 'less', 'ngtemplates', 'concat', 'jsdoc']);
 	
 };

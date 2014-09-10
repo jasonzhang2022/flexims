@@ -1,5 +1,5 @@
 
-angular.module("flexdms.instacl", ['ui.router']).controller("instacl", function($scope, $stateParams, securityService, $state){
+angular.module("flexdms.instacl", ['ui.router', "flexdms.role"]).controller("instacl", function($scope, $stateParams, securityService, $state, roleService){
 	/*
 	 * {
    "instanceACES" : {
@@ -35,7 +35,7 @@ angular.module("flexdms.instacl", ['ui.router']).controller("instacl", function(
 	securityService.getAllActions().then(function(data){
 		$scope.actions=data.nameValueList.entry;
 	});
-	securityService.getAllRoles().then(function(data){
+	roleService.getAllRoles().then(function(data){
 		$scope.roles=data;
 	});
 	securityService.getInstACL($scope.typename, $scope.id).then(function(data){

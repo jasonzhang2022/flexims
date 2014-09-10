@@ -1,5 +1,7 @@
 package com.flexdms.flexims.config;
 
+import org.apache.poi.hssf.record.formula.functions.Var;
+
 import com.flexdms.flexims.jpa.eclipselink.FleximsDynamicEntityImpl;
 
 public class ConfigItem {
@@ -38,11 +40,19 @@ public class ConfigItem {
 	}
 
 	public boolean isForClient() {
-		return entity.get(PROP_NAME_PROP_FORCLIENT);
+		Boolean boolean1=entity.get(PROP_NAME_PROP_FORCLIENT);
+		if (boolean1==null) {
+			return false;
+		}
+		return boolean1;
 	}
 
 	public boolean isForAdmin() {
-		return entity.get(PROP_NAME_PROP_FORADMIN);
+		Boolean boolean1=entity.get(PROP_NAME_PROP_FORADMIN);
+		if (boolean1==null) {
+			return false;
+		}
+		return boolean1;
 	}
 
 	public String getValue(String defaultValue) {

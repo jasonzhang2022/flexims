@@ -6,6 +6,7 @@ tmp
 .DS_Store
 .idea
 /target
+/app/doc
 /app/js/inst/inst_directive.js
 /app/js/type/typectrl.js
 /app/css/inst_bootstrap.css

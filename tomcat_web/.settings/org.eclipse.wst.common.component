@@ -36,8 +36,8 @@
         <dependent-module deploy-path="/" handle="module:/overlay/slf/?includes=**/**&amp;excludes=META-INF/MANIFEST.MF">
             <dependency-type>consumes</dependency-type>
         </dependent-module>
-        <property name="context-root" value="flexims"/>
         <property name="java-output-path" value="/tomcat_web/target/classes"/>
+        <property name="context-root" value="flexims"/>
         <property name="component.exclusion.patterns" value="WEB-INF/lib/googlefiles*.jar,WEB-INF/lib/s3files*.jar"/>
     </wb-module>
 </project-modules>
