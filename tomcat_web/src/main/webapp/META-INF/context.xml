@@ -9,6 +9,9 @@
 		name="BeanManager" type="javax.enterprise.inject.spi.BeanManager" />
 		
 
+	<!-- 
+	http://people.apache.org/~fhanik/jdbc-pool/jdbc-pool.html
+	 -->
 	<!-- DataSource -->
 	<Resource name="jdbc/flexims" auth="Container" type="javax.sql.DataSource" 
 		maxActive="100" maxIdle="30" maxWait="10000" username="flexims"
