@@ -26,6 +26,7 @@ public class RoleInitializer {
 	public void init(@Observes AppInitializer.AppInitalizeContext ctx) throws SQLException, IOException {
 
 		EntityManager em = ctx.em;
+		//load this one more time incase it is not executed yet.
 		insertRoles(em, jaxbHelper);
 		loadPredefinedRole(em);
 	}
@@ -35,7 +36,7 @@ public class RoleInitializer {
 
 			em.getTransaction().begin();
 			Entities entities = (Entities) jaxbHelper.fromXml(
-					new InputStreamReader(RoleInitializer.class.getClassLoader().getResourceAsStream("META-INF/predefined_roles.xml")), em);
+					new InputStreamReader(RoleInitializer.class.getClassLoader().getResourceAsStream("META-INF/0predefined_roles_data.fxext.xml")), em);
 			for (Object obj : entities.getItems()) {
 				em.persist(obj);
 			}

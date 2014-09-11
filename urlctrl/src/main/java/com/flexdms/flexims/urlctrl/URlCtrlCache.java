@@ -6,6 +6,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.regex.Pattern;
 
+import javax.annotation.PostConstruct;
 import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.event.Observes;
 import javax.enterprise.event.TransactionPhase;
@@ -46,6 +47,11 @@ public class URlCtrlCache {
 				return i1.compareTo(i2);
 			}
 		});
+	}
+	
+	@PostConstruct
+	public void initCache() {
+		appCache.put(CACHE_KEY, new LinkedList<>());
 	}
 
 	public void init(@Observes AppInitializer.AppInitalizeContext ctx) {

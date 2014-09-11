@@ -49,7 +49,7 @@ public class AppDataLoader {
 			}
 
 			List<URL> resources = CPScanner.scanResources(new ResourceFilter().resourceName("META-INF").resourceName("*_data.fxext.sql"));
-			resources = Utils.sortUrlsByPath(resources);
+			resources = Utils.sortUrlsByPathLastSegment(resources);
 			LOGGER.info("-----loading SQL statement. Ignore the warn if module is not loaded the first time");
 			for (URL url : resources) {
 				String sqlString = IOUtils.toString(url);
@@ -80,6 +80,7 @@ public class AppDataLoader {
 
 		EntityManager eManager = ctx.em;
 		List<URL> resources = CPScanner.scanResources(new ResourceFilter().resourceName("META-INF").resourceName("*_data.fxext.xml"));
+		resources = Utils.sortUrlsByPathLastSegment(resources);
 		LOGGER.info("-----loading Dynamic Entities. Ignore the warn if module is not loaded the first time");
 		for (URL url : resources) {
 			LOGGER.info("-----loading entities from " + url.toExternalForm());

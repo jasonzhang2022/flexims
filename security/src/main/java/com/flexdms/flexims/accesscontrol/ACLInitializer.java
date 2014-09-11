@@ -41,7 +41,7 @@ public class ACLInitializer {
 	public static void loadPredefinedAcls(EntityManager securityEntityManager) throws IOException {
 
 		List<URL> resources = CPScanner.scanResources(new ResourceFilter().resourceName("META-INF").resourceName("*_acl.fxext.sql"));
-		resources = Utils.sortUrlsByPath(resources);
+		resources = Utils.sortUrlsByPathLastSegment(resources);
 
 		for (URL url : resources) {
 			LOGGER.info("-----loading SQL statement. Ignore the warn if module is not loaded the first time " + url.toExternalForm());

@@ -31,6 +31,7 @@ public final class Utils {
 
 	private Utils() {
 	}
+
 	// use ISO-8601 format. The format used by javascript.
 	public static String dateTimeFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZZ";
 	public static DateTimeFormatter iso8601Formatter = ISODateTimeFormat.dateTime();
@@ -120,6 +121,7 @@ public final class Utils {
 	public static String dateToString(Date date) {
 		return iso8601Formatter.print(new DateTime(date, DateTimeZone.UTC));
 	}
+
 	public static String dateToString(Calendar date) {
 		return iso8601Formatter.print(new DateTime(date.getTimeInMillis(), DateTimeZone.forTimeZone(date.getTimeZone())));
 	}
@@ -306,6 +308,23 @@ public final class Utils {
 			@Override
 			public int compare(URL o1, URL o2) {
 				return o1.getPath().compareTo(o2.getPath());
+			}
+
+		});
+		return urls;
+	}
+
+	public static List<URL> sortUrlsByPathLastSegment(List<URL> urls) {
+		Collections.sort(urls, new Comparator<URL>() {
+
+			@Override
+			public int compare(URL o1, URL o2) {
+				String path1 = o1.getPath();
+				path1 = path1.substring(path1.lastIndexOf('/') + 1);
+
+				String path2 = o2.getPath();
+				path2 = path2.substring(path2.lastIndexOf('/') + 1);
+				return path1.compareTo(path2);
 			}
 
 		});
