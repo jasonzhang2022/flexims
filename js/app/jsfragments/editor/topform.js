@@ -1,3 +1,21 @@
+/**
+ * @ngdoc directive
+ * @name instDirective.directive:fxInstEditorForm
+ * @restrict AE
+ * @description
+ * 
+ * Create a prepackaged form to edit/add an instance. It exposes <b>saveInst</b> method which saves current instance and transition to 'viewinst' state.
+ * 
+ * @scope
+ * 
+ * @param {string} fx-typename the instance type
+ * @param {number=} inst-id: instance id. Required if the form is used for editing instead of adding. In case of edit, 
+ * if the instance real type is different from the specified type, real subtype of the instance instead of specified type is used to generate the form 
+ * @param {String=} template-url a template url. If not specified, {@link instDirective.fxTemplates} is used to decide the template url.
+ * 
+ * 
+ * 
+ */
 angular.module("instDirective").directive("fxInstEditorForm",function($compile,fxTemplates, $templateCache,Inst){
 	return {
 		replace:true, 

@@ -1,6 +1,10 @@
-	
-/**
- * Decorate input with validation. 
+/*
+ * @ngdoc directive
+ * @name instDirective.directive:fxPropValidator
+ * @restrict A
+ * @requires ngModel
+ * @description
+ * 	custom input validator
  */
 angular.module("instDirective").directive("fxPropValidator",function($compile,$templateCache, fxTemplates){
 	

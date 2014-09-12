@@ -271,7 +271,24 @@ angular.module("flexdms.report").controller("fxReportCtrl", function($scope, $el
 	};
 });
 
-
+/**
+ * @ngdoc directive
+ * @name flexdms.report.fxReportGrid
+ * @module flexdms.report
+ * @restrict E
+ * @description
+ * 
+ * show a report. This directive creates <b>an isolated scope</b>
+ * 
+ * @scope
+ * 
+ * @param {Object} report report instance
+ * @param {Object=} options report grid options
+ * @param {boolean=} [showHeader=true] whether to show report header
+ * @param {boolean=} refreshing whether parent DOM is in refreshig stage
+ * 
+ * 
+ */
 angular.module("flexdms.report").directive("fxReportGrid", function(){
 	return {
 		restrict:'E',
@@ -286,6 +303,20 @@ angular.module("flexdms.report").directive("fxReportGrid", function(){
 	};
 });
 
+/**
+ * @ngdoc directive
+ * @name flexdms.report.fxAllReport
+ * @module flexdms.report
+ * @restrict AE
+ * @description
+ * 
+ * Show ALL instance for a type.
+ * 
+ * @scope
+ * 
+ * @param {string} typename the type to show all instances for
+ * 
+ */
 angular.module("flexdms.report").directive("fxAllReport", function(){
 	return {
 		restrict: 'AE',

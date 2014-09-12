@@ -1,6 +1,16 @@
-
 /**
+ * @ngdoc directive
+ * @name instDirective.directive:fxSingleProp
+ * @restrict A
+ * @priority 599
+ * @description
+ * 
  * Create a new scope for a single property
+ * 
+ * @scope
+ * 
+ * @param {String} fx-single-prop a property name.
+ *  
  */
 angular.module("instDirective").directive("fxSingleProp", function($compile,$templateCache, fxTemplates){
 	return {

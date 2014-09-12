@@ -1,4 +1,3 @@
-
 angular.module("instDirective").controller("instEditorController", function($scope, $element, $attrs, $controller, fxTemplates, instCache){
 	this.name="instEditor";
 	
@@ -104,13 +103,25 @@ angular.module("instDirective").controller("instEditorController", function($sco
 });
 //-----------------------------instance-level directive
 /**
- * Set up a scope to edit an instance
- * supported attributes
- * 	showlable=true|false;
- *  props= a list of properties to be editted. Default to type.getEditProps.
- * precondition: 
- * 	inst and type object from parent scope
- *  under form controller so validation of form control can be channelled
+ * @ngdoc directive
+ * @name instDirective.directive:fxInstEditor
+ * @module instDirective
+ * @kind directive
+ * @requires ngForm
+ * @restrict AE
+ * @description
+ * 
+ * Create a prepackaged insance editor inside a form. It creates a <b>isolated scope</b>. If flexdms.config.editor.TYPENAME.ctrl is not null, it is used as controller for this inst editor.
+ * 
+ * @scope
+ * 
+ * @param {boolean=} [showlabel=true] Whether to show lable or not.
+ * @param {string} typename type of the instance to edit 
+ * @param {object|number} inst instance resource object or instance id
+ * @param {boolean=} [edit=true] edit an instance or add an instance
+ * @param {Array.string|string|Array.Object=} props a list of properties to edit. Can be a list of name separated by ',',  an array of propname, an array of prop object.
+ * @param {String=} template-url a template url. If not specified, {@link instDirective.fxTemplates} is used to decide the template url.
+ * 
  */
 angular.module("instDirective").directive("fxInstEditor",function( $templateCache){
 	return {

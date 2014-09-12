@@ -1,3 +1,11 @@
+/**
+ * @ngdoc directive
+ * @name instDirective.directive:fxInitInstanceFromQueryParams
+ * @restrict A
+ * @priority -100
+ * @description
+ * 	retrieve value from query parameters in URL and set the value to inst in current scope.
+ */
 angular.module("instDirective").directive("fxInitInstanceFromQueryParams",function($compile){
 	
 	return {

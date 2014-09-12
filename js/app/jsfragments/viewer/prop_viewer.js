@@ -40,7 +40,21 @@ flexdms.fxDecideViewTemplate=function(fxViewTemplates, prop){
 };
 
 /**
- * Insert the template for the current property
+ * @ngdoc directive
+ * @name instDirective.directive:fxPropViewer
+ * @restrict E
+ * @description
+ * 
+ * Create a property viewer. 
+ * 
+ * If flexdms.config.viewer.TYPENAME.props.PROPNAME.ctrl is not null, it is used as controller for this property viewer.
+ * 
+ *  It expects that  <b>Type</b> object and <b>Inst</b> object are available in current scope.
+ *  
+ *   This directive is used by {@link instDirective.directive:fxInstViewer} internally.
+ *   
+ * @param {Expression=} propobj an expression returns a Property object or a property name.  If not specified, it is looked up from current scope. 
+ *
  */
 angular.module("instDirective").directive("fxPropViewer",function($compile, $injector){
 	return {

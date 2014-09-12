@@ -1,6 +1,15 @@
 
-/**
- * Produce tooltip for edit
+/*
+ * @ngdoc function
+ * @name flexdms.editTooltip
+ * @kind function
+ * @module Global
+ *
+ * @description
+ *  retreive tooltip for a property for editor
+ *
+ * @param {prop} prop  Property object
+ * @returns {Array.String} an array of message.
  */
 flexdms.editTooltip= function(prop, fxTemplates) {
 	var msgs = new Array();
@@ -36,8 +45,17 @@ flexdms.editTooltip= function(prop, fxTemplates) {
 	}
 	return msgs;
 };
-/**
- * Tooltip for view label
+/*
+ * @ngdoc function
+ * @name flexdms.viewTooltip
+ * @kind function
+ * @module Global
+ *
+ * @description
+ *  retreive tooltip for a property for viewer
+ *
+ * @param {prop} prop  Property object
+ * @returns {Array.String} an array of message.
  */
 flexdms.viewTooltip= function(prop) {
 	var msgs = new Array();
@@ -46,8 +64,17 @@ flexdms.viewTooltip= function(prop) {
 	}
 	return msgs;
 };
-/**
- * How format the tooltip
+/*
+ * @ngdoc function
+ * @name flexdms.htmlTtooltip
+ * @kind function
+ * @module Global
+ *
+ * @description
+ *  a formatted html to display
+ *
+ * @param {Array.String} msgs a list of message
+ * @returns {String} formatted html message.
  */
 flexdms.htmlTtooltip=function(msgs){
 	

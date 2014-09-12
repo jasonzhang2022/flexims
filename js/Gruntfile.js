@@ -95,9 +95,22 @@ module.exports = function(grunt) {
 				}
 			}
 		}, 
-		jsdoc : {
-	        dist : {
-	            src: [
+		ngdocs : {
+			options: {
+				dest: 'app/docs',
+				html5Mode: false,
+				startPage: '/api/instDirective.directive:fxInstEditor',
+				title: "angular JPA",
+				bestMatch: true, 
+				analytics: {
+			          account: 'UA-37993669-1',
+			          domainName: 'flexdms.com'
+			    },
+			    titleLink: "http://www.flexdms.com"
+			},
+			api: {
+				src: [
+				      '../report/src/main/js/fragments/report/report4_report_grid.js',
 	                  'app/js/common.js',
 	                  'app/js/type/type_common.js',
 	                  'app/js/type/type_service.js',
@@ -105,12 +118,10 @@ module.exports = function(grunt) {
 	                  'app/js/type/util_service.js',
 	                  'app/js/inst/inst_directive.js'
 	                  
-	                  ], 
-	            options: {
-	                destination: 'app/doc'
-	            }
-	        }
-	    }
+	                  ],
+				title: 'API Documentation'
+			}
+		}
 		
 	});
 	
@@ -118,7 +129,7 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-angular-templates');
 	grunt.loadNpmTasks('grunt-contrib-less');
 	grunt.loadNpmTasks('grunt-contrib-copy');
-	grunt.loadNpmTasks('grunt-jsdoc');
-	grunt.registerTask('default', [ 'less', 'ngtemplates', 'concat', 'jsdoc']);
+	grunt.loadNpmTasks('grunt-ngdocs');
+	grunt.registerTask('default', [ 'less', 'ngtemplates', 'concat', 'ngdocs']);
 	
 };

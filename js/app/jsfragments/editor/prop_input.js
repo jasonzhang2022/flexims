@@ -1,8 +1,11 @@
-/**
- * Modify input to give correct 
- * ngModel: so ngModel bind works.
- * name: for the control can bound to form.
- * have a field(ngModelController) in scope so its validation state can be used
+/*
+ * @ngdoc directive
+ * @name instDirective.directive:fxPropInput
+ * @restrict A
+ * @priority 10000
+ * @description
+ * 	Modify input to give correct name so ngModel works,
+ *  channel valid/invalid state to parent ngModel
  */
 angular.module("instDirective").directive("fxPropInput",function($compile,$templateCache, fxTemplates){
 	return {

@@ -1,3 +1,20 @@
+/**
+ * @ngdoc directive
+ * @name instDirective.directive:fxInstViewerForm
+ * @restrict AE
+ * @description
+ * 
+ * Create a prepackaged form to view an instance. It exposes <b>refresh</b> method which refetches data from server  and redisplay current instance.
+ * 
+ * @scope
+ * 
+ * @param {string} fx-typename the instance type
+ * @param {number=} inst-id: instance id. Required if the form is used for editing instead of adding. In case of edit, 
+ * if the instance real type is different from the specified type, real subtype of the instance instead of specified type is used to generate the form 
+ *  @param {String=} template-url a template url. If not specified, {@link instDirective.fxViewTemplates} is used to decide the template url.
+ * 
+ * 
+ */
 angular.module("instDirective").directive("fxInstViewerForm",function($compile, $templateCache,Inst, $state, $injector){
 	return {
 		replace:true, 

@@ -86,6 +86,25 @@ angular.module("instDirective").controller("fxInstViewerController", function($s
 		 flexdms.htmlTtooltip(flexdms.viewTooltip(propobj, fxViewTemplates));
 	 };
 });
+
+/**
+ * @ngdoc directive
+ * @name instDirective.directive:fxInstViewer
+ * @requires ngForm
+ * @restrict AE
+ * @description
+ * 
+ * Create a prepackaged instance viewer. It creates a <b>isolated scope</b>.If flexdms.config.viewer.TYPENAME.ctrl is not null, it is used as controller for this inst viewer.
+ * 
+ * @scope
+ * 
+ * @param {boolean=} [showlabel=true] Whether to show lable or not.
+ * @param {string} typename type of the instance to edit 
+ * @param {object|number} inst instance resource object or instance id
+ * @param {Array.string|string|Array.Object=} props a list of properties to edit. Can be a list of name separated by ',',  an array of propname, an array of prop object.
+ * @param {String=} template-url a template url. If not specified, {@link instDirective.fxViewTemplates} is used to decide the template url.
+ * 
+ */
 angular.module("instDirective").directive("fxInstViewer", function($templateCache){
 	return {
 		replace:true, 

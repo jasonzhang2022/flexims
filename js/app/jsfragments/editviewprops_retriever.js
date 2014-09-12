@@ -1,6 +1,16 @@
-
-/**
- * Find out the prop list to be editted/or viewed
+/*
+ * @ngdoc function
+ * @name flexdms.parseEditViewProps
+ * @module Global
+ *
+ * @description
+ * return a list of property object for edit or view.
+ *
+ * @param {Array.Object|Array.String|String=} Can be a list name separate by ",", an array of name, or an array of property object. If null or undefined, 
+ *  default property from type is returned.
+ * @param {Object} type type resource Object
+ * @param {boolean} edit edit or view
+ * @returns  {Array.Object} a list of property object for edit or view.
  */
 flexdms.parseEditViewProps=function(propsattr, type, edit){
 	var props=new Array();

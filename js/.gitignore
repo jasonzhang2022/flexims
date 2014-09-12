@@ -7,6 +7,7 @@ tmp
 .idea
 /target
 /app/doc
+/app/docs
 /app/js/inst/inst_directive.js
 /app/js/type/typectrl.js
 /app/css/inst_bootstrap.css

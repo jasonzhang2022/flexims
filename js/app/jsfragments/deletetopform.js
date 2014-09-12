@@ -1,3 +1,20 @@
+/**
+ * @ngdoc directive
+ * @name instDirective.directive:fxInstDeleteForm
+ * @restrict AE
+ * @description
+ * 
+ * Create a prepackaged form to delete an instance. It exposes <b>delete</b> method which deletes current instance.
+ * 
+ * @scope
+ * 
+ * @param {string} fx-typename the instance type
+ * @param {number=} inst-id: instance id. Required if the form is used for editing instead of adding. In case of edit, 
+ * if the instance real type is different from the specified type, real subtype of the instance instead of specified type is used to generate the form 
+ * @param {string=} template-url alternative template-url for the form instead of the default one.
+ * 
+ * 
+ */
 angular.module("instDirective").directive("fxInstDeleteForm", function($compile, $templateCache,Inst){
 	return {
 		replace:true, 

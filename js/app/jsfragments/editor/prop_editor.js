@@ -50,7 +50,21 @@ flexdms.decideEditTemplate=function(prop, fxTemplates){
 	}
 };
 /**
- * insert form control. This is the real form controlls: input, select, textarea.
+ * @ngdoc directive
+ * @name instDirective.directive:fxPropEditor
+ * @requires ngForm
+ * @restrict E
+ * @description
+ * 
+ * Create a property editor.
+ * 
+ * If flexdms.config.editor.TYPENAME.props.PROPNAME.ctrl is not null, it is used as controller for this property editor.
+ * 
+ *  It expects that  <b>Type</b> object and <b>Inst</b> object are available in current scope.
+ * 
+ *  This directive is used by {@link instDirective.directive:fxInstEditor} internally.
+ * @param {Expression=} propobj an expression returns a Property object or a property name.  If not specified, it is looked up from current scope. 
+ *  
  */
 angular.module("instDirective").directive("fxPropEditor",function($compile,fxTemplates){
 	return {
