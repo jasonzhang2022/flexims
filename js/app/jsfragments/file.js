@@ -136,7 +136,7 @@ angular.module("instDirective").directive("fxFileUploader",function(){
 					return;
 				}
 				var fileIDs=new Array();
-				if (multiple){
+				if (multiple && angular.isArray(pvs)){
 					angular.forEach(pvs, function(propvalue){
 						var parts=propvalue.split(":");
 						fileIDs.push({

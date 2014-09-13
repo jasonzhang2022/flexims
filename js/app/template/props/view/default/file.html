@@ -1,7 +1,5 @@
-
 <ul data-ng-class="listClass" fx-client-file ng-if="multiple">
 	<li data-ng-repeat="fileInfo in fileInfos"><a href="{{fileInfo.href}}" target="_blank">{{fileInfo.display}}</a></li>
 	<li ng-if="fileInfos.length>1"><a href="{{downloadUrl}}" target="_blank">All</a></li>
-	</li>
 </ul>
 <a href="{{fileInfos[0].href}}" target="_blank" ng-if="!multiple && fileInfos.length>0">{{fileInfos[0].display}}</a>

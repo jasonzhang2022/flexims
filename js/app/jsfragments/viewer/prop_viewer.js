@@ -10,9 +10,13 @@ flexdms.fxDecideViewTemplate=function(fxViewTemplates, prop){
 		return input;
 		
 	}
+	if (prop.getTypeObject().isCustomObject()){
+		var input = fxViewTemplates.getSimpleViewTemplate(prop);
+		return input;
+	}
 	//for simple property with single value
-	//if (prop.isBasic() || (prop.isElementCollection() && fxViewTemplates.useSingleFieldForMultiple(prop))) {
-	if (prop.isBasic() ) {
+	if (prop.isBasic() || (prop.isElementCollection() && !fxViewTemplates.shouldWrapSimpleValueWithMultipleTemplate(prop))) {
+	//if (prop.isBasic() ) {
 		//if (prop.isBasic()){
 		var view = fxViewTemplates.getSimpleViewTemplate(prop);
 		return view;
@@ -88,8 +92,8 @@ angular.module("instDirective").directive("fxPropViewer",function($compile, $inj
 			$scope.listClass= {
 					proplist:true, 
 					simple: $scope.propobj.isElementCollection() ||$scope.propobj.isRelation(),
-					singlefield:fxViewTemplates.useSingleFieldForMultiple($scope.propobj), 
-					multiplefield:!fxViewTemplates.useSingleFieldForMultiple($scope.propobj),
+					singlefield:fxViewTemplates.shouldShowMultipleValueAsSimple($scope.propobj), 
+					multiplefield:!fxViewTemplates.shouldShowMultipleValueAsSimple($scope.propobj),
 			};
 			$scope.listClass[$scope.propobj.getName()]=true;
 			$scope.dateFormat=flexdms.dateFormat;

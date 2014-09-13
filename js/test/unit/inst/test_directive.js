@@ -326,7 +326,7 @@ describe(
 				//basic relation
 				type = flexdms.findType("Mdoomroom");
 				//
-				expect(fxTemplates.useSingleFieldForMultiple(type.getProp("doombuild"))).toBeTruthy();
+				expect(fxTemplates.shouldShowMultipleValueAsSimple(type.getProp("doombuild"))).toBeTruthy();
 				expect(fxTemplates.getSimpleViewTemplate(type.getProp("doombuild"))).toEqual(templateCache.get("template/props/view/default/simplerelation.html"));
 				
 

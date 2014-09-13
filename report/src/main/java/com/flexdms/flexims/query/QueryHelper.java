@@ -134,6 +134,9 @@ public final class QueryHelper {
 				}
 			}
 		}
+		if (props.isEmpty()) {
+			props.add(FleximsDynamicEntityImpl.ID_NAME);
+		}
 		wrapper.setProperties(props);
 		em.persist(wrapper.getEntity());
 		return dEntityImpl;
