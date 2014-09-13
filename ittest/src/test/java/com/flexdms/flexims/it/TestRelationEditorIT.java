@@ -143,7 +143,7 @@ public class TestRelationEditorIT extends TestITbase {
 
 		// login as admin to manipulate type property
 		delayGetAndDelay(baseUrl);
-		login("testadmin@email.com", "123456");
+		login("testadmin@example.com", "123456");
 
 		WebElement element;
 

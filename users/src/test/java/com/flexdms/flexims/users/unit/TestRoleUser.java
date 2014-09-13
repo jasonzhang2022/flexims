@@ -208,7 +208,7 @@ public class TestRoleUser {
 
 	@Test
 	public void testUserAndRoleAssociation() {
-		FxUser user = FxUser.loadByEmail(em, "testadmin@email.com");
+		FxUser user = FxUser.loadByEmail(em, "testadmin@example.com");
 		assertTrue(user.isIncludedBy(RoleUtils.getAdminRole()));
 	}
 }
