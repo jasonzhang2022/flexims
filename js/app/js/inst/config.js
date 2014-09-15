@@ -29,7 +29,7 @@ flexdms.config.defaultFileSchema="DBFILE";
 flexdms.config.fileSchema=flexdms.config.defaultFileSchema;
 flexdms.config.indexurl=appctx.formprefix+"/index.html";
 flexdms.config.logout=appctx.modelerprefix+"/rs/res/web/customtemplates/logout.html";
-flexdms.config.logourl="http://www.google.com";
+flexdms.config.logourl="http://www.flexdms.com";
 flexdms.config.brandtxt="Flexdms";
 flexdms.config.viewer={
 		'typename': {

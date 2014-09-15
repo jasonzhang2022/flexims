@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="List and edit type">
+<meta name="author" content="jason zhang">
+
+
+
+<title>Edit or View Instance</title>
+<script type="text/javascript">
+	var _gaq = _gaq || [];
+	_gaq.push([ '_setAccount', 'UA-37993669-2' ]);
+	_gaq.push([ '_setDomainName', 'flexdms.com' ]);
+	_gaq.push([ '_trackPageview' ]);
+
+	(function() {
+		var ga = document.createElement('script');
+		ga.type = 'text/javascript';
+		ga.async = true;
+		ga.src = ('https:' == document.location.protocol ? 'https://ssl'
+				: 'http://www')
+				+ '.google-analytics.com/ga.js';
+		var s = document.getElementsByTagName('script')[0];
+		s.parentNode.insertBefore(ga, s);
+	})();
+</script>
+<!-- Bootstrap core CSS -->
+<link href="css/inst_bootstrap.css" rel="stylesheet">
+<link href="lib/bootstrap/dist/css/bootstrap-theme.css" rel="stylesheet">
+<link href="lib/font-awesome/css/font-awesome.min.css"  rel="stylesheet" >
+<link  href="lib//angular-ui-tree/dist/angular-ui-tree.min.css" rel="stylesheet">
+<link href="css/inst.css" rel="stylesheet">
+<link href="css/alertbox.css" rel="stylesheet">
+<link href="rs/res/module/instcss" rel="stylesheet">
+<link href="lib/ng-grid/ng-grid.css" rel="stylesheet">
+<script src="rs/res/context/js"  type="text/javascript"></script>
+</head>
+
+<body  data-ng-app="instApp" >
+	<div ng-controller="topController">
+		<div class="container" ng-show="showContent">
+
+			<div ng-include="'rs/res/web/customtemplates/topmenu.html'"></div>
+
+			<!-- unnamed view, topcontent goes here -->
+			<div data-ui-view id="topcontent"></div>
+
+			<!-- Site footer -->
+			<div class="footer" id="footer">
+				<p>&copy; Company 2013</p>
+			</div>
+
+		</div>
+		<!-- /container -->
+		
+		<!-- hidden area for dialog preparation -->
+		<div id="dialog" style="display: none"></div>
+		
+		<!-- hidden area for prepare scratch DOM -->
+		<div id="scratch" style="display: none;"></div>
+		
+		<!-- an iframe for file upload -->
+		<iframe id="fileupload" name="fileupload" style="display: none;"></iframe>
+
+	</div>
+
+	<!-- Javascripts-->
+	<!-- Placed at the end of the document so the pages load faster -->
+	<div id="scripts">
+		<script type="text/javascript" src="lib/jquery/dist/jquery.min.js"></script>
+		<!-- Angular js -->
+		<script type="text/javascript" src="lib/angular/angular.js"></script>
+		<script type="text/javascript" src="lib/angular-ui-router/release/angular-ui-router.min.js"></script>
+		
+		<script type="text/javascript" src="lib/angular-resource/angular-resource.min.js"></script>
+		<script type="text/javascript" src="lib/angular-cookies/angular-cookies.min.js"></script>
+		<script type="text/javascript" src="lib/angular-animate/angular-animate.min.js"></script>
+
+		<script type="text/javascript" src="lib/ng-grid/build/ng-grid.js"></script>
+		<script type="text/javascript" src="lib/ng-grid/plugins/ng-grid-csv-export.js"></script>
+		<script type="text/javascript" src="lib/angular-file-upload/angular-file-upload.min.js"></script>
+
+		<script type="text/javascript" src="lib/angular-ui-bootstrap-bower/ui-bootstrap-tpls.min.js"></script>
+		
+		
+		<script type="text/javascript" src="lib/angular-ui-tree/dist/angular-ui-tree.min.js"></script>
+
+		<script type="text/javascript" src="js/common.js"></script>
+		
+		<!--  global class -->
+		<script type="text/javascript" src="js/type/type_common.js"></script>
+		<!-- flexdms.util module -->
+		<script type="text/javascript" src="js/type/util_service.js"></script>
+		<!--  type service module -->
+		<script type="text/javascript" src="js/type/type_service.js"></script>
+		<!--  inst service module -->
+		<script type="text/javascript" src="js/type/inst_service.js"></script>
+	
+		<!--  type meta data -->
+		<script type="text/javascript" src="rs/type/metajs/flexdms.cacheTypeMeta"></script>
+		<!-- dynamic extension modules from thirdparty-->
+		<script type="text/javascript" src="rs/res/module/thirdparty"></script>
+		<!-- dynamic extension modules by extension module-->
+		<script type="text/javascript" src="rs/res/module/type"></script>
+		
+		<script type="text/javascript" src="js/inst/config.js"></script>
+		<!--inst_directive makes available flexdms.instAppModules is an array. It contains the modules instApp depends on
+		 -->
+		<script type="text/javascript" src="js/inst/inst_directive.js"></script>
+		<script type="text/javascript" src="rs/res/web/inst.tpl.js"></script>
+		<script type="text/javascript" src="js/inst/layout.js"></script>
+		
+		
+		<!-- dynamic extension modules for inst -->
+		<script type="text/javascript" src="rs/res/module/inst"></script>
+		
+		<!-- global variable instApp or angular.module("instApp") is available right now by inst.js -->
+		<script type="text/javascript" src="js/inst/inst.js"></script>
+	
+</div>
+
+
+</body>
+</html>
