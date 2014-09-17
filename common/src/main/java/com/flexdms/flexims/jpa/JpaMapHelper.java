@@ -160,6 +160,9 @@ public final class JpaMapHelper {
 	}
 
 	public static TableGeneratorMetadata retrieveTableGenerator(XMLEntityMappings entityMappings, ClassAccessor accessor) {
+		if (accessor.getAttributes() == null) {
+			return null;
+		}
 		if (accessor.getAttributes().getIds() == null || accessor.getAttributes().getIds().isEmpty()) {
 			return null;
 		}
@@ -405,7 +408,7 @@ public final class JpaMapHelper {
 		MappingAccessor prop = findProp(typeAccessor, attrName);
 		return prop.getProperties();
 	}
-	
+
 	public static String getExtraProp(String typeName, String propname) {
 
 		XMLEntityMappings entityMappings = getInternaEntityMappings();
@@ -418,7 +421,6 @@ public final class JpaMapHelper {
 		}
 		return null;
 	}
-	
 
 	public static String getExtraProp(String typeName, String attrName, String propname) {
 

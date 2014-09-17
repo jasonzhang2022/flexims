@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<entities>
+<!--    <FxConfig> -->
+<!--       <fxversion>2014-06-09T15:54:15.506724-07:00</fxversion> -->
+<!--       <Name>file.server.topdirectory</Name> -->
+<!--       <id>110</id> -->
+<!--       <Description>Top directory for Server file</Description> -->
+<!--       <ConfigValue>c:\tmp</ConfigValue> -->
+<!--       <ForClient>false</ForClient> -->
+<!--       <ForAdmin>true</ForAdmin> -->
+<!--    </FxConfig> -->
+    <FxConfig>
+      <fxversion>2014-06-09T15:54:15.506724-07:00</fxversion>
+      <Name>fx.user.registration.enable</Name>
+      <id>114</id>
+      <Description>Whether registration by user is allowed</Description>
+      <ConfigValue>false</ConfigValue>
+      <ForClient>false</ForClient>
+      <ForAdmin>false</ForAdmin>
+   </FxConfig>
+   
+  
+</entities>

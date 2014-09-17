@@ -2,9 +2,6 @@ package com.flexdms.flexims.config;
 
 import java.util.Map;
 
-import javax.enterprise.inject.spi.BeanManager;
-import javax.enterprise.inject.spi.CDI;
-
 import org.apache.deltaspike.core.spi.config.ConfigSource;
 
 /**

@@ -1,6 +1,5 @@
 package com.flexdms.flexims.config;
 
-import java.util.HashMap;
 import java.util.Map;
 
 import com.flexdms.flexims.App;

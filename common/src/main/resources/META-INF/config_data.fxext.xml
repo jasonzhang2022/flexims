@@ -18,5 +18,22 @@
       <ForClient>true</ForClient>
       <ForAdmin>true</ForAdmin>
    </FxConfig>
-  
+    <FxConfig>
+      <fxversion>2014-06-09T15:54:15.506724-07:00</fxversion>
+      <Name>mail.from</Name>
+      <id>112</id>
+      <Description>Administrator email for this site</Description>
+      <ConfigValue>admin@flexdms.com</ConfigValue>
+      <ForClient>false</ForClient>
+      <ForAdmin>false</ForAdmin>
+   </FxConfig>
+   <FxConfig>
+      <fxversion>2014-06-09T15:54:15.506724-07:00</fxversion>
+      <Name>mail.smtp.host</Name>
+      <id>113</id>
+      <Description>SMTP HOST</Description>
+      <ConfigValue>localhost</ConfigValue>
+      <ForClient>false</ForClient>
+      <ForAdmin>false</ForAdmin>
+   </FxConfig>
 </entities>

@@ -2,6 +2,7 @@ package com.flexdms.flexims.auth;
 
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
+import javax.mail.MessagingException;
 import javax.persistence.EntityManager;
 import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.Consumes;
@@ -19,11 +20,14 @@ import org.apache.shiro.subject.Subject;
 
 import com.flexdms.flexims.EntityDAO;
 import com.flexdms.flexims.RunAsAdmin;
+import com.flexdms.flexims.config.Configs;
 import com.flexdms.flexims.jaxb.moxy.JaxbHelper;
 import com.flexdms.flexims.jpa.eclipselink.FleximsDynamicEntityImpl;
 import com.flexdms.flexims.rsutil.AppMsg;
 import com.flexdms.flexims.rsutil.RSMsg;
 import com.flexdms.flexims.users.FxUser;
+import com.flexdms.flexims.util.EmailSender;
+import com.flexdms.flexims.util.EmailSenderI;
 import com.flexdms.flexims.util.SessionCtx;
 
 /**
@@ -52,6 +56,9 @@ public class AuthService {
 
 	@Inject
 	JaxbHelper jaxbHelper;
+
+	@Inject
+	EmailSenderI emailSender;
 
 	@Path("/status")
 	@GET
@@ -119,6 +126,12 @@ public class AuthService {
 	@RunAsAdmin
 	public AppMsg register(LoginInfo loginInfo) {
 		AppMsg msg = new AppMsg();
+		if (!Configs.getConfigAsBoolean("fx.user.registration.enable", true)) {
+			msg.setStatuscode(1);
+			msg.setMsg("Registration is disabled for this site");
+			return msg;
+		}
+		
 
 		em.getTransaction().begin();
 		FxUser fxUser = FxUser.createUser(em);
@@ -131,7 +144,10 @@ public class AuthService {
 		em.flush();
 		PasswordHasher.hashPasswordStatic(fxUser);
 		em.getTransaction().commit();
-		msg.setMsg("Ok");
+		
+
+		emailSender.sendMessage(loginInfo.email, "Account is created", "Your account is created and activated.\n Username: " + loginInfo.getEmail()
+				+ "\n Password: " + loginInfo.getPassword());
 
 		return msg;
 	}
@@ -157,6 +173,10 @@ public class AuthService {
 		user.setPassword(loginInfo.getPassword());
 		PasswordHasher.hashPasswordStatic(user);
 		em.getTransaction().commit();
+
+		emailSender.sendMessage(loginInfo.email, "Password is changed",
+				"\n Username: " + loginInfo.getEmail() + "\n Password: " + loginInfo.getPassword());
+
 		return msg;
 
 	}

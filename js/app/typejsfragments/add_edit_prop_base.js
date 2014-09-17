@@ -357,6 +357,9 @@ function agumentScopeForDefaultAndAllowed($scope) {
 		if ($scope.propObj.proptype.isRelation()){
 			return true;
 		}
+		if ($scope.propObj.proptype.isTrueFalse()){
+			return true;
+		}
 		return false;
 	};
 

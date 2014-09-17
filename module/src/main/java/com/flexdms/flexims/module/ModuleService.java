@@ -107,15 +107,14 @@ public class ModuleService {
 
 	@Path("/download")
 	@POST
-	public Response download(final ModuleDefinition moduleDefinition
-			) {
+	public Response download(final ModuleDefinition moduleDefinition) {
 		StreamingOutput stream = new StreamingOutput() {
 			@Override
 			public void write(OutputStream output) throws IOException {
 				try {
 					ZipOutputStream zip = new JarOutputStream(output);
 					buildModule(zip, moduleDefinition);
-					
+
 					zip.close();
 				} catch (Exception e) {
 					throw new WebApplicationException(e);
@@ -128,14 +127,12 @@ public class ModuleService {
 
 	}
 
-
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	protected void buildModule(final ZipOutputStream zip, final ModuleDefinition moduleDefinition) throws Exception {
-		
 
-		ZipEntry zipEntry =null;
-		StringWriter writer =null;
-		
+		ZipEntry zipEntry = null;
+		StringWriter writer = null;
+
 		// ----------------------------report and query
 		final String[] names = moduleDefinition.types.split(",");
 		final Entities entities = new Entities();
@@ -151,9 +148,9 @@ public class ModuleService {
 				} else {
 					Set etSet = new HashSet();
 					for (String type : names) {
-						ClassAccessor accessor=JpaMapHelper.findClassAccessor(DynamicMetaSource.getEntityMaps(), type);
-						List<Long> reportIds=collectRelationUI(accessor);
-						for (Long reportid:reportIds) {
+						ClassAccessor accessor = JpaMapHelper.findClassAccessor(DynamicMetaSource.getEntityMaps(), type);
+						List<Long> reportIds = collectRelationUI(accessor);
+						for (Long reportid : reportIds) {
 							FleximsDynamicEntityImpl report = dao.loadEntity(FxReportWrapper.TYPE_NAME, reportid);
 							if (report != null) {
 								FleximsDynamicEntityImpl query = report.get(FxReportWrapper.PROP_NAME_PROP_QUERY);
@@ -168,7 +165,7 @@ public class ModuleService {
 			}
 		});
 
-		Map<Long, Long> idMap=new HashMap<>();
+		Map<Long, Long> idMap = new HashMap<>();
 		if (!entities.getItems().isEmpty()) {
 			// assign ID.
 			long currentQueryId = moduleDefinition.queryStartid;
@@ -194,7 +191,7 @@ public class ModuleService {
 			zip.closeEntry();
 		}
 
-		//-------------------------model xml
+		// -------------------------model xml
 		zipEntry = new ZipEntry("META-INF/" + moduleDefinition.module + "_model_orm.xml");
 		writer = new StringWriter();
 		XMLEntityMappings mappings = getMappingFile(moduleDefinition.types, moduleDefinition.module, idMap);
@@ -205,7 +202,7 @@ public class ModuleService {
 		zip.write(mapString.getBytes());
 		zip.closeEntry();
 
-		//------------------------------data.
+		// ------------------------------data.
 		if (moduleDefinition.withdata) {
 			Entities entities1 = new Entities();
 			List instancess = runInTransaction.call(new Callable<List>() {
@@ -255,33 +252,30 @@ public class ModuleService {
 				continue;
 			}
 			JpaMapHelper.addClassAccessor(entityMaps, accessor);
-			
-			
-		
 
-			//-------------------------table key generator
+			// -------------------------table key generator
 			TableGeneratorMetadata meta = JpaMapHelper.retrieveTableGenerator(DynamicMetaSource.getEntityMaps(), accessor);
 			if (meta != null) {
 				entityMaps.getTableGenerators().add(meta);
 			}
 		}
-		
-		entityMaps=MetaSourceBuilder.roundTripEntityMappings(entityMaps);
-		for (ClassAccessor accessor: entityMaps.getEntities()) {
-			//------------------------module name.
+
+		entityMaps = MetaSourceBuilder.roundTripEntityMappings(entityMaps);
+		for (ClassAccessor accessor : entityMaps.getEntities()) {
+			// ------------------------module name.
 			adjustModule(accessor, module);
-			
-			//relation.ui
+
+			// relation.ui
 			adjustRelationUI(accessor, idMap);
 		}
-		for (ClassAccessor accessor: entityMaps.getEmbeddables()) {
-			//------------------------module name.
+		for (ClassAccessor accessor : entityMaps.getEmbeddables()) {
+			// ------------------------module name.
 			adjustModule(accessor, module);
-			
-			//relation.ui
+
+			// relation.ui
 			adjustRelationUI(accessor, idMap);
 		}
-		
+
 		return entityMaps;
 	}
 
@@ -309,8 +303,12 @@ public class ModuleService {
 			// TODO adjust table schema, and JPA Entity Name
 		}
 	}
-	protected void adjustRelationUI(ClassAccessor accessor,  Map<Long, Long> idMap) {
-		String propname="relationui.report";
+
+	protected void adjustRelationUI(ClassAccessor accessor, Map<Long, Long> idMap) {
+		String propname = "relationui.report";
+		if (accessor.getAttributes()==null) {
+			return;
+		}
 		for (OneToOneAccessor prop : accessor.getAttributes().getOneToOnes()) {
 			for (PropertyMetadata propmeta : prop.getProperties()) {
 				if (propmeta.getName().equalsIgnoreCase(propname)) {
@@ -340,39 +338,50 @@ public class ModuleService {
 			}
 		}
 	}
-	
+
 	protected List<Long> collectRelationUI(ClassAccessor accessor) {
-		String propname="relationui.report";
-		List<Long> reportIds=new ArrayList<Long>(4);
-		for (OneToOneAccessor prop : accessor.getAttributes().getOneToOnes()) {
-			for (PropertyMetadata propmeta : prop.getProperties()) {
-				if (propmeta.getName().equalsIgnoreCase(propname)) {
-					reportIds.add(Long.parseLong(propmeta.getValue()));
+		String propname = "relationui.report";
+		List<Long> reportIds = new ArrayList<Long>(4);
+		if (accessor.getAttributes()==null) {
+			return reportIds;
+		}
+		if (accessor.getAttributes().getOneToOnes() != null) {
+			for (OneToOneAccessor prop : accessor.getAttributes().getOneToOnes()) {
+				for (PropertyMetadata propmeta : prop.getProperties()) {
+					if (propmeta.getName().equalsIgnoreCase(propname)) {
+						reportIds.add(Long.parseLong(propmeta.getValue()));
+					}
 				}
 			}
 		}
-		for (OneToManyAccessor prop : accessor.getAttributes().getOneToManys()) {
-			for (PropertyMetadata propmeta : prop.getProperties()) {
-				if (propmeta.getName().equalsIgnoreCase(propname)) {
-					reportIds.add(Long.parseLong(propmeta.getValue()));
+		if (accessor.getAttributes().getOneToManys() != null) {
+			for (OneToManyAccessor prop : accessor.getAttributes().getOneToManys()) {
+				for (PropertyMetadata propmeta : prop.getProperties()) {
+					if (propmeta.getName().equalsIgnoreCase(propname)) {
+						reportIds.add(Long.parseLong(propmeta.getValue()));
+					}
 				}
 			}
 		}
-		for (ManyToManyAccessor prop : accessor.getAttributes().getManyToManys()) {
-			for (PropertyMetadata propmeta : prop.getProperties()) {
-				if (propmeta.getName().equalsIgnoreCase(propname)) {
-					reportIds.add(Long.parseLong(propmeta.getValue()));
+		if (accessor.getAttributes().getManyToManys() != null) {
+			for (ManyToManyAccessor prop : accessor.getAttributes().getManyToManys()) {
+				for (PropertyMetadata propmeta : prop.getProperties()) {
+					if (propmeta.getName().equalsIgnoreCase(propname)) {
+						reportIds.add(Long.parseLong(propmeta.getValue()));
+					}
 				}
 			}
 		}
-		for (ManyToOneAccessor prop : accessor.getAttributes().getManyToOnes()) {
-			for (PropertyMetadata propmeta : prop.getProperties()) {
-				if (propmeta.getName().equalsIgnoreCase(propname)) {
-					reportIds.add(Long.parseLong(propmeta.getValue()));
+		if (accessor.getAttributes().getManyToOnes() != null) {
+			for (ManyToOneAccessor prop : accessor.getAttributes().getManyToOnes()) {
+				for (PropertyMetadata propmeta : prop.getProperties()) {
+					if (propmeta.getName().equalsIgnoreCase(propname)) {
+						reportIds.add(Long.parseLong(propmeta.getValue()));
+					}
 				}
 			}
 		}
 		return reportIds;
 	}
-	
+
 }
