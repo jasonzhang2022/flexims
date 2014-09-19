@@ -96,9 +96,9 @@ angular.module("instDirective").directive("fxPropViewer",function($compile, $inj
 					multiplefield:!fxViewTemplates.shouldShowMultipleValueAsSimple($scope.propobj),
 			};
 			$scope.listClass[$scope.propobj.getName()]=true;
-			$scope.dateFormat=flexdms.dateFormat;
-			$scope.timeFormat=flexdms.timeFormat;
-			$scope.dateTimeFormat=flexdms.dateTimeFormat;
+			$scope.dateFormat=flexdms.config.dateFormat;
+			$scope.timeFormat=flexdms.config.timeFormat;
+			$scope.dateTimeFormat=flexdms.config.dateTimeFormat;
 			/*
 			 * Use watch to retrieve value
 			 * The inst could be changed dynamically. 1 asynchronous loadig

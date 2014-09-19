@@ -80,7 +80,7 @@ flexdms.config.editor= {
 
 //global datepicker configuration
 datepickerPopupConfig={
-		"datepicker-popup": flexdms.dateFormat	
+		"datepicker-popup": flexdms.config.dateFormat	
 };
 angular.module("instDirective", ["flexdms.TypeResource", "flexdms.InstResource", 'ui.router']).run(['$rootScope', function($rootScope){
 	//make config and flexdms available to ang scope.

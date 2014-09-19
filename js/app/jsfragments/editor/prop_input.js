@@ -41,9 +41,9 @@ angular.module("instDirective").directive("fxPropInput",function($compile,$templ
 		    	}
 		    	if (prop.getTypeObject().isDateOnly() || prop.getTypeObject().isTimestamp()){
 		    		if (prop.getTypeObject().isDateOnly()){
-		    			$attrs.$set("datepickerPopup", flexdms.dateFormat);
+		    			$attrs.$set("datepickerPopup", flexdms.config.dateFormat);
 		    		} else{
-		    			$attrs.$set("datepickerPopup", flexdms.dateTimeFormat);
+		    			$attrs.$set("datepickerPopup", flexdms.config.dateTimeFormat);
 		    		}
 		    		$scope.showdatepicker=false;
 		    		$scope.openDatePicker=function($event){

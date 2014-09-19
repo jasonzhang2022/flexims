@@ -10,15 +10,9 @@ if (typeof(appctx)==='undefined'){
 }
 flexdms = {
 
-	//do not change default format.
-	defaultDateFormat : "yyyy/MM/dd",
-	defaultDateTimeFormat : "yyyy/MM/dd HH:mm:ss",
-	defaultTimeFormat : "HH:mm:ss",
 		
 		
-	dateFormat : "yyyy/MM/dd",
-	dateTimeFormat : "yyyy/MM/dd HH:mm:ss",
-	timeFormat : "HH:mm:ss",
+	
 	
 	
 	iso8601Format : "yyyy-MM-ddTHH:mm:ssZ",
@@ -36,10 +30,15 @@ flexdms = {
 	utilserviceurl:appctx.modelerprefix+"/rs/util",
 	insttype:"$_fxtype",
 	parentinst:"$_fxparentinst",
-	typemodules:['ui.router', 'ui.bootstrap', 'flexdms.common.error', 'flexdms.common.fxAlert', 'flexdms.common', 'ngResource', 
+	typemodules:['ui.router', 'ui.bootstrap', 'flexdms.common.error', 'flexdms.common.fxAlert', 'flexdms.common', 'flexdms.serverConfig',
+	             'ngResource', 
 	             "flexdms.TypeResource", "flexdms.securityInfo", 
 	             "flexdms.InstResource", 'ngAnimate'],
 	 config: {
+		 dateFormat : "yyyy/MM/dd",
+		 dateTimeFormat : "yyyy/MM/dd HH:mm:ss",
+		 timeFormat : "HH:mm:ss",
+			
 		 getConfig: function(){
 				var obj=this;
 				for (var i=0; i<arguments.length;i++){
@@ -150,7 +149,8 @@ flexdms.BasicPropType.prototype.parse = function(value) {
 		if (value instanceof Date){
 			return value;
 		}
-		if (isNaN(Date.parse(value))){
+		
+		if (!angular.isNumber(value) && isNaN(Date.parse(value))){
 			return null;
 		}
 		return new Date(value);

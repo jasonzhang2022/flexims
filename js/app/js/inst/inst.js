@@ -20,7 +20,7 @@ instApp.config(function($stateProvider, $urlRouterProvider,   $controllerProvide
     instApp.$filterProvider     = $filterProvider;
     instApp.$provide            = $provide;
     
-	datepickerPopupConfig.dateFormat=flexdms.dateFormat;  
+	datepickerPopupConfig.dateFormat=flexdms.config.dateFormat;  
 	  //
 	  // For any unmatched url, redirect to /state1
 	$urlRouterProvider.otherwise("/home");
