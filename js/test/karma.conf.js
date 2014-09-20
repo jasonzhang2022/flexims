@@ -17,6 +17,7 @@ module.exports = function(config){
       
       'app/js/common.js',
       'app/js/type/type_common.js',
+      'app/js/type/serverconfig.js',
       'app/js/type/util_service.js',
       'app/js/type/type_service.js',
       'app/js/type/inst_service.js',

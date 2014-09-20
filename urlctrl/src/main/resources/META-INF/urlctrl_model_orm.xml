@@ -37,7 +37,7 @@
 			<orm:basic name="UrlPattern" optional="false" attribute-type="java.lang.String">
 				<orm:column unique="true" nullable="false" length="254" />
 				<orm:property name="typeidx" value="0" />
-				<orm:property name="displaytext'" value="URL Pattern" />
+				<orm:property name="displaytext" value="URL Pattern" />
 				<orm:property name="viewable" value="true" />
 				<orm:property name="editable" value="true" />
 				<orm:property name="summaryprop" value="true" />
@@ -45,7 +45,7 @@
 			
 			<orm:basic name="CheckOrder" optional="false" attribute-type="java.lang.Integer">
 			   <orm:column unique="false" nullable="false" length="254"/>
-				<orm:property name="displaytext'" value="Order" />
+				<orm:property name="displaytext" value="Order" />
 				<orm:property name="typeidx" value="3" />
 				<orm:property name="viewable" value="true" />
 				<orm:property name="editable" value="true" />
@@ -57,7 +57,7 @@
 				<orm:cascade-on-delete>false</orm:cascade-on-delete>
 				<orm:property name="typeidx" value="-2" />
 
-				<orm:property name="displaytext'" value="Accessed By" />
+				<orm:property name="displaytext" value="Accessed By" />
 				<orm:property name="relationui.report" value="105" />
 				<orm:property name="relationui.uitype" value="Dropdown/ListBox" />
 				<orm:property name="relationui.showselected" value="true" />

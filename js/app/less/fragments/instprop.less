@@ -18,10 +18,10 @@ ul.prop-tooltip {
 	&.simpleprop {
 		.proplabel {
 			.make-sm-column(4);
-			.control-label
-			{
-				float:right;
+			> .control-label {
+				width:100%;
 			}
+			
 		}
 		.propinputandhelp {
 			.make-sm-column(8, 0);
@@ -32,7 +32,9 @@ ul.prop-tooltip {
 			.make-sm-column(12);
 			> .control-label
 			{
-				left:200px;
+				@media (min-width: @screen-sm-min) {
+					left:200px;	
+				}
 				font-size:x-large;
 				.make-sm-column(4);
 				text-align:left;
@@ -97,14 +99,13 @@ ul.prop-tooltip {
 /*-----------viewer */
 .embedded {
 		.make-sm-column(12, 0);
-		background-color: @well-bg;
 		margin-bottom:2px;
 		
 		> .multiple {
-			border:1px solid #FFD700;
+			border:1px solid #D4D2CA;
 		}
 		> .simple {
-			border:1px solid #FFD700;
+			border:1px solid #D4D2CA;
 		}
 }
 ul.proplist.simple {
@@ -124,11 +125,28 @@ ul.proplist.simple {
 		padding-left: 15px;
 	}
 }
+.instviewerbrand {
+	@media (max-width: @screen-sm-min) {
+		display:none;
+	}
+}
+.instviewer div.row:nth-child(even) {
+	background-color:#EDF5FB;
+}
+.propview {
+	margin-bottom: 2px;
+}
 .propvalue {
 	.make-sm-column(6);
+	@media (max-width: @screen-sm-min) {
+		font-weight:bold;
+	}
 }
 .viewlabel {
 	.make-sm-column(6);
-	text-align:right;
+	@media (min-width: @screen-sm-min) {
+    	text-align: right;
+  	}
+  	font-weight:normal;
 }
 

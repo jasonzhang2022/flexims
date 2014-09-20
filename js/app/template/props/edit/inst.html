@@ -1,6 +1,6 @@
 <div>
 	<div data-ng-class="propclasses(propobj)" data-ng-repeat="propobj in props">
-		<div data-ng-if="showlabel" data-ng-class="propLabelClasses(field, propobj);">
+		<div data-ng-if="propobj.isEmbedded() || propobj.isEmbeddedElementCollection() ||showlabel" data-ng-class="propLabelClasses(field, propobj);">
 			<label class="control-label" >
 				{{propobj.getDisplayText()}}
 				<span data-tooltip-html-unsafe="{{propTooltip(propobj)}}" class="info" data-ng-if="propTooltip(propobj)">
@@ -15,9 +15,7 @@
 		<fx-prop-editor/>
 	</div>
 	<div class="form-group prop well" data-ng-if="type.isExtensible()" data-fx-single-prop="fxExtraProp">
-		<div class="proplabel" data-ng-if="showlabel">
-			<label class="control-label" > Extra Properties </label>
-		</div>
+		<label class="control-label" > Extra Properties </label>
 		<div ng-include src="'template/props/edit/namevaluelist.html'"></div>
 	</div>
 </div>

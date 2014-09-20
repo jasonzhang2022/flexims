@@ -1,4 +1,4 @@
-angular.module("instDirective").controller("instEditorController", function($scope, $element, $attrs, $controller, fxTemplates, instCache){
+angular.module("instDirective").controller("instEditorController", function($scope, $element, $attrs, $controller, fxTemplates, instCache, $rootScope){
 	this.name="instEditor";
 	
 	//get a hold the parent scope so we can use its variable, function
@@ -9,7 +9,12 @@ angular.module("instDirective").controller("instEditorController", function($sco
 		if (angular.isDefined($scope.$parent.showlabel)){
 			$scope.showlabel=$scope.$parent.showlabel;
 		} else {
-			$scope.showlabel=true;
+			if ($rootScope.smallscreen){
+				$scope.showlabel=false;
+			} else {
+				$scope.showlabel=true;
+			}
+			
 		}
 	}
 	

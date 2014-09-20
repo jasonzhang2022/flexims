@@ -1,7 +1,7 @@
 <div >
 	<div class="row" data-ng-repeat="propobj in props" ng-class="['propview', propobj.getName()]">
-		<div class="viewlabel" data-ng-if="showlabel">
-			{{propobj.getDisplayText()}}
+		<div class="viewlabel" data-ng-if="propobj.isEmbedded() || propobj.isEmbeddedElementCollection() ||showlabel">
+			{{propobj.getDisplayText()}}:
 			<span data-tooltip-html-unsafe="{{tooltip(propobj)}}" class="info" data-ng-if="tooltip(propobj)">
 				<span class="glyphicon glyphicon-info-sign"></span>
 			</span>

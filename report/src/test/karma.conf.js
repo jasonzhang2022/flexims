@@ -17,6 +17,7 @@ module.exports = function(config){
 		         '../js/app/lib/angular-mocks/angular-mocks.js',
 		         '../js/app/js/common.js',
 		         '../js/app/js/type/type_common.js',
+		         '../js/app/js/type/serverconfig.js',
 		         'src/test/typemodules.js',
 		         
 		         'src/main/resources/META-INF/resources/thirdparty/picklist.js',

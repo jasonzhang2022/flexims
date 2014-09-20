@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<orm:entity-mappings
+	xmlns:orm="http://www.eclipse.org/eclipselink/xsds/persistence/orm"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<orm:persistence-unit-metadata>
+		<orm:xml-mapping-metadata-complete>true
+		</orm:xml-mapping-metadata-complete>
+		<orm:exclude-default-mappings>true</orm:exclude-default-mappings>
+		<orm:persistence-unit-defaults>
+			<orm:access>VIRTUAL</orm:access>
+			<orm:access-methods get-method="get" set-method="set" />
+			<orm:entity-listeners>
+				<orm:entity-listener class="com.flexdms.flexims.jpa.event.EntityListener">
+					<orm:pre-persist method-name="prePersist" />
+					<orm:post-persist method-name="postPersist" />
+					<orm:pre-remove method-name="preRemove" />
+					<orm:post-remove method-name="postRemove" />
+					<orm:pre-update method-name="preUpdate" />
+					<orm:post-update method-name="postUpdate" />
+					<orm:post-load method-name="postLoad" />
+				</orm:entity-listener>
+			</orm:entity-listeners>
+		</orm:persistence-unit-defaults>
+	</orm:persistence-unit-metadata>
+	<orm:table-generator name="BusinessTransactionseq" table="seqs"
+		pk-column-name="name" value-column-name="seq" pk-column-value="BusinessTransaction"
+		initial-value="10000" allocation-size="50" />
+	<orm:entity name="BusinessTransaction" class="BusinessTransaction"
+		parent-class="com.flexdms.flexims.jpa.eclipselink.FleximsDynamicEntityImpl"
+		access="VIRTUAL">
+		<orm:description>Business Transaction</orm:description>
+		<orm:property name="abstract" value="false" />
+		<orm:attributes>
+			<orm:id name="id" attribute-type="Long">
+				<orm:column />
+				<orm:generated-value strategy="TABLE" generator="BusinessTransactionseq" />
+			</orm:id>
+			<orm:basic name="TransactionDate" optional="false"
+				attribute-type="java.util.Calendar">
+				<orm:column unique="false" nullable="false" length="254" />
+				<orm:temporal>DATE</orm:temporal>
+				<orm:property name="displaytext" value="Date" />
+				<orm:property name="temporal" value="DATE" />
+				<orm:property name="typeidx" value="11" />
+				<orm:property name="viewable" value="true" />
+				<orm:property name="editable" value="true" />
+				<orm:property name="summaryprop" value="true" />
+			</orm:basic>
+			<orm:basic name="CostOrRevenue" optional="true"
+				attribute-type="boolean">
+				<orm:column unique="false" nullable="true" length="254" />
+				<orm:property name="typeidx" value="9" />
+				<orm:property name="displaytext" value="Cost?" />
+				<orm:property name="viewable" value="true" />
+				<orm:property name="editable" value="true" />
+				<orm:property name="autogenerate" value="true" />
+				<orm:property name="defaultvalue" value="true" />
+			</orm:basic>
+			<orm:basic name="Description" optional="false"
+				attribute-type="java.lang.String">
+				<orm:column unique="false" nullable="false" length="254" />
+				<orm:property name="displaytext" value="Description" />
+				<orm:property name="typeidx" value="0" />
+				<orm:property name="viewable" value="true" />
+				<orm:property name="editable" value="true" />
+				<orm:property name="autogenerate" value="true" />
+			</orm:basic>
+			<orm:basic name="PretaxCost" optional="false"
+				attribute-type="java.lang.Double">
+				<orm:column unique="false" nullable="false" length="254" />
+				<orm:property name="displaytext" value="Amount WITHOUT tax" />
+				<orm:property name="typeidx" value="6" />
+				<orm:property name="viewable" value="true" />
+				<orm:property name="editable" value="true" />
+				<orm:property name="autogenerate" value="true" />
+			</orm:basic>
+			<orm:basic name="GSTax" optional="true" attribute-type="java.lang.Double">
+				<orm:column unique="false" nullable="true" length="254" />
+				<orm:property name="displaytext" value="GST" />
+				<orm:property name="typeidx" value="6" />
+				<orm:property name="viewable" value="true" />
+				<orm:property name="editable" value="true" />
+				<orm:property name="autogenerate" value="true" />
+			</orm:basic>
+			<orm:basic name="PSTax" optional="true" attribute-type="java.lang.Double">
+				<orm:column unique="false" nullable="true" length="254" />
+				<orm:property name="displaytext" value="PST" />
+				<orm:property name="typeidx" value="6" />
+				<orm:property name="viewable" value="true" />
+				<orm:property name="editable" value="true" />
+				<orm:property name="autogenerate" value="true" />
+			</orm:basic>
+			<orm:basic name="Hstax" optional="true" attribute-type="java.lang.Double">
+				<orm:column unique="false" nullable="true" length="254" />
+				<orm:property name="displaytext" value="HST" />
+				<orm:property name="typeidx" value="6" />
+				<orm:property name="viewable" value="true" />
+				<orm:property name="editable" value="true" />
+				<orm:property name="autogenerate" value="true" />
+			</orm:basic>
+			<orm:basic name="CompanyShare" optional="true"
+				attribute-type="java.lang.Float">
+				<orm:column unique="false" nullable="true" length="254" />
+				<orm:property name="displaytext"
+					value="Percent of the cost will be counted as Operation cost" />
+				<orm:property name="typeidx" value="5" />
+				<orm:property name="viewable" value="true" />
+				<orm:property name="editable" value="true" />
+				<orm:property name="autogenerate" value="true" />
+				<orm:property name="defaultvalue" value="100"/>
+			</orm:basic>
+			<orm:basic name="Receipt" optional="true" attribute-type="java.lang.String">
+				<orm:column unique="false" nullable="true" length="254" />
+				<orm:property name="displaytext" value="Receipt Image" />
+				<orm:property name="strtype" value="File" />
+				<orm:property name="typeidx" value="17" />
+				<orm:property name="viewable" value="true" />
+				<orm:property name="editable" value="true" />
+				<orm:property name="autogenerate" value="true" />
+				<orm:property name="clientfile" value="true" />
+			</orm:basic>
+
+			<orm:version name="fxversion" mutable="true"
+				attribute-type="java.sql.Timestamp">
+				<orm:column />
+			</orm:version>
+		</orm:attributes>
+	</orm:entity>
+</orm:entity-mappings>

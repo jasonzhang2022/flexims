@@ -18,7 +18,7 @@ angular.module("flexdms.auth").controller("passwordCtrl", function($scope,fxAuth
 				
 			}
 		}).then(function(xhr){
-				var rsMsg=xhr.data.rsMsg;
+				var rsMsg=xhr.data.appMsg;
 				if (rsMsg.statuscode!=0){
 					$scope.showErrorMsg(rsMsg.msg);
 					return rsMsg;

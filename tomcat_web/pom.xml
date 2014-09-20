@@ -153,6 +153,7 @@
 						<configuration>
 							<failOnMissingWebXml>false</failOnMissingWebXml>
 							<warName>demo</warName>
+							<outputDirectory>${basedir}</outputDirectory>
 							<attachClasses>true</attachClasses>
 							<!--  remove test class -->
 							<!--  containing account information -->
@@ -196,11 +197,12 @@
 						<configuration>
 							<failOnMissingWebXml>false</failOnMissingWebXml>
 							<warName>account</warName>
+							<outputDirectory>${basedir}</outputDirectory>
 							<attachClasses>true</attachClasses>
 							<!--  remove test class -->
 							<!--  containing account information -->
 							<packagingExcludes>
-								WEB-INF/lib/testorm*.jar,WEB-INF/lib/s3files*.jar
+								WEB-INF/lib/testorm*.jar
 							</packagingExcludes>
 							<webResources>
 								<resource>

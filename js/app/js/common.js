@@ -171,4 +171,34 @@ angular.module('flexdms.common', [])
 	       
 	    }
 	  };
+	}).directive('fxCollapseItem', function($rootScope) {
+		/*
+		 * give a name to input under ng-repeat so that is has a name.
+		 */
+		 return {
+		    restrict: 'A', 
+		    scope:true,
+		    controller : function($scope, $element, $attrs){
+		    	if ($rootScope.smallscreen){
+		    		$scope.collapsed=true;
+		    	} else {
+		    		$scope.collapsed=false;
+		    	}
+		    	
+		    	$scope.collapseMenu=function(){
+		    		if ($rootScope.smallscreen){
+		    			$scope.collapsed=true;
+		    		}
+		    		
+		    	};
+		    }
+		  };
+		})
+	
+	.run(function($window, $rootScope){
+		if ($window.innerWidth<768){
+			$rootScope.smallscreen=true;
+		} else {
+			$rootScope.smallscreen=false;
+		}
 	});

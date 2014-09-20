@@ -67,7 +67,6 @@ angular.module("instDirective").directive("fxPropInput",function($compile,$templ
 	    		//for primitive with multiple value, the field in parent is the subform
 	    		scope.$parent.field=iElement.controller("ngModel");
 	    	}
-	    	
     		scope.field=iElement.controller("ngModel");
 	    },
 		

@@ -31,7 +31,7 @@
             <orm:lob/>
             <orm:property name="editable" value="false"/>
             <orm:property name="viewable" value="false"/>
-            <orm:property name="displaytext'" value="extensible properties"/>
+            <orm:property name="displaytext" value="extensible properties"/>
             <orm:property name="system'" value="true"/>
             <orm:property name="typeidx" value="10"/>
             <orm:property name="rootClass" value="com.flexdms.flexims.jpa.helper.NameValueList"/>

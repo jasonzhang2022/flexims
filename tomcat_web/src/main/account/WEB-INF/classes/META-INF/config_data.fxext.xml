@@ -18,6 +18,24 @@
       <ForClient>false</ForClient>
       <ForAdmin>false</ForAdmin>
    </FxConfig>
+   <FxConfig>
+      <fxversion>2014-06-09T15:54:15.506724-07:00</fxversion>
+      <Name>fileSchema</Name>
+      <id>115</id>
+      <Description>Store File in Amazon S3</Description>
+      <ConfigValue>s3</ConfigValue>
+      <ForClient>true</ForClient>
+      <ForAdmin>false</ForAdmin>
+   </FxConfig>
+   <FxConfig>
+      <fxversion>2014-06-09T15:54:15.506724-07:00</fxversion>
+      <Name>Brandtext</Name>
+      <id>116</id>
+      <Description>Brand Text</Description>
+      <ConfigValue>Transactions</ConfigValue>
+      <ForClient>true</ForClient>
+      <ForAdmin>false</ForAdmin>
+   </FxConfig>
    
   
 </entities>
