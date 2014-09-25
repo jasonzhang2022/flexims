@@ -1,0 +1,16 @@
+<div class="text-danger" style="font-size: large;">
+	<ul>
+		<li ng-repeat="erromsg in errormsgs">{{errormsg}} </li>
+	</ul>
+</div>
+<div class="text-info">
+	<ul>
+		<li ng-repeat="sheetstate in fileState.sheets"><strong>{{sheetstate.name}}</strong>
+			<ul>
+				<li>Found {{sheetstate.json.length}} row with data</li>
+				<li>Retrieve data from row {{sheetstate.datarowStart}} </li>
+				<li>{{sheetstate.insts.length}} row will be uploaded</li>
+			</ul>
+		 <li>
+	</ul>
+</div>

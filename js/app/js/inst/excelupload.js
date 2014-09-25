@@ -157,7 +157,6 @@ flexdms.excelWorksheet=function(worksheet, sheetname){
 					inst.$validState[i]=true;
 				}
 			} else {
-				inst[propobj.getName()]=null;
 				inst.$validState[i]=true;
 			}
 		}
@@ -224,7 +223,23 @@ angular.module("flexdms.excelupload", ["flexdms.TypeResource","flexdms.InstResou
 		controller: function($scope, fxInstPopup, Inst, fxAlert, $timeout, $rootScope, $http){
 			
 			//no validate by default.
-			$scope.validate=false;
+			$scope.validate=true;
+			$scope.headerrow=1;
+			$scope.typesrc="sheetname";
+			$scope.errormsgs=[];
+			$scope.$watch("typesrc", function(){
+				if ($scope.typesrc!="sheetname"){
+					$scope.headerrow=2;
+				}
+			});
+			
+			
+			$scope.cleanErrors=function(){
+				$scope.errormsgs.length=0;
+			};
+			$scope.addError=function(msg){
+				$scope.errormsgs.push(msg);
+			};
 			
 			var types=[];
 			angular.forEach(flexdms.types, function(t){
@@ -254,10 +269,66 @@ angular.module("flexdms.excelupload", ["flexdms.TypeResource","flexdms.InstResou
 				$scope.fileState.sheets=sheets;	
 			}
 			
+			$scope.processUninvalidateExcel=function(){
+				
+				for (var i=0; i<$scope.fileState.sheets.length; i++){
+					var sheetstate=$scope.fileState.sheets[i];
+					sheetstate.datarowStart=$scope.headerrow+1;
+					var typename=null;
+					if ($scope.typesrc=='sheetname'){
+						typename=sheetstate.name;
+					} else {
+						typename=sheetstate.json[0][0];
+					}
+					sheetstate.type=flexdms.findType(typename);
+					if (sheetstate.type==null){
+						$scope.addError("Could not find type for worksheet "+sheetstate.name+". The found type's name is "+typename+". It will be skipped");
+						continue;
+					}
+					
+					//process headerrow
+					var headers=[];
+					for (var j=0; j<sheetstate.json[$scope.headerrow-1].length; j++){
+						var header=sheetstate.json[$scope.headerrow-1][j];
+						if (angular.isDefined(header) && header!=null){
+							header=header.replace(/ /g, "");
+							headers.push(header);
+						} else {
+							headers.push(null);
+						}
+					}
+					var insts=[];
+					
+					//process each data rows;
+					for(var rowindex=$scope.headerrow; rowindex<sheetstate.json.length; rowindex++){
+						var json=sheetstate.json[rowindex];
+						var inputobj={};
+						for (var j=0;j<headers.length; j++){
+							var header=headers[j];
+							if (header==null || !angular.isDefined(json[j]) || json[j]==null){
+								continue;
+							}
+							inputobj[header]=json[j];
+						}
+						var newinst=Inst.newInst(sheetstate.type.getName()); //use default value
+						newinst.$validState=new Array();
+						newinst.$skip=false;
+						
+						insts.push(newinst);
+						var stringInst=flexdms.unflatObject(inputobj);
+						flexdms.copyFromStringValued(newinst, stringInst, Inst);
+					}
+					
+					sheetstate.insts=insts;
+				}
+			};
 			
 			$scope.handleFile=function($event){
 				//clean all state if file are reloaded.
-				$scope.errormsg=null;
+				$scope.cleanErrors();
+				$scope.saved=false;
+				$scope.savemsg=null;
+				$scope.saveerror=null;
 				
 				
 				$scope.fileState={};
@@ -274,6 +345,9 @@ angular.module("flexdms.excelupload", ["flexdms.TypeResource","flexdms.InstResou
 							$scope.fileState.workbook = XLSX.read(data, {type: 'binary'});
 							$scope.fileState.filename=f.name;  //file is ready.
 							initSheets();
+							if (!$scope.validate){
+								$scope.processUninvalidateExcel();
+							}
 							$scope.fileState.loading=false;
 							//update UI.
 							$scope.$apply();
@@ -293,11 +367,9 @@ angular.module("flexdms.excelupload", ["flexdms.TypeResource","flexdms.InstResou
 			$scope.allsheetsValid=function(){
 				for (var i=0; i<$scope.fileState.sheets.length; i++){
 					if (!$scope.fileState.sheets[i].isSheetValid()){
-						$scope.errormsg="worksheet "+$scope.fileState.sheets[i].name+" is not Verified.";
 						return false;
 					}
 				}
-				$scope.errormsg="";
 				return true;
 			};
 			$scope.upload=function(){
@@ -316,7 +388,10 @@ angular.module("flexdms.excelupload", ["flexdms.TypeResource","flexdms.InstResou
 							continue;
 						}
 						//add default value and auto-generated value
-						sheetState.type.initInstance(sheetState.insts[j], false);
+						if ($scope.validate){
+							sheetState.type.initInstance(sheetState.insts[j], false);
+						}
+						
 						es.push(sheetState.insts[j]);
 					}
 					
@@ -404,7 +479,7 @@ angular.module("flexdms.excelupload", ["flexdms.TypeResource","flexdms.InstResou
 		if ($scope.sheetstate.invalidInsts.length>0){
 			$scope.invalidInstsFirst10=$scope.sheetstate.invalidInsts.splice(0, 10);
 		} else {
-			$scope.invalidInstsFirst10=[];
+			$scope.invalidInstsFirst10.length=0;
 			delete($scope.sheetstate.valid);
 		}
 	};

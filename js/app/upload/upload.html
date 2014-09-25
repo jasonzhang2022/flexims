@@ -1,153 +1,59 @@
 <div class="panel panel-default">
 	<div class="panel-heading">
 		<div class="btn-toolbar">
-			<div class="btn-group pull-right" >
-			<button type="button" class="btn btn-primary btn-lg" ng-disabled="!fileState.filename || saved || !allsheetsValid()" ng-click="upload();">Upload</button>
+			<div class="btn-group pull-right">
+				<button type="button" class="btn btn-primary btn-lg" ng-disabled="!fileState.filename || saved || !allsheetsValid()" ng-click="upload();">Upload</button>
 			</div>
 		</div>
 	</div>
 	<div class="panel-body">
-<div>
-	<div>
-		<form name="uploadform" class="form-horizontal">
-			<div class="form-group">
-				<label class="control-label col-sm-2">No validation</label>
-				<div class="col-sm-7">
-					<input type="checkbox" class="form-control" name="validate"  ng-model="validate" >
+		<div>
+			<div>
+				<div class="text-danger" style="font-size: large;">
+					<div class="center-block" style="width:50%;">{{saveerror}}</div>
+					<div class="center-block" style="width:50%;">{{savemsg}}</div>
 				</div>
+				<form name="uploadform" class="form-horizontal">
+					<div class="form-group">
+						<label class="col-sm-7 col-sm-offset-2">
+							<input type="checkbox"  name="validate" ng-model="validate">
+						Validate Worksheet</label>
+					</div>
+					<div class="form-group" ng-show="!validate">
+						<div class="col-sm-7 col-sm-offset-2">
+							<label>
+								<input type="radio" class="radio-inline" ng-model="typesrc" value="sheetname">Worksheet Name as type
+								<input type="radio" class="radio-inline"   ng-model="typesrc" value="firstcell">First cell in First row as type
+							</label>
+						</div>
+					</div>
+					<div class="form-group"  ng-show="!validate">
+						<label class="control-label col-sm-2">Header Row</label>
+						<div class="col-sm-7">
+							<input type="number" class="form-control" name="headerrow" ng-model="headerrow">
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="control-label col-sm-2">Excel file</label>
+						<div class="col-sm-7">
+							<input type="file" class="form-control" name="xlsx" fx-excelupload-file accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet">
+							<span ng-show="fileState.loading">
+								<i class="fa fa-refresh fa-spin"></i>
+							</span>
+						</div>
+					</div>
+
+				</form>
 			</div>
-			<div class="form-group">
-				<label class="control-label col-sm-2">Excel file</label>
-				<div class="col-sm-7">
-					<input type="file" class="form-control" name="xlsx" fx-excelupload-file >
-					<span  ng-show="fileState.loading"><i class="fa fa-refresh fa-spin"></i></span> 
-				</div>
+
+			<!--  validation flow -->
+			<div ng-if="fileState.filename && validate">
+				<div ng-include="'upload/upload_validation.html'" ></div>
+			</div>
+			<div ng-if="fileState.filename && !validate">
+				<div ng-include="'upload/upload_novalidation.html'" ></div>
 			</div>
 			
-		</form>
-	</div>
-
-	<div ng-if="fileState.filename">
-			<div class="text-danger" style="font-size: large;">
-			<div class="center-block">{{errormsg}}</div>
-			<div class="center-block">{{saveerror}}</div>
-			<div class="center-block">{{savemsg}}</div>
 		</div>
-		
-		<!-- One tab for each sheet -->
-		<tabset> 
-			<tab ng-repeat="sheetstate in fileState.sheets" ng-controller="fxExcelWorksheet">
-				 <tab-heading>
-	      	  		<span ng-class="{'text-danger':!sheetstate.isSheetValid()}" ><span ng-if="!sheetstate.isSheetValid()"> <i class="glyphicon glyphicon-bell"></i> </span>{{sheetstate.name}}</span> 
-	      		</tab-heading>
-      
-				<form name="sheetform" class="form-horizontal">
-					<div class="form-group" ng-class="{'has-error': sheetform.type.$error.required}">
-						<label class="col-sm-5 control-label">Type Associated with {{sheetstate.name}}
-							<span class="required" data-tooltip="required">*</span>
-						</label>
-						<div class="col-sm-5">
-							<select ng-options="type.getName() for type in types" ng-model="sheetstate.type" required name="type" class="form-control" ng-change="sheetstate.initializeHeaderMap();">
-								<option value="">Select...</option>
-							</select>
-						</div>
-						<div class="col-sm-2" ng-if="sheetform.type.$error.required">
-							<span class="help-block"> Required </span>
-						</div>
-					</div>
-					<div class="form-group" ng-class="{'has-error': sheetform.rowstart.$error.required}">
-						<label class="col-sm-5 control-label">Data Starts from row
-							<span class="required" data-tooltip="required">*</span>
-						</label>
-						<div class="col-sm-5">
-							<input type="number" ng-model="sheetstate.datarowStart" required name="rowstart" class="form-control">
-						</div>
-						<div class="col-sm-2" ng-if="sheetform.rowstart.$error.required">
-							<span class="help-block"> required </span>
-						</div>
-					</div>
-					
-					<!-- buttons -->
-						<div  ng-if="!sheetstate.convertedData()" style="margin-left: 100px;">
-							<span class="text-info">{{sheetstate.json.length}} records are found. 
-							<span ng-if="sheetstate.json.length>10">{{jsonFirst10.length}} are shown</span></span>
-							<span class="text-danger"><span ng-if="requiredprop">{{requiredprop.getName()}} is not mapped to any column. Data can not be verified.</span></span>
-							<button type="button" class="btn btn-primary" ng-show="!sheetstate.convertedData()" ng-click="convertData()" ng-disabled="sheetform.$invalid">Verify</button>
-						</div>
-						<div ng-if="sheetstate.convertedData()" style="margin-left: 100px;">
-							<span class="text-info">{{sheetstate.json.length}} records are found. 
-							<span ng-show="sheetstate.skipped>0">{{sheetstate.skipped}} records are marked for skip.</span>
-							<span ng-show="sheetstate.invalidInsts.length>0">{{sheetstate.invalidInsts.length}} are invalid among them.</span>
-							<span ng-show="sheetstate.invalidInsts.length>10">{{invalidInstsFirst10.length}} invalid records are shown.</span>
-							</span>
-							<button type="button" class="btn btn-primary" ng-show="sheetstate.convertedData()" ng-click="checkInvalidInsts()" ng-disabled="sheetform.$invalid">Re-Verify</button>
-						</div>
-					
-					
-						<table class="table table-bordered table-condensed table-striped">
-							<thead>
-							<tr>
-								<td>#</td>
-								<td ng-show="sheetstate.convertedData()">valid?</td>
-								<td ng-repeat="propMap in sheetstate.headersPropMap" class="form-group" ng-class="{'has-error': sheetform['propmap'+$index].$error.required}">
-									<label>
-										<input type="checkbox" ng-model="propMap.skip" ng-change="sheetstate.unmapProp();">
-										Skip
-									</label>
-									<select ng-model="propMap.prop" ng-show="!propMap.skip" ng-change="sheetstate.unmapProp();" ng-required="!propMap.skip" name="fake" fx-dynamic-name="'propmap'+$index"
-										ng-options="prop.getName() for prop in sheetstate.getProps()"
-									>
-										<option value="">Select ...</option>
-									</select>
-									<div class="help-block">
-										<span ng-if="sheetform['propmap'+$index].$error.required">required</span>
-									</div>
-		
-								</td>
-							</tr>
-							<thead>
-							<!--  show raw data to assist end user to map property -->
-							<tbody ng-if="!sheetstate.convertedData()">
-								<tr ng-repeat="row in jsonFirst10" ng-class="{'info': $index+1==sheetstate.datarowStart}" ng-controller="fxExceluploadRowScope" >
-									<td>{{rowindex+1}}</td>
-									<td ng-repeat="propMap in sheetstate.headersPropMap" >
-										{{row[$index]}}
-									</td>
-								</tr>
-							</tbody>
-							
-							<tbody ng-if="sheetstate.convertedData() && invalidInstsFirst10">
-								<tr ng-repeat="inst in invalidInstsFirst10" ng-controller="instEditorController">
-									<td>{{inst.$rowindex+1}}</td>
-									<td>
-											<label>
-												<input type="checkbox" ng-model="inst.$skip">
-												Skip
-											</label>
-									</td>
-	
-									<td ng-repeat="propMap in sheetstate.headersPropMap" >
-										<!-- raw data -->
-										<div>{{sheetstate.json[inst.$rowindex][$index]}}
-											<span ng-if="!propMap.skip && !inst.$validState[$index]" class="text-error">
-													<span class="fa fa-exclamation"></span>
-											</span>
-										</div>
-										
-										<fx-prop-editor propobj="propMap.prop" ng-if="!inst.$skip && !propMap.skip && !inst.$validState[$index]" class="inline"/>
-										
-									</td>
-								</tr>
-							</tbody>
-		
-						</table>
-						
-					
-		
-				</form>
-			</tab>
-		</tabset>
 	</div>
-</div>
-</div>
 </div>

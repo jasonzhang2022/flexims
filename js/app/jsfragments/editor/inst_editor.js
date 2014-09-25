@@ -3,10 +3,6 @@ angular.module("instDirective").controller("instEditorController", function($sco
 	
 	//get a hold the parent scope so we can use its variable, function
 	$scope.instpscope=$scope.$parent;
-	
-	if (!angular.isDefined($scope.propclass)){
-		$scope.propclass='form-group';
-	}
 	//show label or not
 	if (!angular.isDefined($scope.showlabel)){
 		if (angular.isDefined($scope.$parent.showlabel)){
@@ -78,7 +74,7 @@ angular.module("instDirective").controller("instEditorController", function($sco
 	
 	//----------------------utility to help the property label 
 	$scope.propclasses=function(propobj){
-		var propclasses=[$scope.propclass, "prop", propobj.getName()];
+		var propclasses=[$scope.propclass?$scope.propclass:'form-group', "prop", propobj.getName()];
 		if (propobj.getTypeObject().isEmbedded()){
 			propclasses.push('embeddedprop');
 		}
