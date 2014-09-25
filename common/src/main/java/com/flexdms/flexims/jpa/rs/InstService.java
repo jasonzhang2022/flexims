@@ -7,6 +7,8 @@ import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.io.Reader;
 import java.io.StringWriter;
+import java.util.LinkedList;
+import java.util.List;
 
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
@@ -38,6 +40,7 @@ import com.flexdms.flexims.jaxb.moxy.JaxbHelper;
 import com.flexdms.flexims.jaxb.moxy.RelationAsIDMoxyMetaSource;
 import com.flexdms.flexims.jpa.JpaHelper;
 import com.flexdms.flexims.jpa.eclipselink.FleximsDynamicEntityImpl;
+import com.flexdms.flexims.rsutil.Entities;
 
 /**
  * Manage instance view/edit/delete
@@ -54,14 +57,15 @@ public class InstService {
 	// this does not work under weld
 	// @Context Request rs;
 
-	
 	@Inject
 	EntityDAO dao;
-	
+
 	@Inject
 	EntityManager em;
 
-	@Inject JaxbHelper jaxbHelper;
+	@Inject
+	JaxbHelper jaxbHelper;
+
 	@Path("/status")
 	@GET
 	@Produces({ MediaType.TEXT_PLAIN })
@@ -137,6 +141,20 @@ public class InstService {
 
 	}
 
+	@Path("/savebatch")
+	@POST
+	@Transactional
+	public Entities saveBatch(Reader reader, @Context Request rs) throws Exception {
+		Entities entities = (Entities) jaxbHelper.input(reader, em, isXml(rs), false);
+		for (Object obj : entities.getItems()) {
+			FleximsDynamicEntityImpl entity = (FleximsDynamicEntityImpl) obj;
+			em.persist(entity);
+			em.flush(); // very important so EntityListener can add more
+						// modification to this transaction
+		}
+		return entities;
+	}
+
 	@Path("/savenested")
 	@POST
 	@Transactional
@@ -153,6 +171,22 @@ public class InstService {
 	@POST
 	public FleximsDynamicEntityImpl updateSingle(Reader reader, @Context Request rs) throws Exception {
 		return saveSingle(reader, rs);
+	}
+
+	@Path("/updatebatch")
+	@POST
+	@Transactional
+	public Entities updateBatch(Reader reader, @Context Request rs) throws Exception {
+		List<FleximsDynamicEntityImpl> itemsList = new LinkedList<FleximsDynamicEntityImpl>();
+		Entities entities = (Entities) jaxbHelper.input(reader, em, isXml(rs), false);
+		for (Object obj : entities.getItems()) {
+			FleximsDynamicEntityImpl entity = (FleximsDynamicEntityImpl) obj;
+			itemsList.add(em.merge(entity));
+			em.flush(); // very important so EntityListener can add more
+						// modification to this transaction
+		}
+		entities.setItems(itemsList);
+		return entities;
 	}
 
 	@Path("/delete/{type}/{id}")

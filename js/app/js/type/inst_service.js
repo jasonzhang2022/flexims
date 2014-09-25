@@ -8,7 +8,7 @@ flexdms.isJsonHttpReturn=function(headers){
 	return false;
 };
 
-angular.module("flexdms.InstResource", ['ngResource']).factory("Inst", ["$resource", "$q" , function($resource, $q) {
+angular.module("flexdms.InstResource", ['ngResource']).factory("Inst", ["$resource", "$q" , "$http", function($resource, $q, $http) {
 	
 	function wrapResourceObject(data){
 		
@@ -113,11 +113,16 @@ angular.module("flexdms.InstResource", ['ngResource']).factory("Inst", ["$resour
 		save: {
 			url:flexdms.instserviceurl+"/save",
 			method : 'POST', 
-			 transformRequest:wrapResourceObject,
-	         transformResponse: unwrapObject,
-			isArray:false}
+			transformRequest:wrapResourceObject,
+			transformResponse: unwrapObject,
+			isArray:false
+		}
+		
 	});
 	
+	Inst.saveBatch=function(data){
+		return $http.post(flexdms.instserviceurl+"/savebatch", data);
+	};
 	Inst.prototype.getSummary=function(){
 		var typename=this[flexdms.insttype];
 		

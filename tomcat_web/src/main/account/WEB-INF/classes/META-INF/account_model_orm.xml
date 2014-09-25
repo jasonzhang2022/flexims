@@ -108,6 +108,21 @@
 				<orm:property name="editable" value="true" />
 				<orm:property name="autogenerate" value="true" />
 				<orm:property name="defaultvalue" value="100"/>
+				 <orm:property name="minvalue" value="0"/>
+            	<orm:property name="maxvalue" value="100"/>
+			</orm:basic>
+			<orm:basic name="GSTPercent" optional="true"
+				attribute-type="java.lang.Float">
+				<orm:column unique="false" nullable="true" length="254" />
+				<orm:property name="displaytext"
+					value="Percent of GST or HST can be claimed as Input Tax Credit" />
+				<orm:property name="typeidx" value="5" />
+				<orm:property name="viewable" value="true" />
+				<orm:property name="editable" value="true" />
+				<orm:property name="autogenerate" value="true" />
+				<orm:property name="defaultvalue" value="100"/>
+				<orm:property name="minvalue" value="5"/>
+           		<orm:property name="maxvalue" value="20"/>
 			</orm:basic>
 			<orm:basic name="Receipt" optional="true" attribute-type="java.lang.String">
 				<orm:column unique="false" nullable="true" length="254" />

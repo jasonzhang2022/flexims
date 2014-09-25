@@ -22,4 +22,14 @@ angular.module("instDirective").directive("fxSingleProp", function($compile,$tem
 			$scope.propobj=$scope.type.getProp(propname);
 		},
 	};
+}).directive("fxSimpleSingleProp", function($compile,$templateCache, fxTemplates){
+	return {
+		priority:599, //make this after if 
+		restrict: 'A',
+		scope:false,
+		controller :function($scope, $element, $attrs){
+			var propname=$attrs.fxSingleProp;
+			$scope.propobj=$scope.type.getProp(propname);
+		},
+	};
 });

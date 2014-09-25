@@ -34,7 +34,8 @@
     "angular-ui-tree": "2.1.4",
     "angular-http-auth": "1.0.1",
     "angular-file-upload": "0.5.7",
-    "jspdf" : "1.0.178"
+    "jspdf" : "1.0.178",
+    "js-xlsx": "0.7.10"
   },
   "resolutions": {
     "es5-shim": "2.3.0"

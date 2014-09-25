@@ -27,7 +27,10 @@
         <dependent-module archiveName="module-0.1.0-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/fxmodule/fxmodule">
             <dependency-type>uses</dependency-type>
         </dependent-module>
-        <dependent-module archiveName="testorm-0.1.0-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/fxtestorm/fxtestorm">
+        <dependent-module archiveName="googlefiles-0.1.0-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/fxgooglefiles/fxgooglefiles">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="s3files-0.1.0-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/fxs3files/fxs3files">
             <dependency-type>uses</dependency-type>
         </dependent-module>
         <dependent-module deploy-path="/" handle="module:/overlay/prj/fxjs?includes=**/**&amp;excludes=META-INF/MANIFEST.MF">
@@ -37,7 +40,7 @@
             <dependency-type>consumes</dependency-type>
         </dependent-module>
         <property name="java-output-path" value="/tomcat_web/target/classes"/>
-        <property name="context-root" value="flexims"/>
-        <property name="component.exclusion.patterns" value="WEB-INF/lib/googlefiles*.jar,WEB-INF/lib/s3files*.jar"/>
+        <property name="context-root" value="account"/>
+        <property name="component.exclusion.patterns" value="WEB-INF/lib/testorm*.jar"/>
     </wb-module>
 </project-modules>

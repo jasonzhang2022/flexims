@@ -194,8 +194,9 @@ angular.module('flexdms.common', [])
 		    }
 		  };
 		})
-	
 	.run(function($window, $rootScope){
+		
+		
 		if ($window.innerWidth<768){
 			$rootScope.smallscreen=true;
 		} else {

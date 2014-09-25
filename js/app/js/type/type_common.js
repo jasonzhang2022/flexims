@@ -140,7 +140,11 @@ flexdms.BasicPropType.prototype.parse = function(value) {
 		return value;
 	}
 	if (this.isNumber()|| this.isRelation()) {
-		return value - 0;
+		var v=value - 0;
+		if (isNaN(v)){
+			return null;
+		}
+		return v;
 	}
 	if (this.isTrueFalse()) {
 		return flexdms.parseTrueFalse(value);

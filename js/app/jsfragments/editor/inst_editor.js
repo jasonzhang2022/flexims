@@ -4,6 +4,9 @@ angular.module("instDirective").controller("instEditorController", function($sco
 	//get a hold the parent scope so we can use its variable, function
 	$scope.instpscope=$scope.$parent;
 	
+	if (!angular.isDefined($scope.propclass)){
+		$scope.propclass='form-group';
+	}
 	//show label or not
 	if (!angular.isDefined($scope.showlabel)){
 		if (angular.isDefined($scope.$parent.showlabel)){
@@ -75,7 +78,7 @@ angular.module("instDirective").controller("instEditorController", function($sco
 	
 	//----------------------utility to help the property label 
 	$scope.propclasses=function(propobj){
-		var propclasses=["form-group", "prop", propobj.getName()];
+		var propclasses=[$scope.propclass, "prop", propobj.getName()];
 		if (propobj.getTypeObject().isEmbedded()){
 			propclasses.push('embeddedprop');
 		}
@@ -126,6 +129,7 @@ angular.module("instDirective").controller("instEditorController", function($sco
  * @param {boolean=} [edit=true] edit an instance or add an instance
  * @param {Array.string|string|Array.Object=} props a list of properties to edit. Can be a list of name separated by ',',  an array of propname, an array of prop object.
  * @param {String=} template-url a template url. If not specified, {@link instDirective.fxTemplates} is used to decide the template url.
+ * @param {String=} propclass what class attached to every prop div, default to 'form-group'
  * 
  */
 angular.module("instDirective").directive("fxInstEditor",function( $templateCache){
@@ -138,6 +142,7 @@ angular.module("instDirective").directive("fxInstEditor",function( $templateCach
 			typename: "=", //required
 			showlabel:"=?",
 			edit:"=?",
+			propclass: "@?"
 		},
 		//http://stackoverflow.com/questions/21835471/angular-js-directive-dynamic-templateurl
 		 template: function(tElement, tAttrs){

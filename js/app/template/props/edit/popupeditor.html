@@ -1,0 +1,12 @@
+<div>
+	<div class="modal-body">
+		<form name="instform" class="form-horizontal">
+			<fx-inst-editor inst='inst' typename='typename' edit='edit' class="insteditor"> </fx-inst-editor>
+		</form>
+	</div>
+	<div class="modal-footer">
+		<button class="btn btn-primary" ng-if="showsave" ng-click="Save()">Save</button>
+		<button class="btn btn-primary" ng-if="showok" ng-click="ok()">OK</button>
+		<button class="btn btn-warning" ng-click="cancel()">Cancel</button>
+	</div>
+</div>
