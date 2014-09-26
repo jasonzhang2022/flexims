@@ -282,4 +282,39 @@ flexdms.copyFromStringValued=function(destInst, srcInst, Inst){
 		
 	});
 };
+flexdms.toStringValued=function(srcInst, outputObject, prefix){
+	var type=flexdms.findType(srcInst[flexdms.insttype]);
+	angular.forEach(type.getProps(), function(prop){
+		
+		var propvalue=srcInst[prop.getName()];
+		if (angular.isDefined(propvalue)|| propvalue==null){
+			return;
+		}
+		var key=prefix?prefix+"."+prop.getName():prop.getName();
+		if (prop.isCollection()){
+			if (prop.isRelation()){
+				outputObject[key]=propvalue.join(",");
+			} else if (prop.getTypeObject().isEmbedded()){
+				for (var i=0; i<propvalue.length; i++){
+					var embeddedInst=propvalue[i];
+					flexdms.copyFromStringValued( embeddedInst, key+"."+i);
+				}
+			} else {
+				//multiple string issue?
+				outputObject[key]=srcInst[prop.getName()].join(",");
+			}
+		} else{
+			//we expect one value
+			if (prop.isRelation()){
+				outputObject[key]=propvalue;
+			} else if (prop.getTypeObject().isEmbedded()){
+				flexdms.toStringValued(propvalue, key);
+			} else {
+				outputObject[key]=propvalue;
+			}
+			
+		}
+	});
+};
+
 

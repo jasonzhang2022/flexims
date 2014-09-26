@@ -1,0 +1,66 @@
+<div>
+	<div ng-if="!saved" class="lightbox">
+		
+		<nav class="navbar navbar-default" role="navigation">
+			<button type="button" class="btn btn-default navbar-btn navbar-right" ng-click="add();">
+				<span class="glyphicon glyphicon-plus"></span>
+			</button>
+			<button type="button" class="btn btn-default navbar-btn navbar-right" ng-click="deleteInst();">
+							<span class="glyphicon glyphicon-remove"></span>
+						</button>
+			<button type="button" class="btn btn-default navbar-btn navbar-right" ng-click="save();" ng-disabled="!batchadder.$valid">
+				<span class="glyphicon glyphicon-floppy-disk"></span>
+			</button>
+		</nav>
+		
+		<form name="batchadder" class="form-horizontal">
+			<table class="table table-bordered table-stripped table-condensed batcheditor" >
+				<thead>
+					<tr>
+						<td ng-repeat="propobj in props">
+							{{propobj.getDisplayText()}}
+							<span data-tooltip-html-unsafe="{{propobj.getTooltip()}}" class="info" data-ng-if="propobj.getTooltip()">
+								i
+							</span>
+							<span class="required" data-ng-if="propobj.isRequired()" data-tooltip="required">
+								*
+							</span>
+						</td>
+					</tr>
+				</thead>
+				
+				<tbody>
+					<tr ng-repeat="inst in insts" ng-controller="instEditorController" ng-form="fake" fx-dynamic-name="inst$index">
+						<td data-ng-repeat="propobj in props">
+							<fx-prop-editor class="inline"/>
+						</td>
+					</tr>
+				</tbody>
+				
+			</table>
+		</form>
+	</div>
+	<div ng-if="saved" class="lightbox">
+		<div class="text-success"><strong>Instances are saved</strong></div>
+		<table class="table table-bordered table-stripped table-condensed">
+			<thead>
+					<tr>
+						<td ng-repeat="propobj in viewprops">
+							{{propobj.getDisplayText()}}
+							<span data-tooltip-html-unsafe="{{propobj.getTooltip()}}" class="info" data-ng-if="propobj.getTooltip()">
+								i
+							</span>
+						</td>
+					</tr>
+				</thead>
+				
+				<tbody>
+					<tr ng-repeat="inst in insts" ng-controller="fxInstViewerController">
+						<td data-ng-repeat="propobj in viewprops">
+							<fx-prop-viewer  class="inline"/>
+						</td>
+					</tr>
+				</tbody>
+		</table>
+	</div>
+</div>

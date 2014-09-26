@@ -107,10 +107,12 @@ ul.prop-tooltip {
 		margin-bottom:2px;
 		
 		> .multiple {
-			border:1px solid #D4D2CA;
+			border:3px solid #D4D2CA;
+			border-radius:10px;
 		}
 		> .simple {
-			border:1px solid #D4D2CA;
+			border:3px solid #D4D2CA;
+			border-radius:10px;
 		}
 }
 ul.proplist.simple {
@@ -135,8 +137,13 @@ ul.proplist.simple {
 		display:none;
 	}
 }
-.instviewer div.row:nth-child(even) {
-	background-color:#EDF5FB;
+.instviewer div.row {
+	margin-left:0px;
+	margin-right:0px;
+	&:not(.multiembed):not(.singleembed):nth-child(even) {
+		background-color:#EDF5FB;	
+	}
+	
 }
 .propview {
 	margin-bottom: 2px;
@@ -155,3 +162,11 @@ ul.proplist.simple {
   	font-weight:normal;
 }
 
+.lightbox {
+	border:1px solid #D4D2CA;
+	border-radius:5px;
+}
+
+table.batcheditor td{
+	min-width: 200px;
+}

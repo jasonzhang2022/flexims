@@ -1,5 +1,5 @@
 // modules used by instApp, can be expanded by third party modules
-flexdms.instAppModules= ['ngCookies', 'ngGrid', 'instDirective', 'angularFileUpload', "ui.tree", "flexdms.excelupload"];
+flexdms.instAppModules= ['ngCookies', 'ngGrid', 'instDirective', 'angularFileUpload', "ui.tree", "flexdms.excelupload", "instDemo"];
 angular.forEach(flexdms.typemodules, function(m){
 	flexdms.instAppModules.push(m);
 });

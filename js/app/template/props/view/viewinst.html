@@ -1,18 +1,20 @@
-<div class="panel panel-default">
-	<div class="panel-heading">
-		<div class="btn-group pull-left instviewerbrand">
-			<strong>{{typename}} {{instid}}</strong>
+<div>
+	<nav class="navbar navbar-default" role="navigation" fx-collapse-item>
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle hidden-md hidden-lg" ng-click="collapsed=!collapsed">
+				<span class="fa fa-bars"></span>
+			</button>
+			<span class="navbar-brand">{{typename}} {{inst.id}}</span>
 		</div>
-		<div class="btn-toolbar" >
-			<div class="btn-group pull-right"  fx-inst-actions="viewer" >
-			</div>
+
+
+		<div class="navbar-collapse" collapse="collapsed" >
+			<p class="navbar-right" fx-inst-actions="viewer"></p>
 		</div>
-		
-	</div>
-	<div class="panel-body">
+	</nav>
+	<div class="lightbox">
 		<fx-inst-viewer 
 		inst="inst"  typename="typename" class="instviewer"
 		/>
-		
 	</div>
 </div>

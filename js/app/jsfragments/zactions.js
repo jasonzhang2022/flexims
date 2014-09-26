@@ -9,7 +9,10 @@ angular.module("instDirective").directive("fxInstActions", function($compile){
 				actions=flexdms.config.getConfig($attrs.fxInstActions, 'default', "actions");
 			}
 			
-			$element.html(actions.join(""));
+			$element.append(actions.join(""));
+			$element.find("button").addClass("navbar-btn");
+			$element.find("a").addClass("navbar-btn");
+			
 			$compile($element.contents())($scope);
 		}
 	};
