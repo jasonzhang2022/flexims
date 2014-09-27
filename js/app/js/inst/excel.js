@@ -489,4 +489,82 @@ angular.module("flexdms.excelupload", ["flexdms.TypeResource","flexdms.InstResou
 	
 	$scope.showlabel=false;
 	
+}).service("instsToExcel", function(){
+	
+	function updateKey(srcObj, destObj){
+		for(name in srcObj){
+			destObj[name]=true;
+		}
+	}
+	
+	this.toExcel=function(insts, name){
+		var objects=[];
+		var keys={};
+		for (var i=0; i<insts.length; i++){
+			var outputobj={};
+			flexdms.instToFlatObject(insts[i], outputobj);
+			updateKey(outputobj, keys);
+			objects.push(outputobj);
+		}
+		var ws = {};
+		//cell(0, 0) is the type name.
+		ws[XLSX.utils.encode_cell({c:0,r:0})]={v:insts[0][flexdms.insttype], t:'s'};
+		var props=[];
+		for(var prop in keys){
+			if (prop.charAt(0)!=='$'){
+				props.push(prop);
+			}
+		}
+		//first row: prop name;
+		for (var C=0; C<props.length; C++){
+			ws[XLSX.utils.encode_cell({c:C,r:1})]={v:props[C], t:'s'};
+		}
+		//loop to add data.
+		for(var R=0; R != objects.length; ++R) {
+			for(var C = 0; C != props.length; ++C) {
+				
+				var cell = {v: objects[R][props[C]] };
+				if(!angular.isDefined(cell.v)|| cell.v == null) {
+					continue;
+				}
+				var cell_ref = XLSX.utils.encode_cell({c:C,r:R+2});
+				
+				if(typeof cell.v === 'number') {
+					cell.t = 'n';
+				} else if(typeof cell.v === 'boolean'){
+					cell.t = 'b';
+				} else {
+					cell.t = 's';
+				}
+				ws[cell_ref] = cell;
+			}
+		}
+		
+		var range = {e: {c:props.length-1, r:objects.length+1}, s: {c:0, r:0 }};
+		ws['!ref'] = XLSX.utils.encode_range(range);
+		
+		function Workbook() {
+			if(!(this instanceof Workbook)) {
+				return new Workbook();
+			}
+			this.SheetNames = [];
+			this.Sheets = {};
+		}
+		
+		var wb = new Workbook();
+		
+		/* add worksheet to workbook */
+		wb.SheetNames.push(name);
+		wb.Sheets[name] = ws;
+		var wbout = XLSX.write(wb, {bookType:'xlsx', bookSST:false, type: 'binary'});
+		
+		function s2ab(s) {
+			var buf = new ArrayBuffer(s.length);
+			var view = new Uint8Array(buf);
+			for (var i=0; i!=s.length; ++i) view[i] = s.charCodeAt(i) & 0xFF;
+			return buf;
+		}
+		saveAs(new Blob([s2ab(wbout)],{type:"application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"}), name+".xlsx");
+		
+	};
 });

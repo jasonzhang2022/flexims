@@ -14,7 +14,10 @@ ul.prop-tooltip {
 }
 /*--------------------edit  */
 .prop {
-	border-bottom:1px grey solid;
+	&.form-group {
+		margin-left: 0px;
+		margin-right: 0px;
+	}
 	&.simpleprop {
 		.proplabel {
 			.make-sm-column(4);
@@ -141,7 +144,13 @@ ul.proplist.simple {
 	margin-left:0px;
 	margin-right:0px;
 	&:not(.multiembed):not(.singleembed):nth-child(even) {
-		background-color:#EDF5FB;	
+		background-color:#F3F3F3;	
+	}
+	
+}
+.insteditor div.prop {
+	&:not(.multiembed):not(.singleembed):nth-child(even) {
+		background-color:#F3F3F3;	
 	}
 	
 }

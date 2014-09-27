@@ -227,8 +227,8 @@ angular.module("flexdms.report").service("reportService", function($http, Inst, 
 	this.destory=function(reportWrapper){
 		return $http.delete(flexdms.reportserviceurl+"/destory/"+ reportWrapper.uuid, {fxAlertNoContent:false});
 	};
-	this.fetchAll=function(reportWrapper){
-		return $http.get(flexdms.reportserviceurl+"/fetchall/"+reportWrapper.uuid, {transformResponse:  createDataInsts}).then(function(xhr){
+	this.fetchAll=function(reportWrapper, nested){
+		return $http.get(flexdms.reportserviceurl+"/fetchall/"+reportWrapper.uuid+(nested?"?nested=true":""), {transformResponse:  createDataInsts}).then(function(xhr){
 			return xhr.data; //this is the report resource object
 		});
 	};

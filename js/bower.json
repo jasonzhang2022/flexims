@@ -35,6 +35,8 @@
     "angular-http-auth": "1.0.1",
     "angular-file-upload": "0.5.7",
     "jspdf" : "1.0.178",
+    "FileSaver" : "",
+    "Blob":"", //not needed
     "js-xlsx": "0.7.10"
   },
   "resolutions": {

@@ -1,6 +1,5 @@
-angular.module("flexdms.TypeResource", ['ngResource']).factory("Type", ["$resource", function($resource, $filter) {
-	//hjave filter available for all type
-	flexdms.filter=$filter;
+angular.module("flexdms.TypeResource", ['ngResource']).factory("Type", ["$resource", function($resource) {
+	
 	
 	function _transformTypes(meta){
 		var types=[];
@@ -595,7 +594,9 @@ angular.module("flexdms.TypeResource", ['ngResource']).factory("Type", ["$resour
 		return type.isEntity()  && !type.isSystem();
 	};
 	
-}).run(["Type", "$q", function(Type, $q){
+}).run(["Type", "$q", "$filter", function(Type, $q, $filter){
+	//hjave filter available for all type
+	flexdms.filter=$filter;
 	Type.processtypemeta($q);
 }]);
 

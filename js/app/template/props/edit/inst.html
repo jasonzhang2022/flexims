@@ -14,8 +14,12 @@
 		</div>
 		<fx-prop-editor/>
 	</div>
-	<div class="form-group prop well" data-ng-if="type.isExtensible()" data-fx-single-prop="fxExtraProp">
-		<label class="control-label" > Extra Properties </label>
-		<div ng-include src="'template/props/edit/namevaluelist.html'"></div>
+	<div class="form-group prop simpleprop" data-ng-if="type.isExtensible()" data-fx-single-prop="fxExtraProp">
+		<div class="proplabel"><label class="control-label" > Extra Properties </label></div>
+		<div class="propinputandhelp">
+			<div ng-include src="'template/props/edit/namevaluelist.html'"></div>
+		</div>
+	
+		
 	</div>
 </div>

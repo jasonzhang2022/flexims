@@ -74,7 +74,7 @@ angular.module("flexdms.report").directive("fxReportProperty", function($compile
 
 
 
-angular.module("flexdms.report").controller("fxReportCtrl", function($scope, $element, $attrs, instCache, reportService, $templateCache){
+angular.module("flexdms.report").controller("fxReportCtrl", function($scope, $element, $attrs, instCache, reportService, $templateCache, instsToExcel){
 	//repare scope.
 	if (!angular.isDefined($scope.report)){
 		//not from isolated scope, report is required for isolated scope.
@@ -189,6 +189,14 @@ angular.module("flexdms.report").controller("fxReportCtrl", function($scope, $el
 		}
 		return flexdms.reportserviceurl+"/fetchall/"+$scope.reportWrapper.uuid+"?format="+format+"&nested="+nested;
 	};
+	
+	$scope.toExcel=function(){
+		//nested.
+		reportService.fetchAll($scope.reportWrapper, true)
+		.then(function(data){
+			instsToExcel.toExcel(data, $scope.report.Name);
+		});
+	}
 	//------------------------grid options
 	//control the paging
 	$scope.pagingOptions = {

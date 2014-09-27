@@ -283,6 +283,16 @@ flexdms.copyFromStringValued=function(destInst, srcInst, Inst){
 	});
 };
 flexdms.instToFlatObject=function(srcInst, outputObject, prefix){
+	
+	function dateTimeToString(prop, propvalue){
+		if (prop.getTypeObject().isDateOnly()){
+			return flexdms.filter("date")(propvalue, flexdms.config.dateFormat);
+		} else if (prop.getTypeObject().isTimestamp()){
+			return flexdms.filter("date")(propvalue, flexdms.config.dateTimeFormat);
+		} else {
+			return flexdms.filter("date")(propvalue, flexdms.config.timeFormat);
+		}
+	}
 	var type=flexdms.findType(srcInst[flexdms.insttype]);
 	angular.forEach(type.getProps(), function(prop){
 		
@@ -297,20 +307,33 @@ flexdms.instToFlatObject=function(srcInst, outputObject, prefix){
 			} else if (prop.getTypeObject().isEmbedded()){
 				for (var i=0; i<propvalue.length; i++){
 					var embeddedInst=propvalue[i];
-					flexdms.copyFromStringValued( embeddedInst, key+"."+i);
+					flexdms.instToFlatObject( embeddedInst, outputObject, key+"."+i);
 				}
 			} else {
 				//multiple string issue?
-				outputObject[key]=srcInst[prop.getName()].join(",");
+				if (prop.getTypeObject().isDateTime()){
+					
+					outputObject[key]=propvalue.map(function(value, index){
+						return dateTimeToString(prop, value);
+					}).join(",");
+				} else {
+					outputObject[key]=propvalue.join(",");
+				}
+				
 			}
 		} else{
 			//we expect one value
 			if (prop.isRelation()){
 				outputObject[key]=propvalue;
 			} else if (prop.getTypeObject().isEmbedded()){
-				flexdms.toStringValued(propvalue, key);
+				flexdms.instToFlatObject(propvalue, outputObject, key);
 			} else {
-				outputObject[key]=propvalue;
+				if (prop.getTypeObject().isDateTime()){
+					outputObject[key]=dateTimeToString(prop, propvalue);
+				} else {
+					outputObject[key]=propvalue;
+				}
+				
 			}
 			
 		}
