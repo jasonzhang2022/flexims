@@ -15,11 +15,6 @@ flexdms.basic_error_templates=['shortstring_error.html', 'mediumstring_error.htm
                  'time_error.html', 'email_error.html', 'url_error.html', 'directory_error.html', 'serverfile_error.html'
                  ];
 
-flexdms.instViewLink="#viewinst"; //#viewinst/type/id;
-flexdms.instEditLink="#editinst"; //#viewinst/type/id;
-flexdms.instDeleteLink="#deleteinst"; //#viewinst/type/id;
-flexdms.instAddLink="#addinst"; //#viewinst/type/id;
-
 flexdms.parentinst="$_fxparentinst";
 /**
  * flexdms.typeEditorConfig.Type.ctrl=type specified controller;
@@ -42,14 +37,20 @@ flexdms.config.viewer={
 			}
 		},
 		'default' : {
-			actions:[ "<a type='button' class='btn btn-primary' title='edit' href='#/editinst/{{typename}}/{{instid}}' ng-show='actions.Edit'> " +
-					"<span class='glyphicon glyphicon-edit'></span></a>",
+			actions:[ "<button type='button' class='btn btn-primary' title='edit' ng-click='editInst(typename, instid)' ng-show='actions.Edit'> " +
+					"<span class='glyphicon glyphicon-edit'></span></button>",
 					
 			          "<button type='button' class='btn btn-default' title='refresh' data-ng-click='refresh();' ng-show='actions.Read'>" +
 			          "<span class='glyphicon glyphicon-refresh'></span></button>",
-		
-			          "<a type='button' class='btn btn-default' title='delete' href='#/deleteinst/{{typename}}/{{instid}}' ng-show='actions.Grant'> " +
-			          "<span class='glyphicon glyphicon-trash'></span></a>",
+			          
+			          "<button type='button' class='btn btn-default' title='copy' ng-click='copy()' ng-show='actions.Create'> " +
+						"<span class='fa fa-copy'></span></button>",
+						
+						"<button type='button' class='btn btn-default' title='add similar' ng-click='addInst(typename, instid)' ng-show='actions.Create'> " +
+						"<span class='glyphicon glyphicon-plus'></span></button>",
+						
+			          "<button type='button' class='btn btn-default' title='delete' ng-click='deleteInst(typename, instid)' ng-show='actions.Delete'> " +
+			          "<span class='glyphicon glyphicon-trash'></span></button>",
 			          
 			          "<a type='button' class='btn btn-default' title='download files uploaded' ng-show='type.hasClientFile() && actions.Read' " +
 			          "href='"+appctx.modelerprefix+"/rs/file/clientfiles/{{typename}}/{{instid}}'> <span class='glyphicon glyphicon-arrow-down'></span></a>",

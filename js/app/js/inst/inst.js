@@ -60,6 +60,25 @@ instApp.config(function($stateProvider, $urlRouterProvider,   $controllerProvide
 		url : "/home",
 		templateUrl: 'rs/res/web/customtemplates/home.html'
 	});
+	 
+	
+	 
 	    
+}).run(function($state, $rootScope){
+	$rootScope.viewInst=function(typename, id){
+		$state.go("viewinst", {typename:typename, id:id});
+	};
+	$rootScope.deleteInst=function(typename, id){
+		$state.go("deleteinst", {typename:typename, id:id});
+	};
+	
+	$rootScope.editInst=function(typename, id){
+		$state.go("editinst", {typename:typename, id:id});
+	};
+	$rootScope.addInst=function(typename){
+		$state.go("addinst", {typename:typename});
+	};
+	
+	
 });
 

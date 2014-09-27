@@ -15,7 +15,7 @@
  * 
  * 
  */
-angular.module("instDirective").directive("fxInstViewerForm",function($compile, $templateCache,Inst, $state, $injector){
+angular.module("instDirective").directive("fxInstViewerForm",function($compile, $templateCache,Inst, $state, $injector, $location){
 	return {
 		replace:true, 
 		restrict: 'AE',
@@ -51,6 +51,33 @@ angular.module("instDirective").directive("fxInstViewerForm",function($compile, 
 				var id=$scope.instid;
 				instCache.refreshInst($scope.typename, id);
 				$state.go("viewinst", {typename:$scope.typename, 'id':id}, {reload:true});
+			};
+			
+			$scope.copy=function(){
+				var clone=angular.copy($scope.inst);
+				
+				angular.forEach($scope.type.getProps(), function(prop){
+					if (prop.isUnique()){
+						clone[prop]=null;
+					}
+					if (prop.isOneToOne()){
+						clone[prop]=null;
+					}
+					
+					
+				});
+				clone.id=null;
+				clone.fxversion=null;
+				var outputobject={};
+				flexdms.instToFlatObject(clone, outputobject);
+				
+				var querystr="";
+				for (name in outputobject){
+					querystr+=name+"="+outputobject[name]+"&";
+				}
+				
+				var path="/addinst/"+$scope.typename+"?"+querystr;
+				$location.url(path);
 			};
 			 
 			 $scope.$watch(function(){

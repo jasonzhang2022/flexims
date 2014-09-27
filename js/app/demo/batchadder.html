@@ -2,12 +2,6 @@
 	<div ng-if="!saved" class="lightbox">
 		
 		<nav class="navbar navbar-default" role="navigation">
-			<button type="button" class="btn btn-default navbar-btn navbar-right" ng-click="add();">
-				<span class="glyphicon glyphicon-plus"></span>
-			</button>
-			<button type="button" class="btn btn-default navbar-btn navbar-right" ng-click="deleteInst();">
-							<span class="glyphicon glyphicon-remove"></span>
-						</button>
 			<button type="button" class="btn btn-default navbar-btn navbar-right" ng-click="save();" ng-disabled="!batchadder.$valid">
 				<span class="glyphicon glyphicon-floppy-disk"></span>
 			</button>
@@ -17,6 +11,7 @@
 			<table class="table table-bordered table-stripped table-condensed batcheditor" >
 				<thead>
 					<tr>
+						<td style="width:50px;max-width:50px;"></td>
 						<td ng-repeat="propobj in props">
 							{{propobj.getDisplayText()}}
 							<span data-tooltip-html-unsafe="{{propobj.getTooltip()}}" class="info" data-ng-if="propobj.getTooltip()">
@@ -30,7 +25,11 @@
 				</thead>
 				
 				<tbody>
+					
 					<tr ng-repeat="inst in insts" ng-controller="instEditorController" ng-form="fake" fx-dynamic-name="inst$index">
+						<td  style="width:50px;max-width:50px;"><button type="button" class="btn btn-default navbar-btn navbar-right" ng-click="deleteInst($index);">
+							<span class="glyphicon glyphicon-remove"></span>
+						</button></td>
 						<td data-ng-repeat="propobj in props">
 							<fx-prop-editor class="inline"/>
 						</td>

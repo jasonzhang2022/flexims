@@ -11,24 +11,36 @@
 
 	<div class="navbar-collapse" collapse="collapsed">
 		<ul class="nav navbar-nav">
-			<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#"> Add <span class="caret"></span></a>
+			<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#"> 
+				Add <span class="caret"></span></a>
 				<ul class="dropdown-menu" data-ng-controller="typesCtrl" ng-click="collapseMenu();">
 					<li data-ng-repeat="type in types|filter:showInAdd|orderBy:byName" data-ng-show="createActions[type.getName()]">
-					<a href="#/addinst/{{type.getName()}}" >{{type.getName()}}</a></li>
+						<a ng-click="addInst(type.getName())" >{{type.getName()}}</a>
+					</li>
 				</ul>
 			</li>
 				
-			<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#"> All <span class="caret"></span></a>
+			<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#"> 
+				All <span class="caret"></span></a>
 				<ul class="dropdown-menu" data-ng-controller="typesCtrl" ng-click="collapseMenu();">
 					<li data-ng-repeat="type in types|filter:showInAllReport|orderBy:byName">
-					<a href="#/allreport/{{type.getName()}}" >{{type.getName()}}</a></li>
-				</ul></li>
+						<a href="#/allreport/{{type.getName()}}" >{{type.getName()}}</a>
+					</li>
+				</ul>
+			</li>
 			
-			<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#"> Tools <span class="caret"></span></a>
-				<ul class="dropdown-menu"  ng-click="collapseMenu();">
-					<li>
-					<a href="#/upload">Batch Upload</a></li>
-				</ul></li>
+			<li class="dropdown">
+				<a class="dropdown-toggle" data-toggle="dropdown" href="#"> Tools <span class="caret"></span></a>
+				<ul class="dropdown-menu"  ng-click="collapseMenu();" data-ng-controller="typesCtrl" >
+					<li><a href="#/upload">Batch Upload</a></li>
+					<li class="divider"></li>
+					<li> <strong>Batch Add:</strong><li>
+					<li data-ng-repeat="type in types|filter:showInAdd|orderBy:byName" data-ng-show="createActions[type.getName()]">
+						<a href="#/addinstbatch/{{type.getName()}}" >&nbsp;&nbsp;{{type.getName()}}</a>
+					</li>
+					
+				</ul>
+			</li>
 		</ul>
 
 		<ul class="nav navbar-nav navbar-right">

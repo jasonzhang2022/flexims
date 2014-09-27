@@ -24,8 +24,8 @@ angular.module("instDemo", ["instDirective"]).config(function($stateProvider, $u
 				});
 			};
 			
-			$scope.deleteInst=function(){
-				$scope.insts.length=$scope.insts.length-1;
+			$scope.deleteInst=function($index){
+				$scope.insts.splice($index, 1);
 			};
 			$scope.props=flexdms.findType($scope.typename).getEditProps();
 			$scope.viewprops=flexdms.findType($scope.typename).getViewProps();
