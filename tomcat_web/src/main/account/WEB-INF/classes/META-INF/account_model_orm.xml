@@ -22,10 +22,14 @@
 			</orm:entity-listeners>
 		</orm:persistence-unit-defaults>
 	</orm:persistence-unit-metadata>
-	<orm:table-generator name="BusinessTransactionseq" table="seqs"
-		pk-column-name="name" value-column-name="seq" pk-column-value="BusinessTransaction"
+	<orm:table-generator name="Costseq" table="seqs"
+		pk-column-name="name" value-column-name="seq" pk-column-value="Cost"
 		initial-value="10000" allocation-size="50" />
-	<orm:entity name="BusinessTransaction" class="BusinessTransaction"
+		
+		<orm:table-generator name="Incomeseq" table="seqs"
+		pk-column-name="name" value-column-name="seq" pk-column-value="Income"
+		initial-value="10000" allocation-size="50" />
+	<orm:entity name="Cost" class="Cost"
 		parent-class="com.flexdms.flexims.jpa.eclipselink.FleximsDynamicEntityImpl"
 		access="VIRTUAL">
 		<orm:description>Business Transaction</orm:description>
@@ -33,7 +37,7 @@
 		<orm:attributes>
 			<orm:id name="id" attribute-type="Long">
 				<orm:column />
-				<orm:generated-value strategy="TABLE" generator="BusinessTransactionseq" />
+				<orm:generated-value strategy="TABLE" generator="Costseq" />
 			</orm:id>
 			<orm:basic name="TransactionDate" optional="false"
 				attribute-type="java.util.Calendar">
@@ -45,16 +49,6 @@
 				<orm:property name="viewable" value="true" />
 				<orm:property name="editable" value="true" />
 				<orm:property name="summaryprop" value="true" />
-			</orm:basic>
-			<orm:basic name="CostOrRevenue" optional="true"
-				attribute-type="boolean">
-				<orm:column unique="false" nullable="true" length="254" />
-				<orm:property name="typeidx" value="9" />
-				<orm:property name="displaytext" value="Cost?" />
-				<orm:property name="viewable" value="true" />
-				<orm:property name="editable" value="true" />
-				<orm:property name="autogenerate" value="true" />
-				<orm:property name="defaultvalue" value="true" />
 			</orm:basic>
 			<orm:basic name="Description" optional="false"
 				attribute-type="java.lang.String">
@@ -122,7 +116,89 @@
 				<orm:property name="autogenerate" value="true" />
 				<orm:property name="defaultvalue" value="100"/>
 				<orm:property name="minvalue" value="5"/>
-           		<orm:property name="maxvalue" value="20"/>
+           		<orm:property name="maxvalue" value="100"/>
+			</orm:basic>
+			<orm:basic name="Receipt" optional="true" attribute-type="java.lang.String">
+				<orm:column unique="false" nullable="true" length="254" />
+				<orm:property name="displaytext" value="Receipt Image" />
+				<orm:property name="strtype" value="File" />
+				<orm:property name="typeidx" value="17" />
+				<orm:property name="viewable" value="true" />
+				<orm:property name="editable" value="true" />
+				<orm:property name="autogenerate" value="true" />
+				<orm:property name="clientfile" value="true" />
+			</orm:basic>
+
+			<orm:version name="fxversion" mutable="true"
+				attribute-type="java.sql.Timestamp">
+				<orm:column />
+			</orm:version>
+		</orm:attributes>
+	</orm:entity>
+	
+	
+	<orm:entity name="Income" class="Income"
+		parent-class="com.flexdms.flexims.jpa.eclipselink.FleximsDynamicEntityImpl"
+		access="VIRTUAL">
+		<orm:description>Business Transaction</orm:description>
+		<orm:property name="abstract" value="false" />
+		<orm:attributes>
+			<orm:id name="id" attribute-type="Long">
+				<orm:column />
+				<orm:generated-value strategy="TABLE" generator="Incomeseq" />
+			</orm:id>
+			<orm:basic name="TransactionDate" optional="false"
+				attribute-type="java.util.Calendar">
+				<orm:column unique="false" nullable="false" length="254" />
+				<orm:temporal>DATE</orm:temporal>
+				<orm:property name="displaytext" value="Date" />
+				<orm:property name="temporal" value="DATE" />
+				<orm:property name="typeidx" value="11" />
+				<orm:property name="viewable" value="true" />
+				<orm:property name="editable" value="true" />
+				<orm:property name="summaryprop" value="true" />
+			</orm:basic>
+			<orm:basic name="Description" optional="false"
+				attribute-type="java.lang.String">
+				<orm:column unique="false" nullable="false" length="254" />
+				<orm:property name="displaytext" value="Description" />
+				<orm:property name="typeidx" value="0" />
+				<orm:property name="viewable" value="true" />
+				<orm:property name="editable" value="true" />
+				<orm:property name="autogenerate" value="true" />
+			</orm:basic>
+			<orm:basic name="PretaxIncome" optional="false"
+				attribute-type="java.lang.Double">
+				<orm:column unique="false" nullable="false" length="254" />
+				<orm:property name="displaytext" value="Amount WITHOUT tax" />
+				<orm:property name="typeidx" value="6" />
+				<orm:property name="viewable" value="true" />
+				<orm:property name="editable" value="true" />
+				<orm:property name="autogenerate" value="true" />
+			</orm:basic>
+			<orm:basic name="GSTax" optional="true" attribute-type="java.lang.Double">
+				<orm:column unique="false" nullable="true" length="254" />
+				<orm:property name="displaytext" value="GST" />
+				<orm:property name="typeidx" value="6" />
+				<orm:property name="viewable" value="true" />
+				<orm:property name="editable" value="true" />
+				<orm:property name="autogenerate" value="true" />
+			</orm:basic>
+			<orm:basic name="PSTax" optional="true" attribute-type="java.lang.Double">
+				<orm:column unique="false" nullable="true" length="254" />
+				<orm:property name="displaytext" value="PST" />
+				<orm:property name="typeidx" value="6" />
+				<orm:property name="viewable" value="true" />
+				<orm:property name="editable" value="true" />
+				<orm:property name="autogenerate" value="true" />
+			</orm:basic>
+			<orm:basic name="Hstax" optional="true" attribute-type="java.lang.Double">
+				<orm:column unique="false" nullable="true" length="254" />
+				<orm:property name="displaytext" value="HST" />
+				<orm:property name="typeidx" value="6" />
+				<orm:property name="viewable" value="true" />
+				<orm:property name="editable" value="true" />
+				<orm:property name="autogenerate" value="true" />
 			</orm:basic>
 			<orm:basic name="Receipt" optional="true" attribute-type="java.lang.String">
 				<orm:column unique="false" nullable="true" length="254" />

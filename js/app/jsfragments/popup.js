@@ -1,5 +1,33 @@
+
+/**
+ * @ngdoc service
+ * @name instDirective.fxInstPopup
+ * @kind service
+ * @module instDirective
+ * @description
+ * 
+ * Show instance Editor and Viewer in a popup. 
+ * 
+ */
 angular.module("instDirective").service("fxInstPopup", function($modal, Inst, $rootScope){
 	
+	/**
+     * @ngdoc function
+     * @name instDirective.fxInstPopup#popupInstEditor
+     * 
+     * @methodOf instDirective.fxInstPopup
+     *
+     * @description
+     * show instance editor in a popup
+     *
+     * @param {string} typename type name
+     * @param {Object=} inst instance object for edit, null if for add.
+     * @param {boolean=} [showlabel=true] showlabel or not.
+     * @param {boolean=} [showsave=true] whether to show save button or not
+     * @param {boolean=} [showok=false] whether to show ok button or not
+     * @returns {Promise} Promise object resolved to editted instance
+     * 
+     */
 	this.popupInstEditor=function(typename, inst, showlabel, showsave, showok){
 		var $scope1=$rootScope.$new();
 		$scope1.typename=typename;
@@ -46,6 +74,21 @@ angular.module("instDirective").service("fxInstPopup", function($modal, Inst, $r
 		
 		
 	};
+	/**
+     * @ngdoc function
+     * @name instDirective.fxInstPopup#popupInstEditor
+     * 
+     * @methodOf instDirective.fxInstPopup
+     *
+     * @description
+     * show instance editor in a popup
+     *
+     * @param {string} typename type name
+     * @param {Object} inst instance object for edit, null if for add.
+     * @param {boolean=} [showlabel=true] showlabel or not.
+     * @returns {Promise} Promise object
+     * 
+     */
 	
 	this.popupInstViewer=function(typename, inst, showlabel){
 		var $scope1=$rootScope.$new();

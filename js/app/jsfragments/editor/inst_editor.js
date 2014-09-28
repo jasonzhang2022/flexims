@@ -1,3 +1,16 @@
+/**
+ * @ngdoc function
+ * @name instDirective.instEditorController
+ * @module instDirective
+ * @kind controller
+ * @description
+ * 
+ *  controller used by {@link instDirective.directive:fxInstEditor}. You can use this controller to augment your element and 
+ *  build custom instance editor.  Please view the demo/batchadder.html for an example how this can be used.
+ *  
+ * 
+ * 
+ */
 angular.module("instDirective").controller("instEditorController", function($scope, $element, $attrs, $controller, fxTemplates, instCache, $rootScope){
 	this.name="instEditor";
 	

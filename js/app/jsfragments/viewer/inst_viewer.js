@@ -7,6 +7,19 @@
  * precondition: 
  * 	inst and type object from parent scope
  */
+/**
+ * @ngdoc function
+ * @name instDirective.fxInstViewerController
+ * @module instDirective
+ * @kind controller
+ * @description
+ * 
+ *  controller used by {@link instDirective.directive:fxInstViewer}. You can use this controller to augment your element and 
+ *  build custom instance editor.  Please view the demo/batchadder.html for an example how this can be used.
+ *  
+ * 
+ * 
+ */
 angular.module("instDirective").controller("fxInstViewerController", function($scope, $element, $attrs, instCache, $controller, $state, $injector){
 	this.$name="instViewer";
 	
