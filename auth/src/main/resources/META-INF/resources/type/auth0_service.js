@@ -4,12 +4,19 @@ angular.module("flexdms.auth",["flexdms.TypeResource", "flexdms.InstResource", '
 	var fxAuthService=this;
 	
 	
-	function dialogCtrl($scope, fxAuthService, $timeout, authService, $modal, mode, $http, fxAlert){
+	function dialogCtrl($scope, fxAuthService, $timeout, authService, $modal, mode, $http, fxAlert, $timeout){
 		$scope.rememberMe=true;
 		$scope.mode=mode;
 		if ($scope.mode=='login'){
 			$scope.email=localStorage.getItem("fxuser");
 		}
+		
+		$scope.passwordEntered=function($event){
+			if ($event.keyCode==13){
+				$scope.login.call(this, $event);
+			}
+			
+		};
 		
 		$scope.changeMode=function(newmode){
 			$scope.mode=newmode;
@@ -31,7 +38,9 @@ angular.module("flexdms.auth",["flexdms.TypeResource", "flexdms.InstResource", '
 		};
 		
 		$scope.login=function($event){
-			$event.preventDefault();
+			if ($event){
+				$event.preventDefault();
+			}
 			var scope=this;
 			
 			$http.post(flexdms.authserviceurl+"/auth", {
