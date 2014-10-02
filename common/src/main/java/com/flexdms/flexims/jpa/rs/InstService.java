@@ -189,19 +189,25 @@ public class InstService {
 		return entities;
 	}
 
+	
 	@Path("/delete/{type}/{id}")
 	@DELETE
-	public FleximsDynamicEntityImpl deleteSingle(@PathParam("type") String type, @PathParam("id") long id) {
+	@Transactional
+	public void deleteMultiple(@PathParam("type") String type, @PathParam("id") String ids) {
 		// return getEntityDAO().deleteEntity(type, id);
-		return dao.deleteEntity(type, id);
+		String[] idsStr = ids.split(",");
+		for (String idStr: idsStr) {
+			dao.deleteEntity(type, Long.parseLong(idStr));
+		}
 	}
 
 	@Path("/delete")
 	@POST
 	@Transactional
 	public FleximsDynamicEntityImpl deleteEntity(Reader reader, @Context Request rs) {
+		
 		FleximsDynamicEntityImpl inst = (FleximsDynamicEntityImpl) jaxbHelper.input(reader, em, isXml(rs), false);
-		return deleteSingle(inst.getClass().getSimpleName(), inst.getId());
+		return dao.deleteEntity(inst.getClass().getSimpleName(), inst.getId());
 	}
 
 }

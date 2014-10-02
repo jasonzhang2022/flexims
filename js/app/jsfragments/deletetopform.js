@@ -15,7 +15,7 @@
  * 
  * 
  */
-angular.module("instDirective").directive("fxInstDeleteForm", function($compile, $templateCache,Inst){
+angular.module("instDirective").directive("fxInstDeleteForm", function($compile, $templateCache){
 	return {
 		replace:true, 
 		restrict: 'AE',
@@ -30,10 +30,15 @@ angular.module("instDirective").directive("fxInstDeleteForm", function($compile,
 			//default url.
 			return  '<div ng-include="\'template/props/delete/deleteinst.html\'"></div>';
 		},
-		controller : function($scope, $element, $attrs, instCache){
+		controller : function($scope, $element, $attrs, instCache, Inst){
 			$scope.typename=$attrs.fxTypename;
 			$scope.type=flexdms.findType($scope.typename);
-			$scope.inst=instCache.getInst($scope.typename, $attrs.fxInstId);
+			
+			$scope.insts=[];
+			
+			angular.forEach($attrs.fxInstId.split(","), function(id){
+				$scope.insts.push(instCache.getInst($scope.typename, id));
+			});
 			var vprops=$scope.type.getViewProps();
 			var props=new Array();
 			angular.forEach(vprops, function(prop){
@@ -43,11 +48,12 @@ angular.module("instDirective").directive("fxInstDeleteForm", function($compile,
 			});
 			$scope.simpleprops=props;
 			$scope.deleted=false;
-			$scope.deleteInst=function(){
-				$scope.inst.$delete({typename:$scope.typename, id:$scope.inst.id}, function(){
+			$scope.deleteInsts=function(){
+				Inst.remove({typename:$scope.typename, id:$attrs.fxInstId}, function(){
 					$scope.deleted=true;
-					instCache.deleteInst($scope.typename, $scope.inst.id);
-					
+					angular.forEach($scope.insts, function(inst){
+						instCache.deleteInst($scope.typename, inst.id);
+					});
 				});
 			};
 		}

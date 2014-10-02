@@ -47,11 +47,6 @@ instApp.config(function($stateProvider, $urlRouterProvider,   $controllerProvide
 		url : "/deleteinst/:typename/:id",
 		template :function(stateParams){
 			return "<fx-inst-delete-form fx-typename='"+stateParams.typename+"' fx-inst-id='"+stateParams.id+"'/>";
-		},
-		resolve :{
-			inst :function($stateParams, instCache){
-				return  instCache.getInst($stateParams.typename, $stateParams.id).$promise;
-			}
 		}
 	}).state('admin', {
 		url : "/admin",

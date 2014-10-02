@@ -16,6 +16,7 @@
 			</div>
 			<div class="btn-group">
 				<button class="btn btn-default" type="button" data-ng-click="refresh($event)">Refresh</button>
+				<button class="btn btn-default" type="button" data-ng-click="deleteInsts($event)" ng-if="options.showDelete" ng-disabled="!gridOptions.selectedItems">Delete</button>
 			</div>
 
 		</div>

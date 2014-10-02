@@ -1,0 +1,5 @@
+<div>
+	<button type="button" class="btn btn-link" ng-click="showEditPopup(inst);" ng-show="options.showEdit" ><span class="glyphicon glyphicon-edit"></span></button>
+	<button type="button" class="btn btn-link" ng-click="showViewPopup(inst);" ng-show="options.showView" ><span class="fa fa-eye"></span></button>
+	<a class="btn btn-link" ui-sref="deleteinst({typename: type.getName(), id: inst.id})" ng-show="options.showDelete"><span class="glyphicon glyphicon-remove"></span></a>
+</div>

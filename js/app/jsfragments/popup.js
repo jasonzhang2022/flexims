@@ -53,7 +53,7 @@ angular.module("instDirective").service("fxInstPopup", function($modal, Inst, $r
 				$scope.showsave=angular.isDefined(showsave)?showsave:true;
 				$scope.showok=angular.isDefined(showok)?showok:false;
 				
-				$scope.save=function(){
+				$scope.Save=function(){
 					$scope.inst.$save(null, function(inst1){
 						$modalInstance.close(inst1);
 					});
@@ -93,7 +93,7 @@ angular.module("instDirective").service("fxInstPopup", function($modal, Inst, $r
 	this.popupInstViewer=function(typename, inst, showlabel){
 		var $scope1=$rootScope.$new();
 		$scope1.typename=typename;
-		$scope1.showlabel=angular.isDefined(showlabel)?showlable:true;
+		$scope1.showlabel=angular.isDefined(showlabel)?showlabel:true;
 		if (angular.isDefined(inst.$promise)){
 			$scope1.inst=inst;
 		} else {

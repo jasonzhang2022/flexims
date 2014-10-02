@@ -95,7 +95,7 @@ describe(
 			
 				
 				//change orderby
-				var reportScope=element.find(".panel.ng-scope").scope();
+				var reportScope=element.find("form[name=instform]").scope();
 				reportScope.instform.OrderBy.OrderBy_1_value.$setViewValue("DESC");
 				reportScope.instform.OrderBy.OrderBy_1_key.$setViewValue("propdate");
 				$topScope.$digest();

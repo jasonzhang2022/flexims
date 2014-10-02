@@ -2,15 +2,12 @@
 
 	<nav class="navbar navbar-default" role="navigation" fx-collapse-item>
 		<div class="navbar-header">
-			<button type="button" class="navbar-toggle hidden-md hidden-lg" ng-click="collapsed=!collapsed">
-				<span class="fa fa-bars"></span>
-			</button>
 			<span class="navbar-brand">{{typename}} {{inst.id}}</span>
 		</div>
 
 
-		<div class="navbar-collapse" collapse="collapsed" >
-			<p class="navbar-right" fx-inst-actions="editor"></p>
+		<div>
+			<div class="navbar-right" fx-inst-actions="editor"></div>
 		</div>
 	</nav>
 	<div class="lightbox">

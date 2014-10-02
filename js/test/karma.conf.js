@@ -5,6 +5,7 @@ module.exports = function(config){
     files : [
       'app/lib/jquery/dist/jquery.min.js',
       'app/lib/angular/angular.js',
+      '../js/app/lib/angular-dateparser/dateparser.js',
       'app/lib/angular-ui-router/release/angular-ui-router.min.js',
       'app/lib/angular-resource/angular-resource.min.js',
       'app/lib/angular-cookies/angular-cookies.min.js',
@@ -14,6 +15,8 @@ module.exports = function(config){
       'app/lib/angular-ui-bootstrap-bower/ui-bootstrap-tpls.min.js',
       'app/lib/angular-ui-tree/dist/angular-ui-tree.min.js',
       'app/lib/angular-mocks/angular-mocks.js',
+      '../js/app/lib/js-xlsx/dist/xlsx.core.min.js',
+	 	'../js/app/lib/FileSaver/FileSaver.min.js',
       
       'app/js/common.js',
       'app/js/type/type_common.js',
@@ -28,7 +31,9 @@ module.exports = function(config){
       'app/js/inst/config.js',
       'app/js/inst/inst_directive.js',
       'target/inst.tpl.js',
-      'app/js/inst/layout.js',
+      '../js/app/js/inst/layout.js',
+		 '../js/app/js/inst/excel.js',
+		 '../js/app/js/inst/instdemo.js',
       'app/js/inst/inst.js',
       
       'test/unit/type/op.js',

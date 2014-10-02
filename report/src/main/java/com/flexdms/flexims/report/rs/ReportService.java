@@ -301,7 +301,8 @@ public class ReportService {
 	@Path("/fetch/{uuid}{offset: (/\\d+)?}{len: (/\\d+)?}")
 	@GET
 	@Transactional
-	public Response fetchResult(@PathParam("uuid") String uuid, @PathParam("offset") String offsetStr, @PathParam("len") String lenStr,
+	public Response fetchResult(@PathParam("uuid") String uuid, @PathParam("offset") String offsetStr, @PathParam("len") String lenStr, 
+			@QueryParam(value="refresh") @DefaultValue("false") boolean refresh,
 			@Context Request rs) {
 
 		if (offsetStr.length() == 0) {
@@ -310,8 +311,13 @@ public class ReportService {
 		if (lenStr.length() == 0) {
 			lenStr = "/100";
 		}
+		
 		final FxReportWrapper report = (FxReportWrapper) sessionCtx.getAttr("report:" + uuid);
 		ConditionQuery query = (ConditionQuery) report.getQuery();
+		if (refresh) {
+			query.cleanCache(em);
+		}
+		
 		final boolean xml = RsHelper.isXml(rs);
 
 		final Entities entities = new Entities();

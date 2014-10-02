@@ -232,8 +232,9 @@ angular.module("flexdms.report").service("reportService", function($http, Inst, 
 			return xhr.data; //this is the report resource object
 		});
 	};
-	this.fetchPartial=function(reportWrapper, offset, len){
-		return $http.get(flexdms.reportserviceurl+"/fetch/"+reportWrapper.uuid+"/"+offset+"/"+len,  {transformResponse:  createDataInsts}).then(function(xhr){
+	this.fetchPartial=function(reportWrapper, offset, len, refresh){
+		
+		return $http.get(flexdms.reportserviceurl+"/fetch/"+reportWrapper.uuid+"/"+offset+"/"+len+"?refresh="+(refresh?'true':'false'),  {transformResponse:  createDataInsts}).then(function(xhr){
 			return xhr.data; //this is the report resource object
 		});
 	};

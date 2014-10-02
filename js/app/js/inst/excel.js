@@ -5,6 +5,8 @@ flexdms.excelWorksheet=function(worksheet, sheetname){
 	this.datarowStart=2; // data row starts from. First row is 1. 
 	this.headersPropMap=null; // what property each column is mapped to.
 	this.sheet=worksheet; //worksheet. 
+	this.dateFormat=flexdms.config.dateFormat;
+	this.dateTimeFormat=flexdms.config.dateTimeFormat;
 	
 	//a list of available properties
 	this.getProps=function(){
@@ -70,7 +72,7 @@ flexdms.excelWorksheet=function(worksheet, sheetname){
 	};
 	
 	//convert a row record to an instance.
-	this.rowDataToInst=function(rowindex, inst, Inst){
+	this.rowDataToInst=function(rowindex, inst, Inst ){
 		var rowdata=this.json[rowindex];
 		var inputobj={};
 		for (var i=0; i<this.headersPropMap.length; i++){
@@ -81,7 +83,7 @@ flexdms.excelWorksheet=function(worksheet, sheetname){
 			inputobj[propMap.prop.getName()]=rowdata[i];
 		}
 		var stringInst=flexdms.unflatObject(inputobj);
-		flexdms.copyFromStringValued(inst, stringInst, Inst);
+		flexdms.copyFromStringValued(inst, stringInst, Inst, {dateFormat: this.dateFormat, dateTimeFormat: this.dateTimeFomat});
 		return inst;
 	};
 	
@@ -232,6 +234,16 @@ angular.module("flexdms.excelupload", ["flexdms.TypeResource","flexdms.InstResou
 					$scope.headerrow=2;
 				}
 			});
+			$scope.dateFormat="MM/dd/yyyy";
+			$scope.$watch("dateFormat", function(newv, oldv){
+				$scope.dateTimeFormat=newv+" HH:mm:ss";
+				if ($scope.fileState && $scope.fileState.sheets){
+					angular.forEach($scope.fileState.sheets, function(sheet){
+						sheet.dateFormat=$scope.dateFormat;
+						sheet.dateTimeFormat=$scope.dateTimeFormat;
+					});
+				}
+			});
 			
 			
 			$scope.cleanErrors=function(){
@@ -260,6 +272,8 @@ angular.module("flexdms.excelupload", ["flexdms.TypeResource","flexdms.InstResou
 				
 				angular.forEach(sheetnames, function(sheetname){
 					var sheetState=new flexdms.excelWorksheet($scope.fileState.workbook.Sheets[sheetname], sheetname);
+					sheetState.dateFormat=$scope.dateFormat;
+					sheetState.dateTimeFormat=$scope.dateTimeFormat;
 					if (sheetState.json.length>0){
 						sheets.push(sheetState);
 					}

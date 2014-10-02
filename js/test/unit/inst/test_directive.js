@@ -23,6 +23,7 @@ describe(
 				$myInjector = $injector;
 				$compile = $injector.get("$compile");
 
+				$http.whenGET("rs/res/web/customtemplates/home.html").respond("");
 				$http.whenGET(appctx.modelerprefix+"/rs/type/meta").respond(meta);
 				$http.whenGET(appctx.modelerprefix+"/rs/inst/get/Basictype/10060").respond(
 						inst, jsonHeaders);
@@ -350,7 +351,7 @@ describe(
 				$scope.$digest();
 
 				var propobj=flexdms.findType(typename).getProp("shortstring");
-				$scope=element.find("#instform > div").scope();
+				$scope=element.find("form[name=instform] > div").scope();
 				 // fire all the watches.
 			
 			
@@ -364,7 +365,7 @@ describe(
 				expect($scope.propclasses(propobj)[3]).toEqual("simpleprop");
 				
 				
-				var field=element.find("#instform  .shortstring").scope().field;
+				var field=element.find("form[name=instform]  .shortstring").scope().field;
 				expect(angular.isFunction($scope.propLabelClasses)).toBeTruthy();
 				expect($scope.propLabelClasses(field).length).toBe(2);
 				expect($scope.propLabelClasses(field)[0]).toEqual("proplabel");
@@ -997,16 +998,24 @@ describe(
 				var template=templateCache.get("template/editor1.html");
 				var $compile=$myInjector.get("$compile");
 	
-				var $location=$myInjector.get("$location");
-				$location.search("fname", "testname");
-				$location.search("singleembed.streetAddress", "sst");
-				$location.search("singleembed.mint", "3,4,6,7");
-			
 				
-				//multiembed
-				$location.search("multiembed.0.streetAddress", "sst1");
-				$location.search("multiembed.2.streetAddress", "sst2");
-				$rootScope.$apply();
+				var $location=$myInjector.get("$location");
+				spyOn($location, 'search').andReturn({
+					'fname': "testname",
+					"singleembed.streetAddress": "sst",
+					"singleembed.mint": "3,4,6,7",
+					"multiembed.0.streetAddress": "sst1",
+					"multiembed.2.streetAddress": "sst2"
+				});
+//				$location.search("fname", "testname");
+//				$location.search("singleembed.streetAddress", "sst");
+//				$location.search("singleembed.mint", "3,4,6,7");
+//			
+//				
+//				//multiembed
+//				$location.search("multiembed.0.streetAddress", "sst1");
+//				$location.search("multiembed.2.streetAddress", "sst2");
+				//$rootScope.$apply();
 				
 				
 				//basic an input field

@@ -74,7 +74,7 @@ angular.module("flexdms.report").directive("fxReportProperty", function($compile
 
 
 
-angular.module("flexdms.report").controller("fxReportCtrl", function($scope, $element, $attrs, instCache, reportService, $templateCache, instsToExcel){
+angular.module("flexdms.report").controller("fxReportCtrl", function($scope, $element, $attrs, instCache, reportService, $templateCache, instsToExcel, $state, fxInstPopup){
 	//repare scope.
 	if (!angular.isDefined($scope.report)){
 		//not from isolated scope, report is required for isolated scope.
@@ -91,6 +91,17 @@ angular.module("flexdms.report").controller("fxReportCtrl", function($scope, $el
 			$scope.options={};
 		}
 	}
+	
+	if (!angular.isDefined($scope.options.showDelete)){
+		$scope.options.showDelete=true;
+	}
+	if (!angular.isDefined($scope.options.showEdit)){
+		$scope.options.showEdit=true;
+	}
+	if (!angular.isDefined($scope.options.showView)){
+		$scope.options.showView=true;
+	}
+	
 	if (!angular.isDefined($scope.showHeader)){
 		$scope.showHeader=false;
 	}
@@ -139,10 +150,10 @@ angular.module("flexdms.report").controller("fxReportCtrl", function($scope, $el
 		});
 		
 	};
-	$scope.fetchPage=function(){
+	$scope.fetchPage=function(refresh){
 		reportService.fetchPartial($scope.reportWrapper, 
 				$scope.pagingOptions.pageSize*($scope.pagingOptions.currentPage-1), 
-				$scope.pagingOptions.pageSize)
+				$scope.pagingOptions.pageSize, refresh)
 				.then(function(data){
 					$scope.results=data;
 //					if (!$scope.$$phase) {
@@ -160,7 +171,7 @@ angular.module("flexdms.report").controller("fxReportCtrl", function($scope, $el
 	$scope.refresh=function($event){
 		$event.preventDefault();
 		$event.stopPropagation();
-		$scope.fetchPage();
+		$scope.fetchPage(true);
 	};
 	
 	
@@ -179,7 +190,8 @@ angular.module("flexdms.report").controller("fxReportCtrl", function($scope, $el
 		$event.stopPropagation();
 	};
 	
-	//----------------------report grid related information.
+	
+	//----------------------report grid  actions
 	$scope.reporturl=function(format, nested){
 		if (!angular.isDefined($scope.reportWrapper)){
 			return "";
@@ -197,6 +209,26 @@ angular.module("flexdms.report").controller("fxReportCtrl", function($scope, $el
 			instsToExcel.toExcel(data, $scope.report.Name);
 		});
 	}
+	$scope.deleteInsts=function($event){
+		var ids=[];
+		angular.forEach($scope.gridOptions.selectedItems, function(inst){
+			ids.push(inst.id);
+		});
+		
+		$state.go('deleteinst', {typename:  $scope.type.getName(), id:ids.join(",")});
+	};
+	
+	$scope.showViewPopup=function(inst){
+		//show the whole instance instead of partial value.
+		fxInstPopup.popupInstViewer($scope.type.getName(), instCache.getInst($scope.type.getName(), inst.id), true);
+	};
+	$scope.showEditPopup=function(inst){
+		//show the whole instance instead of partial value.
+		fxInstPopup.popupInstEditor($scope.type.getName(), instCache.getInst($scope.type.getName(), inst.id), true, true, false)
+		.then(function(savedinst){
+			$scope.fetchPage(true);
+		});
+	};
 	//------------------------grid options
 	//control the paging
 	$scope.pagingOptions = {
@@ -225,6 +257,7 @@ angular.module("flexdms.report").controller("fxReportCtrl", function($scope, $el
 				pagingOptions: $scope.pagingOptions,
 				showSelectionCheckbox:true,
 				rowTemplate:'template/reportgrid/row.html',
+				selectedItems:  [] , //we want get hold the selected items
 				// plugins: [new ngGridCsvExportPlugin()]
 				
 		};
@@ -258,6 +291,16 @@ angular.module("flexdms.report").controller("fxReportCtrl", function($scope, $el
 			}
 			return;
 		});
+		if ($scope.options.showEdit || $scope.options.showView || $scope.options.showDelete){
+			$scope.columnDefs.push(
+					{'field':'', 
+						'displayName':'',
+						//'cellTemplate':ret,
+						'cellTemplate':"template/reportgrid/action_cell.html",
+						'cellClass': 'action'
+								
+					});
+		}
 		
 		//define column
 		angular.forEach($scope.report.Properties.entry, function(entry){

@@ -1,4 +1,4 @@
-angular.module("flexdms.TypeResource", ['ngResource']).factory("Type", ["$resource", function($resource) {
+angular.module("flexdms.TypeResource", ['ngResource', "dateParser"]).factory("Type", ["$resource", function($resource) {
 	
 	
 	function _transformTypes(meta){
@@ -594,9 +594,10 @@ angular.module("flexdms.TypeResource", ['ngResource']).factory("Type", ["$resour
 		return type.isEntity()  && !type.isSystem();
 	};
 	
-}).run(["Type", "$q", "$filter", function(Type, $q, $filter){
+}).run(["Type", "$q", "$filter",  "$dateParser", function(Type, $q, $filter, $dateParser){
 	//hjave filter available for all type
 	flexdms.filter=$filter;
+	flexdms.$dateParser=$dateParser;
 	Type.processtypemeta($q);
 }]);
 

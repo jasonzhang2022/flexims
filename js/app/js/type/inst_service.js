@@ -102,13 +102,15 @@ angular.module("flexdms.InstResource", ['ngResource']).factory("Inst", ["$resour
 			url:flexdms.instserviceurl+"/delete/:typename/:id",
 			method : 'DELETE', 
 	         transformResponse: unwrapObject,
-			isArray:false
+			isArray:false,
+			fxAlertNoContent: false
 		},
 		remove: {
 			url:flexdms.instserviceurl+"/delete/:typename/:id",
 			method : 'DELETE', 
 	         transformResponse: unwrapObject,
-			isArray:false
+			isArray:false,
+			fxAlertNoContent: false
 		},
 		save: {
 			url:flexdms.instserviceurl+"/save",
@@ -208,7 +210,7 @@ angular.module("flexdms.InstResource", ['ngResource']).factory("Inst", ["$resour
 	};
 });
 
-flexdms.copyFromStringValued=function(destInst, srcInst, Inst){
+flexdms.copyFromStringValued=function(destInst, srcInst, Inst, options){
 	function initEmbedded(prop) {
 		//var embeddedType=flexdms.findType(prop.getTypeObject().value);
 		var embeddedInst=Inst.newInst(prop.getTypeObject().value);
@@ -252,14 +254,39 @@ flexdms.copyFromStringValued=function(destInst, srcInst, Inst){
 						vs[i]= embeddedInst;
 					}
 					if (stringInst){
-						flexdms.copyFromStringValued( embeddedInst, stringInst, Inst);
+						flexdms.copyFromStringValued( embeddedInst, stringInst, Inst, options);
 					}
 				}
 			} else {
+				var format=null;
+				if (prop.getTypeObject().isDateOnly()){
+					if (options && options.dateFormat){
+						format=options.dateFormat;
+					} else{
+						format=flexdms.config.dateFormat;
+					}
+				} else if (prop.getTypeObject().isTimestamp()){
+					if (options && options.dateTimeFormat){
+						format=options.dateTimeFormat;
+					} else{
+						format=flexdms.config.dateTimeFormat;
+					}
+				} else if (prop.getTypeObject().isTimeOnly()){
+					if (options && options.timeFormat){
+						format=options.timeFormat;
+					} else{
+						format=flexdms.config.timeFormat;
+					}
+				} 
 				var vs=[];
 				angular.forEach(srcInst[prop.getName()].split(","), function(v){
 					if (v){
-						vs.push(prop.getTypeObject().parse(v));
+						if (format!=null){
+							vs.push(flexdms.$dateParser(v, format));
+						} else {
+							vs.push(prop.getTypeObject().parse(v));
+						}
+						
 					}
 				});
 				thisinst[prop.getName()]=vs;
@@ -273,9 +300,37 @@ flexdms.copyFromStringValued=function(destInst, srcInst, Inst){
 					thisinst[prop.getName()]=initEmbedded(prop);
 				}
 				var embeddedInst=thisinst[prop.getName()];
-				flexdms.copyFromStringValued(embeddedInst,srcInst[prop.getName()], Inst);
+				flexdms.copyFromStringValued(embeddedInst,srcInst[prop.getName()], Inst, options);
 			} else {
-				thisinst[prop.getName()]=prop.getTypeObject().parse(srcInst[prop.getName()]);
+				var format=null;
+				if (prop.getTypeObject().isDateOnly()){
+					if (options && options.dateFormat){
+						format=options.dateFormat;
+					} else{
+						format=flexdms.config.dateFormat;
+					}
+				} else if (prop.getTypeObject().isTimestamp()){
+					if (options && options.dateTimeFormat){
+						format=options.dateTimeFormat;
+					} else{
+						format=flexdms.config.dateTimeFormat;
+					}
+				} else if (prop.getTypeObject().isTimeOnly()){
+					if (options && options.timeFormat){
+						format=options.timeFormat;
+					} else{
+						format=flexdms.config.timeFormat;
+					}
+				} 
+				
+				if (format!=null){
+					thisinst[prop.getName()]=flexdms.$dateParser(srcInst[prop.getName()], format);
+				} else 
+				{
+					thisinst[prop.getName()]=prop.getTypeObject().parse(srcInst[prop.getName()]);
+				}
+					
+				
 			}
 			
 		}

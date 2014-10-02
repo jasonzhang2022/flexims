@@ -316,7 +316,7 @@ describe(
 				$http.whenGET(appctx.modelerprefix+"/rs/inst/get/Mdoomroom/794").respond({
 					Mdoomroom:rooms.entities.Mdoomroom[0]
 				}, jsonHeaders);
-				$http.whenGET(appctx.modelerprefix+"/reportrs/query/fetch/"+uuid+"/0/100").respond(rooms, jsonHeaders);
+				$http.whenGET(appctx.modelerprefix+"/reportrs/query/fetch/"+uuid+"/0/100?refresh=false").respond(rooms, jsonHeaders);
 				$http.whenGET(appctx.modelerprefix+"/rs/inst/get/TypedQuery/10400").respond({
 					'DefaultTypedQuery': reportbytypForMdoomroom.entities.DefaultTypedQuery[1]
 				}, jsonHeaders);
@@ -404,7 +404,7 @@ describe(
 					MOneMany:onemanys.entities.MOneMany[3]
 				}, jsonHeaders);
 				$http.expectPOST(appctx.modelerprefix+"/reportrs/query/prepare", preparePost).respond(200, respo, jsonHeaders);
-				$http.whenGET(appctx.modelerprefix+"/reportrs/query/fetch/"+uuid+"/0/100").respond(onemanys, jsonHeaders);
+				$http.whenGET(appctx.modelerprefix+"/reportrs/query/fetch/"+uuid+"/0/100?refresh=false").respond(onemanys, jsonHeaders);
 				$http.whenGET(appctx.modelerprefix+"/rs/inst/get/TypedQuery/10450").respond({
 					'DefaultTypedQuery': onemanyreport.entities.DefaultTypedQuery[0]
 				}, jsonHeaders);

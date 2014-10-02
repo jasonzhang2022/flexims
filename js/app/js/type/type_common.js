@@ -31,7 +31,7 @@ flexdms = {
 	insttype:"$_fxtype",
 	parentinst:"$_fxparentinst",
 	typemodules:['ui.router', 'ui.bootstrap', 'flexdms.common.error', 'flexdms.common.fxAlert', 'flexdms.common', 'flexdms.serverConfig',
-	             'ngResource', 
+	             'ngResource', "dateParser",
 	             "flexdms.TypeResource", "flexdms.securityInfo", 
 	             "flexdms.InstResource", 'ngAnimate'],
 	 config: {
