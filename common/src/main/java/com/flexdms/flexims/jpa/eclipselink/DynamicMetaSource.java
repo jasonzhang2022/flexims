@@ -31,7 +31,7 @@ public class DynamicMetaSource extends XMLMetadataSource {
 	public static final Logger LOGGER = Logger.getLogger(DynamicMetaSource.class.getCanonicalName());
 	private static XMLEntityMappings entityMaps;
 	public static List<URL> resources;
-	public static final String FIXED_NAME="fixed";
+	public static final String FIXED_NAME = "fixed";
 
 	@Override
 	public XMLEntityMappings getEntityMappings(Map<String, Object> properties, ClassLoader classLoader, SessionLog log) {
@@ -58,65 +58,63 @@ public class DynamicMetaSource extends XMLMetadataSource {
 			}
 		}
 		addFixedProperty();
-		
+
 		DynamicMetaSource.entityMaps = MetaSourceBuilder.roundTripEntityMappings(entityMaps);
 
 	}
-	
+
 	public static final void mergeMap(XMLEntityMappings from, XMLEntityMappings to) {
-		
-		for (ListIterator<TableGeneratorMetadata> listIteratorFrom=from.getTableGenerators().listIterator(); listIteratorFrom.hasNext();) {
-			TableGeneratorMetadata fromMetadata=listIteratorFrom.next();
-			for (ListIterator<TableGeneratorMetadata> listIterator=to.getTableGenerators().listIterator(); listIterator.hasNext();) {
-				TableGeneratorMetadata toMetadata=listIterator.next();
+
+		for (ListIterator<TableGeneratorMetadata> listIteratorFrom = from.getTableGenerators().listIterator(); listIteratorFrom.hasNext();) {
+			TableGeneratorMetadata fromMetadata = listIteratorFrom.next();
+			for (ListIterator<TableGeneratorMetadata> listIterator = to.getTableGenerators().listIterator(); listIterator.hasNext();) {
+				TableGeneratorMetadata toMetadata = listIterator.next();
 				if (toMetadata.getName().equals(fromMetadata.getName())) {
-					listIterator.set(fromMetadata); //replace;
-					listIteratorFrom.remove(); //remove from source
+					listIterator.set(fromMetadata); // replace;
+					listIteratorFrom.remove(); // remove from source
 					break;
 				}
 			}
 		}
-		//add all remaining
+		// add all remaining
 		to.getTableGenerators().addAll(from.getTableGenerators());
-		//--------------------------entities
-		for (ListIterator<EntityAccessor> listIteratorFrom=from.getEntities().listIterator(); listIteratorFrom.hasNext();) {
-			EntityAccessor fromMetadata=listIteratorFrom.next();
-			for (ListIterator<EntityAccessor> listIterator=to.getEntities().listIterator(); listIterator.hasNext();) {
-				EntityAccessor toMetadata=listIterator.next();
+		// --------------------------entities
+		for (ListIterator<EntityAccessor> listIteratorFrom = from.getEntities().listIterator(); listIteratorFrom.hasNext();) {
+			EntityAccessor fromMetadata = listIteratorFrom.next();
+			for (ListIterator<EntityAccessor> listIterator = to.getEntities().listIterator(); listIterator.hasNext();) {
+				EntityAccessor toMetadata = listIterator.next();
 				if (toMetadata.getName().equals(fromMetadata.getName())) {
-					listIterator.set(fromMetadata); //replace;
-					listIteratorFrom.remove(); //remove from source
+					listIterator.set(fromMetadata); // replace;
+					listIteratorFrom.remove(); // remove from source
 					break;
 				}
 			}
 		}
 		to.getEntities().addAll(from.getEntities());
-		
-		
-		//----------------embedded
-		for (ListIterator<EmbeddableAccessor> listIteratorFrom=from.getEmbeddables().listIterator(); listIteratorFrom.hasNext();) {
-			EmbeddableAccessor fromMetadata=listIteratorFrom.next();
-			for (ListIterator<EmbeddableAccessor> listIterator=to.getEmbeddables().listIterator(); listIterator.hasNext();) {
-				EmbeddableAccessor toMetadata=listIterator.next();
+
+		// ----------------embedded
+		for (ListIterator<EmbeddableAccessor> listIteratorFrom = from.getEmbeddables().listIterator(); listIteratorFrom.hasNext();) {
+			EmbeddableAccessor fromMetadata = listIteratorFrom.next();
+			for (ListIterator<EmbeddableAccessor> listIterator = to.getEmbeddables().listIterator(); listIterator.hasNext();) {
+				EmbeddableAccessor toMetadata = listIterator.next();
 				if (toMetadata.getName().equals(fromMetadata.getName())) {
-					listIterator.set(fromMetadata); //replace;
-					listIteratorFrom.remove(); //remove from source
+					listIterator.set(fromMetadata); // replace;
+					listIteratorFrom.remove(); // remove from source
 					break;
 				}
 			}
 		}
 		to.getEmbeddables().addAll(from.getEmbeddables());
-		
-		
-		//-----------------------------superclasses
-		for (ListIterator<MappedSuperclassAccessor> listIteratorFrom=from.getMappedSuperclasses().listIterator(); listIteratorFrom.hasNext();) {
-			MappedSuperclassAccessor fromMetadata=listIteratorFrom.next();
 
-			for (ListIterator<MappedSuperclassAccessor> listIterator=to.getMappedSuperclasses().listIterator(); listIterator.hasNext();) {
-				MappedSuperclassAccessor toMetadata=listIterator.next();
+		// -----------------------------superclasses
+		for (ListIterator<MappedSuperclassAccessor> listIteratorFrom = from.getMappedSuperclasses().listIterator(); listIteratorFrom.hasNext();) {
+			MappedSuperclassAccessor fromMetadata = listIteratorFrom.next();
+
+			for (ListIterator<MappedSuperclassAccessor> listIterator = to.getMappedSuperclasses().listIterator(); listIterator.hasNext();) {
+				MappedSuperclassAccessor toMetadata = listIterator.next();
 				if (toMetadata.getName().equals(fromMetadata.getName())) {
-					listIterator.set(fromMetadata); //replace;
-					listIteratorFrom.remove(); //remove from source
+					listIterator.set(fromMetadata); // replace;
+					listIteratorFrom.remove(); // remove from source
 					break;
 				}
 			}
@@ -156,7 +154,5 @@ public class DynamicMetaSource extends XMLMetadataSource {
 			e.getProperties().add(pMetadata);
 		}
 	}
-	
-	
 
 }

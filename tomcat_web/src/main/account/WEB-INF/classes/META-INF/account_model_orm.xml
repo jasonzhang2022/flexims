@@ -83,6 +83,7 @@
 				<orm:property name="viewable" value="true" />
 				<orm:property name="editable" value="true" />
 				<orm:property name="autogenerate" value="true" />
+				<orm:property name="defaultvalue" value="0"/>
 			</orm:basic>
 			<orm:basic name="Hstax" optional="true" attribute-type="java.lang.Double">
 				<orm:column unique="false" nullable="true" length="254" />
@@ -91,6 +92,7 @@
 				<orm:property name="viewable" value="true" />
 				<orm:property name="editable" value="true" />
 				<orm:property name="autogenerate" value="true" />
+				<orm:property name="defaultvalue" value="0"/>
 			</orm:basic>
 			<orm:basic name="CompanyShare" optional="true"
 				attribute-type="java.lang.Float">
@@ -128,7 +130,12 @@
 				<orm:property name="autogenerate" value="true" />
 				<orm:property name="clientfile" value="true" />
 			</orm:basic>
-
+			<orm:basic name="validated" attribute-type="boolean">
+	            <orm:column unique="false" nullable="true" length="254"/>
+	            <orm:property name="typeidx" value="9"/>
+	            <orm:property name="defaultvalue" value="false"/>
+	            <orm:property name="tooltip" value="Validated?"/>
+        	</orm:basic>
 			<orm:version name="fxversion" mutable="true"
 				attribute-type="java.sql.Timestamp">
 				<orm:column />
@@ -210,7 +217,12 @@
 				<orm:property name="autogenerate" value="true" />
 				<orm:property name="clientfile" value="true" />
 			</orm:basic>
-
+ 			<orm:basic name="validated" attribute-type="boolean">
+	            <orm:column unique="false" nullable="true" length="254"/>
+	            <orm:property name="typeidx" value="9"/>
+	            <orm:property name="defaultvalue" value="false"/>
+	            <orm:property name="tooltip" value="Validated?"/>
+        	</orm:basic>
 			<orm:version name="fxversion" mutable="true"
 				attribute-type="java.sql.Timestamp">
 				<orm:column />

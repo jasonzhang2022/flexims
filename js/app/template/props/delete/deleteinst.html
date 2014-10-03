@@ -9,7 +9,7 @@
 					<span class="glyphicon glyphicon-trash"></span>
 				</button>
 				<a type="button" class="btn btn-primary" title="all types" data-ng-disabled="deleted"
-					href="#/viewinst/{{typename}}/{{inst.id}}">Cancel</span>
+					ui-sref="viewinst({'typename':typename, id: insts[0].id})">Cancel
 				</a>
 			</div>
 		</div>

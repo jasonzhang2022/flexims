@@ -9,8 +9,7 @@
  * @scope
  * 
  * @param {string} fx-typename the instance type
- * @param {number=} inst-id: instance id. Required if the form is used for editing instead of adding. In case of edit, 
- * if the instance real type is different from the specified type, real subtype of the instance instead of specified type is used to generate the form 
+ * @param {string=} inst-id: a list of instance id separated by ,
  * @param {string=} template-url alternative template-url for the form instead of the default one.
  * 
  * 

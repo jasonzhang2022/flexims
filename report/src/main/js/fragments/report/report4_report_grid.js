@@ -92,15 +92,7 @@ angular.module("flexdms.report").controller("fxReportCtrl", function($scope, $el
 		}
 	}
 	
-	if (!angular.isDefined($scope.options.showDelete)){
-		$scope.options.showDelete=true;
-	}
-	if (!angular.isDefined($scope.options.showEdit)){
-		$scope.options.showEdit=true;
-	}
-	if (!angular.isDefined($scope.options.showView)){
-		$scope.options.showView=true;
-	}
+
 	
 	if (!angular.isDefined($scope.showHeader)){
 		$scope.showHeader=false;
@@ -266,8 +258,15 @@ angular.module("flexdms.report").controller("fxReportCtrl", function($scope, $el
 		if (angular.isDefined($scope.reportWrapper.FxReport.gridOptions) && angular.isDefined($scope.reportWrapper.FxReport.gridOptions.entry)){
 			angular.forEach($scope.reportWrapper.FxReport.gridOptions.entry, function(opt){
 				$scope.gridOptions[opt.key]=opt.value;
+				
+				//value conversion
+				if (opt.key=="showEdit"|| opt.key=="showDelete" ||opt.key=="showView"){
+					$scope.gridOptions[opt.key]=flexdms.parseTrueFalse(opt.value);
+				}		
 			});
 		}
+		
+		
 		//column definition.
 		var targetedType=$scope.type;
 		$scope.columnDefs.length=0;
@@ -291,7 +290,24 @@ angular.module("flexdms.report").controller("fxReportCtrl", function($scope, $el
 			}
 			return;
 		});
-		if ($scope.options.showEdit || $scope.options.showView || $scope.options.showDelete){
+		
+		//set any options passed from outside.
+		for (var prop in $scope.options){
+			$scope.gridOptions[prop]=$scope.options[prop];
+		}
+		
+		//default value for showXXXX
+		if (!angular.isDefined($scope.gridOptions.showDelete)){
+			$scope.gridOptions.showDelete=true;
+		}
+		if (!angular.isDefined($scope.gridOptions.showEdit)){
+			$scope.gridOptions.showEdit=true;
+		}
+		if (!angular.isDefined($scope.gridOptions.showView)){
+			$scope.gridOptions.showView=true;
+		}
+
+		if ($scope.gridOptions.showEdit || $scope.gridOptions.showView || $scope.gridOptions.showDelete){
 			$scope.columnDefs.push(
 					{'field':'', 
 						'displayName':'',
@@ -315,10 +331,7 @@ angular.module("flexdms.report").controller("fxReportCtrl", function($scope, $el
 					});
 		});
 		
-		//set any options passed from outside.
-		for (var prop in $scope.options){
-			$scope.gridOptions[prop]=$scope.options[prop];
-		}
+		
 	};
 });
 
@@ -334,7 +347,15 @@ angular.module("flexdms.report").controller("fxReportCtrl", function($scope, $el
  * @scope
  * 
  * @param {Object} report report instance
- * @param {Object=} options report grid options
+ * @param {Object=} options report grid options. 
+ *    Valid keys in the options:
+ *    <ul>
+ *      <li>showDelete: whether to show delete link: default true. </li>
+ *      <li>showEdit: whether to show a link to bring up a popup editor: default true </li>
+ *      <li>showView: whether to show a link to bring up a popup viewer: default true </li>
+ *      <li>selectedItems: an array to hold selected items; </li>
+ *      <li>Any options from https://github.com/angular-ui/ng-grid/wiki/Configuration-Options </li>
+ *     </ul>
  * @param {boolean=} [showHeader=true] whether to show report header
  * @param {boolean=} refreshing whether parent DOM is in refreshig stage
  * 

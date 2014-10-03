@@ -86,7 +86,7 @@ flexdms.parseTrueFalse=function(value){
 		return false;
 	}
 	if (value==null){
-		return fasle;
+		return false;
 	}
 	if (typeof(value)=='boolean'){
 		return value;
