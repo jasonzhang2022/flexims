@@ -106,11 +106,43 @@ typeApp.controller("edittypeCtrl", function($scope, Type, $state, types, $stateP
 	$scope.extension=$scope.realType.isExtensible();
 	$scope.abstracttype=$scope.realType.isAbstract();
 	$scope.types=types;
+	
+	$scope.viewprops=$scope.realType.getExtraProp("viewprops");
+	$scope.editprops=$scope.realType.getExtraProp("editprops");
+	if ($scope.viewprops==null){
+		$scope.viewprops=[];
+	} else {
+		$scope.viewprops=$scope.viewprops.split(",");
+	}
+	if ($scope.editprops==null){
+		$scope.editprops=[];
+	} else{
+		$scope.editprops=$scope.editprops.split(",");	
+	}
+	
+	$scope.$watchCollection("viewprops",function(newValue, oldValue) {
+		if (newValue==null || newValue.length==0){
+			flexdms.deleteExtraProp($scope.type, "viewprops");
+		} else {
+			flexdms.addExtraProp($scope.type, "viewprops", newValue.join(","));
+		}
+	});
+	$scope.$watchCollection("editprops",function(newValue, oldValue) {
+		if (newValue==null || newValue.length==0){
+			flexdms.deleteExtraProp($scope.type, "editprops");
+		} else {
+			flexdms.addExtraProp($scope.type, "editprops", newValue.join(","));
+		}
+		
+	});
+	
+	
 	angular.forEach(types, function(type){
 		if (type.isEntity()) {
 			$scope.supers.push(type.getName());
 		}
 	});
+	
 	
 	
 

@@ -326,6 +326,28 @@ angular.module("flexdms.TypeResource", ['ngResource', "dateParser"]).factory("Ty
 		if (angular.isDefined(this.$editProps)){
 			return this.$editProps;
 		}
+		var editpropNames=this.getExtraProp("editprops");
+		if (editpropNames==null ){
+			return this._getEditProps();
+		}
+		var editprops=[];
+		var type=this;
+		angular.forEach(editpropNames.split(","), function(name){
+			var prop=type.getProp(name);
+			if (prop!=null){
+				editprops.push(prop);
+			}
+		});
+		if (editprops.length!=0){
+			this.$editProps=editprops;
+			return this.$editProps;
+		} 
+		return this._getEditProps();
+	};
+	Type.prototype._getEditProps=function(){
+		if (angular.isDefined(this.$editProps)){
+			return this.$editProps;
+		}
 		var editProps=this.filterProps(function(){
 			if (this.isIdOrVersion()){
 				return false;
@@ -342,6 +364,28 @@ angular.module("flexdms.TypeResource", ['ngResource', "dateParser"]).factory("Ty
 		return this.$editProps;
 	};
 	Type.prototype.getViewProps=function(){
+		if (angular.isDefined(this.$viewProps)){
+			return this.$viewProps;
+		}
+		var viewpropNames=this.getExtraProp("viewprops");
+		if (viewpropNames==null ){
+			return this._getViewProps();
+		}
+		var viewprops=[];
+		var type=this;
+		angular.forEach(viewpropNames.split(","), function(name){
+			var prop=type.getProp(name);
+			if (prop!=null){
+				viewprops.push(prop);
+			}
+		});
+		if (viewprops.length!=0){
+			this.$viewProps=viewprops;
+			return this.$viewProps;
+		} 
+		return this._getViewProps();
+	};
+	Type.prototype._getViewProps=function(){
 		if (angular.isDefined(this.$viewProps)){
 			return this.$viewProps;
 		}

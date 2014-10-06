@@ -78,6 +78,20 @@
 
 		</div>
 	</div>
+	<div class="form-group" data-ng-show="edit">
+		<label class="col-md-2 control-label">Property Order in Viewer</label>
+		<div class="col-md-10">
+			<picklist name="pktest" size="20" data-picklist="" data-pick-model="viewprops" data-pick-options="propobj.getName() as propobj.getDisplayText() for propobj in realType.getProps()"></picklist>
+		</div>
+	</div>
+	<div class="form-group" data-ng-show="edit">
+		<label class="col-md-2 control-label">Property Order in Editor</label>
+		<div class="col-md-10">
+			<picklist name="pktest" size="20" data-picklist="" data-pick-model="editprops" data-pick-options="propobj.getName() as propobj.getDisplayText() for propobj in realType.getProps()"></picklist>
+		</div>
+	</div>
+	
+	
 	<div class="form-group">
 		<label class="col-md-2 control-label"></label>
 		<div class="col-md-4">
