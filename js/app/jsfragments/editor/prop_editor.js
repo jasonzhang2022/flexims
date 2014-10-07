@@ -87,6 +87,7 @@ angular.module("instDirective").directive("fxPropEditor",function($compile,fxTem
 				var controller=$controller(propctrl, {'$scope': $scope});
 				$element.data(propctrl, controller);
 			}
+		
 			
 		},
 		link : function(scope, iElement, iAttrs, form, transcludeFn,  $controller) {
@@ -95,5 +96,23 @@ angular.module("instDirective").directive("fxPropEditor",function($compile,fxTem
 			$compile(iElement.contents())(scope);
 			
 		}
+	};
+}).controller("relationAdder", function($scope, fxInstPopup){
+	
+	$scope.showAdder=flexdms.parseTrueFalse($scope.propobj.getExtraProp("showRelationAdder"));
+	
+	$scope.addrelation=function($event){
+		var propobj=$scope.propobj;
+		fxInstPopup.popupInstEditor(propobj.getTypeObject().value, null, true, true, false)
+		.then(function(inst){
+			if (propobj.isCollection()){
+				if (!angular.isDefined($scope.inst[propobj.getName()]) ||$scope.inst[propobj.getName()]==null ){
+					$scope.inst[propobj.getName()]=[];
+				}
+				$scope.inst[propobj.getName()].push(inst.id);
+			} else {
+				$scope.inst[propobj.getName()]=inst.id;
+			}
+		});
 	};
 });

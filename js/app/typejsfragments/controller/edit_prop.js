@@ -22,8 +22,8 @@ typeApp.controller("editpropCtrl",
 			ignorepatterncase:propobj.isIgnoreCaseForPattern(),
 			allowedvalues:propobj.getAllowedValues(),
 			tooltip:propobj.getTooltip(),
-			display:propobj.getDisplayText()
-			
+			display:propobj.getDisplayText(),
+			showRelationAdder:flexdms.parseTrueFalse(propobj.getExtraProp("showRelationAdder"))
 		};
 	}
 	

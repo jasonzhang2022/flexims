@@ -568,6 +568,12 @@ function addOrEditProp($scope, Type, $stateParams, $modal, $state){
 		
 		$scope.setOrder();
 		
+		if ($scope.extraprops.showRelationAdder){
+			$scope.propObj._internalSetExtraProp("showRelationAdder", true);
+		} else {
+			$scope.propObj._internalSetExtraProp("showRelationAdder", null);
+		}
+		
 		
 	};
 	

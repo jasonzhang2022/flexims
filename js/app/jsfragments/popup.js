@@ -33,7 +33,7 @@ angular.module("instDirective").service("fxInstPopup", function($modal, Inst, $r
 		$scope1.typename=typename;
 		$scope1.showlabel=angular.isDefined(showlabel)?showlabel:true;
 		
-		if (angular.isDefined(inst)){
+		if (angular.isDefined(inst) && inst!=null){
 			$scope1.edit=true;
 			if (angular.isDefined(inst.$promise)){
 				$scope1.inst=inst;

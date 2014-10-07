@@ -24,6 +24,7 @@ typeApp.controller("addpropCtrl",
 			tooltip:null,
 			display:null,
 			orderby:null,
+			
 		};
 	}
 	$scope.propaction="add";
