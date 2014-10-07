@@ -78,27 +78,19 @@ public final class DBUtil {
 
 	}
 
-	public static void dropForeignKeys(String toTable, Connection con, boolean force) throws SQLException {
+	public static List<String> getForeignKeys(String toTable, Connection con, boolean force) throws SQLException {
 		toTable = normalizeTableName(toTable, con);
-		List<String> statements = new LinkedList<String>();
 		ResultSet rs = con.getMetaData().getExportedKeys(null, null, toTable);
+		List<String> sqls=new ArrayList<>(2);
 		while (rs.next()) {
 			String tablename = rs.getString("FKTABLE_NAME");
 			String fkname = rs.getString("FK_NAME");
 			if (fkname != null) {
-				statements.add("alter table " + tablename + " drop constraint " + fkname);
+				sqls.add("alter table " + tablename + " drop constraint " + fkname);
 			}
 		}
 		rs.close();
-		for (String sql : statements) {
-			try {
-				con.createStatement().execute(sql);
-			} catch (SQLException e) {
-				if (!force) {
-					throw e;
-				} 
-			}
-		}
+		return sqls;
 
 	}
 

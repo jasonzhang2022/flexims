@@ -8,6 +8,7 @@ import org.eclipse.persistence.descriptors.InheritancePolicy;
 import org.eclipse.persistence.mappings.DatabaseMapping;
 import org.eclipse.persistence.mappings.DirectCollectionMapping;
 import org.eclipse.persistence.mappings.DirectToFieldMapping;
+import org.eclipse.persistence.mappings.ForeignReferenceMapping;
 import org.eclipse.persistence.mappings.ManyToManyMapping;
 import org.eclipse.persistence.mappings.OneToManyMapping;
 import org.eclipse.persistence.sessions.Session;
@@ -88,6 +89,12 @@ public class InheritanceSessionCustomizer implements SessionCustomizer {
 
 			for (DatabaseMapping mapping : descriptor.getMappings()) {
 
+				if (mapping instanceof ForeignReferenceMapping) {
+					ForeignReferenceMapping fMapping = (ForeignReferenceMapping) mapping;
+					if (fMapping.getMappedBy() != null) {
+						mapping.readOnly();
+					}
+				}
 				// converter fixes
 				if (mapping.isDirectCollectionMapping()) {
 

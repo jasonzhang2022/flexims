@@ -5,11 +5,14 @@ import java.sql.Connection;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.logging.Logger;
 
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.naming.NamingException;
+import javax.persistence.EntityManager;
 import javax.persistence.metamodel.Attribute;
+import javax.transaction.Transactional;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
@@ -26,6 +29,7 @@ import org.eclipse.persistence.internal.jpa.metadata.sequencing.TableGeneratorMe
 import org.eclipse.persistence.internal.jpa.metadata.xml.XMLEntityMappings;
 
 import com.flexdms.flexims.App;
+import com.flexdms.flexims.jpa.JpaHelper;
 import com.flexdms.flexims.jpa.JpaMapHelper;
 import com.flexdms.flexims.jpa.JpaMetamodelHelper;
 import com.flexdms.flexims.jpa.eclipselink.DynamicMetaSource;
@@ -51,6 +55,7 @@ public class TypeService {
 
 	public static final int TYPE_REFERED = 600;
 	public static final int PROP_REFERED = 601;
+	public static final Logger LOGGER = Logger.getLogger(TypeService.class.getCanonicalName());
 
 	@Inject
 	MapPersister mapPersister;
@@ -280,7 +285,15 @@ public class TypeService {
 		if (JpaMapHelper.findPropertyBbyMappedBy(JpaMetamodelHelper.getAttributeType(attr).getSimpleName(), propName) != null) {
 			throw new CodedExceptionImpl(PROP_REFERED, "Deletion can not be performed. Target Property is referred by other types");
 		}
-
+		
+		EntityManager eManager = App.getEM();
+		eManager.getTransaction().begin();
+		Connection connection = eManager.unwrap(Connection.class);
+		for (String sql : JpaHelper.deletePropDBStructure(eManager, typeName, propName)) {
+			LOGGER.info(sql);
+			connection.createStatement().execute(sql);
+		}
+		eManager.getTransaction().commit();
 		JpaMapHelper.deleteProp(entity, propName);
 		App.getPersistenceUnit().refresh(false);
 		mapPersister.save(DynamicMetaSource.getEntityMaps());
@@ -294,6 +307,14 @@ public class TypeService {
 		if (!attrs.isEmpty()) {
 			throw new CodedExceptionImpl(TYPE_REFERED, "Deletion can not be performed. Target type is referred by other types");
 		}
+		EntityManager eManager = App.getEM();
+		eManager.getTransaction().begin();
+		Connection connection = eManager.unwrap(Connection.class);
+		for (String sql : JpaHelper.deletePropDBStructure(eManager, typeName)) {
+			LOGGER.info(sql);
+			connection.createStatement().execute(sql);
+		}
+		eManager.getTransaction().commit();
 		JpaMapHelper.deleteClassAccessor(DynamicMetaSource.getEntityMaps(), typeName);
 		App.getPersistenceUnit().refresh(false);
 		mapPersister.save(DynamicMetaSource.getEntityMaps());
