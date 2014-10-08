@@ -131,6 +131,7 @@ public class TestAuthService extends TestRSbase {
 		info.setPassword("123456");
 		info.setEmail("regtest@t.com");
 		AppMsg msg = postJson(target.path("register"), info);
+		System.out.println(msg.getMsg());
 		assertThat(msg.getStatuscode(), equalTo(0l));
 
 		// we can login with regsitered user.

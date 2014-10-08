@@ -105,9 +105,9 @@ public class TestInstService extends TestRSbase {
 		if (testid == null) {
 			test1SaveBasic();
 		}
-		FleximsDynamicEntityImpl entity = deleteJson(target.path("delete").path(testName).path(String.valueOf(testid)));
-		assertNotNull(entity);
-		entity = getJson(target.path("get").path(testName).path(String.valueOf(testid)));
+		 deleteJson(target.path("delete").path(testName).path(String.valueOf(testid)));
+		
+		FleximsDynamicEntityImpl entity = getJson(target.path("get").path(testName).path(String.valueOf(testid)));
 		assertNull(entity);
 
 	}
@@ -176,8 +176,8 @@ public class TestInstService extends TestRSbase {
 		doomroom1 = postJson(target.path("save"), doomroom1);
 
 		// roload build
-		getJson(target.path("get").path(testName).path(String.valueOf(retEntity.getId())));
-		retEntity = deleteJson(target.path("delete").path(testName).path(String.valueOf(retEntity.getId())));
+		retEntity =getJson(target.path("get").path(testName).path(String.valueOf(retEntity.getId())));
+		deleteJson(target.path("delete").path(testName).path(String.valueOf(retEntity.getId())));
 
 		List<FleximsDynamicEntityImpl> rooms = retEntity.get("rooms");
 		assertThat(rooms, hasSize(2));
