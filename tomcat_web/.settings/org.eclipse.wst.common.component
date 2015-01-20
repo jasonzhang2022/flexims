@@ -3,34 +3,34 @@
         <wb-resource deploy-path="/" source-path="/target/m2e-wtp/web-resources"/>
         <wb-resource deploy-path="/" source-path="/src/main/webapp" tag="defaultRootSource"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/java"/>
-        <dependent-module archiveName="common-0.1.0-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/fxcommon/fxcommon">
+        <dependent-module archiveName="common-0.1.0-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/common/common">
             <dependency-type>uses</dependency-type>
         </dependent-module>
-        <dependent-module archiveName="report-0.1.0-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/fxreport/fxreport">
+        <dependent-module archiveName="report-0.1.0-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/report/report">
             <dependency-type>uses</dependency-type>
         </dependent-module>
-        <dependent-module archiveName="users-0.1.0-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/fxusers/fxusers">
+        <dependent-module archiveName="users-0.1.0-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/users/users">
             <dependency-type>uses</dependency-type>
         </dependent-module>
-        <dependent-module archiveName="urlctrl-0.1.0-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/fxurlctrl/fxurlctrl">
+        <dependent-module archiveName="urlctrl-0.1.0-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/urlctrl/urlctrl">
             <dependency-type>uses</dependency-type>
         </dependent-module>
-        <dependent-module archiveName="auth-0.1.0-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/fxauth/fxauth">
+        <dependent-module archiveName="auth-0.1.0-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/auth/auth">
             <dependency-type>uses</dependency-type>
         </dependent-module>
-        <dependent-module archiveName="security-0.1.0-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/fxsecurity/fxsecurity">
+        <dependent-module archiveName="security-0.1.0-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/security/security">
             <dependency-type>uses</dependency-type>
         </dependent-module>
-        <dependent-module archiveName="dbfiles-0.1.0-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/fxdbfiles/fxdbfiles">
+        <dependent-module archiveName="dbfiles-0.1.0-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/dbfiles/dbfiles">
             <dependency-type>uses</dependency-type>
         </dependent-module>
-        <dependent-module archiveName="module-0.1.0-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/fxmodule/fxmodule">
+        <dependent-module archiveName="module-0.1.0-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/module/module">
             <dependency-type>uses</dependency-type>
         </dependent-module>
-        <dependent-module archiveName="testorm-0.1.0-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/fxtestorm/fxtestorm">
+        <dependent-module archiveName="testorm-0.1.0-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/testorm/testorm">
             <dependency-type>uses</dependency-type>
         </dependent-module>
-        <dependent-module deploy-path="/" handle="module:/overlay/prj/fxjs?includes=**/**&amp;excludes=META-INF/MANIFEST.MF">
+        <dependent-module deploy-path="/" handle="module:/overlay/prj/js?includes=**/**&amp;excludes=META-INF/MANIFEST.MF">
             <dependency-type>consumes</dependency-type>
         </dependent-module>
         <dependent-module deploy-path="/" handle="module:/overlay/slf/?includes=**/**&amp;excludes=META-INF/MANIFEST.MF">

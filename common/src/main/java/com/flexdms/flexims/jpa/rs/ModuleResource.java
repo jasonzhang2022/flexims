@@ -5,6 +5,8 @@ import java.io.Serializable;
 import java.io.StringWriter;
 import java.io.Writer;
 import java.net.URL;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -42,13 +44,21 @@ public class ModuleResource implements Serializable {
 		return name.substring(name.lastIndexOf('/') + 1);
 	}
 
+	public static class URLComparator implements Comparator<URL>{
+
+		@Override
+		public int compare(URL o1, URL o2) {
+			return o1.toExternalForm().compareTo(o2.toExternalForm());
+		}
+		
+	}
 	@PostConstruct
 	public void init() throws ServletException {
 		try {
 			Writer out =new StringWriter(10000);
 			List<URL> resources = CPScanner.scanResources(new ResourceFilter().packageName("META-INF.resources.inst").resourceName("*.js"));
 			if (resources != null) {
-
+				Collections.sort(resources, new URLComparator());
 				for (URL res : resources) {
 					out.write("//------" + lastResrcName(res.toExternalForm()) + "\n");
 					IOUtils.copy(res.openStream(), out);
@@ -63,7 +73,7 @@ public class ModuleResource implements Serializable {
 			out = new StringWriter(1000);
 			resources = CPScanner.scanResources(new ResourceFilter().packageName("META-INF.resources.inst").resourceName("*.css"));
 			if (resources != null) {
-
+				Collections.sort(resources, new URLComparator());
 				for (URL res : resources) {
 					out.write("/*------" + lastResrcName(res.toExternalForm()) + "*/\n");
 					IOUtils.copy(res.openStream(), out);
@@ -78,7 +88,7 @@ public class ModuleResource implements Serializable {
 			out =new StringWriter(10000);
 			resources = CPScanner.scanResources(new ResourceFilter().packageName("META-INF.resources.thirdparty").resourceName("*.js"));
 			if (resources != null) {
-
+				Collections.sort(resources, new URLComparator());
 				for (URL res : resources) {
 					out.write("//------" + lastResrcName(res.toExternalForm()) + "\n");
 					IOUtils.copy(res.openStream(), out);
@@ -93,7 +103,7 @@ public class ModuleResource implements Serializable {
 			out = new StringWriter(10000);
 			resources = CPScanner.scanResources(new ResourceFilter().packageName("META-INF.resources.type").resourceName("*.js"));
 			if (resources != null) {
-
+				Collections.sort(resources, new URLComparator());
 				for (URL res : resources) {
 					out.write("//------" + lastResrcName(res.toExternalForm()) + "\n");
 					IOUtils.copy(res.openStream(), out);
