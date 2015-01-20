@@ -308,7 +308,7 @@ angular.module("flexdms.report").controller("PropertyConditionControllerViewer",
 			return value;
 		}
 		if (opobj.howManyOperands()==1||opobj.howManyOperands()==2){
-			return formatValue(propobj, value, $filter);
+			return formatValue($scope.conditionProp, value, $filter);
 		}
 		
 		//many values
