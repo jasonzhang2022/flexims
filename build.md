@@ -8,10 +8,8 @@ Requirement
   *	cd htmltemplate-maven-plugin
   * mvn install
 
-Configure
+Compile and install
 ====
-* cd testorm; mvn install;
-* cd common; mvn -DskipTests install;
-* cd js; mvn -DskipTests install;
-* mvn -DskipTests install;
+* mvn --non-recursive install 
+* mvn -DskipTests install
 * mvn test;
