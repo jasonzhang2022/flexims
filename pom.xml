@@ -28,13 +28,13 @@
 		<module>ittest</module>
 	</modules>
 
-	<repositories>
+	<!-- repositories>
 		<repository>
 			<id>oss.sonatype.org</id>
 			<name>OSS Sonatype Staging</name>
 			<url>https://oss.sonatype.org/content/groups/staging</url>
 		</repository>
-	</repositories>
+	</repositories -->
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<version.org.jboss.shrinkwrap>2.0.0</version.org.jboss.shrinkwrap>
