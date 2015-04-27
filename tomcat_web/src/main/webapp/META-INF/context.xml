@@ -15,7 +15,7 @@
 	<!-- DataSource -->
 	<Resource name="jdbc/flexims" auth="Container" type="javax.sql.DataSource" 
 		maxActive="100" maxIdle="30" maxWait="10000" username="flexims"
-		password="123456" driverClassName="org.postgresql.Driver" url="jdbc:postgresql://192.168.231.10:5432/flexims" />
+		password="123456" driverClassName="org.postgresql.Driver" url="jdbc:postgresql://localhost:5432/flexims" />
 
 
 	

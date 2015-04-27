@@ -1,0 +1,6 @@
+--create postgresql database
+createuser --createdb --echo --login --pwprompt flexims
+createdb --owner=flexims --encoding=UTF8 flexims
+--test login
+
+psql -h localhost --username=flexims -W flexims
