@@ -3,12 +3,13 @@ package com.flexdms.flexims.deploy.tomcat;
 import java.io.Serializable;
 
 import javax.enterprise.context.ApplicationScoped;
+import javax.enterprise.context.Dependent;
 import javax.enterprise.inject.Produces;
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 
-@ApplicationScoped
+@Dependent
 public class JNDIDataSource implements Serializable {
 
 	/**

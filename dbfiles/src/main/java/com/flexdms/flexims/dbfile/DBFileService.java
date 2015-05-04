@@ -6,6 +6,7 @@ import java.util.Calendar;
 import java.util.LinkedList;
 import java.util.List;
 
+import javax.enterprise.context.Dependent;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
@@ -20,7 +21,7 @@ import com.flexdms.flexims.jpa.eclipselink.FleximsDynamicEntityImpl;
 import com.flexdms.flexims.jpa.helper.ByteArray;
 import com.flexdms.flexims.jpa.helper.NameValueList;
 import com.flexdms.flexims.util.Utils;
-
+@Dependent
 @FileSchema(DBFileService.FILE_SCHEMA)
 public class DBFileService implements FileServiceI {
 

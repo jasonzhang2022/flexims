@@ -11,7 +11,7 @@ import java.util.Map;
 import java.util.UUID;
 
 import javax.annotation.PostConstruct;
-import javax.enterprise.context.ApplicationScoped;
+import javax.enterprise.context.Dependent;
 
 import com.amazonaws.auth.ClasspathPropertiesFileCredentialsProvider;
 import com.amazonaws.auth.PropertiesCredentials;
@@ -37,7 +37,7 @@ import com.flexdms.flexims.file.FileSchema;
 import com.flexdms.flexims.file.FileServiceI;
 import com.flexdms.flexims.util.Utils;
 
-@ApplicationScoped
+@Dependent
 @FileSchema(S3FileService.FILE_SCHEMA)
 public class S3FileService implements FileServiceI {
 

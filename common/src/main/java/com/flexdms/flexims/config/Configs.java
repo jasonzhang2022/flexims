@@ -6,8 +6,8 @@ import com.flexdms.flexims.App;
 import com.flexdms.flexims.AppCache;
 
 /**
- * Global Cache for Configuration TODO: use a cache instead of hash map to
- * accommodate cluster environment.
+ * Global Cache for Configuration 
+ * TODO: use a cache instead of hash map to accommodate cluster environment.
  * 
  * @author jason.zhang
  * 

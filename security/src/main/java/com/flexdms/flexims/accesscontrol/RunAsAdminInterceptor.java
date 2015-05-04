@@ -9,7 +9,6 @@ import javax.interceptor.Interceptor;
 import javax.interceptor.InvocationContext;
 
 import com.flexdms.flexims.RunAsAdmin;
-import com.flexdms.flexims.users.FxRole;
 import com.flexdms.flexims.users.RoleUtils;
 
 @RunAsAdmin

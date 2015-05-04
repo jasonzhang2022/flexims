@@ -1,5 +1,6 @@
 package com.flexdms.flexims;
 
+import javax.enterprise.context.Dependent;
 import javax.enterprise.inject.Produces;
 import javax.persistence.EntityManager;
 
@@ -9,6 +10,7 @@ import javax.persistence.EntityManager;
  * @author jason.zhang
  * 
  */
+@Dependent
 public class EntityManagerProducer {
 
 	/**

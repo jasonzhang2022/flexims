@@ -1,44 +1,18 @@
-<?xml version="1.0"?>
-<!DOCTYPE Configure PUBLIC "-//Mort Bay Consulting//DTD Configure//EN" "http://jetty.mortbay.org/configure.dtd">
-
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE Configure PUBLIC "-//Jetty//Configure//EN" "http://www.eclipse.org/jetty/configure_9_0.dtd">
 <Configure class="org.eclipse.jetty.webapp.WebAppContext">
-
-
-	<New id="BeanManager" class="org.eclipse.jetty.plus.jndi.Resource">
-
-		<Arg>
-			<Ref id="webAppCtx" />
-		</Arg>
-
-		<Arg>BeanManager</Arg>
-		<Arg>
-
-			<New class="javax.naming.Reference">
-
-				<Arg>javax.enterprise.inject.spi.BeanManager</Arg>
-
-				<Arg>org.jboss.weld.resources.ManagerObjectFactory</Arg>
-				<Arg />
-
-			</New>
-
-		</Arg>
-
-	</New>
-
-	<New id="flexims" class="org.eclipse.jetty.plus.jndi.Resource">
-		<Arg></Arg>
-		<Arg>jdbc/flexims</Arg>
-		<Arg>
-			<New class="org.postgresql.ds.PGConnectionPoolDataSource">
-				<Set name="User">flexims</Set>
-				<Set name="Password">123456</Set>
-				<Set name="DatabaseName">flexims</Set>
-				<Set name="ServerName">localhost</Set>
-				<Set name="PortNumber">5432</Set>
-
-			</New>
-		</Arg>
-	</New>
+  <New id="flexims" class="org.eclipse.jetty.plus.jndi.Resource">
+    <Arg></Arg>
+    <Arg>jdbc/flexims</Arg>
+    <Arg>
+    <New class="org.postgresql.ds.PGConnectionPoolDataSource">
+      <Set name="User">flexims</Set>
+      <Set name="Password">123456</Set>
+      <Set name="DatabaseName">flexims</Set>
+      <Set name="ServerName">localhost</Set>
+      <Set name="PortNumber">5432</Set>
+      
+    </New>
+    </Arg>
+  </New>
 </Configure>
- 

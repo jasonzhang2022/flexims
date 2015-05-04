@@ -8,6 +8,7 @@ import java.sql.Statement;
 import java.util.List;
 import java.util.logging.Logger;
 
+import javax.enterprise.context.Dependent;
 import javax.enterprise.event.Observes;
 import javax.persistence.EntityManager;
 import javax.persistence.Persistence;
@@ -22,7 +23,7 @@ import org.apache.deltaspike.core.api.provider.BeanProvider;
 import com.flexdms.flexims.AppInitializer;
 import com.flexdms.flexims.accesscontrol.model.TypeACL;
 import com.flexdms.flexims.util.Utils;
-
+@Dependent
 public class ACLInitializer {
 	public static final Logger LOGGER = Logger.getLogger(ACLInitializer.class.getCanonicalName());
 	public static String securityUnit = "fxsecurity";

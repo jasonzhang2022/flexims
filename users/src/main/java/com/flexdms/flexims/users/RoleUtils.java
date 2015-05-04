@@ -1,6 +1,5 @@
 package com.flexdms.flexims.users;
 
-import javax.ws.rs.GET;
 
 /**
  * Roles Utils

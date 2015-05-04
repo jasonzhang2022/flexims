@@ -1,5 +1,6 @@
 package com.flexdms.flexims.config;
 
+import javax.enterprise.context.Dependent;
 import javax.enterprise.event.Observes;
 import javax.enterprise.event.TransactionPhase;
 
@@ -14,6 +15,7 @@ import com.flexdms.flexims.jpa.event.InstanceAction.InstanceActionType;
  * @author jason.zhang
  * 
  */
+@Dependent
 public class ConfigsMaintainer {
 
 	public boolean isConfig(FleximsDynamicEntityImpl de) {

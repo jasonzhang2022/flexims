@@ -2,11 +2,9 @@ package com.flexdms.flexims.jaxb.moxy;
 
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.metamodel.Attribute;
-import javax.persistence.metamodel.Attribute.PersistentAttributeType;
 import javax.persistence.metamodel.PluralAttribute;
 import javax.xml.bind.JAXBElement;
 
-import org.eclipse.persistence.internal.jpa.metadata.accessors.mappings.RelationshipAccessor;
 import org.eclipse.persistence.jaxb.xmlmodel.JavaAttribute;
 import org.eclipse.persistence.jaxb.xmlmodel.JavaType;
 import org.eclipse.persistence.jaxb.xmlmodel.XmlElement;

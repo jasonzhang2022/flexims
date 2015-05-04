@@ -124,10 +124,7 @@
 			<type>test-jar</type>
 			<scope>test</scope>
 		</dependency>
-		 <dependency>
-            <groupId>org.glassfish.jersey.containers.glassfish</groupId>
-            <artifactId>jersey-gf-cdi</artifactId>
-        </dependency>
+		
 
 		<dependency>
 			<groupId>org.glassfish</groupId>

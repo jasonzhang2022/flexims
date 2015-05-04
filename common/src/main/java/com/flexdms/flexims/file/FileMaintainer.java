@@ -1,5 +1,6 @@
 package com.flexdms.flexims.file;
 
+import javax.enterprise.context.Dependent;
 import javax.enterprise.event.Observes;
 
 import org.apache.deltaspike.core.api.provider.BeanProvider;
@@ -15,6 +16,7 @@ import com.flexdms.flexims.jpa.event.InstanceAction.InstanceActionType;
  * @author jason.zhang
  * 
  */
+@Dependent
 public class FileMaintainer {
 
 	public void changeFileStatus(FleximsDynamicEntityImpl de, boolean persist) {

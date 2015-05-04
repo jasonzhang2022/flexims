@@ -23,6 +23,7 @@
 		<module>googlefiles</module>
 		<module>s3files</module>
 		<module>tomcat_web</module>
+		<module>jetty_web</module>
 		<module>servicetest</module>
 		<module>module</module>
 		<module>ittest</module>
@@ -46,10 +47,10 @@
 		<!-- use old Guana to avoid conflict with CDI -->
 		<version.com.google.guana>14.0.1</version.com.google.guana>
 
-		<version.jersey>2.10</version.jersey>
-		<version.deltaspike>1.0.2</version.deltaspike>
-		<version.eclipselink>2.5.2</version.eclipselink>
-		<version.weld>2.1.2.Final</version.weld>
+		<version.jersey>2.17</version.jersey>
+		<version.deltaspike>1.3.0</version.deltaspike>
+		<version.eclipselink>2.6.0</version.eclipselink>
+		<version.weld>2.2.11.Final</version.weld>
 		<version.slf4j>1.7.5</version.slf4j>
 		<version.quartz>2.2.1</version.quartz>
 		<version.arquillian.jacoco>1.0.0.Alpha6</version.arquillian.jacoco>
@@ -59,9 +60,9 @@
 	<dependencyManagement>
 		<dependencies>
 			<dependency>
-				<groupId>com.googlecode.jmockit</groupId>
+				<groupId>org.jmockit</groupId>
 				<artifactId>jmockit</artifactId>
-				<version>1.5</version>
+				<version>1.17</version>
 			</dependency>
 			<dependency>
 				<groupId>org.slf4j</groupId>
@@ -206,13 +207,36 @@
 				<artifactId>org.eclipse.persistence.antlr</artifactId>
 				<version>${version.eclipselink}</version>
 			</dependency>
-			<dependency>
-				<groupId>org.glassfish.jersey</groupId>
-				<artifactId>jersey-bom</artifactId>
-				<version>${version.jersey}</version>
-				<scope>import</scope>
-				<type>pom</type>
-			</dependency>
+			
+			
+			<!--  jersey -->
+			  <dependency>
+                    <groupId>org.glassfish.jersey.containers</groupId>
+                    <artifactId>jersey-container-servlet</artifactId>
+                   <version>${version.jersey}</version>
+                </dependency>
+                <dependency>
+                    <groupId>org.glassfish.jersey.containers</groupId>
+                    <artifactId>jersey-container-servlet-core</artifactId>
+                     <version>${version.jersey}</version>
+                </dependency>
+                <dependency>
+                    <groupId>org.glassfish.jersey.core</groupId>
+                    <artifactId>jersey-server</artifactId>
+                      <version>${version.jersey}</version>
+                </dependency>
+                <dependency>
+                    <groupId>org.glassfish.jersey.ext.cdi</groupId>
+                    <artifactId>jersey-cdi1x</artifactId>
+                     <version>${version.jersey}</version>
+                </dependency>
+                <dependency>
+                    <groupId>org.glassfish.jersey.ext.cdi</groupId>
+                    <artifactId>jersey-cdi1x-servlet</artifactId>
+                     <version>${version.jersey}</version>
+                </dependency>
+                
+
 		</dependencies>
 	</dependencyManagement>
 
@@ -223,7 +247,7 @@
 		<!-- test and arquillian -->
 		<!-- Jmockit must be before junit -->
 		<dependency>
-			<groupId>com.googlecode.jmockit</groupId>
+			<groupId>org.jmockit</groupId>
 			<artifactId>jmockit</artifactId>
 			<scope>test</scope>
 		</dependency>
@@ -364,11 +388,7 @@
 			<artifactId>deltaspike-core-impl</artifactId>
 			<version>${version.deltaspike}</version>
 		</dependency>
-		<dependency>
-			<groupId>org.glassfish.hk2.external</groupId>
-			<artifactId>javax.inject</artifactId>
-			<version>2.2.0</version>
-		</dependency>
+	
 		<dependency>
 			<groupId>org.jboss.weld.se</groupId>
 			<artifactId>weld-se</artifactId>
@@ -376,6 +396,61 @@
 			<scope>test</scope>
 		</dependency>
 
+		<!--  jersey -->
+		<dependency>
+			<groupId>org.glassfish.jersey.containers</groupId>
+			<artifactId>jersey-container-servlet</artifactId>
+			<scope>compile</scope>
+		</dependency>
+<!-- 		<dependency> -->
+<!-- 			<groupId>javax.ws.rs</groupId> -->
+<!-- 			<artifactId>javax.ws.rs-api</artifactId> -->
+<!-- 			<scope>compile</scope> -->
+<!-- 			<version>2.0</version> -->
+<!-- 		</dependency> -->
+		<dependency>
+			<groupId>org.glassfish.jersey.containers</groupId>
+			<artifactId>jersey-container-servlet-core</artifactId>
+			<scope>compile</scope>
+		</dependency>
+<!-- 		<dependency> -->
+<!-- 			<groupId>org.glassfish.hk2.external</groupId> -->
+<!-- 			<artifactId>javax.inject</artifactId> -->
+<!-- 			<scope>provided</scope> -->
+<!-- 		</dependency> -->
+		<dependency>
+			<groupId>org.glassfish.jersey.core</groupId>
+			<artifactId>jersey-server</artifactId>
+			<scope>compile</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.glassfish.jersey.ext.cdi</groupId>
+			<artifactId>jersey-cdi1x</artifactId>
+			<scope>compile</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.glassfish.jersey.ext.cdi</groupId>
+			<artifactId>jersey-cdi1x-servlet</artifactId>
+			<scope>compile</scope>
+		</dependency>
+		
+		<dependency>
+		    <groupId>org.glassfish.jersey.ext.cdi</groupId>
+		    <artifactId>jersey-weld2-se</artifactId>
+		    <version>${version.jersey}</version>
+		    <exclusions>
+		    	<exclusion>
+		    		<artifactId>javax.inject</artifactId>
+		    		<groupId>javax.inject</groupId>
+		    	</exclusion>
+		    	<exclusion>
+		    		<artifactId>
+		    			jboss-interceptors-api_1.2_spec
+		    		</artifactId>
+		    		<groupId>org.jboss.spec.javax.interceptor</groupId>
+		    	</exclusion>
+		    </exclusions>
+		</dependency>
 
 		<!-- transaction API -->
 		<dependency>

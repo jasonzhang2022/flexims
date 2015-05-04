@@ -3,6 +3,7 @@ package com.flexdms.flexims.config;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.enterprise.context.Dependent;
 import javax.enterprise.event.Observes;
 import javax.inject.Inject;
 
@@ -16,6 +17,7 @@ import com.flexdms.flexims.jpa.eclipselink.FleximsDynamicEntityImpl;
  * @author jason.zhang
  * 
  */
+@Dependent
 public class ConfigsInitializer {
 
 	@Inject

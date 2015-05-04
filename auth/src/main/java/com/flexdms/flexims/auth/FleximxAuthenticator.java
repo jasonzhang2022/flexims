@@ -11,7 +11,6 @@ import org.apache.shiro.cache.CacheManager;
 import org.apache.shiro.realm.AuthenticatingRealm;
 import org.apache.shiro.util.ByteSource;
 
-import com.flexdms.flexims.App;
 import com.flexdms.flexims.users.FxUser;
 
 public class FleximxAuthenticator extends AuthenticatingRealm {

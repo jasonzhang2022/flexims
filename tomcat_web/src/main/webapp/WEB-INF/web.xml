@@ -4,6 +4,10 @@
   <welcome-file-list>
     <welcome-file>index.html</welcome-file>
   </welcome-file-list>
+  <context-param>
+  	<param-name>org.jboss.weld.environment.servlet.archive.isolation</param-name>
+  	<param-value>false</param-value>
+  </context-param>
   <listener>
     <listener-class>org.jboss.weld.environment.servlet.Listener</listener-class>
   </listener>

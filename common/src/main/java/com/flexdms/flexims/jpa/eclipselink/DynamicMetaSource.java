@@ -11,7 +11,6 @@ import java.util.logging.Logger;
 import net.sf.corn.cps.CPScanner;
 import net.sf.corn.cps.ResourceFilter;
 
-
 import org.eclipse.persistence.internal.jpa.metadata.accessors.PropertyMetadata;
 import org.eclipse.persistence.internal.jpa.metadata.accessors.classes.EmbeddableAccessor;
 import org.eclipse.persistence.internal.jpa.metadata.accessors.classes.EntityAccessor;

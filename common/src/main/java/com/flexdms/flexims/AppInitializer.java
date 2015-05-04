@@ -1,11 +1,14 @@
 package com.flexdms.flexims;
 
 
+import javax.enterprise.context.Dependent;
 import javax.enterprise.event.Observes;
 import javax.persistence.EntityManager;
 import javax.servlet.ServletContext;
 
 import org.apache.deltaspike.core.api.lifecycle.Initialized;
+import org.apache.deltaspike.core.api.provider.BeanProvider;
+import org.apache.deltaspike.core.api.provider.DependentProvider;
 import org.eclipse.persistence.internal.jpa.metadata.xml.XMLEntityMappings;
 
 import com.flexdms.flexims.jpa.eclipselink.DynamicMetaSource;
@@ -20,6 +23,7 @@ import com.flexdms.flexims.util.ThreadContext;
  * @author jason.zhang
  * 
  */
+@Dependent
 public class AppInitializer {
 
 	public static class AppInitalizeContext {
@@ -27,9 +31,16 @@ public class AppInitializer {
 
 	}
 
+	/**
+	 * Listen servlet context initialization event from deltaspike. 
+	 * Not use injection but look up bean instance since we want to control the order of bean instantiation.
+	 * @param servletContext
+	 */
 	public void initializeApp(@Observes @Initialized ServletContext servletContext) {
 
-		MapPersister mapPersister = App.getInstance(MapPersister.class);
+		DependentProvider<MapPersister> myBeanProvider = BeanProvider.getDependent(MapPersister.class);
+		MapPersister mapPersister= myBeanProvider.get();
+		
 		XMLEntityMappings mappings = mapPersister.load();
 		if (mappings != null) {
 			DynamicMetaSource.mergeMap(mappings, DynamicMetaSource.getEntityMaps());
@@ -47,6 +58,7 @@ public class AppInitializer {
 		} finally {
 			ThreadContext.remove(App.EM_KEY);
 			appInitalizeContext.em.close();
+			myBeanProvider.destroy();
 		}
 
 	}

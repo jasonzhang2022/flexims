@@ -1,8 +1,10 @@
 package com.flexdms.flexims.accesscontrol.action;
 
+import javax.enterprise.context.ApplicationScoped;
+
 import com.flexdms.flexims.accesscontrol.ACLHelper;
 import com.flexdms.flexims.accesscontrol.Action;
-
+@ApplicationScoped
 public class EditAction extends Action {
 	private static final long serialVersionUID = 1L;
 	public static final String NAME = "Edit";

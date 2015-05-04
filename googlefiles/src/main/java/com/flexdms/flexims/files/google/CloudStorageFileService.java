@@ -15,7 +15,7 @@ import java.util.UUID;
 import java.util.logging.Logger;
 
 import javax.annotation.PostConstruct;
-import javax.enterprise.context.ApplicationScoped;
+import javax.enterprise.context.Dependent;
 
 import com.flexdms.flexims.config.Configs;
 import com.flexdms.flexims.file.FileID;
@@ -35,7 +35,7 @@ import com.google.api.services.storage.Storage;
 import com.google.api.services.storage.StorageScopes;
 import com.google.api.services.storage.model.StorageObject;
 
-@ApplicationScoped
+@Dependent
 @FileSchema(CloudStorageFileService.FILE_SCHEMA)
 public class CloudStorageFileService implements FileServiceI {
 	public static final Logger LOGGER = Logger.getLogger(CloudStorageFileService.class.getCanonicalName());

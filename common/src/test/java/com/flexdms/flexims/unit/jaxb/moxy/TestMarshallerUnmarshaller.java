@@ -112,7 +112,7 @@ public class TestMarshallerUnmarshaller {
 		string = writer.toString();
 
 		de1 = (FleximsDynamicEntityImpl) helper.fromXml(new StringReader(string), em);
-		assertEquals(5, de1.get("propint"));
+		assertEquals(5, (int)de1.get("propint"));
 		assertEquals(de1.getClass().getSuperclass(), FleximsDynamicEntityImpl.class);
 		// json
 		writer = new StringWriter();
@@ -120,7 +120,7 @@ public class TestMarshallerUnmarshaller {
 		string = writer.toString();
 		System.out.println(string);
 		de1 = (FleximsDynamicEntityImpl) helper.fromJson(new StringReader(string), em);
-		assertEquals(5, de1.get("propint"));
+		assertEquals(5, (int)de1.get("propint"));
 	}
 
 	@Test

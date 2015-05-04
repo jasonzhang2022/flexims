@@ -14,7 +14,7 @@ import java.util.Map;
 import java.util.logging.Logger;
 
 import javax.annotation.PostConstruct;
-import javax.enterprise.context.ApplicationScoped;
+import javax.enterprise.context.Dependent;
 
 import com.flexdms.flexims.config.Configs;
 import com.flexdms.flexims.file.FileID;
@@ -39,7 +39,7 @@ import com.google.api.services.drive.model.FileList;
 import com.google.api.services.drive.model.ParentReference;
 import com.google.api.services.drive.model.Property;
 
-@ApplicationScoped
+@Dependent
 @FileSchema(DriveFileService.FILE_SCHEMA)
 public class DriveFileService implements FileServiceI {
 	public static final Logger LOGGER = Logger.getLogger(DriveFileService.class.getCanonicalName());

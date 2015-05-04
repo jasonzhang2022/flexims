@@ -1,7 +1,10 @@
 package com.flexdms.flexims.accesscontrol.action;
 
-import com.flexdms.flexims.accesscontrol.Action;
+import javax.enterprise.context.ApplicationScoped;
 
+
+import com.flexdms.flexims.accesscontrol.Action;
+@ApplicationScoped
 public class AllAction extends Action {
 	private static final long serialVersionUID = 1L;
 	public static final String NAME = "All";

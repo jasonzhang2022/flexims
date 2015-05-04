@@ -9,6 +9,7 @@ import java.sql.Statement;
 import java.util.List;
 import java.util.logging.Logger;
 
+import javax.enterprise.context.Dependent;
 import javax.enterprise.event.Observes;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
@@ -35,6 +36,7 @@ import com.flexdms.flexims.util.Utils;
  * @author jason.zhang
  * 
  */
+@Dependent
 public class AppDataLoader {
 
 	public static final Logger LOGGER = Logger.getLogger(AppDataLoader.class.getCanonicalName());

@@ -19,8 +19,7 @@ import com.flexdms.flexims.util.ThreadContext;
 
 /**
  * A class to interface with CDI and traditional service lookup. And entry point
- * to access global resources such as EntityManage
- * 
+ * to access global resources such as EntityManager
  * @author jason.zhang
  * 
  */
@@ -34,6 +33,7 @@ public final class App {
 	public static <T> T getInstance(final Class<T> cls) {
 		return BeanProvider.getContextualReference(cls, false);
 	}
+	
 
 	public static EntityManagerFactoryProvider getPersistenceUnit() {
 		return getInstance(EntityManagerFactoryProvider.class);

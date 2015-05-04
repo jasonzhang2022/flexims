@@ -2,7 +2,6 @@ package com.flexdms.flexims.auth;
 
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
-import javax.mail.MessagingException;
 import javax.persistence.EntityManager;
 import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.Consumes;
@@ -24,14 +23,12 @@ import com.flexdms.flexims.config.Configs;
 import com.flexdms.flexims.jaxb.moxy.JaxbHelper;
 import com.flexdms.flexims.jpa.eclipselink.FleximsDynamicEntityImpl;
 import com.flexdms.flexims.rsutil.AppMsg;
-import com.flexdms.flexims.rsutil.RSMsg;
 import com.flexdms.flexims.users.FxUser;
-import com.flexdms.flexims.util.EmailSender;
 import com.flexdms.flexims.util.EmailSenderI;
 import com.flexdms.flexims.util.SessionCtx;
 
 /**
- * Service manage user authentication.
+ * Service manage user authentication. THis is a jerysey service managed by {@link RSApplication}
  * 
  * @author jason.zhang
  * 

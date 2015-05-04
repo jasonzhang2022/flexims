@@ -2,8 +2,10 @@ package com.flexdms.flexims;
 
 import java.util.concurrent.Callable;
 
+import javax.enterprise.context.Dependent;
 import javax.transaction.Transactional;
 
+@Dependent
 public class RunInTransaction {
 
 	@Transactional 

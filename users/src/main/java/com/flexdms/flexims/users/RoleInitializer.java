@@ -6,6 +6,7 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.logging.Logger;
 
+import javax.enterprise.context.Dependent;
 import javax.enterprise.event.Observes;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
@@ -15,7 +16,7 @@ import com.flexdms.flexims.AppInitializer;
 import com.flexdms.flexims.jaxb.moxy.JaxbHelper;
 import com.flexdms.flexims.jpa.eclipselink.FleximsDynamicEntityImpl;
 import com.flexdms.flexims.rsutil.Entities;
-
+@Dependent
 public class RoleInitializer {
 
 	public static final Logger LOGGER = Logger.getLogger(RoleInitializer.class.getCanonicalName());

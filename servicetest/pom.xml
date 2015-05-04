@@ -107,10 +107,6 @@
 
 		<!-- jersey for RESTFUL -->
 		<!-- this is critical to make jersey aware of CDI implemnetation:weld -->
-		 <dependency>
-            <groupId>org.glassfish.jersey.containers.glassfish</groupId>
-            <artifactId>jersey-gf-cdi</artifactId>
-        </dependency>
 
 
 		<!-- Required only when you are using JAX-RS Client -->

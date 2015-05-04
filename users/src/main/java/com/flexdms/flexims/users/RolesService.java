@@ -26,7 +26,6 @@ import com.flexdms.flexims.jaxb.moxy.JaxbHelper;
 import com.flexdms.flexims.jpa.JpaHelper;
 import com.flexdms.flexims.rsutil.AppMsg;
 import com.flexdms.flexims.rsutil.Entities;
-import com.flexdms.flexims.rsutil.RSMsg;
 import com.flexdms.flexims.util.SessionCtx;
 
 @Path("/role")
