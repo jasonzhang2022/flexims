@@ -5,8 +5,8 @@
 	<Manager pathname="" />
 
 	<!-- weld CDI -->
-	<Resource auth="Container" factory="org.jboss.weld.resources.ManagerObjectFactory"
-		name="BeanManager" type="javax.enterprise.inject.spi.BeanManager" />
+<!-- 	<Resource auth="Container" factory="org.jboss.weld.resources.ManagerObjectFactory" -->
+<!-- 		name="BeanManager" type="javax.enterprise.inject.spi.BeanManager" /> -->
 		
 
 	<!-- 
